@@ -66,14 +66,28 @@
             <li><a class="kit-nav__link" href="#avatar"><span class="kit-nav__num">07</span> Avatar</a></li>
             <li><a class="kit-nav__link" href="#progress"><span class="kit-nav__num">08</span> Progress</a></li>
             <li><a class="kit-nav__link" href="#switch"><span class="kit-nav__num">09</span> Switch</a></li>
-            <li><a class="kit-nav__link" href="#divider"><span class="kit-nav__num">10</span> Divider</a></li>
-            <li><a class="kit-nav__link" href="#dots"><span class="kit-nav__num">11</span> Pagination Dots</a></li>
-            <li><a class="kit-nav__link" href="#scroll-top"><span class="kit-nav__num">12</span> Scroll Top</a></li>
+            <li><a class="kit-nav__link" href="#input"><span class="kit-nav__num">10</span> Input</a></li>
+            <li><a class="kit-nav__link" href="#divider"><span class="kit-nav__num">11</span> Divider</a></li>
+            <li><a class="kit-nav__link" href="#dots"><span class="kit-nav__num">12</span> Pagination Dots</a></li>
+            <li><a class="kit-nav__link" href="#scroll-top"><span class="kit-nav__num">13</span> Scroll Top</a></li>
           </ul>
         </div>
         <div class="kit-nav__group">
-          <p class="kit-nav__group-label">Moléculas</p>
-          <p class="kit-nav__empty">Sin componentes aún</p>
+          <p class="kit-nav__group-label" id="nav-molecules">Moléculas</p>
+          <ul class="kit-nav__list" aria-labelledby="nav-molecules">
+            <li><a class="kit-nav__link" href="#card-service"><span class="kit-nav__num">01</span> Card Service</a></li>
+            <li><a class="kit-nav__link" href="#card-feature"><span class="kit-nav__num">02</span> Card Feature</a></li>
+            <li><a class="kit-nav__link" href="#card-pricing"><span class="kit-nav__num">03</span> Card Pricing</a></li>
+            <li><a class="kit-nav__link" href="#card-testimonial"><span class="kit-nav__num">04</span> Card Testimonial</a></li>
+            <li><a class="kit-nav__link" href="#card-team"><span class="kit-nav__num">05</span> Card Team</a></li>
+            <li><a class="kit-nav__link" href="#card-post"><span class="kit-nav__num">06</span> Card Post</a></li>
+            <li><a class="kit-nav__link" href="#card-project"><span class="kit-nav__num">07</span> Card Project</a></li>
+            <li><a class="kit-nav__link" href="#card-cta"><span class="kit-nav__num">08</span> Card CTA</a></li>
+            <li><a class="kit-nav__link" href="#card-hero"><span class="kit-nav__num">09</span> Card Hero</a></li>
+            <li><a class="kit-nav__link" href="#stat"><span class="kit-nav__num">10</span> Stat</a></li>
+            <li><a class="kit-nav__link" href="#accordion-item"><span class="kit-nav__num">11</span> Accordion Item</a></li>
+            <li><a class="kit-nav__link" href="#newsletter"><span class="kit-nav__num">12</span> Newsletter</a></li>
+          </ul>
         </div>
         <div class="kit-nav__group">
           <p class="kit-nav__group-label">Organismos</p>
@@ -266,7 +280,7 @@
           </div>
 
           <div class="kit-block">
-            <span class="kit-block__label">Foco y superficie inversa</span>
+            <span class="kit-block__label">Foco y superficies oscuras (inverse y brand)</span>
             <div class="kit-grid">
               <div class="kit-demo">
                 <p class="kit-demo__caption">Fondo claro · <code>--color-border-focus</code></p>
@@ -294,6 +308,7 @@
 &lt;/section&gt;</code></pre>
             </div>
             <p class="kit-note">El amarillo nunca va como texto sobre el crema ni sobre blanco (≈1.4:1). Como relleno lleva texto oscuro (<code>action-on-secondary</code>); como texto solo aparece sobre fondos oscuros, con <code>--color-text-highlight</code>.</p>
+            <p class="kit-note"><code>data-surface="inverse"</code> (fondo <code>--color-background-inverse</code>) es para bloques oscuros full-bleed y <code>data-surface="brand"</code> es el petróleo de las cards destacadas (<code>--color-action-primary</code>). Las dos reasignan el foco a amarillo y dan lectura a titulares y enlaces de todo su árbol.</p>
             <p class="kit-note">El gris de párrafos del diseño (<code>#727979</code>) da 4.30:1 sobre el crema y no llega a AA: se oscureció a <code>--color-neutral-600</code>. Cuerpo y metadatos comparten ese gris porque el diseño usa un solo tono. <code>background-muted</code> no lleva texto de cuerpo (4.36:1).</p>
           </div>
         </section>
@@ -711,7 +726,7 @@
             <p class="kit-card__desc">Lucide como máscara CSS: la clase <code>.icon</code> hereda el color y el tamaño del contexto (<code>currentColor</code> y <code>1em</code>), así el snippet es una sola línea y no depende de rutas ni de un sprite. Las redes sociales no están en Lucide: son SVG propios del mismo estilo de trazo.</p>
           </header>
           <div class="kit-block">
-            <span class="kit-block__label">Set completo (18)</span>
+            <span class="kit-block__label">Set completo (27)</span>
             <ul class="kit-icons">
               <li class="kit-icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span><code>icon--arrow-up-right</code></li>
               <li class="kit-icon"><span class="icon icon--arrow-right" aria-hidden="true"></span><code>icon--arrow-right</code></li>
@@ -727,6 +742,15 @@
               <li class="kit-icon"><span class="icon icon--send" aria-hidden="true"></span><code>icon--send</code></li>
               <li class="kit-icon"><span class="icon icon--message-square" aria-hidden="true"></span><code>icon--message-square</code></li>
               <li class="kit-icon"><span class="icon icon--layout-grid" aria-hidden="true"></span><code>icon--layout-grid</code></li>
+              <li class="kit-icon"><span class="icon icon--target" aria-hidden="true"></span><code>icon--target</code></li>
+              <li class="kit-icon"><span class="icon icon--trending-up" aria-hidden="true"></span><code>icon--trending-up</code></li>
+              <li class="kit-icon"><span class="icon icon--chart-pie" aria-hidden="true"></span><code>icon--chart-pie</code></li>
+              <li class="kit-icon"><span class="icon icon--users" aria-hidden="true"></span><code>icon--users</code></li>
+              <li class="kit-icon"><span class="icon icon--lightbulb" aria-hidden="true"></span><code>icon--lightbulb</code></li>
+              <li class="kit-icon"><span class="icon icon--rocket" aria-hidden="true"></span><code>icon--rocket</code></li>
+              <li class="kit-icon"><span class="icon icon--gem" aria-hidden="true"></span><code>icon--gem</code></li>
+              <li class="kit-icon"><span class="icon icon--award" aria-hidden="true"></span><code>icon--award</code></li>
+              <li class="kit-icon"><span class="icon icon--hexagon" aria-hidden="true"></span><code>icon--hexagon</code></li>
               <li class="kit-icon"><span class="icon icon--facebook" aria-hidden="true"></span><code>icon--facebook</code></li>
               <li class="kit-icon"><span class="icon icon--linkedin" aria-hidden="true"></span><code>icon--linkedin</code></li>
               <li class="kit-icon"><span class="icon icon--instagram" aria-hidden="true"></span><code>icon--instagram</code></li>
@@ -1336,9 +1360,72 @@
           <p class="kit-note"><strong>Accesibilidad:</strong> Es un control nativo: Tab para llegar, Espacio para alternar, y el estado lo anuncia el lector («activado/desactivado»). El estado se ve por la <em>posición</em> de la perilla, no por el color de la pista. Con «reducir movimiento» la perilla salta sin animación.</p>
         </section>
 
-        <section class="kit-card" id="divider" aria-labelledby="divider-title">
+        <section class="kit-card" id="input" aria-labelledby="input-title">
           <header class="kit-card__header">
             <p class="kit-card__tag">Átomo · 10</p>
+            <h3 id="input-title">Input</h3>
+            <p class="kit-card__desc">Campo de texto de una línea con solo el filete inferior: el único caso del diseño es el de la newsletter. Sobre superficies oscuras (<code>data-surface</code>) el filete y el placeholder pasan a blanco al 78% para mantener el contraste de un control (3:1).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo claro</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <label for="input-demo-light" class="visually-hidden">Email address</label>
+              <input class="input" type="email" id="input-demo-light" name="email" placeholder="Enter your email" autocomplete="email">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-input-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-input-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro (hereda de <code>data-surface</code>)</span>
+            <div class="kit-demo kit-demo--narrow" data-surface="inverse" lang="en">
+              <label for="input-demo-dark" class="visually-hidden">Email address</label>
+              <input class="input" type="email" id="input-demo-dark" name="email" placeholder="Enter your email" autocomplete="email">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-input-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-input-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Input">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.input</code></th><td>Campo sin caja: solo el filete inferior; ocupa el ancho de su contenedor</td></tr>
+                  <tr><th scope="row"><code>aria-invalid="true"</code></th><td>Estado de error: el filete pasa a color de error (acompañar con un mensaje de texto)</td></tr>
+                  <tr><th scope="row"><code>&lt;label for&gt;</code></th><td>Obligatorio, aunque esté visualmente oculto (<code>visually-hidden</code>): el placeholder no es un nombre accesible</td></tr>
+                  <tr><th scope="row"><code>type / autocomplete</code></th><td>El tipo correcto (email, tel…) abre el teclado adecuado en móvil; autocomplete evita volver a pedir un dato</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-text-primary / -inverse</code></li>
+              <li><code>--color-border-strong / --color-text-inverse-secondary (filete)</code></li>
+              <li><code>--color-text-tertiary (placeholder)</code></li>
+              <li><code>--color-border-error</code></li>
+              <li><code>--spacing-3</code></li>
+              <li><code>--text-body</code></li>
+              <li><code>--ease-fast</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Lleva <code>&lt;label&gt;</code> asociado y el placeholder solo ilustra el formato. El foco usa el anillo global (amarillo sobre superficies oscuras). El filete da ≥3:1 sobre claro y oscuro, como exige WCAG 1.4.11 para el borde de un control.</p>
+        </section>
+
+        <section class="kit-card" id="divider" aria-labelledby="divider-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 11</p>
             <h3 id="divider-title">Divider</h3>
             <p class="kit-card__desc">Filete horizontal de 1px sobre un <code>&lt;hr&gt;</code>. <code>--inverse</code> lo adapta a fondos oscuros (divisor de las cards de testimonio y del footer).</p>
           </header>
@@ -1393,7 +1480,7 @@
 
         <section class="kit-card" id="dots" aria-labelledby="dots-title">
           <header class="kit-card__header">
-            <p class="kit-card__tag">Átomo · 11</p>
+            <p class="kit-card__tag">Átomo · 12</p>
             <h3 id="dots-title">Pagination Dots</h3>
             <p class="kit-card__desc">Puntos de paginación para carruseles (testimonios, stats en mobile). Cada punto es un botón de 24×24px con el punto dibujado en <code>::before</code>. El inactivo usa <code>border-strong</code> y el activo lleva un halo.</p>
           </header>
@@ -1466,7 +1553,7 @@
 
         <section class="kit-card" id="scroll-top" aria-labelledby="scroll-top-title">
           <header class="kit-card__header">
-            <p class="kit-card__tag">Átomo · 12</p>
+            <p class="kit-card__tag">Átomo · 13</p>
             <h3 id="scroll-top-title">Scroll Top</h3>
             <p class="kit-card__desc">Botón fijo abajo a la derecha que vuelve al inicio. Aparece al pasar media pantalla y el anillo dibuja el avance del scroll. <strong>Está activo en este mismo kit: baja por la página y míralo.</strong></p>
           </header>
@@ -1514,7 +1601,872 @@
 
       <section class="kit-level" id="molecules" aria-labelledby="molecules-title">
         <h2 id="molecules-title">Moléculas</h2>
-        <p class="kit-empty">Sin componentes aún. Se construyen solo cuando los átomos que las componen estén completos.</p>
+        <p class="kit-level__intro">Componen dos a cuatro átomos y no conocen el contexto de página: no hacen fetch ni asumen un layout. Las cards destacadas usan <code>data-surface="brand"</code>; las que van sobre foto usan el patrón <code>card-photo</code> con <code>data-surface="inverse"</code>.</p>
+        <section class="kit-card" id="card-service" aria-labelledby="card-service-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 01</p>
+            <h3 id="card-service-title">Card Service</h3>
+            <p class="kit-card__desc">Card de un servicio: foto, ícono Lucide, título y texto. Con <code>data-surface="brand"</code> pasa a la versión destacada (petróleo, ícono amarillo). Vive dentro del carrusel de Services y ocupa la altura de su slide.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Normal y destacada</span>
+            <div class="kit-demo kit-demo--cards" lang="en">
+              <article class="card-service">
+                <img class="card-service__media" src="../assets/img/h1-service-img-2.webp" alt="" width="1500" height="900" loading="lazy">
+                <div class="card-service__body">
+                  <div class="card-service__head">
+                    <span class="icon icon--target card-service__icon" aria-hidden="true"></span>
+                    <h3 class="card-service__title">Marketing Guidance</h3>
+                  </div>
+                  <p>Through expert insights and strategic planning, marketing guidance enables businesses to understand customer.</p>
+                </div>
+              </article>
+              <article class="card-service" data-surface="brand">
+                <img class="card-service__media" src="../assets/img/h1-service-img-3.webp" alt="" width="1500" height="900" loading="lazy">
+                <div class="card-service__body">
+                  <div class="card-service__head">
+                    <span class="icon icon--trending-up card-service__icon" aria-hidden="true"></span>
+                    <h3 class="card-service__title">Process Optimization</h3>
+                  </div>
+                  <p>By analyzing existing operations and implementing effective improvements, process optimization helps business.</p>
+                </div>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-service-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-service-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Service">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-service</code></th><td>Card blanca con sombra suave; ocupa el alto de su contenedor</td></tr>
+                  <tr><th scope="row"><code>.card-service__media</code></th><td>Foto 5:3 con esquinas redondeadas (la fuente es 1500×900)</td></tr>
+                  <tr><th scope="row"><code>.card-service__head / __icon / __title</code></th><td>Fila con el ícono de 32px y el título (h3) al lado</td></tr>
+                  <tr><th scope="row"><code>data-surface="brand"</code></th><td>Versión destacada: fondo petróleo, texto claro, ícono amarillo y foco amarillo</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-surface-default</code></li>
+              <li><code>--shadow-sm</code></li>
+              <li><code>--radius-lg / -md</code></li>
+              <li><code>--spacing-3 / -4 / -5 / -7</code></li>
+              <li><code>--text-h4</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--color-text-secondary / -inverse-secondary / -highlight</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La foto es decorativa (<code>alt=""</code>); el título es un <code>&lt;h3&gt;</code> bajo el <code>&lt;h2&gt;</code> de la sección. El ícono es <code>aria-hidden</code>. La card no es un enlace: si el servicio tiene página, el enlace va dentro con texto descriptivo.</p>
+        </section>
+
+        <section class="kit-card" id="card-feature" aria-labelledby="card-feature-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 02</p>
+            <h3 id="card-feature-title">Card Feature</h3>
+            <p class="kit-card__desc">Card de un argumento de venta: número decorativo arriba, título y texto abajo. Con <code>data-surface="brand"</code> lleva foto de fondo bajo un velo petróleo, el número en amarillo y un «Read More». En la home las tres van pegadas en una franja.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Normal, destacada y normal</span>
+            <div class="kit-demo kit-demo--cards" lang="en">
+              <article class="card-feature">
+                <p class="card-feature__number" aria-hidden="true">01</p>
+                <div class="card-feature__body">
+                  <h3 class="card-feature__title">Tailored business solutions</h3>
+                  <p>We provide tailored business solution designed to match your unique goals</p>
+                </div>
+              </article>
+              <article class="card-feature" data-surface="brand">
+                <img class="card-feature__bg" src="../assets/img/h1-feature-bg-image.webp" alt="" width="1320" height="960" loading="lazy">
+                <p class="card-feature__number" aria-hidden="true">02</p>
+                <div class="card-feature__body">
+                  <h3 class="card-feature__title">Results-focused strategies</h3>
+                  <p>Our results-focused strategies are designed to deliver measurable business growth</p>
+                  <a href="#card-feature" class="link-arrow link-arrow--inverse">
+                    Read More<span class="visually-hidden"> about results-focused strategies</span>
+                    <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                  </a>
+                </div>
+              </article>
+              <article class="card-feature">
+                <p class="card-feature__number" aria-hidden="true">03</p>
+                <div class="card-feature__body">
+                  <h3 class="card-feature__title">Proven success methods</h3>
+                  <p>With a focus on practical results, we create strategies that deliver lasting value</p>
+                </div>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-feature-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-feature-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Feature">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-feature</code></th><td>Card blanca; número arriba y texto abajo (justify space-between)</td></tr>
+                  <tr><th scope="row"><code>.card-feature__number</code></th><td>Número decorativo en gris claro (aria-hidden)</td></tr>
+                  <tr><th scope="row"><code>.card-feature__bg</code></th><td>Foto de fondo (solo en la destacada); queda bajo el velo</td></tr>
+                  <tr><th scope="row"><code>data-surface="brand"</code></th><td>Destacada: velo petróleo al 85% sobre la foto, número amarillo y texto claro</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-surface-default</code></li>
+              <li><code>--color-border-default (número)</code></li>
+              <li><code>--color-action-primary (velo)</code></li>
+              <li><code>--color-text-highlight</code></li>
+              <li><code>--radius-lg</code></li>
+              <li><code>--spacing-3 / -7 / -10</code></li>
+              <li><code>--text-h4 / -h5</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El número es <code>aria-hidden</code>: las tres cards no son una secuencia, así que la numeración es solo visual. «Read More» agrega con <code>visually-hidden</code> el tema del que habla, para no repetir un enlace ambiguo.</p>
+        </section>
+
+        <section class="kit-card" id="card-pricing" aria-labelledby="card-pricing-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 03</p>
+            <h3 id="card-pricing-title">Card Pricing</h3>
+            <p class="kit-card__desc">Plan de precios: ícono, nombre, precio mensual, botón y lista de beneficios. Con <code>data-surface="brand"</code> se destaca (petróleo y botón amarillo). El último beneficio va atenuado, como en el diseño. El cambio Monthly / Annually lo maneja la Section.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Starter, Enterprise (destacado) y Premium</span>
+            <div class="kit-demo kit-demo--cards" lang="en">
+              <article class="card-pricing">
+                <header class="card-pricing__head">
+                  <span class="card-pricing__icon"><span class="icon icon--rocket" aria-hidden="true"></span></span>
+                  <div>
+                    <h3 class="card-pricing__name">Starter Plan</h3>
+                    <p>Core strategies for business success</p>
+                  </div>
+                </header>
+                <p class="card-pricing__price"><span class="card-pricing__amount">$39.9</span> <span>/ Month</span></p>
+                <a href="#card-pricing" class="btn btn--block">
+                  Get Started
+                  <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                </a>
+                <ul class="card-pricing__list">
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Growth Recommendations</li>
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Monthly Strategy Consultation</li>
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Basic Market Analysis</li>
+                  <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Email support</li>
+                </ul>
+              </article>
+              <article class="card-pricing" data-surface="brand">
+                <header class="card-pricing__head">
+                  <span class="card-pricing__icon"><span class="icon icon--award" aria-hidden="true"></span></span>
+                  <div>
+                    <h3 class="card-pricing__name">Enterprise Plan</h3>
+                    <p>Drive innovation &amp; long-term success</p>
+                  </div>
+                </header>
+                <p class="card-pricing__price"><span class="card-pricing__amount">$49.9</span> <span>/ Month</span></p>
+                <a href="#card-pricing" class="btn btn--block btn--accent">
+                  Get Started
+                  <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                </a>
+                <ul class="card-pricing__list">
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Customized Business Strategy</li>
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Advanced Market Research</li>
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Ongoing Performance Monitoring</li>
+                  <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Priority Support &amp; Advisory</li>
+                </ul>
+              </article>
+              <article class="card-pricing">
+                <header class="card-pricing__head">
+                  <span class="card-pricing__icon"><span class="icon icon--gem" aria-hidden="true"></span></span>
+                  <div>
+                    <h3 class="card-pricing__name">Premium Features</h3>
+                    <p>Unlock greater efficiency and growth</p>
+                  </div>
+                </header>
+                <p class="card-pricing__price"><span class="card-pricing__amount">$59.9</span> <span>/ Month</span></p>
+                <a href="#card-pricing" class="btn btn--block">
+                  Get Started
+                  <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                </a>
+                <ul class="card-pricing__list">
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Long-Term Success Planning</li>
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Actionable Growth Strategies</li>
+                  <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Industry Expert Guidance</li>
+                  <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Dedicated Business Support</li>
+                </ul>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-pricing-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-pricing-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Pricing">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-pricing</code></th><td>Card blanca en grilla; ícono + nombre arriba, precio, botón y lista</td></tr>
+                  <tr><th scope="row"><code>.card-pricing__price / __amount</code></th><td>Precio en Mona Sans semibold del tamaño de h1; «/ Month» va atenuado</td></tr>
+                  <tr><th scope="row"><code>.card-pricing__list / __item</code></th><td>Panel con borde que contiene los beneficios con check relleno</td></tr>
+                  <tr><th scope="row"><code>.is-muted</code></th><td>Beneficio atenuado (solo énfasis visual, no cambia el significado)</td></tr>
+                  <tr><th scope="row"><code>data-surface="brand"</code></th><td>Plan destacado: petróleo, lista en panel claro translúcido; usa btn--accent en el botón</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-surface-default / -background-subtle</code></li>
+              <li><code>--shadow-sm</code></li>
+              <li><code>--radius-lg / -md</code></li>
+              <li><code>--text-h1 / -h4</code></li>
+              <li><code>--color-action-primary</code></li>
+              <li><code>--color-overlay-light (panel destacado)</code></li>
+              <li><code>--color-text-tertiary / -inverse-secondary (atenuado)</code></li>
+              <li><code>--spacing-3 / -5 / -6 / -9</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El nombre del plan es un <code>&lt;h3&gt;</code>; los beneficios son una <code>&lt;ul&gt;</code> y el check es <code>aria-hidden</code>. El texto atenuado cumple AA (5.1:1 sobre blanco; 4.8:1 sobre el panel de la card destacada). «Get Started» se repite en cada plan: si hace falta distinguirlos, añadir texto <code>visually-hidden</code> con el plan.</p>
+        </section>
+
+        <section class="kit-card" id="card-testimonial" aria-labelledby="card-testimonial-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 04</p>
+            <h3 id="card-testimonial-title">Card Testimonial</h3>
+            <p class="kit-card__desc">Reseña de un cliente dentro de un <code>&lt;figure&gt;</code>: cita y autor. La de texto va en petróleo (<code>data-surface="brand"</code>); <code>--video</code> es una foto con botón de play y el autor sobre la cita. El play abre el modal de video de la Etapa 3 (aquí lleva <code>data-video-id</code>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">De texto</span>
+            <div class="kit-demo kit-demo--cards" data-surface="inverse" lang="en">
+              <figure class="card-testimonial" data-surface="brand">
+                <blockquote class="card-testimonial__quote">
+                  <p>“We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.”</p>
+                </blockquote>
+                <figcaption class="card-testimonial__footer">
+                  <hr class="divider divider--inverse">
+                  <p class="card-testimonial__author">
+                    <img class="avatar avatar--portrait" src="../assets/img/h1-testimonial-thumb-img-1.webp" alt="" width="80" height="80" loading="lazy">
+                    <span><span class="card-testimonial__name">James Anderson,</span> Entrepreneur, Brand Strategist</span>
+                  </p>
+                </figcaption>
+              </figure>
+              <figure class="card-testimonial" data-surface="brand">
+                <blockquote class="card-testimonial__quote">
+                  <p>“Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy.”</p>
+                </blockquote>
+                <figcaption class="card-testimonial__footer">
+                  <hr class="divider divider--inverse">
+                  <p class="card-testimonial__author">
+                    <img class="avatar avatar--portrait" src="../assets/img/h1-testimonial-thumb-img-2.webp" alt="" width="80" height="80" loading="lazy">
+                    <span><span class="card-testimonial__name">David Thompson,</span> Sales Director, HR Consultant</span>
+                  </p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-testimonial-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-testimonial-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">En video (<code>--video</code>)</span>
+            <div class="kit-demo kit-demo--medium" data-surface="inverse" lang="en">
+              <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
+                <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-2.webp" alt="" width="1048" height="920" loading="lazy">
+                <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" data-video-id="RqueNBILfVU"><span class="icon icon--play" aria-hidden="true"></span></button>
+                <div class="card-testimonial__body">
+                  <figcaption class="card-testimonial__footer">
+                    <p class="card-testimonial__author"><span><span class="card-testimonial__name">Isabella Harris,</span> CEO &amp; Founder</span></p>
+                    <hr class="divider divider--inverse">
+                  </figcaption>
+                  <blockquote class="card-testimonial__quote">
+                    <p>“Working with this consulting team completely transformed our business operations.”</p>
+                  </blockquote>
+                </div>
+              </figure>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-testimonial-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-testimonial-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Testimonial">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-testimonial</code></th><td>Contenedor del testimonio (figure); en la de texto, cita arriba y autor abajo</td></tr>
+                  <tr><th scope="row"><code>.card-testimonial__quote</code></th><td>La cita en 24px medium; es un blockquote</td></tr>
+                  <tr><th scope="row"><code>.card-testimonial__footer</code></th><td>Divisor + autor (figcaption)</td></tr>
+                  <tr><th scope="row"><code>.card-testimonial__name</code></th><td>Nombre del autor en amarillo; el cargo va en blanco a continuación</td></tr>
+                  <tr><th scope="row"><code>.card-testimonial--video</code></th><td>Versión en foto (con card-photo): play centrado y autor sobre la cita</td></tr>
+                  <tr><th scope="row"><code>data-video-id</code></th><td>ID del video de YouTube que abrirá el modal (Etapa 3)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-action-primary (via data-surface="brand")</code></li>
+              <li><code>--color-text-inverse / -highlight</code></li>
+              <li><code>--color-overlay-light (divisor)</code></li>
+              <li><code>--text-h4</code></li>
+              <li><code>--leading-normal</code></li>
+              <li><code>--radius-lg</code></li>
+              <li><code>--spacing-4 / -5 / -6 / -8</code></li>
+              <li><code>--scrim (card-photo)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Cita y autor usan la semántica de <code>figure</code>, <code>blockquote</code> y <code>figcaption</code>. El botón de play lleva un <code>aria-label</code> con el nombre del autor. El texto sobre la foto va sobre un velo del 92% abajo, así que el contraste no depende de la imagen.</p>
+        </section>
+
+        <section class="kit-card" id="card-team" aria-labelledby="card-team-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 05</p>
+            <h3 id="card-team-title">Card Team</h3>
+            <p class="kit-card__desc">Foto de un miembro del equipo con su rol arriba a la izquierda, una acción arriba a la derecha y el nombre abajo. <code>--elevated</code> sube la card 20px por encima y por debajo de sus vecinas desde <code>lg</code> (la card central del diseño, siempre destacada).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tres cards, la central elevada</span>
+            <div class="kit-demo kit-demo--cards" lang="en">
+              <article class="card-photo card-team" data-surface="inverse">
+                <img class="card-photo__img" src="../assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
+                <div class="card-team__body">
+                  <div class="card-team__top">
+                    <span class="badge">Financial Advisor</span>
+                    <a href="#card-team" class="icon-btn icon-btn--glass icon-btn--sm" aria-label="View profile of Olivia Bennet"><span class="icon icon--plus" aria-hidden="true"></span></a>
+                  </div>
+                  <h3 class="card-team__name">Olivia Bennet</h3>
+                </div>
+              </article>
+              <article class="card-photo card-team card-team--elevated" data-surface="inverse">
+                <img class="card-photo__img" src="../assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
+                <div class="card-team__body">
+                  <div class="card-team__top">
+                    <span class="badge">Business Analyst</span>
+                    <a href="#card-team" class="icon-btn icon-btn--glass icon-btn--sm" aria-label="View profile of Emma Wilson"><span class="icon icon--plus" aria-hidden="true"></span></a>
+                  </div>
+                  <h3 class="card-team__name">Emma Wilson</h3>
+                </div>
+              </article>
+              <article class="card-photo card-team" data-surface="inverse">
+                <img class="card-photo__img" src="../assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
+                <div class="card-team__body">
+                  <div class="card-team__top">
+                    <span class="badge">Corporate Trainer</span>
+                    <a href="#card-team" class="icon-btn icon-btn--glass icon-btn--sm" aria-label="View profile of Michael Turner"><span class="icon icon--plus" aria-hidden="true"></span></a>
+                  </div>
+                  <h3 class="card-team__name">Michael Turner</h3>
+                </div>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-team-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-team-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Team">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-photo</code></th><td>Patrón base: foto + velo + contenido en la misma celda (con data-surface="inverse")</td></tr>
+                  <tr><th scope="row"><code>.card-team__top</code></th><td>Fila superior: badge de rol y botón «+»</td></tr>
+                  <tr><th scope="row"><code>.card-team__name</code></th><td>Nombre (h3) centrado abajo</td></tr>
+                  <tr><th scope="row"><code>.card-team--elevated</code></th><td>Margen negativo de 20px desde lg y botón «+» amarillo</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--radius-lg</code></li>
+              <li><code>--scrim (degradé inferior)</code></li>
+              <li><code>--color-background-inverse</code></li>
+              <li><code>--spacing-3 / -5</code></li>
+              <li><code>--text-h4</code></li>
+              <li><code>--weight-medium</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El «+» es un enlace al perfil con <code>aria-label</code> que nombra a la persona («View profile of Olivia Bennet»). La foto es decorativa porque el nombre ya está en el <code>&lt;h3&gt;</code>. El anillo de foco es amarillo gracias a <code>data-surface="inverse"</code>.</p>
+        </section>
+
+        <section class="kit-card" id="card-post" aria-labelledby="card-post-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 06</p>
+            <h3 id="card-post-title">Card Post</h3>
+            <p class="kit-card__desc">Entrada del blog: foto con la fecha encima, título, extracto y «Read More». El texto lleva sangría respecto a la foto. El enlace agrega, oculto, el título del post para distinguirlo de los otros «Read More».</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Dos posts</span>
+            <div class="kit-demo kit-demo--cards" lang="en">
+              <article class="card-post">
+                <div class="card-post__media">
+                  <img class="card-post__img" src="../assets/img/h1-blog-img-1.webp" alt="" width="1308" height="600" loading="lazy">
+                  <span class="badge badge--marker card-post__date"><time datetime="2026-10-21">21 Oct, 2026</time></span>
+                </div>
+                <div class="card-post__body">
+                  <h3 class="card-post__title">How Consulting Improves Business Performance</h3>
+                  <p>With expert advice &amp; customized solutions, businesses can strengthen their competitive position</p>
+                  <a href="#card-post" class="link-arrow">
+                    Read More<span class="visually-hidden"> about how consulting improves business performance</span>
+                    <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                  </a>
+                </div>
+              </article>
+              <article class="card-post">
+                <div class="card-post__media">
+                  <img class="card-post__img" src="../assets/img/h1-blog-img-2.webp" alt="" width="1308" height="600" loading="lazy">
+                  <span class="badge badge--marker card-post__date"><time datetime="2026-10-18">18 Oct, 2026</time></span>
+                </div>
+                <div class="card-post__body">
+                  <h3 class="card-post__title">Effective Financial Planning for Sustainable Growth</h3>
+                  <p>Strong financial planning also supports investment in innovation, team development.</p>
+                  <a href="#card-post" class="link-arrow">
+                    Read More<span class="visually-hidden"> about effective financial planning for sustainable growth</span>
+                    <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-post-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-post-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Post">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-post__media</code></th><td>Foto 4:3 con esquinas redondeadas (la fuente es 1308×600; se recorta con cover)</td></tr>
+                  <tr><th scope="row"><code>.card-post__date</code></th><td>Posiciona el badge de fecha sobre la foto (usa badge--marker)</td></tr>
+                  <tr><th scope="row"><code>.card-post__body</code></th><td>Título (h3), extracto y enlace; sangría lateral de 20px</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--radius-lg</code></li>
+              <li><code>--spacing-3 / -4 / -5</code></li>
+              <li><code>--text-h4</code></li>
+              <li><code>--weight-medium</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La fecha está en <code>&lt;time datetime&gt;</code>. El «Read More» incluye texto <code>visually-hidden</code> con el título, así un lector de pantalla oye «Read More about how consulting improves…».</p>
+        </section>
+
+        <section class="kit-card" id="card-project" aria-labelledby="card-project-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 07</p>
+            <h3 id="card-project-title">Card Project</h3>
+            <p class="kit-card__desc">Proyecto del bloque Finance / Advisory / Growth / Strategy: foto con marco blanco y, debajo, un número decorativo («// 01») y el título. La Section cambia de card al hacer scroll (Etapa 3).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Dos proyectos</span>
+            <div class="kit-demo kit-demo--cards" lang="en">
+              <article class="card-project">
+                <img class="card-project__img" src="../assets/img/h1-portfolio-img-3.webp" alt="" width="1920" height="1084" loading="lazy">
+                <div class="card-project__caption">
+                  <span class="card-project__index" aria-hidden="true">// 01</span>
+                  <h3 class="card-project__title">Corporate Finance Management</h3>
+                </div>
+              </article>
+              <article class="card-project">
+                <img class="card-project__img" src="../assets/img/h1-portfolio-img-1.webp" alt="" width="1920" height="1076" loading="lazy">
+                <div class="card-project__caption">
+                  <span class="card-project__index" aria-hidden="true">// 02</span>
+                  <h3 class="card-project__title">Advisory Services</h3>
+                </div>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-project-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-project-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Project">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-project</code></th><td>Card blanca con marco de 12px alrededor de la foto</td></tr>
+                  <tr><th scope="row"><code>.card-project__img</code></th><td>Foto 10:7 con esquinas redondeadas</td></tr>
+                  <tr><th scope="row"><code>.card-project__index</code></th><td>Número decorativo («// 01»), aria-hidden</td></tr>
+                  <tr><th scope="row"><code>.card-project__title</code></th><td>Título del proyecto (h3)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-surface-default</code></li>
+              <li><code>--shadow-sm</code></li>
+              <li><code>--radius-lg / -md</code></li>
+              <li><code>--spacing-3 / -4 / -5</code></li>
+              <li><code>--text-sm / -h4</code></li>
+              <li><code>--color-text-tertiary</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El número es decorativo (<code>aria-hidden</code>); el título es un <code>&lt;h3&gt;</code>. La foto es decorativa.</p>
+        </section>
+
+        <section class="kit-card" id="card-cta" aria-labelledby="card-cta-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 08</p>
+            <h3 id="card-cta-title">Card CTA</h3>
+            <p class="kit-card__desc">Card con foto de fondo y una invitación a contactar: ícono arriba y, abajo, título, texto y enlace amarillo. Se usa en la FAQ («Still have questions?»).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre foto</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <article class="card-photo card-cta" data-surface="inverse">
+                <img class="card-photo__img" src="../assets/img/h1-cta-img.webp" alt="" width="1040" height="700" loading="lazy">
+                <div class="card-cta__body">
+                  <span class="card-cta__icon"><span class="icon icon--hexagon" aria-hidden="true"></span></span>
+                  <div class="card-cta__text">
+                    <h3 class="card-cta__title">Still have questions?</h3>
+                    <p>Our results-focused strategies are designed to deliver measurable business growth</p>
+                    <a href="#card-cta" class="link-arrow link-arrow--highlight">
+                      Contact Us
+                      <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-cta-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-cta-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card CTA">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-photo</code></th><td>Patrón base con foto, velo y contenido (con data-surface="inverse")</td></tr>
+                  <tr><th scope="row"><code>.card-cta__icon</code></th><td>Círculo translúcido con ícono</td></tr>
+                  <tr><th scope="row"><code>.card-cta__text</code></th><td>Título (h3), texto y enlace amarillo</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--radius-lg</code></li>
+              <li><code>--scrim (velo del 45% al 90%)</code></li>
+              <li><code>--color-overlay-light</code></li>
+              <li><code>--color-text-highlight (enlace)</code></li>
+              <li><code>--text-h4</code></li>
+              <li><code>--spacing-3 / -6 / -8 / -9</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El texto va sobre un velo de entre el 45% y el 90% del fondo oscuro; abajo, donde está el texto, es el más opaco. El enlace amarillo se usa solo porque el fondo es oscuro (9:1).</p>
+        </section>
+
+        <section class="kit-card" id="card-hero" aria-labelledby="card-hero-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 09</p>
+            <h3 id="card-hero-title">Card Hero</h3>
+            <p class="kit-card__desc">Tarjeta translúcida sobre la foto del hero con una miniatura, un número y el título. Es estática (no enlaza): así lo indicó el equipo.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre foto</span>
+            <div class="kit-demo kit-demo--narrow kit-demo--photo" lang="en">
+              <div class="card-hero">
+                <img class="card-hero__media" src="../assets/img/h1-hero-thumb-img.webp" alt="" width="160" height="182" loading="lazy">
+                <div class="card-hero__body">
+                  <span class="card-hero__index">01</span>
+                  <p class="card-hero__title">Creative Business Insights</p>
+                </div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-hero-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-hero-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Hero">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.card-hero</code></th><td>Fila con miniatura y texto sobre el velo oscuro del theme (--color-overlay) con borde translúcido</td></tr>
+                  <tr><th scope="row"><code>.card-hero__media</code></th><td>Miniatura de 160px de ancho</td></tr>
+                  <tr><th scope="row"><code>.card-hero__index</code></th><td>Número en amarillo</td></tr>
+                  <tr><th scope="row"><code>.card-hero__title</code></th><td>Título en 24px medium; es un párrafo, no un encabezado</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-overlay / --color-overlay-light (borde)</code></li>
+              <li><code>--color-text-inverse / -highlight</code></li>
+              <li><code>--radius-md / -sm</code></li>
+              <li><code>--spacing-2 / -3 / -4 / -11</code></li>
+              <li><code>--text-h4</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Es un contenedor sin interacción; el título es un <code>&lt;p&gt;</code> para no competir con el <code>&lt;h1&gt;</code> del hero. El velo del 65% da ≥5:1 al texto blanco sobre cualquier foto, así que no depende del hero.</p>
+        </section>
+
+        <section class="kit-card" id="stat" aria-labelledby="stat-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 10</p>
+            <h3 id="stat-title">Stat</h3>
+            <p class="kit-card__desc">Cifra grande con su etiqueta. El sufijo («+») va atenuado. Alineada a la izquierda en «What We Do» y con <code>--center</code> en la sección de números de mobile.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">A la izquierda</span>
+            <div class="kit-demo" lang="en">
+              <div class="stat">
+                <p class="stat__value">3M<span class="stat__suffix">+</span></p>
+                <p>People Using Our Platform</p>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-stat-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-stat-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Centrada (<code>--center</code>)</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <div class="stat stat--center">
+                <p class="stat__value">98%</p>
+                <p>Excellence in Customer Satisfaction</p>
+              </div>
+              <div class="stat stat--center">
+                <p class="stat__value">12K<span class="stat__suffix">+</span></p>
+                <p>Projects Successfully Finished</p>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-stat-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-stat-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Stat">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.stat</code></th><td>Cifra arriba y etiqueta abajo</td></tr>
+                  <tr><th scope="row"><code>.stat__value</code></th><td>La cifra en Mona Sans semibold del tamaño de h1</td></tr>
+                  <tr><th scope="row"><code>.stat__suffix</code></th><td>Sufijo atenuado (tertiary); sigue siendo texto: el lector lo lee</td></tr>
+                  <tr><th scope="row"><code>.stat--center</code></th><td>Centra el texto</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h1</code></li>
+              <li><code>--weight-semibold</code></li>
+              <li><code>--color-text-primary / -tertiary / -secondary</code></li>
+              <li><code>--spacing-2</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La cifra y la etiqueta son texto real. El sufijo atenuado (5.1:1) cumple AA; no se oculta ni se dibuja con CSS, así «3M+» se lee completo.</p>
+        </section>
+
+        <section class="kit-card" id="accordion-item" aria-labelledby="accordion-item-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 11</p>
+            <h3 id="accordion-item-title">Accordion Item</h3>
+            <p class="kit-card__desc">Pregunta de la FAQ sobre un <code>&lt;details&gt;</code> nativo: abre con Enter o Espacio sin JavaScript y, si los ítems comparten el atributo <code>name</code>, solo uno queda abierto. El «?» y el +/− son decorativos.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Grupo de tres (el segundo abierto)</span>
+            <div class="kit-demo kit-demo--narrow-wide" lang="en">
+              <details class="accordion-item" name="faq-demo">
+                <summary class="accordion-item__summary">
+                  <span class="accordion-item__mark" aria-hidden="true">?</span>
+                  <span class="accordion-item__question">How can consulting help my business grow?</span>
+                  <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                </summary>
+                <div class="accordion-item__panel">
+                  <p>Consulting brings an outside view, proven methods and focused support, so you can find opportunities and act on them faster.</p>
+                </div>
+              </details>
+              <details class="accordion-item" name="faq-demo" open>
+                <summary class="accordion-item__summary">
+                  <span class="accordion-item__mark" aria-hidden="true">?</span>
+                  <span class="accordion-item__question">What industries do you specialize in?</span>
+                  <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                </summary>
+                <div class="accordion-item__panel">
+                  <p>Our consulting expertise spans multiple industries including finance, technology, healthcare, retail, and professional services. We have successfully partnered with organizations of all sizes from startups.</p>
+                </div>
+              </details>
+              <details class="accordion-item" name="faq-demo">
+                <summary class="accordion-item__summary">
+                  <span class="accordion-item__mark" aria-hidden="true">?</span>
+                  <span class="accordion-item__question">What services do business consultants provide?</span>
+                  <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                </summary>
+                <div class="accordion-item__panel">
+                  <p>We offer strategy, process optimization, sales improvement and financial advisory.</p>
+                </div>
+              </details>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-accordion-item-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-accordion-item-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Accordion Item">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.accordion-item</code></th><td>&lt;details&gt; con un filete inferior</td></tr>
+                  <tr><th scope="row"><code>.accordion-item__summary</code></th><td>&lt;summary&gt;: fila con «?», la pregunta y el +/−</td></tr>
+                  <tr><th scope="row"><code>.accordion-item__mark</code></th><td>Círculo con «?»: gris cerrado, amarillo abierto</td></tr>
+                  <tr><th scope="row"><code>.accordion-item__toggle</code></th><td>Muestra «+» cerrado y «−» abierto (CSS puro)</td></tr>
+                  <tr><th scope="row"><code>.accordion-item__panel</code></th><td>Respuesta, alineada bajo el texto de la pregunta</td></tr>
+                  <tr><th scope="row"><code>name="…" / open</code></th><td>Mismo name en varios ítems = acordeón exclusivo; open abre uno por defecto</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-border-subtle</code></li>
+              <li><code>--color-background-subtle</code></li>
+              <li><code>--color-action-secondary / -on-secondary</code></li>
+              <li><code>--text-h5</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--spacing-5 / -6 / -8</code></li>
+              <li><code>--ease-base</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El <code>&lt;summary&gt;</code> es el botón: se llega con Tab y el navegador anuncia «expandido/contraído» sin ARIA. La fila entera es el área de clic (más de 48px de alto). El «?» y el +/− son <code>aria-hidden</code>. El estado no depende solo del amarillo: cambia también el ícono.</p>
+        </section>
+
+        <section class="kit-card" id="newsletter" aria-labelledby="newsletter-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 12</p>
+            <h3 id="newsletter-title">Newsletter</h3>
+            <p class="kit-card__desc">Formulario de suscripción: la frase es el <code>&lt;label&gt;</code> del campo y el botón de envío va dentro del filete. Está pensado para el footer oscuro (<code>data-surface="inverse"</code>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro</span>
+            <div class="kit-demo kit-demo--narrow" data-surface="inverse" lang="en">
+              <form class="newsletter" action="#">
+                <label class="newsletter__title" for="newsletter-email">Subscribe our newsletter to get latest updates</label>
+                <div class="newsletter__field">
+                  <input class="input" type="email" id="newsletter-email" name="email" placeholder="Enter your email" autocomplete="email" required>
+                  <button type="submit" class="newsletter__submit" aria-label="Subscribe"><span class="icon icon--send" aria-hidden="true"></span></button>
+                </div>
+              </form>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-newsletter-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-newsletter-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Newsletter">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.newsletter</code></th><td>Formulario: frase arriba, campo abajo</td></tr>
+                  <tr><th scope="row"><code>.newsletter__title</code></th><td>El label del campo, con aspecto de título de 24px</td></tr>
+                  <tr><th scope="row"><code>.newsletter__field</code></th><td>Posiciona el botón dentro del filete del input</td></tr>
+                  <tr><th scope="row"><code>.newsletter__submit</code></th><td>Botón de envío sin caja; se pone amarillo en hover</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-text-inverse / -inverse-secondary / -highlight</code></li>
+              <li><code>--text-h4 / -h6</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--spacing-5 / -8 / -9</code></li>
+              <li><code>--ease-fast</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La frase es el <code>&lt;label for&gt;</code> del campo, así el nombre accesible es visible. El botón tiene <code>aria-label</code> y 40px de lado. Falta definir el aviso de éxito o error: cuando exista backend, se anuncia con <code>role="status"</code> sin robar el foco.</p>
+        </section>
+        <!-- kit:molecules-end -->
       </section>
 
       <section class="kit-level" id="organisms" aria-labelledby="organisms-title">

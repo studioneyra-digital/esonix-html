@@ -1,6 +1,6 @@
 # Scroll Top
 
-**Nivel:** Átomo · 12  
+**Nivel:** Átomo · 13  
 **Dónde:** `dist/assets/css/main.css` (bloque `/* Scroll Top */`) · showcase en `dist/kit/index.html#scroll-top`
 
 ## Descripción

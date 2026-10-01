@@ -23,6 +23,9 @@
   --kit-table-min: 36rem;
   --kit-narrow: 22rem;
   --kit-icon-min: 8.5rem;
+  --kit-card-min: 17rem;
+  --kit-wide: 44rem;
+  --kit-medium: 33rem;
 }
 
 /* Base del kit */
@@ -663,4 +666,20 @@ pre {
   color: var(--color-text-tertiary);
 }
 /* atoms-kit:end */
+
+/* molecules-kit:start */
+/* Demos de moléculas: grilla de cards y columna ancha para el acordeón */
+.kit-demo--cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--kit-card-min)), 1fr));
+  gap: var(--spacing-5);
+  align-items: stretch;
+}
+.kit-demo--narrow-wide {
+  max-inline-size: var(--kit-wide);
+}
+.kit-demo--medium {
+  max-inline-size: var(--kit-medium);
+}
+/* molecules-kit:end */
 /* kit:css-end */

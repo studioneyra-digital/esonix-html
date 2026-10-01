@@ -59,7 +59,7 @@ rebrand cambia el primitivo en un solo lugar sin tocar componentes.
 --color-text-tertiary
 --color-text-disabled
 --color-text-inverse /* texto sobre fondo oscuro/brand */
---color-text-inverse-secondary  /* texto secundario sobre --color-background-inverse, ~9.5:1 (rgba blanco 72%) */
+--color-text-inverse-secondary  /* texto secundario sobre fondo oscuro (rgba blanco 78%): ≈9.4:1 sobre background-inverse, ≈4.8:1 sobre el panel claro de una card brand */
 --color-text-link
 --color-text-highlight /* propio de Esonix: amarillo como texto, solo sobre fondos oscuros */
 
@@ -223,5 +223,6 @@ Breakpoints (referencia — no existen como custom property porque `@media` no p
 - Puedes añadir variables nuevas propias del proyecto (ej.
   `--color-brand-2`), pero nunca renombres las de arriba.
 - No hay modo oscuro de usuario (docs/personality.md lo descartó). Un bloque oscuro fijo se
-  declara con `data-surface="inverse"` (definido en `assets/css/main.css`), que además
-  reasigna el token de foco para todo su árbol.
+  declara con `data-surface="inverse"` (fondo `--color-background-inverse`) y una card destacada
+  con `data-surface="brand"` (fondo `--color-action-primary`); ambos se definen en
+  `assets/css/main.css` y reasignan el token de foco para todo su árbol.

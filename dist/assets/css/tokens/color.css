@@ -93,7 +93,7 @@
   --color-text-tertiary: var(--color-neutral-600); /* metadatos y pies de foto */
   --color-text-disabled: var(--color-neutral-400); /* solo disabled (exento de contraste) */
   --color-text-inverse: #ffffff; /* sobre background-inverse y sobre brand-secondary */
-  --color-text-inverse-secondary: rgb(255 255 255 / 0.72); /* sobre background-inverse, ~8.6:1 */
+  --color-text-inverse-secondary: rgb(255 255 255 / 0.78); /* sobre background-inverse ≈ 9.4:1; sobre el panel claro de la card destacada (petróleo + 10% blanco) ≈ 4.8:1 */
   --color-text-link: var(--color-brand-secondary-500);
   /* Propio de Esonix: amarillo como texto, SOLO sobre fondos oscuros (eyebrow inverso,
      autor de testimonio, número activo). Sobre el crema da 1.4:1 y no se usa. */

@@ -8,8 +8,8 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 |---|---|---|
 | 0 · Cimientos | Tokens, Mona Sans, `main.css`/`main.js` base, kit con Foundations | ✅ Hecha |
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
-| 2 · Moléculas | Cards y piezas compuestas | ⏳ Siguiente |
-| 3 · Organismos | Header, menú mobile, carrusel, acordeón, lista con scroll, footer, modal | ⬜ |
+| 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
+| 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ⏳ Siguiente |
 | 4 · Sections + `index.html` | Las secciones de la home, responsive | ⬜ |
 
 ## Reglas de cada etapa
@@ -38,6 +38,9 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 - El gris de cuerpo del diseño (`#727979`) da 4.30:1 sobre el crema y no llega a AA: se usa `neutral-600` (`#646e6e`, 5.09:1).
 - Las cards van en blanco puro (`#ffffff`), como el diseño; es la única excepción a «neutros sin matiz».
 - El CTA principal es petróleo y el amarillo es relleno con texto oscuro; el amarillo nunca es texto sobre claro (1.4:1).
+- `--color-text-inverse-secondary` sube de 72% a 78% de blanco: con 72% el texto atenuado sobre el panel claro del plan destacado daba ≈4.4:1 y no llegaba a AA.
+- Nueva superficie `data-surface="brand"` (petróleo `--color-action-primary`) junto a `inverse`; ambas ganan al fondo propio de un componente (especificidad `html [data-surface]`).
+- **Excepción a anti-patrones #4 (card anidada):** la lista de beneficios de Card Pricing es un panel con borde dentro de la card porque el diseño lo muestra así.
 
 ## Etapa 0 — Cimientos ✅
 
@@ -51,9 +54,9 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 
 Icons (Lucide como máscara CSS + redes sociales propias) · Button (`--light`, `--block`, `--accent`) · Icon Button (`--glass`, `--sm`, `--lg`; también es el Social Icon) · Link Arrow · Eyebrow · Badge · Avatar y Avatar Stack · Progress (`<progress>` nativo) · Switch (`role="switch"` nativo) · Divider · Pagination Dots · Scroll Top (con anillo de progreso de scroll).
 
-## Etapa 2 — Moléculas ⏳
+## Etapa 2 — Moléculas ✅
 
-Componen 2–4 átomos y no conocen el contexto de página.
+Componen 2–4 átomos y no conocen el contexto de página. Las cards destacadas usan `data-surface="brand"` (petróleo) y las que van sobre foto el patrón `card-photo` con `data-surface="inverse"`. Se sumó el átomo **Input** (la newsletter lo necesita) y 9 iconos Lucide (target, trending-up, chart-pie, users, lightbulb, rocket, gem, award, hexagon).
 
 | Molécula | Variantes y notas |
 |---|---|
@@ -67,17 +70,17 @@ Componen 2–4 átomos y no conocen el contexto de página.
 | Card CTA con imagen | «Still have questions?» + «Contact Us ↗» |
 | Card Hero | translúcida, estática |
 | Stat | número + etiqueta (solo mobile) |
-| Ítem de acordeón | `<button aria-expanded>`; ícono «?» que se pone amarillo al abrir |
+| Ítem de acordeón | `<details name>` nativo (exclusivo, sin JS); «?» que se pone amarillo al abrir |
 | Campo de newsletter | input con `<label>`, línea inferior y botón enviar |
 
-A resolver aquí: el anillo de foco sobre cards con foto (marcarlas como superficie inversa), `--avatar-ring` según el fondo de la card, y que varios «Read More» repetidos sean distinguibles para lectores de pantalla (título del post como texto accesible).
+Resuelto: foco amarillo sobre cards con foto (`data-surface="inverse"`), «Read More» distinguible (título oculto para lectores) y la elevación de la card de equipo con margen negativo desde `lg`. Pendiente para la Section: reservar el espacio de esa elevación, el cambio Monthly / Annually y el contenedor blanco que une las tres cards Feature.
 
 ## Etapa 3 — Organismos ⬜
 
 - **Header:** logo, links en pill blanca, redes en texto, teléfono con botón de chat; dropdowns de Home, Services, Pages y Blog (Pages con el contenido real del diseño, el resto placeholder).
 - **Menú off-canvas mobile:** acordeones, Location, Contact y redes; `inert` en el resto de la página y cierre con Escape.
 - **Carrusel (Swiper):** una base reutilizada en Services (flechas) y Testimonials (dots); se inicializa con `IntersectionObserver`.
-- **Acordeón:** FAQ, un ítem abierto a la vez.
+- **Acordeón:** FAQ con los ítems `<details name="faq">` de la Etapa 2; solo falta el grupo (un ítem abierto a la vez ya lo da el atributo `name`). Si se quiere animar la altura, se hace con `::details-content`.
 - **Lista de palabras con scroll (GSAP ScrollTrigger):** la palabra activa queda nítida y su card cambia; en mobile se reemplaza por «Works» + cards apiladas, sin efecto de scroll. Hay 4 imágenes de portfolio disponibles para las 4 cards.
 - **Marquee del footer:** «Connect With Us · Let's Grow» con el círculo del logo encima; se detiene con reduced-motion.
 - **Footer:** newsletter, Utility Page, Follow Us, Our Offices y barra legal.
@@ -97,11 +100,15 @@ A resolver aquí: el anillo de foco sobre cards con foto (marcarlas como superfi
 ## Supuestos pendientes de confirmar
 
 - **Scroll Top** aparece al pasar media pantalla (`SHOW_AFTER = 0.5` en `main.js`); el diseño no lo indica.
-- **Estados** hover, active, disabled y switch encendido, derivados de los tokens existentes.
+- **Estados** hover, active, disabled, switch encendido e input con error, derivados de los tokens existentes.
 - **Alturas:** el botón mide 48 px (el diseño ~52 px) y la barra de progreso 3 px, por salir de la escala de espaciado.
 - **Badge y play** con velo plano (sin `backdrop-filter`, que rompe `position: fixed` de descendientes).
 - **Avatar stack** con avatares reales; las caras del demo son las de los testimonios, no las del PNG horneado (`h1-about-users.png`). Decidir en la Section si se usa el PNG tal cual.
 - **Idioma del sitio:** inglés, siguiendo el copy del diseño.
+- **Card Team:** el «+» se implementó como enlace al perfil (el diseño no dice qué hace); el amarillo de la card elevada es estático.
+- **Card Pricing:** el último beneficio atenuado es solo énfasis visual; no se marcó como «no incluido» porque el diseño no lo aclara.
+- **Radios:** las cards del diseño miden ~20px de esquina; se usa `--radius-lg` (24px) en cards y `--radius-md` (16px) en sus fotos.
+- **Iconos de servicios, planes y FAQ:** Lucide equivalentes a los glifos del diseño, hasta tener los del cliente.
 
 ## Deuda y puntos abiertos
 
