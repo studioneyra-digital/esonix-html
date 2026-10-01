@@ -226,4 +226,124 @@
     });
   }
   initOffcanvas();
+
+  /* ===== Carousel (Swiper) ===== */
+  /* Cada [data-carousel] se inicia al acercarse al viewport. Flechas: botones [data-carousel-prev] /
+     [data-carousel-next] con aria-controls = id del carrusel, en cualquier lugar de la página. Dots: un
+     .dots[data-carousel-dots] dentro del carrusel; main.js crea un botón por slide y el valor del
+     atributo es el prefijo de su nombre («Show story» → «Show story 3»). */
+  var rootStyle = getComputedStyle(document.documentElement);
+  function tokenRem(name) { return parseFloat(rootStyle.getPropertyValue(name)) || 0; }
+
+  function initCarousel(carousel) {
+    var viewport = carousel.querySelector('.carousel__viewport');
+    var rem = parseFloat(rootStyle.fontSize);
+    // Mismos pasos que el container query de .carousel en main.css (slides por vista y separación)
+    var gapSm = tokenRem('--spacing-5') * rem;
+    var gapMd = tokenRem('--spacing-6') * rem;
+    var breakpoints = {};
+    breakpoints[48 * rem] = { slidesPerView: 2, spaceBetween: gapMd };
+    breakpoints[64 * rem] = { slidesPerView: 3, spaceBetween: gapMd };
+
+    var swiper = new window.Swiper(viewport, {
+      loop: true,
+      loopAdditionalSlides: 1, // deja un slide de más a cada lado: el vecino izquierdo asoma desde el inicio
+      speed: parseFloat(rootStyle.getPropertyValue('--ease-slow')) || 0, // 420 ms; 0 con reducir movimiento
+      grabCursor: true,
+      slidesPerView: 1,
+      spaceBetween: gapSm,
+      breakpointsBase: 'container',
+      breakpoints: breakpoints,
+      keyboard: { enabled: true, onlyInViewport: true },
+      a11y: {
+        enabled: true,
+        slideRole: 'group',
+        itemRoleDescriptionMessage: 'slide',
+        slideLabelMessage: '{{index}} of {{slidesLength}}'
+      }
+    });
+    // Al iniciar, el loop todavía no ubicó ningún slide antes del primero: se lo pide para que el vecino
+    // izquierdo asome desde la carga, como el diseño (después lo mantiene loopAdditionalSlides)
+    swiper.loopFix({ direction: 'prev' });
+
+    if (carousel.id) {
+      document.querySelectorAll('[data-carousel-prev][aria-controls="' + carousel.id + '"]').forEach(function (button) {
+        button.addEventListener('click', function () { swiper.slidePrev(); });
+      });
+      document.querySelectorAll('[data-carousel-next][aria-controls="' + carousel.id + '"]').forEach(function (button) {
+        button.addEventListener('click', function () { swiper.slideNext(); });
+      });
+    }
+
+    var dots = carousel.querySelector('[data-carousel-dots]');
+    if (dots) {
+      var label = dots.getAttribute('data-carousel-dots') || 'Show slide';
+      var total = swiper.slides.length;
+      for (var i = 0; i < total; i += 1) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dots__dot';
+        dot.setAttribute('aria-label', label + ' ' + (i + 1));
+        dot.dataset.index = String(i);
+        dots.appendChild(dot);
+      }
+      dots.addEventListener('click', function (event) {
+        var dot = event.target.closest('.dots__dot');
+        if (dot) { swiper.slideToLoop(Number(dot.dataset.index)); }
+      });
+      var syncDots = function () {
+        Array.prototype.forEach.call(dots.children, function (dot, index) {
+          if (index === swiper.realIndex) { dot.setAttribute('aria-current', 'true'); } else { dot.removeAttribute('aria-current'); }
+        });
+      };
+      swiper.on('realIndexChange', syncDots);
+      syncDots();
+    }
+  }
+
+  function initCarousels() {
+    var carousels = document.querySelectorAll('[data-carousel]');
+    if (!carousels.length || typeof window.Swiper !== 'function') { return; }
+    carousels.forEach(function (carousel) { whenVisible(carousel, initCarousel); });
+  }
+  initCarousels();
+
+  /* ===== Video Modal ===== */
+  /* Cualquier botón con data-video-id (y opcional data-video-title) abre el <dialog data-video-modal>.
+     El iframe se crea recién en ese click, así la página no carga YouTube al abrirse, y se quita al
+     cerrar para cortar la reproducción. */
+  function initVideoModal() {
+    var modal = document.querySelector('[data-video-modal]');
+    if (!modal || typeof modal.showModal !== 'function') { return; }
+    // Hijo directo de <body>: un ancestro con display: none (demo del kit) no lo dejaría mostrarse
+    if (modal.parentElement !== document.body) { document.body.appendChild(modal); }
+    var frame = modal.querySelector('.video-modal__frame');
+    var title = modal.querySelector('.video-modal__title');
+
+    document.addEventListener('click', function (event) {
+      var opener = event.target.closest('[data-video-id]');
+      if (!opener) { return; }
+      event.preventDefault();
+      var name = opener.getAttribute('data-video-title') || 'Video';
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(opener.getAttribute('data-video-id')) + '?autoplay=1&rel=0';
+      iframe.title = name;
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; // incluye pantalla completa
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin'; // YouTube rechaza el embed sin referrer
+      title.textContent = name;
+      frame.replaceChildren(iframe);
+      modal.showModal();
+      if (window.Esonix.lenis) { window.Esonix.lenis.stop(); }
+    });
+
+    modal.addEventListener('click', function (event) {
+      // El click en el ::backdrop llega con el propio <dialog> como target
+      if (event.target === modal || event.target.closest('[data-video-close]')) { modal.close(); }
+    });
+    modal.addEventListener('close', function () {
+      frame.replaceChildren();
+      if (window.Esonix.lenis) { window.Esonix.lenis.start(); }
+    });
+  }
+  initVideoModal();
 })();

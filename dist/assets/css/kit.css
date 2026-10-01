@@ -710,6 +710,19 @@ pre {
 .kit-demo--hero-mobile {
   max-inline-size: var(--kit-phone);
 }
+/* Carrusel: la demo recorta los slides que sangran fuera del carrusel (en la página lo hace la Section);
+   el relleno lateral deja ver los vecinos. --bleed-arrows ubica las flechas arriba a la derecha. */
+.kit-demo--bleed {
+  overflow: clip;
+  padding-inline: var(--spacing-9);
+}
+.kit-demo--bleed-arrows {
+  display: grid;
+  gap: var(--spacing-6);
+}
+.kit-demo--bleed-arrows > .carousel__arrows {
+  justify-self: end;
+}
 .kit-demo--source {
   display: none;
 }

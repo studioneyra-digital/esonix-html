@@ -9,7 +9,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 0 · Cimientos | Tokens, Mona Sans, `main.css`/`main.js` base, kit con Foundations | ✅ Hecha |
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
-| 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ⏳ En curso (Grupo A hecho) |
+| 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ⏳ En curso (Grupo A hecho, B en revisión) |
 | 4 · Sections + `index.html` | Las secciones de la home, responsive | ⬜ |
 
 ## Reglas de cada etapa
@@ -82,10 +82,12 @@ Se entrega en tres grupos, cada uno revisado antes del siguiente:
 | Grupo | Organismos | Estado |
 |---|---|---|
 | A · Navegación | Site Header (con submenús) y Off-canvas | ✅ Hecho |
-| B · Contenido interactivo | Carrusel (Swiper), Acordeón FAQ, Modal de video | ⬜ |
+| B · Contenido interactivo | Carrusel (Swiper), Acordeón FAQ, Modal de video | 🔍 En revisión |
 | C · Scroll y cierre | Lista de palabras con ScrollTrigger, Marquee, Footer | ⬜ |
 
 **Grupo A, resuelto:** el header responde al ancho de su contenedor con container queries (48/64/80rem sobre el ancho del header), porque la barra completa necesita ~1150px y con el container de Bootstrap ya se desbordaba a 1280px; los submenús son botones de divulgación con hover, Escape y cierre al salir el foco; el off-canvas deja `inert` el resto de `<body>`, detiene Lenis y desenfoca la página con el nuevo token `--blur-backdrop`. CSS y fichas salen de `docs/tools/organisms_*.py`; el JS está en `main.js`.
+
+**Grupo B, resuelto:** carrusel sobre Swiper 11 (loop con un vecino asomando a cada lado desde la carga, 1/2/3 slides según el ancho del carrusel, igual que el header, a11y de Swiper, flechas vinculadas por `aria-controls` y dots generados por `main.js`); acordeón como grupo de `<details name>` con altura animada por `::details-content`; modal de video con `<dialog>` nativo y el iframe de youtube-nocookie creado recién en el click. El kit carga `swiper-bundle.min.css/js`; la Section que use el carrusel recorta con `overflow-x: clip`.
 
 **Plan original de la etapa:**
 
@@ -112,6 +114,8 @@ Se entrega en tres grupos, cada uno revisado antes del siguiente:
 ## Supuestos pendientes de confirmar
 
 - **Header:** fijo «por el momento» (variante `site-header--fixed`; pasa a fondo inverso con scroll, estado derivado de tokens porque el diseño no lo muestra); el círculo del chat es un adorno (confirmado); teléfono real +880 (123) 456 789 en header y off-canvas (confirmado); submenús de Home/Services/Blog con placeholder; ícono «Menu» = Lucide `layout-grid` (el del diseño tiene un cuadro girado). La Section reserva el espacio superior y define `scroll-padding-top`.
+- **Carrusel:** card destacada fija (Process Optimization), según lo aprobado; en el diseño mobile la card oscura es la primera visible, lo que sugiere destacar el slide activo. Testimonios de Jonathan Walker, Sophia Martinez y Michael Brooks, y servicios Financial Planning y Brand Strategy, con placeholder; los tres videos usan el único entregado.
+- **Modal de video:** no está en el diseño (fondo inverso, velo `--color-overlay`, fundido).
 - **Scroll Top** aparece al pasar media pantalla (`SHOW_AFTER = 0.5` en `main.js`); el diseño no lo indica.
 - **Estados** hover, active, disabled, switch encendido e input con error, derivados de los tokens existentes.
 - **Alturas:** el botón mide 48 px (el diseño ~52 px) y la barra de progreso 3 px, por salir de la escala de espaciado.

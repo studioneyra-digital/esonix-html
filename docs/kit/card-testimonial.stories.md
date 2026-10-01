@@ -43,7 +43,7 @@ Reseña en `<figure>`: cita y autor. La de texto va en petróleo; `--video` es u
 ```html
 <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
   <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-2.webp" alt="" width="1048" height="920" loading="lazy">
-  <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" data-video-id="RqueNBILfVU"><span class="icon icon--play" aria-hidden="true"></span></button>
+  <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Isabella Harris"><span class="icon icon--play" aria-hidden="true"></span></button>
   <div class="card-testimonial__body">
     <figcaption class="card-testimonial__footer">
       <p class="card-testimonial__author"><span><span class="card-testimonial__name">Isabella Harris,</span> CEO & Founder</span></p>
@@ -65,7 +65,7 @@ Reseña en `<figure>`: cita y autor. La de texto va en petróleo; `--video` es u
 | `.card-testimonial__footer` | Divisor + autor (figcaption) |
 | `.card-testimonial__name` | Nombre del autor en amarillo; el cargo va en blanco a continuación |
 | `.card-testimonial--video` | Versión en foto (con card-photo): play centrado y autor sobre la cita |
-| `data-video-id` | ID del video de YouTube que abrirá el modal (Etapa 3) |
+| `data-video-id / data-video-title` | ID y título del video de YouTube: el botón abre el Video Modal (organismo) |
 
 ## Tokens que consume
 
@@ -84,5 +84,5 @@ Reseña en `<figure>`: cita y autor. La de texto va en petróleo; `--video` es u
 
 ## Decisiones y excepciones
 
-- El video del diseño es el de YouTube indicado por el equipo (`RqueNBILfVU`); el modal que lo reproduce llega en la Etapa 3.
+- El video del diseño es el de YouTube indicado por el equipo (`RqueNBILfVU`); lo reproduce el organismo Video Modal.
 - En el diseño el avatar del autor de texto es un retrato cuadrado de 75px; aquí usa el átomo `avatar--portrait` (80px).

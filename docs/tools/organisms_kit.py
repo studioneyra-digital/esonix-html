@@ -177,6 +177,181 @@ O.append(dict(id='offcanvas', title='Off-canvas',
              'Ancho del panel `clamp(16rem, 100% - 8rem, 24rem)`: deja ver una franja de página como el diseño (350 de 480 px).',
              'Se cierra solo si el botón que lo abrió deja de verse (la barra se ensanchó y apareció el menú), sin devolverle el foco.']))
 
+# ------------------------------------------------------------------ Grupo B: piezas de los demos
+# Services: los tres primeros textos son del diseño; Financial Planning y Brand Strategy, placeholder
+# (el diseño los muestra cortados en los costados).
+SERVICES = [
+    ('Marketing Guidance', 'target', 'h1-service-img-2.webp', 'Through expert insights and strategic planning, marketing guidance enables businesses to understand customer.', False),
+    ('Process Optimization', 'trending-up', 'h1-service-img-3.webp', 'By analyzing existing operations and implementing effective improvements, process optimization helps business.', True),
+    ('Sales Improvement', 'chart-pie', 'h1-service-img-4.webp', 'We support businesses in improving sales performance through training, strategy development.', False),
+    ('Financial Planning', 'gem', 'h1-service-img-5.webp', 'Our advisors build budgets, forecasts and funding plans that keep every decision tied to your numbers.', False),
+    ('Brand Strategy', 'lightbulb', 'h1-service-img-1.webp', 'We help companies define a clear position and a message that strengthens their market presence.', False),
+]
+# Testimonials: James, Isabella y David son del diseño; Jonathan aparece cortado (cita completada) y los
+# dos últimos son placeholder. Los tres en video usan el único video entregado.
+VIDEO_ID = 'RqueNBILfVU'
+TESTIMONIALS = [
+    ('text', 'h1-testimonial-thumb-img-1.webp', 'James Anderson', 'Entrepreneur, Brand Strategist', 'We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.'),
+    ('video', 'h1-testimonial-large-img-2.webp', 'Isabella Harris', 'CEO &amp; Founder', 'Working with this consulting team completely transformed our business operations.'),
+    ('text', 'h1-testimonial-thumb-img-2.webp', 'David Thompson', 'Sales Director, HR Consultant', 'Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy.'),
+    ('video', 'h1-testimonial-large-img-3.webp', 'Jonathan Walker', 'Operations Manager', 'Their business insights and personalized solutions had a real impact on our growth.'),
+    ('text', 'h1-testimonial-thumb-img-3.webp', 'Sophia Martinez', 'Marketing Director', 'From the first workshop, the team understood our goals and turned them into a plan we could actually execute.'),
+    ('video', 'h1-testimonial-large-img-1.webp', 'Michael Brooks', 'Founder, Brooks &amp; Co.', 'They stayed committed to every milestone and helped us improve how the whole company works.'),
+]
+FAQ = [
+    (False, 'How can consulting help my business grow?', 'Consulting brings an outside view, proven methods and focused support, so you can find opportunities and act on them faster.'),
+    (True, 'What industries do you specialize in?', 'Our consulting expertise spans multiple industries including finance, technology, healthcare, retail, and professional services. We have successfully partnered with organizations of all sizes from startups.'),
+    (False, 'What services do business consultants provide?', 'We offer strategy, process optimization, sales improvement and financial advisory.'),
+    (False, 'Can you help improve team productivity?', 'Yes. We review how work moves between people and tools, then set up routines and metrics that remove bottlenecks.'),
+]
+
+def service_card(title, icon, img, text, brand):
+    return '\n'.join([
+        '<article class="card-service"%s>' % (' data-surface="brand"' if brand else ''),
+        '  <img class="card-service__media" src="%s%s" alt="" width="1500" height="900" loading="lazy">' % (IMG, img),
+        '  <div class="card-service__body">',
+        '    <div class="card-service__head">',
+        '      %s' % ic(icon, ' card-service__icon'),
+        '      <h3 class="card-service__title">%s</h3>' % title,
+        '    </div>',
+        '    <p>%s</p>' % text,
+        '  </div>',
+        '</article>'])
+
+def testimonial_card(kind, img, name, role, quote):
+    plain = H.unescape(name)
+    if kind == 'text':
+        return '\n'.join([
+            '<figure class="card-testimonial" data-surface="brand">',
+            '  <blockquote class="card-testimonial__quote">',
+            '    <p>“%s”</p>' % quote,
+            '  </blockquote>',
+            '  <figcaption class="card-testimonial__footer">',
+            '    <hr class="divider divider--inverse">',
+            '    <p class="card-testimonial__author">',
+            '      <img class="avatar avatar--portrait" src="%s%s" alt="" width="80" height="80" loading="lazy">' % (IMG, img),
+            '      <span><span class="card-testimonial__name">%s,</span> %s</span>' % (name, role),
+            '    </p>',
+            '  </figcaption>',
+            '</figure>'])
+    return '\n'.join([
+        '<figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">',
+        '  <img class="card-photo__img" src="%s%s" alt="" width="1048" height="920" loading="lazy">' % (IMG, img),
+        '  <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from %s" aria-haspopup="dialog" data-video-id="%s" data-video-title="Video testimonial from %s">%s</button>' % (plain, VIDEO_ID, plain, ic('play')),
+        '  <div class="card-testimonial__body">',
+        '    <figcaption class="card-testimonial__footer">',
+        '      <p class="card-testimonial__author"><span><span class="card-testimonial__name">%s,</span> %s</span></p>' % (name, role),
+        '      <hr class="divider divider--inverse">',
+        '    </figcaption>',
+        '    <blockquote class="card-testimonial__quote">',
+        '      <p>“%s”</p>' % quote,
+        '    </blockquote>',
+        '  </div>',
+        '</figure>'])
+
+def carousel(cid, label, slides, dots=None):
+    items = '\n'.join('\n'.join(['    <div class="swiper-slide carousel__slide">', textwrap.indent(s, '      '), '    </div>']) for s in slides)
+    out = ['<div class="carousel" id="%s" data-carousel role="region" aria-roledescription="carousel" aria-label="%s">' % (cid, label),
+           '  <div class="swiper carousel__viewport">',
+           '    <div class="swiper-wrapper">',
+           textwrap.indent(items, '  '),
+           '    </div>',
+           '  </div>']
+    if dots:
+        out.append('  <div class="dots dots--inverse" role="group" aria-label="Choose a story" data-carousel-dots="%s"></div>' % dots)
+    out.append('</div>')
+    return '\n'.join(out)
+
+def arrows(cid, noun):
+    return '\n'.join([
+        '<div class="carousel__arrows">',
+        '  <button type="button" class="icon-btn" data-carousel-prev aria-controls="%s" aria-label="Previous %s">%s</button>' % (cid, noun, ic('arrow-left')),
+        '  <button type="button" class="icon-btn" data-carousel-next aria-controls="%s" aria-label="Next %s">%s</button>' % (cid, noun, ic('arrow-right')),
+        '</div>'])
+
+def accordion():
+    items = []
+    for open_, q, a in FAQ:
+        items.append('\n'.join([
+            '<details class="accordion-item" name="faq"%s>' % (' open' if open_ else ''),
+            '  <summary class="accordion-item__summary">',
+            '    <span class="accordion-item__mark" aria-hidden="true">?</span>',
+            '    <span class="accordion-item__question">%s</span>' % q,
+            '    <span class="accordion-item__toggle" aria-hidden="true">%s%s</span>' % (ic('plus'), ic('minus')),
+            '  </summary>',
+            '  <div class="accordion-item__panel">',
+            '    <p>%s</p>' % a,
+            '  </div>',
+            '</details>']))
+    return '<div class="accordion">\n%s\n</div>' % textwrap.indent('\n'.join(items), '  ')
+
+def video_modal():
+    return '\n'.join([
+        '<dialog class="video-modal" id="video-modal" data-video-modal data-surface="inverse" aria-labelledby="video-modal-title">',
+        '  <div class="video-modal__head">',
+        '    <h2 class="video-modal__title" id="video-modal-title">Video</h2>',
+        '    <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" data-video-close aria-label="Close video">%s</button>' % ic('x'),
+        '  </div>',
+        '  <div class="video-modal__frame"></div>',
+        '</dialog>'])
+
+O.append(dict(id='carousel', title='Carousel',
+  desc='Base de Swiper para los carruseles de la home: loop, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.',
+  desc_md='Base de Swiper (loop, arrastre, teclado) con 1/2/3 slides según el ancho del carrusel (48 y 64rem, container). Los vecinos sangran fuera; la Section recorta con `overflow-x: clip`. Flechas vinculadas por `aria-controls` (en cualquier lugar) o dots generados por `main.js`.',
+  blocks=[dict(label='Services: flechas y card destacada fija', mods='bleed bleed-arrows', html=arrows('carousel-services', 'service') + '\n' + carousel('carousel-services', 'Services', [service_card(*s) for s in SERVICES])),
+          dict(label='Testimonials: dots, sobre fondo oscuro', mods='bleed', surface='inverse', html=carousel('carousel-testimonials', 'Client stories', [testimonial_card(*t) for t in TESTIMONIALS], dots='Show story'))],
+  rows=[('.carousel + data-carousel + id', 'Contenedor (container: carousel); main.js lo inicia al acercarse al viewport'),
+        ('role="region" aria-roledescription="carousel" aria-label', 'Región con nombre propio («Services», «Client stories»)'),
+        ('.swiper.carousel__viewport / .swiper-wrapper', 'Estructura de Swiper; el viewport deja ver los slides vecinos'),
+        ('.swiper-slide.carousel__slide', 'Un slide; iguala la altura de las cards'),
+        ('.carousel__arrows', 'Fila de flechas (Icon Button); puede vivir fuera del carrusel'),
+        ('data-carousel-prev / data-carousel-next + aria-controls', 'Flechas: aria-controls apunta al id del carrusel'),
+        ('.dots + data-carousel-dots="Show story"', 'Contenedor de los dots: main.js crea un botón por slide con ese prefijo de nombre')],
+  tokens=['--spacing-5 / -6 (separación)', '--spacing-9', '--ease-slow (velocidad)', 'Icon Button y Pagination Dots (átomos)', 'Card Service y Card Testimonial (moléculas)'],
+  a11y='La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (módulo a11y de Swiper, que además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Con el foco en un slide que no se ve, Swiper lo trae a la vista. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.',
+  a11y_md='Región con `aria-roledescription="carousel"` y nombre; slides `role="group"` «N of M» (a11y de Swiper, `aria-live="polite"`). Flechas y dots son `<button>`; dot actual con `aria-current`. Sin autoplay; velocidad `--ease-slow` (0 con reduced motion). Sin JS: fila con scroll nativo.',
+  decisions=['Slides por vista según el ancho del carrusel (`breakpointsBase: container`), igual que el header: con el container de Bootstrap, 3 slides desde 1200px de viewport y 2 entre 768 y 1199px. El diseño solo muestra 1920 (3) y 480px (1). En la columna del kit a 1440px se ven 2.',
+             'Card destacada fija (Process Optimization), según la decisión aprobada. Ojo: en el diseño mobile la card oscura es la primera visible (Marketing Guidance), lo que sugeriría que se destaca el slide activo. Pendiente de confirmar.',
+             'Testimonios: Jonathan Walker (cortado en el diseño), Sophia Martinez y Michael Brooks son placeholder, igual que dos de los cinco servicios. Los tres videos usan el único video entregado.',
+             'Dots: uno por slide (el diseño muestra 6 para 6 testimonios); el activo es el primer slide visible.',
+             'Swiper vendorizado (11.2.10) con su CSS `swiper-bundle.min.css`; no se usan sus flechas ni su paginación, sino los átomos del theme.']))
+
+O.append(dict(id='accordion', title='Accordion',
+  desc='Grupo de <a href="#accordion-item">Accordion Items</a> para el FAQ. Que quede un solo ítem abierto lo da el mismo <code>name</code> en todos los <code>&lt;details&gt;</code>, sin JS; el grupo suma la animación de altura con <code>::details-content</code>.',
+  desc_md='Grupo de Accordion Items (FAQ): un solo ítem abierto por el `name` compartido (sin JS) y animación de altura con `::details-content`.',
+  blocks=[dict(label='FAQ con un ítem abierto', mods='narrow-wide', html=accordion())],
+  rows=[('.accordion', 'Grupo; activa interpolate-size para animar hasta height: auto'),
+        ('.accordion-item + name="faq"', 'Cada pregunta (molécula); el mismo name deja una sola abierta'),
+        ('open', 'Ítem abierto al cargar (el diseño abre el segundo)')],
+  tokens=['--ease-base', 'Accordion Item (molécula)'],
+  a11y='Cada pregunta es un <code>&lt;summary&gt;</code> nativo: se abre con Enter o Espacio y el lector anuncia expandido o contraído. La animación usa <code>--ease-base</code>, que vale 0 con «reducir movimiento»; donde el navegador no soporta <code>::details-content</code> o <code>interpolate-size</code>, abre sin animar.',
+  a11y_md='`<summary>` nativo (Enter/Espacio, estado anunciado). Animación con `--ease-base` (0 con reduced motion); sin soporte, abre sin animar.',
+  decisions=['Es un organismo mínimo (el comportamiento lo da HTML nativo): existe para fijar el `name` del grupo y la animación en un solo lugar.',
+             'La cuarta respuesta («Can you help improve team productivity?») es placeholder: el diseño solo muestra abierta la segunda.',
+             'Las preguntas van sin el espacio antes de «?» del diseño (tipografía inglesa).']))
+
+O.append(dict(id='video-modal', title='Video Modal',
+  desc='<code>&lt;dialog&gt;</code> nativo que reproduce un video de YouTube. Lo abre cualquier botón con <code>data-video-id</code> (el play de los testimonios en video); el iframe de <code>youtube-nocookie.com</code> se crea recién en ese click y se quita al cerrar. El diseño no lo muestra: está armado con los tokens del theme.',
+  desc_md='`<dialog>` nativo para YouTube. Lo abre cualquier botón con `data-video-id`; el iframe (youtube-nocookie) se crea en el click y se quita al cerrar. No está en el diseño: sale de tokens.',
+  blocks=[dict(label='Probar', snippet=False, mods='row', html='\n'.join([
+            '<button type="button" class="btn" aria-haspopup="dialog" data-video-id="%s" data-video-title="Video testimonial from Isabella Harris">' % VIDEO_ID,
+            '  Play video',
+            '  <span class="btn__icon">%s</span>' % ic('play'),
+            '</button>'])),
+          dict(label='Markup', mods='source', html=video_modal())],
+  rows=[('dialog.video-modal + data-video-modal + data-surface="inverse"', 'El modal; main.js lo mueve al final de &lt;body&gt;'),
+        ('.video-modal__head / __title', 'Barra con el título del video (nombre del diálogo) y «Close»'),
+        ('data-video-close', 'Botón que cierra'),
+        ('.video-modal__frame', 'Marco 16:9 donde main.js inserta el iframe'),
+        ('data-video-id', 'En el botón que abre: ID del video de YouTube'),
+        ('data-video-title', 'En el botón que abre: título del video (diálogo e iframe)')],
+  tokens=['--color-background-inverse', '--color-overlay (fondo)', '--radius-lg', '--shadow-lg', '--spacing-3 / -4 / -5 / -6 / -8 / -13', '--text-body-lg', '--weight-medium', '--ease-base'],
+  a11y='<code>showModal()</code> deja inert el resto de la página y lleva el foco a «Close»; Escape, «Close» o un click en el fondo cierran y el foco vuelve al botón que lo abrió (comportamiento nativo). El diálogo se nombra con su título visible y el iframe lleva <code>title</code>. Los botones que lo abren declaran <code>aria-haspopup="dialog"</code>. El fundido usa <code>--ease-base</code> (0 con «reducir movimiento»).',
+  a11y_md='`showModal()`: resto inert, foco en «Close»; Escape/«Close»/fondo cierran y el foco vuelve al botón. Nombre = título visible; iframe con `title`; openers con `aria-haspopup="dialog"`. Fundido con `--ease-base`.',
+  decisions=['El diseño no muestra el modal: fondo inverso, velo `--color-overlay` y entrada con fundido y desplazamiento corto.',
+             'El iframe no se carga hasta el click (`youtube-nocookie.com`, autoplay): la página no descarga YouTube al abrirse. Lleva `referrerpolicy="strict-origin-when-cross-origin"`, porque YouTube rechaza el embed sin referrer.',
+             'Ancho máximo 64rem y nunca más alto que la ventana: el ancho se limita a `(100dvh - 8rem) × 16/9`.']))
+
 # ------------------------------------------------------------------ render
 def indent(txt, n):
     pad = ' ' * n
@@ -273,6 +448,19 @@ if '/* organisms-kit:start */' not in css:
 }
 .kit-demo--hero-mobile {
   max-inline-size: var(--kit-phone);
+}
+/* Carrusel: la demo recorta los slides que sangran fuera del carrusel (en la página lo hace la Section);
+   el relleno lateral deja ver los vecinos. --bleed-arrows ubica las flechas arriba a la derecha. */
+.kit-demo--bleed {
+  overflow: clip;
+  padding-inline: var(--spacing-9);
+}
+.kit-demo--bleed-arrows {
+  display: grid;
+  gap: var(--spacing-6);
+}
+.kit-demo--bleed-arrows > .carousel__arrows {
+  justify-self: end;
 }
 .kit-demo--source {
   display: none;

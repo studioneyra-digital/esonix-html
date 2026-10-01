@@ -9,6 +9,7 @@
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="../assets/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="../assets/css/tokens/color.css">
   <link rel="stylesheet" href="../assets/css/tokens/spacing.css">
   <link rel="stylesheet" href="../assets/css/tokens/radius.css">
@@ -94,6 +95,9 @@
           <ul class="kit-nav__list" aria-labelledby="nav-organisms">
             <li><a class="kit-nav__link" href="#site-header"><span class="kit-nav__num">01</span> Site Header</a></li>
             <li><a class="kit-nav__link" href="#offcanvas"><span class="kit-nav__num">02</span> Off-canvas</a></li>
+            <li><a class="kit-nav__link" href="#carousel"><span class="kit-nav__num">03</span> Carousel</a></li>
+            <li><a class="kit-nav__link" href="#accordion"><span class="kit-nav__num">04</span> Accordion</a></li>
+            <li><a class="kit-nav__link" href="#video-modal"><span class="kit-nav__num">05</span> Video Modal</a></li>
           </ul>
         </div>
         <div class="kit-nav__group">
@@ -1901,7 +1905,7 @@
             <div class="kit-demo kit-demo--medium" data-surface="inverse" lang="en">
               <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
                 <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-2.webp" alt="" width="1048" height="920" loading="lazy">
-                <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" data-video-id="RqueNBILfVU"><span class="icon icon--play" aria-hidden="true"></span></button>
+                <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Isabella Harris"><span class="icon icon--play" aria-hidden="true"></span></button>
                 <div class="card-testimonial__body">
                   <figcaption class="card-testimonial__footer">
                     <p class="card-testimonial__author"><span><span class="card-testimonial__name">Isabella Harris,</span> CEO &amp; Founder</span></p>
@@ -1932,7 +1936,7 @@
                   <tr><th scope="row"><code>.card-testimonial__footer</code></th><td>Divisor + autor (figcaption)</td></tr>
                   <tr><th scope="row"><code>.card-testimonial__name</code></th><td>Nombre del autor en amarillo; el cargo va en blanco a continuación</td></tr>
                   <tr><th scope="row"><code>.card-testimonial--video</code></th><td>Versión en foto (con card-photo): play centrado y autor sobre la cita</td></tr>
-                  <tr><th scope="row"><code>data-video-id</code></th><td>ID del video de YouTube que abrirá el modal (Etapa 3)</td></tr>
+                  <tr><th scope="row"><code>data-video-id / data-video-title</code></th><td>ID y título del video de YouTube: el botón abre el Video Modal (organismo)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -2926,6 +2930,379 @@
           </div>
           <p class="kit-note"><strong>Accesibilidad:</strong> El panel es <code>role="dialog"</code> con <code>aria-modal="true"</code> y nombre «Menu». Al abrir, el resto de <code>&lt;body&gt;</code> queda <code>inert</code> (el foco no puede salir), el foco va a «Close» y el botón que lo abrió pasa a <code>aria-expanded="true"</code>; Escape, el fondo o «Close» lo cierran y devuelven el foco a ese botón. Cerrado queda en <code>visibility: hidden</code>, fuera del árbol de accesibilidad. Los submenús son <code>&lt;details&gt;</code> nativos: funcionan con teclado y sin JS. La animación usa <code>--ease-slow</code>, que vale 0 ms con «reducir movimiento».</p>
         </section>
+
+        <section class="kit-card" id="carousel" aria-labelledby="carousel-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 03</p>
+            <h3 id="carousel-title">Carousel</h3>
+            <p class="kit-card__desc">Base de Swiper para los carruseles de la home: loop, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Services: flechas y card destacada fija</span>
+            <div class="kit-demo kit-demo--bleed kit-demo--bleed-arrows" lang="en">
+              <div class="carousel__arrows">
+                <button type="button" class="icon-btn" data-carousel-prev aria-controls="carousel-services" aria-label="Previous service"><span class="icon icon--arrow-left" aria-hidden="true"></span></button>
+                <button type="button" class="icon-btn" data-carousel-next aria-controls="carousel-services" aria-label="Next service"><span class="icon icon--arrow-right" aria-hidden="true"></span></button>
+              </div>
+              <div class="carousel" id="carousel-services" data-carousel role="region" aria-roledescription="carousel" aria-label="Services">
+                <div class="swiper carousel__viewport">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide carousel__slide">
+                      <article class="card-service">
+                        <img class="card-service__media" src="../assets/img/h1-service-img-2.webp" alt="" width="1500" height="900" loading="lazy">
+                        <div class="card-service__body">
+                          <div class="card-service__head">
+                            <span class="icon icon--target card-service__icon" aria-hidden="true"></span>
+                            <h3 class="card-service__title">Marketing Guidance</h3>
+                          </div>
+                          <p>Through expert insights and strategic planning, marketing guidance enables businesses to understand customer.</p>
+                        </div>
+                      </article>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <article class="card-service" data-surface="brand">
+                        <img class="card-service__media" src="../assets/img/h1-service-img-3.webp" alt="" width="1500" height="900" loading="lazy">
+                        <div class="card-service__body">
+                          <div class="card-service__head">
+                            <span class="icon icon--trending-up card-service__icon" aria-hidden="true"></span>
+                            <h3 class="card-service__title">Process Optimization</h3>
+                          </div>
+                          <p>By analyzing existing operations and implementing effective improvements, process optimization helps business.</p>
+                        </div>
+                      </article>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <article class="card-service">
+                        <img class="card-service__media" src="../assets/img/h1-service-img-4.webp" alt="" width="1500" height="900" loading="lazy">
+                        <div class="card-service__body">
+                          <div class="card-service__head">
+                            <span class="icon icon--chart-pie card-service__icon" aria-hidden="true"></span>
+                            <h3 class="card-service__title">Sales Improvement</h3>
+                          </div>
+                          <p>We support businesses in improving sales performance through training, strategy development.</p>
+                        </div>
+                      </article>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <article class="card-service">
+                        <img class="card-service__media" src="../assets/img/h1-service-img-5.webp" alt="" width="1500" height="900" loading="lazy">
+                        <div class="card-service__body">
+                          <div class="card-service__head">
+                            <span class="icon icon--gem card-service__icon" aria-hidden="true"></span>
+                            <h3 class="card-service__title">Financial Planning</h3>
+                          </div>
+                          <p>Our advisors build budgets, forecasts and funding plans that keep every decision tied to your numbers.</p>
+                        </div>
+                      </article>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <article class="card-service">
+                        <img class="card-service__media" src="../assets/img/h1-service-img-1.webp" alt="" width="1500" height="900" loading="lazy">
+                        <div class="card-service__body">
+                          <div class="card-service__head">
+                            <span class="icon icon--lightbulb card-service__icon" aria-hidden="true"></span>
+                            <h3 class="card-service__title">Brand Strategy</h3>
+                          </div>
+                          <p>We help companies define a clear position and a message that strengthens their market presence.</p>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-carousel-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-carousel-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Testimonials: dots, sobre fondo oscuro</span>
+            <div class="kit-demo kit-demo--bleed" data-surface="inverse" lang="en">
+              <div class="carousel" id="carousel-testimonials" data-carousel role="region" aria-roledescription="carousel" aria-label="Client stories">
+                <div class="swiper carousel__viewport">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="card-testimonial" data-surface="brand">
+                        <blockquote class="card-testimonial__quote">
+                          <p>“We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.”</p>
+                        </blockquote>
+                        <figcaption class="card-testimonial__footer">
+                          <hr class="divider divider--inverse">
+                          <p class="card-testimonial__author">
+                            <img class="avatar avatar--portrait" src="../assets/img/h1-testimonial-thumb-img-1.webp" alt="" width="80" height="80" loading="lazy">
+                            <span><span class="card-testimonial__name">James Anderson,</span> Entrepreneur, Brand Strategist</span>
+                          </p>
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
+                        <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-2.webp" alt="" width="1048" height="920" loading="lazy">
+                        <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Isabella Harris"><span class="icon icon--play" aria-hidden="true"></span></button>
+                        <div class="card-testimonial__body">
+                          <figcaption class="card-testimonial__footer">
+                            <p class="card-testimonial__author"><span><span class="card-testimonial__name">Isabella Harris,</span> CEO &amp; Founder</span></p>
+                            <hr class="divider divider--inverse">
+                          </figcaption>
+                          <blockquote class="card-testimonial__quote">
+                            <p>“Working with this consulting team completely transformed our business operations.”</p>
+                          </blockquote>
+                        </div>
+                      </figure>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="card-testimonial" data-surface="brand">
+                        <blockquote class="card-testimonial__quote">
+                          <p>“Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy.”</p>
+                        </blockquote>
+                        <figcaption class="card-testimonial__footer">
+                          <hr class="divider divider--inverse">
+                          <p class="card-testimonial__author">
+                            <img class="avatar avatar--portrait" src="../assets/img/h1-testimonial-thumb-img-2.webp" alt="" width="80" height="80" loading="lazy">
+                            <span><span class="card-testimonial__name">David Thompson,</span> Sales Director, HR Consultant</span>
+                          </p>
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
+                        <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-3.webp" alt="" width="1048" height="920" loading="lazy">
+                        <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Jonathan Walker" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Jonathan Walker"><span class="icon icon--play" aria-hidden="true"></span></button>
+                        <div class="card-testimonial__body">
+                          <figcaption class="card-testimonial__footer">
+                            <p class="card-testimonial__author"><span><span class="card-testimonial__name">Jonathan Walker,</span> Operations Manager</span></p>
+                            <hr class="divider divider--inverse">
+                          </figcaption>
+                          <blockquote class="card-testimonial__quote">
+                            <p>“Their business insights and personalized solutions had a real impact on our growth.”</p>
+                          </blockquote>
+                        </div>
+                      </figure>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="card-testimonial" data-surface="brand">
+                        <blockquote class="card-testimonial__quote">
+                          <p>“From the first workshop, the team understood our goals and turned them into a plan we could actually execute.”</p>
+                        </blockquote>
+                        <figcaption class="card-testimonial__footer">
+                          <hr class="divider divider--inverse">
+                          <p class="card-testimonial__author">
+                            <img class="avatar avatar--portrait" src="../assets/img/h1-testimonial-thumb-img-3.webp" alt="" width="80" height="80" loading="lazy">
+                            <span><span class="card-testimonial__name">Sophia Martinez,</span> Marketing Director</span>
+                          </p>
+                        </figcaption>
+                      </figure>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
+                        <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-1.webp" alt="" width="1048" height="920" loading="lazy">
+                        <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Michael Brooks" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Michael Brooks"><span class="icon icon--play" aria-hidden="true"></span></button>
+                        <div class="card-testimonial__body">
+                          <figcaption class="card-testimonial__footer">
+                            <p class="card-testimonial__author"><span><span class="card-testimonial__name">Michael Brooks,</span> Founder, Brooks &amp; Co.</span></p>
+                            <hr class="divider divider--inverse">
+                          </figcaption>
+                          <blockquote class="card-testimonial__quote">
+                            <p>“They stayed committed to every milestone and helped us improve how the whole company works.”</p>
+                          </blockquote>
+                        </div>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+                <div class="dots dots--inverse" role="group" aria-label="Choose a story" data-carousel-dots="Show story"></div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-carousel-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-carousel-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Carousel">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.carousel + data-carousel + id</code></th><td>Contenedor (container: carousel); main.js lo inicia al acercarse al viewport</td></tr>
+                  <tr><th scope="row"><code>role="region" aria-roledescription="carousel" aria-label</code></th><td>Región con nombre propio («Services», «Client stories»)</td></tr>
+                  <tr><th scope="row"><code>.swiper.carousel__viewport / .swiper-wrapper</code></th><td>Estructura de Swiper; el viewport deja ver los slides vecinos</td></tr>
+                  <tr><th scope="row"><code>.swiper-slide.carousel__slide</code></th><td>Un slide; iguala la altura de las cards</td></tr>
+                  <tr><th scope="row"><code>.carousel__arrows</code></th><td>Fila de flechas (Icon Button); puede vivir fuera del carrusel</td></tr>
+                  <tr><th scope="row"><code>data-carousel-prev / data-carousel-next + aria-controls</code></th><td>Flechas: aria-controls apunta al id del carrusel</td></tr>
+                  <tr><th scope="row"><code>.dots + data-carousel-dots="Show story"</code></th><td>Contenedor de los dots: main.js crea un botón por slide con ese prefijo de nombre</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--spacing-5 / -6 (separación)</code></li>
+              <li><code>--spacing-9</code></li>
+              <li><code>--ease-slow (velocidad)</code></li>
+              <li><code>Icon Button y Pagination Dots (átomos)</code></li>
+              <li><code>Card Service y Card Testimonial (moléculas)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (módulo a11y de Swiper, que además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Con el foco en un slide que no se ve, Swiper lo trae a la vista. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.</p>
+        </section>
+
+        <section class="kit-card" id="accordion" aria-labelledby="accordion-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 04</p>
+            <h3 id="accordion-title">Accordion</h3>
+            <p class="kit-card__desc">Grupo de <a href="#accordion-item">Accordion Items</a> para el FAQ. Que quede un solo ítem abierto lo da el mismo <code>name</code> en todos los <code>&lt;details&gt;</code>, sin JS; el grupo suma la animación de altura con <code>::details-content</code>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">FAQ con un ítem abierto</span>
+            <div class="kit-demo kit-demo--narrow-wide" lang="en">
+              <div class="accordion">
+                <details class="accordion-item" name="faq">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">How can consulting help my business grow?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Consulting brings an outside view, proven methods and focused support, so you can find opportunities and act on them faster.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq" open>
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">What industries do you specialize in?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Our consulting expertise spans multiple industries including finance, technology, healthcare, retail, and professional services. We have successfully partnered with organizations of all sizes from startups.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">What services do business consultants provide?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>We offer strategy, process optimization, sales improvement and financial advisory.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">Can you help improve team productivity?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Yes. We review how work moves between people and tools, then set up routines and metrics that remove bottlenecks.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-accordion-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-accordion-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Accordion">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.accordion</code></th><td>Grupo; activa interpolate-size para animar hasta height: auto</td></tr>
+                  <tr><th scope="row"><code>.accordion-item + name="faq"</code></th><td>Cada pregunta (molécula); el mismo name deja una sola abierta</td></tr>
+                  <tr><th scope="row"><code>open</code></th><td>Ítem abierto al cargar (el diseño abre el segundo)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--ease-base</code></li>
+              <li><code>Accordion Item (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Cada pregunta es un <code>&lt;summary&gt;</code> nativo: se abre con Enter o Espacio y el lector anuncia expandido o contraído. La animación usa <code>--ease-base</code>, que vale 0 con «reducir movimiento»; donde el navegador no soporta <code>::details-content</code> o <code>interpolate-size</code>, abre sin animar.</p>
+        </section>
+
+        <section class="kit-card" id="video-modal" aria-labelledby="video-modal-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 05</p>
+            <h3 id="video-modal-title">Video Modal</h3>
+            <p class="kit-card__desc"><code>&lt;dialog&gt;</code> nativo que reproduce un video de YouTube. Lo abre cualquier botón con <code>data-video-id</code> (el play de los testimonios en video); el iframe de <code>youtube-nocookie.com</code> se crea recién en ese click y se quita al cerrar. El diseño no lo muestra: está armado con los tokens del theme.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Probar</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <button type="button" class="btn" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Isabella Harris">
+                Play video
+                <span class="btn__icon"><span class="icon icon--play" aria-hidden="true"></span></span>
+              </button>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Markup</span>
+            <div class="kit-demo kit-demo--source" lang="en">
+              <dialog class="video-modal" id="video-modal" data-video-modal data-surface="inverse" aria-labelledby="video-modal-title">
+                <div class="video-modal__head">
+                  <h2 class="video-modal__title" id="video-modal-title">Video</h2>
+                  <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" data-video-close aria-label="Close video"><span class="icon icon--x" aria-hidden="true"></span></button>
+                </div>
+                <div class="video-modal__frame"></div>
+              </dialog>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-video-modal-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-video-modal-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Video Modal">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>dialog.video-modal + data-video-modal + data-surface="inverse"</code></th><td>El modal; main.js lo mueve al final de &lt;body&gt;</td></tr>
+                  <tr><th scope="row"><code>.video-modal__head / __title</code></th><td>Barra con el título del video (nombre del diálogo) y «Close»</td></tr>
+                  <tr><th scope="row"><code>data-video-close</code></th><td>Botón que cierra</td></tr>
+                  <tr><th scope="row"><code>.video-modal__frame</code></th><td>Marco 16:9 donde main.js inserta el iframe</td></tr>
+                  <tr><th scope="row"><code>data-video-id</code></th><td>En el botón que abre: ID del video de YouTube</td></tr>
+                  <tr><th scope="row"><code>data-video-title</code></th><td>En el botón que abre: título del video (diálogo e iframe)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-background-inverse</code></li>
+              <li><code>--color-overlay (fondo)</code></li>
+              <li><code>--radius-lg</code></li>
+              <li><code>--shadow-lg</code></li>
+              <li><code>--spacing-3 / -4 / -5 / -6 / -8 / -13</code></li>
+              <li><code>--text-body-lg</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--ease-base</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> <code>showModal()</code> deja inert el resto de la página y lleva el foco a «Close»; Escape, «Close» o un click en el fondo cierran y el foco vuelve al botón que lo abrió (comportamiento nativo). El diálogo se nombra con su título visible y el iframe lleva <code>title</code>. Los botones que lo abren declaran <code>aria-haspopup="dialog"</code>. El fundido usa <code>--ease-base</code> (0 con «reducir movimiento»).</p>
+        </section>
         <!-- kit:organisms-end -->
       </section>
 
@@ -2940,6 +3317,7 @@
     <span class="icon icon--arrow-up" aria-hidden="true"></span>
   </button>
 
+  <script src="../assets/js/swiper-bundle.min.js" defer></script>
   <script src="../assets/js/main.js" defer></script>
   <script>
 (function () {

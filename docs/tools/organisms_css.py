@@ -436,6 +436,153 @@ CSS = r'''/* organisms:start */
 html.has-offcanvas {
   overflow: hidden;
 }
+
+/* Carousel — base de Swiper reutilizada en Services (flechas) y Testimonials (dots). main.js la inicia
+   con IntersectionObserver al acercarse al viewport: loop, velocidad de --ease-slow (0 con reducir
+   movimiento) y módulo a11y (cada slide es un group «N of M»). Slides por vista según el ancho del
+   carrusel, como el header: 1, 2 desde 48rem y 3 desde 64rem. El container query replica esos anchos
+   antes de que Swiper arranque (y sin JS), así no hay salto al iniciar. Los slides de los costados se
+   ven fuera del carrusel hasta el borde de la ventana, como el diseño: la Section recorta con
+   overflow-x: clip. Las flechas pueden ir en el encabezado de la Section (aria-controls = id). */
+.carousel {
+  --carousel-gap: var(--spacing-5);
+  --carousel-per-view: 1;
+  container: carousel / inline-size;
+  display: grid;
+  gap: var(--spacing-9);
+}
+/* Sin min-inline-size: 0, el viewport (ítem de grid con overflow visible) toma como mínimo el ancho de
+   todos los slides: Swiper recalcula sobre ese ancho y la grilla crece en bucle hasta el límite. */
+.carousel > * {
+  min-inline-size: 0;
+}
+.carousel__viewport {
+  inline-size: 100%;
+}
+.carousel .carousel__viewport {
+  overflow: visible; /* pisa el overflow: hidden de Swiper: los slides vecinos sangran fuera */
+}
+.carousel__slide {
+  display: flex;
+  block-size: auto; /* Swiper fija height: 100%; auto + flex iguala la altura de todas las cards */
+}
+.carousel__slide > * {
+  flex: 1;
+  min-inline-size: 0;
+}
+/* Antes de iniciar (o sin JS): mismos anchos que calculará Swiper, con scroll horizontal nativo */
+.carousel__viewport:not(.swiper-initialized) {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.carousel__viewport:not(.swiper-initialized) .swiper-wrapper {
+  gap: var(--carousel-gap);
+}
+.carousel__viewport:not(.swiper-initialized) .carousel__slide {
+  inline-size: calc((100% - (var(--carousel-per-view) - 1) * var(--carousel-gap)) / var(--carousel-per-view));
+  scroll-snap-align: start;
+}
+@container carousel (min-width: 48rem) {
+  .carousel__viewport {
+    --carousel-gap: var(--spacing-6);
+    --carousel-per-view: 2;
+  }
+}
+@container carousel (min-width: 64rem) {
+  .carousel__viewport {
+    --carousel-per-view: 3;
+  }
+}
+.carousel__arrows {
+  display: flex;
+  gap: var(--spacing-3);
+}
+.carousel .dots {
+  justify-self: center;
+}
+
+/* Accordion — grupo de Accordion Items (FAQ). Que haya un solo ítem abierto lo da el mismo name en
+   todos los <details>, sin JS. El grupo anima la altura con ::details-content e interpolate-size:
+   donde no hay soporte, abre y cierra sin animación. La duración sale de --ease-base (0 con reducir
+   movimiento). */
+.accordion {
+  interpolate-size: allow-keywords;
+}
+.accordion .accordion-item::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition: block-size var(--ease-base), content-visibility var(--ease-base) allow-discrete;
+}
+.accordion .accordion-item[open]::details-content {
+  block-size: auto;
+}
+
+/* Video Modal — <dialog> nativo: showModal() deja inert el resto de la página, Escape lo cierra y el
+   foco vuelve al botón que lo abrió. main.js crea el iframe de youtube-nocookie recién al hacer click
+   en un [data-video-id] y lo quita al cerrar (corta la reproducción). Se cierra también con «Close» o
+   con un click en el fondo. Ancho: hasta 64rem y nunca más alto que la ventana (16:9). El diseño no
+   muestra el modal: fondo inverso, velo del theme y entrada con fundido, todo de tokens. */
+.video-modal {
+  --video-modal-max: 64rem;
+  inline-size: min(100% - var(--spacing-8), var(--video-modal-max), (100dvh - var(--spacing-13)) * 16 / 9);
+  max-inline-size: none;
+  max-block-size: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(var(--spacing-5));
+  transition: opacity var(--ease-base), transform var(--ease-base), display var(--ease-base) allow-discrete, overlay var(--ease-base) allow-discrete;
+}
+.video-modal[open] {
+  opacity: 1;
+  transform: none;
+}
+.video-modal::backdrop {
+  background-color: var(--color-overlay);
+  opacity: 0;
+  transition: opacity var(--ease-base), display var(--ease-base) allow-discrete, overlay var(--ease-base) allow-discrete;
+}
+.video-modal[open]::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  .video-modal[open] {
+    opacity: 0;
+    transform: translateY(var(--spacing-5));
+  }
+  .video-modal[open]::backdrop {
+    opacity: 0;
+  }
+}
+.video-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-3) var(--spacing-3) var(--spacing-6);
+}
+.video-modal__title {
+  font-size: var(--text-body-lg);
+  font-weight: var(--weight-medium);
+}
+.video-modal__frame {
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-background-inverse);
+}
+.video-modal__frame iframe {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
+}
+/* Página detrás del modal abierto: sin scroll (Lenis además se detiene desde main.js) */
+html:has(.video-modal[open]) {
+  overflow: hidden;
+}
 /* organisms:end */
 '''
 s = open(MAIN, encoding='utf-8').read()

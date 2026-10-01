@@ -193,7 +193,7 @@ M.append(dict(id='card-testimonial', title='Card Testimonial',
     dict(label='En video (<code>--video</code>)', surface='inverse', mods='medium', html=d('''
       <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
         <img class="card-photo__img" src="%sh1-testimonial-large-img-2.webp" alt="" width="1048" height="920" loading="lazy">
-        <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" data-video-id="RqueNBILfVU">%s</button>
+        <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Isabella Harris" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Isabella Harris">%s</button>
         <div class="card-testimonial__body">
           <figcaption class="card-testimonial__footer">
             <p class="card-testimonial__author"><span><span class="card-testimonial__name">Isabella Harris,</span> CEO &amp; Founder</span></p>
@@ -210,11 +210,11 @@ M.append(dict(id='card-testimonial', title='Card Testimonial',
         ('.card-testimonial__footer', 'Divisor + autor (figcaption)'),
         ('.card-testimonial__name', 'Nombre del autor en amarillo; el cargo va en blanco a continuación'),
         ('.card-testimonial--video', 'Versión en foto (con card-photo): play centrado y autor sobre la cita'),
-        ('data-video-id', 'ID del video de YouTube que abrirá el modal (Etapa 3)')],
+        ('data-video-id / data-video-title', 'ID y título del video de YouTube: el botón abre el Video Modal (organismo)')],
   tokens=['--color-action-primary (via data-surface="brand")', '--color-text-inverse / -highlight', '--color-overlay-light (divisor)', '--text-h4', '--leading-normal', '--radius-lg', '--spacing-4 / -5 / -6 / -8', '--scrim (card-photo)'],
   a11y='Cita y autor usan la semántica de <code>figure</code>, <code>blockquote</code> y <code>figcaption</code>. El botón de play lleva un <code>aria-label</code> con el nombre del autor. El texto sobre la foto va sobre un velo del 92% abajo, así que el contraste no depende de la imagen.',
   a11y_md='`figure`/`blockquote`/`figcaption`; play con `aria-label`; texto sobre velo de 92%.',
-  decisions=['El video del diseño es el de YouTube indicado por el equipo (`RqueNBILfVU`); el modal que lo reproduce llega en la Etapa 3.',
+  decisions=['El video del diseño es el de YouTube indicado por el equipo (`RqueNBILfVU`); lo reproduce el organismo Video Modal.',
              'En el diseño el avatar del autor de texto es un retrato cuadrado de 75px; aquí usa el átomo `avatar--portrait` (80px).']))
 
 M.append(dict(id='card-team', title='Card Team',
