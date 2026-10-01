@@ -35,7 +35,8 @@ Leer `docs/accessibility.md` y `docs/seo.md` para directivas de SEO incluidas en
 ```
 CLAUDE.md
 docs/                          ← documentación del theme (este set de archivos)
-└── kit/                       ← un `.stories.md` por componente (§7)
+├── kit/                       ← un `.stories.md` por componente (§7)
+└── tools/                     ← scripts Python que regeneran el CSS y las fichas del kit (ver README)
 dist/                          ← sitio real, sin build — se sirve tal cual
 ├── index.html
 ├── [resto de páginas del sitio].html

@@ -113,5 +113,5 @@ Resuelto: foco amarillo sobre cards con foto (`data-surface="inverse"`), «Read 
 ## Deuda y puntos abiertos
 
 - `docs/personality.md` y `docs/interactions-catalog.md` se citan en otros docs pero no existen.
-- Cada átomo está documentado en el kit y en su `.stories.md`: se generaron desde un script temporal que no está en el repo, así que hay que mantenerlos en sync a mano.
+- Cada componente está documentado en el kit y en su `.stories.md`, generados desde `docs/tools/` (ver su README). Esos scripts son la fuente de los bloques `atoms:` / `molecules:` de `main.css`: editar a mano dentro de esos marcadores se pierde al regenerar.
 - Git: rama `feat/design-to-web-esonix`; sin push todavía.
