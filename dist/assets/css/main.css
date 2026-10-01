@@ -1,0 +1,653 @@
+/* Esonix — foundations, átomos, moléculas, organismos y sections. Cada bloque va comentado
+   con su nombre. Solo tokens: sin valores hardcodeados (excepción: patrón sr-only). */
+
+/* Fonts */
+@font-face {
+  font-family: 'Mona Sans';
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url('../fonts/mona-sans.woff2') format('woff2');
+}
+
+/* Foundations: base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+  color: var(--color-text-secondary);
+  background-color: var(--color-background-default);
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+p {
+  margin: 0;
+}
+
+/* Foundations: titulares — jerarquía por tamaño y peso. --text-hero, --text-display y
+   --text-giant no se ligan a un elemento: los consume el componente (Hero, Footer). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+}
+h1 {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+h3 {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+h4 {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+}
+h5 {
+  font-size: var(--text-h5);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+}
+h6 {
+  font-size: var(--text-h6);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+/* Foundations: enlaces */
+a {
+  color: var(--color-text-link);
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  transition: color var(--ease-fast);
+}
+a:hover {
+  color: var(--color-action-primary-active);
+}
+
+/* Foundations: foco — el outline nunca se elimina sin reemplazo */
+:focus-visible {
+  outline: var(--border-width-md) solid var(--color-border-focus);
+  outline-offset: var(--border-width-md);
+}
+
+/* Foundations: superficie inversa — bloque oscuro fijo (no es un dark mode de usuario).
+   Redefine el token de foco para todo su árbol y da lectura a titulares y enlaces. */
+[data-surface='inverse'] {
+  --color-border-focus: var(--color-border-focus-inverse);
+  background-color: var(--color-background-inverse);
+  color: var(--color-text-inverse);
+}
+[data-surface='inverse'] :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-text-inverse);
+}
+/* :where() deja estas reglas con especificidad de un solo elemento: así cualquier clase de
+   componente (botón claro, link amarillo) las pisa sin pelear por especificidad */
+:where([data-surface='inverse']) a {
+  color: var(--color-text-inverse);
+}
+:where([data-surface='inverse']) a:hover {
+  color: var(--color-text-inverse-secondary);
+}
+
+/* Foco programático: <body> recibe foco (tabindex -1, solo desde JS) al volver arriba con Scroll Top,
+   para que Tab arranque desde el inicio. No es un control: no lleva anillo de foco. */
+body[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* Brand logo — PNG del cliente (no hay SVG): la variante se elige por fondo,
+   secondary-logo.png sobre claro y primary-logo.png sobre oscuro */
+.brand-logo {
+  display: block;
+  inline-size: auto;
+  block-size: var(--spacing-8);
+}
+
+/* Utilidades de accesibilidad */
+.visually-hidden { position: absolute; inline-size: 1px; block-size: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; } /* valor técnico sr-only */
+.skip-link {
+  position: absolute;
+  inset-block-start: var(--spacing-3);
+  inset-inline-start: var(--spacing-3);
+  z-index: var(--z-toast);
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius-full);
+  background-color: var(--color-action-primary);
+  color: var(--color-action-on-primary);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--ease-fast);
+}
+.skip-link:hover {
+  color: var(--color-action-on-primary);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Scroll suave — con Lenis activo (clase .lenis en <html>) el scroll nativo debe quedar en
+   auto o los dos motores se pisan; sin Lenis, scroll-behavior nativo. Ambos solo si el
+   usuario no pidió reducir movimiento (main.js no inicia Lenis en ese caso). */
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.lenis) {
+    scroll-behavior: smooth;
+  }
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* atoms:start */
+/* ===== Átomos ===== */
+
+/* Icon — Lucide como máscara CSS: hereda color (currentColor) y tamaño (1em) del contexto, sin SVG
+   inline ni sprite, así el snippet que se copia no depende de rutas. Las redes sociales no están en
+   Lucide: son SVG propios del mismo estilo. Los iconos son decorativos (aria-hidden): el nombre
+   accesible lo da el texto o el aria-label del contenedor. */
+.icon {
+  display: inline-block;
+  flex: none;
+  inline-size: 1em;
+  block-size: 1em;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+}
+@media (forced-colors: active) {
+  .icon {
+    forced-color-adjust: none;
+    background-color: CanvasText;
+  }
+}
+.icon--arrow-up-right { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7h10v10'/%3E%3Cpath d='M7 17 17 7'/%3E%3C/svg%3E"); }
+.icon--arrow-right { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E"); }
+.icon--arrow-left { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 19-7-7 7-7'/%3E%3Cpath d='M19 12H5'/%3E%3C/svg%3E"); }
+.icon--arrow-up { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 7-7 7 7'/%3E%3Cpath d='M12 19V5'/%3E%3C/svg%3E"); }
+.icon--plus { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='M12 5v14'/%3E%3C/svg%3E"); }
+.icon--minus { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E"); }
+.icon--play { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='6 3 20 12 6 21 6 3' fill='%23000'/%3E%3C/svg%3E"); }
+.icon--check { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
+.icon--circle-check { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cmask id='m'%3E%3Crect width='24' height='24' fill='%23fff' stroke='none'/%3E%3Cpath d='m8 12.5 2.8 2.8L16 9.5' stroke='%23000'/%3E%3C/mask%3E%3Ccircle cx='12' cy='12' r='10' fill='%23000' stroke='none' mask='url(%23m)'/%3E%3C/svg%3E"); }
+.icon--chevron-down { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
+.icon--x { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E"); }
+.icon--send { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z'/%3E%3Cpath d='m21.854 2.147-10.94 10.939'/%3E%3C/svg%3E"); }
+.icon--message-square { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z'/%3E%3C/svg%3E"); }
+.icon--layout-grid { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='7' x='3' y='3' rx='1'/%3E%3Crect width='7' height='7' x='14' y='3' rx='1'/%3E%3Crect width='7' height='7' x='14' y='14' rx='1'/%3E%3Crect width='7' height='7' x='3' y='14' rx='1'/%3E%3C/svg%3E"); }
+.icon--facebook { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/%3E%3C/svg%3E"); }
+.icon--linkedin { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z'/%3E%3Crect width='4' height='12' x='2' y='9'/%3E%3Ccircle cx='4' cy='4' r='2'/%3E%3C/svg%3E"); }
+.icon--instagram { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='20' x='2' y='2' rx='5' ry='5'/%3E%3Cpath d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z'/%3E%3Cline x1='17.5' x2='17.51' y1='6.5' y2='6.5'/%3E%3C/svg%3E"); }
+.icon--x-twitter { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4l11.733 16h4.267L8.267 4z'/%3E%3Cpath d='M4 20l6.768-6.768m2.46-2.46L20 4'/%3E%3C/svg%3E"); }
+
+/* Button — píldora con círculo de ícono. Por defecto petróleo sobre fondo claro (.btn);
+   --light sobre fondo oscuro; --block ocupa el ancho de su card (pricing); --accent es el relleno amarillo. */
+.btn {
+  --btn-bg: var(--color-action-primary);
+  --btn-bg-hover: var(--color-action-primary-hover);
+  --btn-bg-active: var(--color-action-primary-active);
+  --btn-fg: var(--color-action-on-primary);
+  --btn-icon-bg: var(--color-action-secondary);
+  --btn-icon-fg: var(--color-action-on-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-5);
+  padding: var(--spacing-1) var(--spacing-1) var(--spacing-1) var(--spacing-6);
+  border: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: inherit;
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--ease-fast);
+}
+.btn:hover {
+  background-color: var(--btn-bg-hover);
+  color: var(--btn-fg);
+}
+.btn:active {
+  background-color: var(--btn-bg-active);
+}
+.btn__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: var(--spacing-8);
+  block-size: var(--spacing-8);
+  border-radius: var(--radius-full);
+  background-color: var(--btn-icon-bg);
+  color: var(--btn-icon-fg);
+  font-size: var(--text-body);
+}
+.btn--light {
+  --btn-bg: var(--color-surface-default);
+  --btn-bg-hover: var(--color-background-subtle);
+  --btn-bg-active: var(--color-background-muted);
+  --btn-fg: var(--color-text-primary);
+  --btn-icon-bg: var(--color-action-primary);
+  --btn-icon-fg: var(--color-action-on-primary);
+}
+.btn--block {
+  --btn-bg: var(--color-background-subtle);
+  --btn-bg-hover: var(--color-background-muted);
+  --btn-bg-active: var(--color-background-muted);
+  --btn-fg: var(--color-text-primary);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2);
+  min-block-size: var(--spacing-9);
+  padding: var(--spacing-2) var(--spacing-6);
+}
+.btn--block .icon {
+  font-size: var(--text-sm);
+}
+.btn--accent {
+  --btn-bg: var(--color-action-secondary);
+  --btn-bg-hover: var(--color-action-secondary-hover);
+  --btn-bg-active: var(--color-action-secondary-hover);
+  --btn-fg: var(--color-action-on-secondary);
+}
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  --btn-bg: var(--color-action-primary-disabled);
+  --btn-bg-hover: var(--color-action-primary-disabled);
+  --btn-bg-active: var(--color-action-primary-disabled);
+  --btn-fg: var(--color-text-tertiary);
+  --btn-icon-bg: var(--color-background-muted);
+  --btn-icon-fg: var(--color-text-tertiary);
+  cursor: not-allowed;
+}
+
+/* Icon Button — círculo de un solo ícono. Por defecto contorno sobre fondo claro; --glass sobre fotos
+   (el amarillo marca hover y estado activo); --sm y --lg para el "+" del equipo y el play del video.
+   También es el Social Icon: un .icon-btn --sm con el glifo de la red. */
+.icon-btn {
+  --icon-btn-size: var(--spacing-9);
+  --icon-btn-bg: var(--color-surface-default);
+  --icon-btn-bg-hover: var(--color-background-subtle);
+  --icon-btn-fg: var(--color-text-primary);
+  --icon-btn-border: var(--color-border-default);
+  --icon-btn-border-hover: var(--color-border-strong);
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: var(--icon-btn-size);
+  block-size: var(--icon-btn-size);
+  padding: 0;
+  border: var(--border-width-sm) solid var(--icon-btn-border);
+  border-radius: var(--radius-full);
+  background-color: var(--icon-btn-bg);
+  color: var(--icon-btn-fg);
+  font-size: var(--text-h6);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--ease-fast), color var(--ease-fast), border-color var(--ease-fast);
+}
+.icon-btn:hover {
+  background-color: var(--icon-btn-bg-hover);
+  border-color: var(--icon-btn-border-hover);
+  color: var(--icon-btn-fg);
+}
+.icon-btn--sm {
+  --icon-btn-size: var(--spacing-8);
+  font-size: var(--text-body);
+}
+.icon-btn--lg {
+  --icon-btn-size: var(--spacing-10);
+  font-size: var(--text-h5);
+}
+.icon-btn--glass {
+  --icon-btn-bg: var(--color-overlay);
+  --icon-btn-fg: var(--color-text-inverse);
+  --icon-btn-border: var(--color-overlay-light);
+  --icon-btn-border-hover: var(--color-action-secondary);
+}
+.icon-btn--glass:hover,
+.icon-btn--glass[aria-pressed='true'],
+.icon-btn--glass[aria-expanded='true'] {
+  border-color: var(--color-action-secondary);
+  background-color: var(--color-action-secondary);
+  color: var(--color-action-on-secondary);
+}
+.icon-btn--glass .icon--play {
+  color: var(--color-text-highlight);
+}
+.icon-btn--glass:hover .icon--play,
+.icon-btn--glass[aria-pressed='true'] .icon--play {
+  color: var(--color-action-on-secondary);
+}
+.icon-btn:disabled,
+.icon-btn[aria-disabled='true'] {
+  --icon-btn-bg: var(--color-background-subtle);
+  --icon-btn-bg-hover: var(--color-background-subtle);
+  --icon-btn-border-hover: var(--icon-btn-border);
+  --icon-btn-fg: var(--color-text-tertiary);
+  cursor: not-allowed;
+}
+
+/* Link Arrow — "Read More ↗" y "Contact Us ↗". El subrayado aparece en hover: el estado no
+   depende solo del color. --inverse sobre cards oscuras; --highlight (amarillo) solo sobre fondo oscuro. */
+.link-arrow {
+  --link-fg: var(--color-text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--link-fg);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition: color var(--ease-fast);
+}
+.link-arrow:hover {
+  color: var(--link-fg);
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.25em;
+}
+.link-arrow--inverse {
+  --link-fg: var(--color-text-inverse);
+}
+.link-arrow--highlight {
+  --link-fg: var(--color-text-highlight);
+}
+
+/* Eyebrow — rótulo corto sobre el título de una sección; el cuadrito es decorativo (pseudo-elemento).
+   --center lo marca a ambos lados; --inverse (amarillo) solo sobre fondo oscuro. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+}
+.eyebrow::before,
+.eyebrow--center::after {
+  content: '';
+  flex: none;
+  inline-size: calc(var(--spacing-1) * 1.5);
+  block-size: calc(var(--spacing-1) * 1.5);
+  background-color: currentColor;
+}
+.eyebrow--center {
+  display: flex;
+  justify-content: center;
+}
+.eyebrow--inverse {
+  color: var(--color-text-highlight);
+}
+
+/* Badge — etiqueta translúcida sobre una foto (rol del equipo, fecha del post). El velo es el overlay
+   del theme (petróleo oscuro al 65%): el texto blanco pasa AA sobre cualquier foto. --marker suma el cuadrito amarillo. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  min-block-size: var(--spacing-8);
+  padding-inline: var(--spacing-4);
+  border: var(--border-width-sm) solid var(--color-overlay-light);
+  border-radius: var(--radius-full);
+  background-color: var(--color-overlay);
+  color: var(--color-text-inverse);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+}
+.badge--marker::before {
+  content: '';
+  flex: none;
+  inline-size: calc(var(--spacing-1) * 1.5);
+  block-size: calc(var(--spacing-1) * 1.5);
+  background-color: var(--color-text-highlight);
+}
+
+/* Avatar — retrato circular. --portrait es el retrato cuadrado de autor del testimonio.
+   Avatar Stack solapa avatares con un anillo del color del fondo (--avatar-ring) y cierra con un "+". */
+.avatar {
+  --avatar-size: var(--spacing-8);
+  display: block;
+  flex: none;
+  inline-size: var(--avatar-size);
+  block-size: var(--avatar-size);
+  border-radius: var(--radius-full);
+  background-color: var(--color-background-muted);
+  object-fit: cover;
+}
+.avatar--portrait {
+  --avatar-size: var(--spacing-11);
+  border-radius: var(--radius-sm);
+}
+.avatar-stack {
+  --avatar-ring: var(--color-background-default);
+  display: inline-flex;
+  align-items: center;
+  padding-inline-start: var(--border-width-md);
+}
+.avatar-stack > * {
+  box-shadow: 0 0 0 var(--border-width-md) var(--avatar-ring);
+}
+.avatar-stack > * + * {
+  margin-inline-start: calc(-1 * var(--spacing-3));
+}
+.avatar-stack__more {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: var(--spacing-8);
+  block-size: var(--spacing-8);
+  border-radius: var(--radius-full);
+  background-color: var(--color-action-secondary);
+  color: var(--color-action-on-secondary);
+  font-size: var(--text-body);
+}
+
+/* Progress — <progress> nativo (valor y rol salen del navegador). La etiqueta es un <label for>;
+   el porcentaje visible es aria-hidden porque el valor ya se anuncia. */
+.progress {
+  display: grid;
+  gap: var(--spacing-3);
+}
+.progress__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  color: var(--color-text-primary);
+}
+.progress__bar {
+  appearance: none;
+  inline-size: 100%;
+  block-size: calc(var(--border-width-md) + var(--border-width-sm));
+  border: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-background-muted);
+  color: var(--color-action-primary); /* Firefox pinta el relleno con color */
+  overflow: hidden;
+}
+.progress__bar::-webkit-progress-bar {
+  background-color: var(--color-background-muted);
+}
+.progress__bar::-webkit-progress-value {
+  border-radius: var(--radius-full);
+  background-color: var(--color-action-primary);
+  transition: inline-size var(--ease-slow);
+}
+.progress__bar::-moz-progress-bar {
+  border-radius: var(--radius-full);
+  background-color: var(--color-action-primary);
+}
+
+/* Switch — checkbox nativo con role="switch": la posición de la perilla es el estado (apagado a la izquierda). */
+.switch {
+  --switch-width: var(--spacing-11);
+  --switch-pad: var(--spacing-1);
+  --switch-knob: calc(var(--spacing-7) + var(--spacing-1));
+  appearance: none;
+  position: relative;
+  flex: none;
+  inline-size: var(--switch-width);
+  block-size: var(--spacing-8);
+  margin: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-action-primary);
+  cursor: pointer;
+  transition: background-color var(--ease-fast);
+}
+.switch::before {
+  content: '';
+  position: absolute;
+  inset-block: var(--switch-pad);
+  inset-inline-start: var(--switch-pad);
+  inline-size: var(--switch-knob);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-default);
+  transition: transform var(--ease-base);
+}
+.switch:hover {
+  background-color: var(--color-action-primary-hover);
+}
+.switch:checked::before {
+  transform: translateX(calc(var(--switch-width) - var(--switch-knob) - 2 * var(--switch-pad)));
+}
+.switch:disabled {
+  background-color: var(--color-action-primary-disabled);
+  cursor: not-allowed;
+}
+
+/* Divider — <hr> de un filete. --inverse sobre fondos oscuros. */
+.divider {
+  inline-size: 100%;
+  block-size: 0;
+  margin: 0;
+  border: 0;
+  border-block-start: var(--border-width-sm) solid var(--color-border-subtle);
+}
+.divider--inverse {
+  border-block-start-color: var(--color-overlay-light);
+}
+
+/* Pagination Dots — cada punto es un botón de 24×24 (WCAG 2.5.8) con el punto dibujado en ::before.
+   El inactivo usa border-strong (≥ 3:1 sobre claro y sobre oscuro); el activo lleva un halo. */
+.dots {
+  --dots-active: var(--color-action-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  margin: 0;
+  padding: 0;
+}
+.dots--inverse {
+  --dots-active: var(--color-text-highlight);
+}
+.dots__dot {
+  display: grid;
+  place-items: center;
+  inline-size: var(--spacing-6);
+  block-size: var(--spacing-6);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: none;
+  cursor: pointer;
+}
+.dots__dot::before {
+  content: '';
+  inline-size: var(--spacing-3);
+  block-size: var(--spacing-3);
+  border-radius: var(--radius-full);
+  background-color: var(--color-border-strong);
+  transition: background-color var(--ease-base), box-shadow var(--ease-base);
+}
+.dots__dot:hover::before {
+  background-color: var(--dots-active);
+}
+.dots__dot[aria-current='true']::before {
+  background-color: var(--dots-active);
+  box-shadow: 0 0 0 var(--spacing-1) color-mix(in srgb, var(--dots-active) 25%, transparent);
+}
+
+/* Scroll Top — fijo abajo a la derecha; main.js lo muestra al pasar media pantalla y dibuja en el anillo
+   el avance del scroll (--scroll-progress, 0–100). Oculto con visibility para salir del orden de tabulación. */
+.scroll-top {
+  --scroll-progress: 0;
+  position: fixed;
+  inset-block-end: var(--spacing-5);
+  inset-inline-end: var(--spacing-5);
+  z-index: var(--z-sticky);
+  display: grid;
+  place-items: center;
+  inline-size: var(--spacing-9);
+  block-size: var(--spacing-9);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: conic-gradient(var(--color-action-primary) calc(var(--scroll-progress) * 1%), var(--color-border-default) 0);
+  color: var(--color-text-primary);
+  font-size: var(--text-h6);
+  cursor: pointer;
+  isolation: isolate;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(var(--spacing-2));
+  transition: opacity var(--ease-base), transform var(--ease-base), visibility var(--ease-base);
+}
+.scroll-top::before {
+  content: '';
+  position: absolute;
+  inset: var(--border-width-md);
+  z-index: -1;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-default);
+  transition: background-color var(--ease-fast);
+}
+.scroll-top:hover::before {
+  background-color: var(--color-background-subtle);
+}
+.scroll-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+@media (min-width: 48rem) {
+  .scroll-top {
+    inset-block-end: var(--spacing-9);
+    inset-inline-end: var(--spacing-9);
+  }
+}
+/* atoms:end */

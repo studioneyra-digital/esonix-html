@@ -1,0 +1,8 @@
+/* z-index — 5 niveles nombrados por función, no una escala numérica libre */
+:root {
+  --z-dropdown: 20; /* paneles flotantes anclados a un trigger: Tooltip, Dropdown */
+  --z-sticky: 30; /* elementos fixed/sticky persistentes: Scroll Top, barra del kit */
+  --z-overlay: 40; /* backdrop de Modal/Dialog y del cajón del kit */
+  --z-modal: 50; /* el propio Modal/Dialog, encima de su overlay */
+  --z-toast: 60; /* Alerts/Toast: siempre por encima de todo */
+}

@@ -1,0 +1,149 @@
+/*
+ * Color — dos capas (docs/design-tokens.md): PRIMITIVOS arriba (escalas 50–950),
+ * SEMÁNTICOS abajo. Los componentes leen solo semánticos.
+ *
+ * Anclas (hex exacto del diseño, muestreadas de docs/design/*.png):
+ *   brand-primary-500   #fbcb79  amarillo: acento puntual (íconos de CTA, eyebrows sobre oscuro)
+ *   brand-secondary-500 #344c4e  petróleo: cards destacadas y botones
+ *   brand-secondary-900 #1f2a2b  fondo de los bloques oscuros (hero, testimonios, footer)
+ *   neutral-50          #fefbf5  crema del fondo de página
+ *   neutral-950         #122325  tinta de los titulares
+ * Método: los pasos faltantes de las escalas de marca se interpolan en OKLCH (luminosidad
+ * lineal entre anclas, hue fijo, croma atenuado en los extremos). Los neutrales son una
+ * mezcla OKLab entre el crema y la tinta, por eso van del cálido al petróleo.
+ */
+:root {
+  /* ============ PRIMITIVOS ============ */
+
+  /* Brand primary (amarillo) */
+  --color-brand-primary-50: #fff6e7;
+  --color-brand-primary-100: #fff1da;
+  --color-brand-primary-200: #ffe8c2;
+  --color-brand-primary-300: #ffdea8;
+  --color-brand-primary-400: #ffd48c;
+  --color-brand-primary-500: #fbcb79; /* ancla */
+  --color-brand-primary-600: #ca9c49;
+  --color-brand-primary-700: #996f1b;
+  --color-brand-primary-800: #674700;
+  --color-brand-primary-900: #362400;
+  --color-brand-primary-950: #201300;
+
+  /* Brand secondary (petróleo) */
+  --color-brand-secondary-50: #f2f8f9;
+  --color-brand-secondary-100: #d9e4e5;
+  --color-brand-secondary-200: #acbcbd;
+  --color-brand-secondary-300: #819597;
+  --color-brand-secondary-400: #597071;
+  --color-brand-secondary-500: #344c4e; /* ancla */
+  --color-brand-secondary-600: #2c4446;
+  --color-brand-secondary-700: #253b3d;
+  --color-brand-secondary-800: #1f3335;
+  --color-brand-secondary-900: #1f2a2b; /* ancla */
+  --color-brand-secondary-950: #0b191a;
+
+  /* Brand accent: Esonix no tiene un tercer color de marca. La escala existe porque el
+     contrato la exige (docs/design-tokens.md) y apunta al petróleo; no suma un acento nuevo. */
+  --color-brand-accent-50: var(--color-brand-secondary-50);
+  --color-brand-accent-100: var(--color-brand-secondary-100);
+  --color-brand-accent-200: var(--color-brand-secondary-200);
+  --color-brand-accent-300: var(--color-brand-secondary-300);
+  --color-brand-accent-400: var(--color-brand-secondary-400);
+  --color-brand-accent-500: var(--color-brand-secondary-500);
+  --color-brand-accent-600: var(--color-brand-secondary-600);
+  --color-brand-accent-700: var(--color-brand-secondary-700);
+  --color-brand-accent-800: var(--color-brand-secondary-800);
+  --color-brand-accent-900: var(--color-brand-secondary-900);
+  --color-brand-accent-950: var(--color-brand-secondary-950);
+
+  /* Neutral (crema → tinta petróleo) */
+  --color-neutral-50: #fefbf5; /* ancla */
+  --color-neutral-100: #f7f5ef;
+  --color-neutral-200: #ebeae5;
+  --color-neutral-300: #c9cbc7;
+  --color-neutral-400: #a1a6a3;
+  --color-neutral-500: #7a8281; /* 3.81:1 sobre neutral-50: solo bordes de control */
+  --color-neutral-600: #646e6e; /* 5.09:1 sobre neutral-50, 4.82:1 sobre neutral-100 */
+  --color-neutral-700: #4c5859;
+  --color-neutral-800: #394647;
+  --color-neutral-900: #263537;
+  --color-neutral-950: #122325; /* ancla, 15.73:1 sobre neutral-50 */
+
+  /* Feedback: 50 fondo suave · 100 borde suave · 500 texto/ícono (≥ 5:1 sobre su 50) */
+  --color-success-50: #effbf6;
+  --color-success-100: #d6f5e8;
+  --color-success-500: #15774e;
+  --color-warning-50: #fef7ec;
+  --color-warning-100: #fceccf;
+  --color-warning-500: #915d04;
+  --color-error-50: #fcedef;
+  --color-error-100: #f9d2d7;
+  --color-error-500: #c22035;
+  /* info reutiliza el petróleo de marca (no suma un azul ajeno a la paleta) */
+  --color-info-50: var(--color-brand-secondary-50);
+  --color-info-100: var(--color-brand-secondary-100);
+  --color-info-500: var(--color-brand-secondary-500);
+
+  /* ============ SEMÁNTICOS ============ */
+
+  /* Texto. El diseño usa un solo gris para párrafos y metadatos (#727979, 4.30:1 sobre el
+     crema: no llega a AA). Se oscureció a neutral-600 y ambos roles lo comparten; la
+     jerarquía entre cuerpo y metadato la da el tamaño. */
+  --color-text-primary: var(--color-neutral-950); /* titulares y texto fuerte */
+  --color-text-secondary: var(--color-neutral-600); /* cuerpo y párrafos */
+  --color-text-tertiary: var(--color-neutral-600); /* metadatos y pies de foto */
+  --color-text-disabled: var(--color-neutral-400); /* solo disabled (exento de contraste) */
+  --color-text-inverse: #ffffff; /* sobre background-inverse y sobre brand-secondary */
+  --color-text-inverse-secondary: rgb(255 255 255 / 0.72); /* sobre background-inverse, ~8.6:1 */
+  --color-text-link: var(--color-brand-secondary-500);
+  /* Propio de Esonix: amarillo como texto, SOLO sobre fondos oscuros (eyebrow inverso,
+     autor de testimonio, número activo). Sobre el crema da 1.4:1 y no se usa. */
+  --color-text-highlight: var(--color-brand-primary-500);
+
+  /* Fondo */
+  --color-background-default: var(--color-neutral-50); /* crema */
+  --color-background-subtle: var(--color-neutral-100);
+  --color-background-muted: var(--color-neutral-200);
+  --color-background-inverse: var(--color-brand-secondary-900); /* bloques oscuros full-bleed */
+
+  /* Superficie: las cards del diseño son blancas puras sobre el crema */
+  --color-surface-default: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-overlay: #ffffff;
+
+  /* Borde */
+  --color-border-subtle: var(--color-neutral-200); /* divisores decorativos */
+  --color-border-default: var(--color-neutral-300); /* contornos de card */
+  --color-border-strong: var(--color-neutral-500); /* bordes de controles: ≥ 3:1 (WCAG 1.4.11) */
+  --color-border-focus: var(--color-brand-secondary-500); /* 8.88:1 sobre el crema */
+  --color-border-focus-inverse: var(--color-brand-primary-500); /* 9.77:1 sobre background-inverse */
+  --color-border-error: var(--color-error-500);
+
+  /* Acción. El CTA principal es petróleo con texto blanco; el amarillo es relleno con
+     texto oscuro (plan destacado, ícono del botón), nunca fondo de texto blanco. */
+  --color-action-primary: var(--color-brand-secondary-500);
+  --color-action-primary-hover: var(--color-brand-secondary-700);
+  --color-action-primary-active: var(--color-brand-secondary-900);
+  --color-action-primary-disabled: var(--color-neutral-300);
+  --color-action-secondary: var(--color-brand-primary-500);
+  --color-action-secondary-hover: var(--color-brand-primary-600);
+  --color-action-on-primary: var(--color-text-inverse);
+  --color-action-on-secondary: var(--color-neutral-950); /* propio de Esonix: 10.77:1 sobre el amarillo */
+
+  /* Feedback semántico */
+  --color-feedback-success-bg: var(--color-success-50);
+  --color-feedback-success-text: var(--color-success-500);
+  --color-feedback-success-border: var(--color-success-100);
+  --color-feedback-warning-bg: var(--color-warning-50);
+  --color-feedback-warning-text: var(--color-warning-500);
+  --color-feedback-warning-border: var(--color-warning-100);
+  --color-feedback-error-bg: var(--color-error-50);
+  --color-feedback-error-text: var(--color-error-500);
+  --color-feedback-error-border: var(--color-error-100);
+  --color-feedback-info-bg: var(--color-info-50);
+  --color-feedback-info-text: var(--color-info-500);
+  --color-feedback-info-border: var(--color-info-100);
+
+  /* Overlay: derivado del petróleo, nunca negro genérico */
+  --color-overlay: color-mix(in srgb, var(--color-brand-secondary-900) 65%, transparent);
+  --color-overlay-light: rgb(255 255 255 / 0.1); /* cards y divisores sobre fondo oscuro (medido en la lista del plan destacado) */
+}

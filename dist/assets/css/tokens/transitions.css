@@ -1,0 +1,19 @@
+/* Transiciones — cada token es duración + curva, se usa como `transition: color var(--ease-fast)`.
+   Entra = ease-out · sale = ease-in · cambio de estado = ease-in-out (docs/interaction-motion.md). */
+:root {
+  --ease-fast: 150ms ease; /* microinteracción: hover, focus, tap */
+  --ease-base: 250ms ease; /* transición de componente */
+  --ease-slow: 420ms cubic-bezier(0.16, 1, 0.3, 1); /* reveal grande */
+  --duration-spin: 900ms; /* solo duración: animaciones infinitas/lineales (spinners) */
+}
+
+/* prefers-reduced-motion resuelto a nivel token: toda animación que use estos tokens
+   hereda la reducción. Se mantiene 0ms (no 0.01ms), ver docs/interaction-motion.md §5. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ease-fast: 0ms ease;
+    --ease-base: 0ms ease;
+    --ease-slow: 0ms ease;
+    --duration-spin: 0ms;
+  }
+}

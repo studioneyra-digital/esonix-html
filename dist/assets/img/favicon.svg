@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 180">
+  <!-- Isotipo de Esonix redibujado desde primary-logo.png. El hex es brand-primary-500: un favicon no puede leer tokens CSS (y un comentario XML no admite doble guion). -->
+  <g fill="#fbcb79">
+    <path d="M39 22.5 78 0l39 22.5L78 45z"/>
+    <path d="m117 22.5 39 22.5v45l-39-22.5z"/>
+    <path d="m156 90v45l-39 22.5v-45z"/>
+    <path d="m117 157.5-39 22.5-39-22.5L78 135z"/>
+    <path d="m39 157.5L0 135V90l39 22.5z"/>
+    <path d="M0 90V45l39-22.5v45z"/>
+  </g>
+</svg>

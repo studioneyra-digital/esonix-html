@@ -1,0 +1,1843 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kit de componentes y Foundations | Esonix</title>
+  <meta name="description" content="Showcase del theme Esonix: tokens de color, tipografía, espaciado, radios, sombras y movimiento, con snippets HTML copiables y contraste verificado.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="../assets/css/tokens/color.css">
+  <link rel="stylesheet" href="../assets/css/tokens/spacing.css">
+  <link rel="stylesheet" href="../assets/css/tokens/radius.css">
+  <link rel="stylesheet" href="../assets/css/tokens/shadow.css">
+  <link rel="stylesheet" href="../assets/css/tokens/borders.css">
+  <link rel="stylesheet" href="../assets/css/tokens/transitions.css">
+  <link rel="stylesheet" href="../assets/css/tokens/typography.css">
+  <link rel="stylesheet" href="../assets/css/tokens/z-index.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/kit.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <p class="visually-hidden" id="kit-status" role="status" aria-live="polite"></p>
+
+  <header class="kit-topbar">
+    <img class="brand-logo" src="../assets/img/secondary-logo.png" alt="Esonix" width="140" height="40">
+    <button type="button" class="kit-btn" id="kit-menu" aria-expanded="false" aria-controls="kit-sidebar">Menú</button>
+  </header>
+  <div class="kit-scrim" id="kit-scrim" hidden></div>
+
+  <div class="kit-layout">
+    <aside class="kit-sidebar" id="kit-sidebar" data-open="false">
+      <div class="kit-sidebar__brand">
+        <img class="brand-logo" src="../assets/img/secondary-logo.png" alt="Esonix" width="140" height="40">
+        <span class="kit-sidebar__meta">Kit de componentes</span>
+      </div>
+      <nav aria-label="Secciones del kit">
+        <div class="kit-nav__group">
+          <p class="kit-nav__group-label" id="nav-foundations">Foundations</p>
+          <ul class="kit-nav__list" aria-labelledby="nav-foundations">
+            <li><a class="kit-nav__link" href="#brand"><span class="kit-nav__num">00</span> Brand</a></li>
+            <li><a class="kit-nav__link" href="#colors"><span class="kit-nav__num">01</span> Colors</a></li>
+            <li><a class="kit-nav__link" href="#typography"><span class="kit-nav__num">02</span> Typography</a></li>
+            <li><a class="kit-nav__link" href="#spacing"><span class="kit-nav__num">03</span> Spacing</a></li>
+            <li><a class="kit-nav__link" href="#radius"><span class="kit-nav__num">04</span> Radius</a></li>
+            <li><a class="kit-nav__link" href="#shadows"><span class="kit-nav__num">05</span> Shadows</a></li>
+            <li><a class="kit-nav__link" href="#borders"><span class="kit-nav__num">06</span> Borders</a></li>
+            <li><a class="kit-nav__link" href="#motion"><span class="kit-nav__num">07</span> Motion</a></li>
+            <li><a class="kit-nav__link" href="#z-index"><span class="kit-nav__num">08</span> Z-index</a></li>
+            <li><a class="kit-nav__link" href="#breakpoints"><span class="kit-nav__num">09</span> Breakpoints</a></li>
+            <li><a class="kit-nav__link" href="#page-head"><span class="kit-nav__num">10</span> Page head</a></li>
+            <!-- kit:nav-foundations-end -->
+          </ul>
+        </div>
+        <div class="kit-nav__group">
+          <p class="kit-nav__group-label" id="nav-atoms">Átomos</p>
+          <ul class="kit-nav__list" aria-labelledby="nav-atoms">
+            <li><a class="kit-nav__link" href="#icons"><span class="kit-nav__num">01</span> Icons</a></li>
+            <li><a class="kit-nav__link" href="#button"><span class="kit-nav__num">02</span> Button</a></li>
+            <li><a class="kit-nav__link" href="#icon-button"><span class="kit-nav__num">03</span> Icon Button</a></li>
+            <li><a class="kit-nav__link" href="#link-arrow"><span class="kit-nav__num">04</span> Link Arrow</a></li>
+            <li><a class="kit-nav__link" href="#eyebrow"><span class="kit-nav__num">05</span> Eyebrow</a></li>
+            <li><a class="kit-nav__link" href="#badge"><span class="kit-nav__num">06</span> Badge</a></li>
+            <li><a class="kit-nav__link" href="#avatar"><span class="kit-nav__num">07</span> Avatar</a></li>
+            <li><a class="kit-nav__link" href="#progress"><span class="kit-nav__num">08</span> Progress</a></li>
+            <li><a class="kit-nav__link" href="#switch"><span class="kit-nav__num">09</span> Switch</a></li>
+            <li><a class="kit-nav__link" href="#divider"><span class="kit-nav__num">10</span> Divider</a></li>
+            <li><a class="kit-nav__link" href="#dots"><span class="kit-nav__num">11</span> Pagination Dots</a></li>
+            <li><a class="kit-nav__link" href="#scroll-top"><span class="kit-nav__num">12</span> Scroll Top</a></li>
+          </ul>
+        </div>
+        <div class="kit-nav__group">
+          <p class="kit-nav__group-label">Moléculas</p>
+          <p class="kit-nav__empty">Sin componentes aún</p>
+        </div>
+        <div class="kit-nav__group">
+          <p class="kit-nav__group-label">Organismos</p>
+          <p class="kit-nav__empty">Sin componentes aún</p>
+        </div>
+        <div class="kit-nav__group">
+          <p class="kit-nav__group-label">Sections</p>
+          <p class="kit-nav__empty">Sin componentes aún</p>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="kit-main" id="main">
+      <section class="kit-intro" id="intro" aria-labelledby="intro-title">
+        <p class="kit-card__tag">Esonix · Kit</p>
+        <h1 id="intro-title">Kit de componentes de Esonix</h1>
+        <p class="kit-lead">Cada ficha muestra el componente renderizado, su snippet HTML copiable y los tokens que consume. Los valores que ves se leen del CSS real: si un token cambia, la ficha cambia con él.</p>
+        <p>Copia el markup, pégalo en tu página y reemplaza el contenido de ejemplo. No hay build ni includes: cada página lleva su propio HTML.</p>
+      </section>
+
+      <section class="kit-level" id="foundations" aria-labelledby="foundations-title">
+        <h2 id="foundations-title">Foundations</h2>
+        <p class="kit-level__intro">Los cimientos que todo lo demás consume: marca, color, tipografía, espaciado, forma, elevación y movimiento. Los componentes leen solo tokens semánticos.</p>
+        <section class="kit-card" id="brand" aria-labelledby="brand-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 00</p>
+            <h3 id="brand-title">Brand</h3>
+            <p class="kit-card__desc">Logo del cliente en PNG (no hay SVG), en dos archivos: <code>secondary-logo.png</code> con texto petróleo para fondos claros y <code>primary-logo.png</code> con texto blanco para fondos oscuros. Lleva <code>width</code> y <code>height</code> explícitos para no causar CLS; <code>.brand-logo</code> fija la altura.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo claro</span>
+            <div class="kit-demo">
+              <img class="brand-logo" src="../assets/img/secondary-logo.png" alt="Esonix" width="140" height="40">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-brand">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-brand" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro (<code>data-surface="inverse"</code>)</span>
+            <div class="kit-demo" data-surface="inverse">
+              <img class="brand-logo" src="../assets/img/primary-logo.png" alt="Esonix" width="140" height="40">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-brand-inverse">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-brand-inverse" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Isotipo (favicon)</span>
+            <div class="kit-demo">
+              <img src="../assets/img/favicon.svg" alt="" width="52" height="60">
+            </div>
+            <p class="kit-note">El favicon es el isotipo redibujado en SVG desde el PNG. Su color está escrito como hex (<code>#fbcb79</code>, igual a <code>--color-brand-primary-500</code>) porque un favicon no puede leer tokens CSS.</p>
+          </div>
+        </section>
+
+        <section class="kit-card" id="colors" aria-labelledby="colors-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 01</p>
+            <h3 id="colors-title">Colors</h3>
+            <p class="kit-card__desc">Dos capas: los primitivos son escalas crudas y los semánticos nombran un uso. Los componentes leen solo semánticos, así un rebrand cambia un primitivo en un solo lugar. Las anclas son los hex exactos del diseño; el resto de cada escala se interpoló en OKLCH.</p>
+          </header>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Primitivos: brand-primary (amarillo, ancla 500)</span>
+            <ul class="kit-scale" data-scale="--color-brand-primary"></ul>
+            <span class="kit-block__label">Primitivos: brand-secondary (petróleo, anclas 500 y 900)</span>
+            <ul class="kit-scale" data-scale="--color-brand-secondary"></ul>
+            <p class="kit-note"><code>--color-brand-accent-*</code> existe porque el contrato de tokens lo exige, pero Esonix no tiene un tercer color: cada paso apunta al mismo paso de <code>brand-secondary</code>.</p>
+            <span class="kit-block__label">Primitivos: neutral (del crema del fondo a la tinta de los titulares)</span>
+            <ul class="kit-scale" data-scale="--color-neutral"></ul>
+            <span class="kit-block__label">Primitivos: feedback (50 fondo, 100 borde, 500 texto e ícono)</span>
+            <div class="kit-grid">
+              <ul class="kit-scale" data-scale="--color-success" data-steps="50 100 500" aria-label="success"></ul>
+              <ul class="kit-scale" data-scale="--color-warning" data-steps="50 100 500" aria-label="warning"></ul>
+              <ul class="kit-scale" data-scale="--color-error" data-steps="50 100 500" aria-label="error"></ul>
+              <ul class="kit-scale" data-scale="--color-info" data-steps="50 100 500" aria-label="info"></ul>
+            </div>
+          </div>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Semánticos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Tokens semánticos de color">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Uso</th></tr></thead>
+                <tbody>
+                  <tr><th scope="colgroup" colspan="3">Texto</th></tr>
+                  <tr><th scope="row"><code>--color-text-primary</code></th><td><span class="kit-chip" data-bg="--color-text-primary"></span><code data-token-value="--color-text-primary"></code></td><td>Titulares y texto fuerte</td></tr>
+                  <tr><th scope="row"><code>--color-text-secondary</code></th><td><span class="kit-chip" data-bg="--color-text-secondary"></span><code data-token-value="--color-text-secondary"></code></td><td>Cuerpo y párrafos</td></tr>
+                  <tr><th scope="row"><code>--color-text-tertiary</code></th><td><span class="kit-chip" data-bg="--color-text-tertiary"></span><code data-token-value="--color-text-tertiary"></code></td><td>Metadatos y pies de foto</td></tr>
+                  <tr><th scope="row"><code>--color-text-disabled</code></th><td><span class="kit-chip" data-bg="--color-text-disabled"></span><code data-token-value="--color-text-disabled"></code></td><td>Solo estado disabled; exento de contraste</td></tr>
+                  <tr><th scope="row"><code>--color-text-inverse</code></th><td><span class="kit-chip" data-bg="--color-text-inverse"></span><code data-token-value="--color-text-inverse"></code></td><td>Sobre <code>background-inverse</code> y sobre cualquier fondo sólido de acento</td></tr>
+                  <tr><th scope="row"><code>--color-text-inverse-secondary</code></th><td><span class="kit-chip" data-bg="--color-text-inverse-secondary"></span><code data-token-value="--color-text-inverse-secondary"></code></td><td>Texto secundario sobre <code>background-inverse</code></td></tr>
+                  <tr><th scope="row"><code>--color-text-link</code></th><td><span class="kit-chip" data-bg="--color-text-link"></span><code data-token-value="--color-text-link"></code></td><td>Enlaces</td></tr>
+                  <tr><th scope="row"><code>--color-text-highlight</code></th><td><span class="kit-chip" data-bg="--color-text-highlight"></span><code data-token-value="--color-text-highlight"></code></td><td>Propio de Esonix: texto amarillo solo sobre fondos oscuros (eyebrow inverso, autor de testimonio, número activo)</td></tr>
+                  <tr><th scope="colgroup" colspan="3">Fondo y superficie</th></tr>
+                  <tr><th scope="row"><code>--color-background-default</code></th><td><span class="kit-chip" data-bg="--color-background-default"></span><code data-token-value="--color-background-default"></code></td><td>Fondo de página</td></tr>
+                  <tr><th scope="row"><code>--color-background-subtle</code></th><td><span class="kit-chip" data-bg="--color-background-subtle"></span><code data-token-value="--color-background-subtle"></code></td><td>Bandas y paneles suaves</td></tr>
+                  <tr><th scope="row"><code>--color-background-muted</code></th><td><span class="kit-chip" data-bg="--color-background-muted"></span><code data-token-value="--color-background-muted"></code></td><td>Zonas de énfasis bajo</td></tr>
+                  <tr><th scope="row"><code>--color-background-inverse</code></th><td><span class="kit-chip" data-bg="--color-background-inverse"></span><code data-token-value="--color-background-inverse"></code></td><td>Secciones oscuras full-bleed fijas</td></tr>
+                  <tr><th scope="row"><code>--color-surface-default</code></th><td><span class="kit-chip" data-bg="--color-surface-default"></span><code data-token-value="--color-surface-default"></code></td><td>Cards y paneles</td></tr>
+                  <tr><th scope="row"><code>--color-surface-raised</code></th><td><span class="kit-chip" data-bg="--color-surface-raised"></span><code data-token-value="--color-surface-raised"></code></td><td>Elementos elevados; la elevación la da <code>--shadow-md</code></td></tr>
+                  <tr><th scope="row"><code>--color-surface-overlay</code></th><td><span class="kit-chip" data-bg="--color-surface-overlay"></span><code data-token-value="--color-surface-overlay"></code></td><td>Modales y dropdowns; elevación <code>--shadow-lg</code></td></tr>
+                  <tr><th scope="colgroup" colspan="3">Borde</th></tr>
+                  <tr><th scope="row"><code>--color-border-subtle</code></th><td><span class="kit-chip" data-bg="--color-border-subtle"></span><code data-token-value="--color-border-subtle"></code></td><td>Divisores decorativos</td></tr>
+                  <tr><th scope="row"><code>--color-border-default</code></th><td><span class="kit-chip" data-bg="--color-border-default"></span><code data-token-value="--color-border-default"></code></td><td>Contornos de card</td></tr>
+                  <tr><th scope="row"><code>--color-border-strong</code></th><td><span class="kit-chip" data-bg="--color-border-strong"></span><code data-token-value="--color-border-strong"></code></td><td>Bordes de controles: inputs, selects (WCAG 1.4.11)</td></tr>
+                  <tr><th scope="row"><code>--color-border-focus</code></th><td><span class="kit-chip" data-bg="--color-border-focus"></span><code data-token-value="--color-border-focus"></code></td><td>Anillo de foco sobre fondo claro</td></tr>
+                  <tr><th scope="row"><code>--color-border-focus-inverse</code></th><td><span class="kit-chip" data-bg="--color-border-focus-inverse"></span><code data-token-value="--color-border-focus-inverse"></code></td><td>Anillo de foco dentro de <code>data-surface="inverse"</code></td></tr>
+                  <tr><th scope="row"><code>--color-border-error</code></th><td><span class="kit-chip" data-bg="--color-border-error"></span><code data-token-value="--color-border-error"></code></td><td>Borde de un campo con error</td></tr>
+                  <tr><th scope="colgroup" colspan="3">Acción</th></tr>
+                  <tr><th scope="row"><code>--color-action-primary</code></th><td><span class="kit-chip" data-bg="--color-action-primary"></span><code data-token-value="--color-action-primary"></code></td><td>Fondo del CTA primario</td></tr>
+                  <tr><th scope="row"><code>--color-action-primary-hover</code></th><td><span class="kit-chip" data-bg="--color-action-primary-hover"></span><code data-token-value="--color-action-primary-hover"></code></td><td>Hover del CTA primario</td></tr>
+                  <tr><th scope="row"><code>--color-action-primary-active</code></th><td><span class="kit-chip" data-bg="--color-action-primary-active"></span><code data-token-value="--color-action-primary-active"></code></td><td>Active del CTA primario y hover de enlaces</td></tr>
+                  <tr><th scope="row"><code>--color-action-primary-disabled</code></th><td><span class="kit-chip" data-bg="--color-action-primary-disabled"></span><code data-token-value="--color-action-primary-disabled"></code></td><td>CTA deshabilitado</td></tr>
+                  <tr><th scope="row"><code>--color-action-secondary</code></th><td><span class="kit-chip" data-bg="--color-action-secondary"></span><code data-token-value="--color-action-secondary"></code></td><td>Relleno amarillo: ícono del botón, CTA del plan destacado. Siempre con <code>action-on-secondary</code></td></tr>
+                  <tr><th scope="row"><code>--color-action-secondary-hover</code></th><td><span class="kit-chip" data-bg="--color-action-secondary-hover"></span><code data-token-value="--color-action-secondary-hover"></code></td><td>Hover del secundario</td></tr>
+                  <tr><th scope="row"><code>--color-action-on-primary</code></th><td><span class="kit-chip" data-bg="--color-action-on-primary"></span><code data-token-value="--color-action-on-primary"></code></td><td>Texto sobre <code>action-primary</code></td></tr>
+                  <tr><th scope="row"><code>--color-action-on-secondary</code></th><td><span class="kit-chip" data-bg="--color-action-on-secondary"></span><code data-token-value="--color-action-on-secondary"></code></td><td>Propio de Esonix: texto e ícono sobre el amarillo de <code>action-secondary</code></td></tr>
+                  <tr><th scope="colgroup" colspan="3">Feedback</th></tr>
+                  <tr><th scope="row"><code>--color-feedback-success-bg</code></th><td><span class="kit-chip" data-bg="--color-feedback-success-bg"></span><code data-token-value="--color-feedback-success-bg"></code></td><td>Fondo de alerta de éxito</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-success-text</code></th><td><span class="kit-chip" data-bg="--color-feedback-success-text"></span><code data-token-value="--color-feedback-success-text"></code></td><td>Texto e ícono de éxito</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-success-border</code></th><td><span class="kit-chip" data-bg="--color-feedback-success-border"></span><code data-token-value="--color-feedback-success-border"></code></td><td>Borde de éxito</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-warning-bg</code></th><td><span class="kit-chip" data-bg="--color-feedback-warning-bg"></span><code data-token-value="--color-feedback-warning-bg"></code></td><td>Fondo de alerta de advertencia</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-warning-text</code></th><td><span class="kit-chip" data-bg="--color-feedback-warning-text"></span><code data-token-value="--color-feedback-warning-text"></code></td><td>Texto e ícono de advertencia</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-warning-border</code></th><td><span class="kit-chip" data-bg="--color-feedback-warning-border"></span><code data-token-value="--color-feedback-warning-border"></code></td><td>Borde de advertencia</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-error-bg</code></th><td><span class="kit-chip" data-bg="--color-feedback-error-bg"></span><code data-token-value="--color-feedback-error-bg"></code></td><td>Fondo de alerta de error</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-error-text</code></th><td><span class="kit-chip" data-bg="--color-feedback-error-text"></span><code data-token-value="--color-feedback-error-text"></code></td><td>Texto e ícono de error</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-error-border</code></th><td><span class="kit-chip" data-bg="--color-feedback-error-border"></span><code data-token-value="--color-feedback-error-border"></code></td><td>Borde de error</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-info-bg</code></th><td><span class="kit-chip" data-bg="--color-feedback-info-bg"></span><code data-token-value="--color-feedback-info-bg"></code></td><td>Fondo de alerta informativa</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-info-text</code></th><td><span class="kit-chip" data-bg="--color-feedback-info-text"></span><code data-token-value="--color-feedback-info-text"></code></td><td>Texto e ícono informativos</td></tr>
+                  <tr><th scope="row"><code>--color-feedback-info-border</code></th><td><span class="kit-chip" data-bg="--color-feedback-info-border"></span><code data-token-value="--color-feedback-info-border"></code></td><td>Borde informativo</td></tr>
+                  <tr><th scope="colgroup" colspan="3">Overlay</th></tr>
+                  <tr><th scope="row"><code>--color-overlay</code></th><td><span class="kit-chip" data-bg="--color-overlay"></span><code data-token-value="--color-overlay"></code></td><td>Velo de modales, cajones e imágenes con texto encima</td></tr>
+                  <tr><th scope="row"><code>--color-overlay-light</code></th><td><span class="kit-chip" data-bg="--color-overlay-light"></span><code data-token-value="--color-overlay-light"></code></td><td>Cards y divisores sobre <code>background-inverse</code></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Pares de contraste (calculados en vivo desde el CSS)</span>
+            <p class="kit-summary" id="contrast-summary"></p>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Pares de contraste">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Par</th><th scope="col">Razón</th><th scope="col">Mínimo</th><th scope="col">Resultado</th></tr></thead>
+                <tbody>
+                  <tr data-contrast="--color-text-primary|--color-background-default" data-min="4.5"><th scope="row">text-primary / background-default</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-primary|--color-surface-default" data-min="4.5"><th scope="row">text-primary / surface-default</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-secondary|--color-background-default" data-min="4.5"><th scope="row">text-secondary / background-default</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-secondary|--color-background-subtle" data-min="4.5"><th scope="row">text-secondary / background-subtle</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-tertiary|--color-background-default" data-min="4.5"><th scope="row">text-tertiary / background-default</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-tertiary|--color-surface-default" data-min="4.5"><th scope="row">text-tertiary / surface-default</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-tertiary|--color-background-subtle" data-min="4.5"><th scope="row">text-tertiary / background-subtle</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-link|--color-background-default" data-min="4.5"><th scope="row">text-link / background-default</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-link|--color-surface-default" data-min="4.5"><th scope="row">text-link / surface-default</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-inverse|--color-background-inverse" data-min="4.5"><th scope="row">text-inverse / background-inverse</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-inverse-secondary|--color-background-inverse" data-min="4.5"><th scope="row">text-inverse-secondary / background-inverse</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-action-on-primary|--color-action-primary" data-min="4.5"><th scope="row">on-primary / action-primary</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-action-on-primary|--color-action-primary-hover" data-min="4.5"><th scope="row">on-primary / action-primary-hover</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-action-on-primary|--color-action-primary-active" data-min="4.5"><th scope="row">on-primary / action-primary-active</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-action-on-secondary|--color-action-secondary" data-min="4.5"><th scope="row">on-secondary / action-secondary</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-action-on-secondary|--color-action-secondary-hover" data-min="4.5"><th scope="row">on-secondary / action-secondary-hover</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-highlight|--color-background-inverse" data-min="4.5"><th scope="row">text-highlight / background-inverse</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-highlight|--color-action-primary" data-min="4.5"><th scope="row">text-highlight / action-primary (card destacada)</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-inverse-secondary|--color-action-primary" data-min="4.5"><th scope="row">text-inverse-secondary / action-primary (card destacada)</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-border-focus|--color-background-default" data-min="3"><th scope="row">border-focus / background-default</th><td data-ratio></td><td>3:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-border-focus|--color-surface-default" data-min="3"><th scope="row">border-focus / surface-default</th><td data-ratio></td><td>3:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-border-focus-inverse|--color-background-inverse" data-min="3"><th scope="row">border-focus-inverse / background-inverse</th><td data-ratio></td><td>3:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-border-strong|--color-surface-default" data-min="3"><th scope="row">border-strong / surface-default</th><td data-ratio></td><td>3:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-border-strong|--color-background-default" data-min="3"><th scope="row">border-strong / background-default</th><td data-ratio></td><td>3:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-border-error|--color-surface-default" data-min="3"><th scope="row">border-error / surface-default</th><td data-ratio></td><td>3:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-feedback-success-text|--color-feedback-success-bg" data-min="4.5"><th scope="row">feedback-success text / bg</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-feedback-warning-text|--color-feedback-warning-bg" data-min="4.5"><th scope="row">feedback-warning text / bg</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-feedback-error-text|--color-feedback-error-bg" data-min="4.5"><th scope="row">feedback-error text / bg</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-feedback-info-text|--color-feedback-info-bg" data-min="4.5"><th scope="row">feedback-info text / bg</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-text-primary|--color-background-subtle" data-min="4.5"><th scope="row">text-primary / background-subtle (btn--block)</th><td data-ratio></td><td>4.5:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                  <tr data-contrast="--color-border-strong|--color-background-inverse" data-min="3"><th scope="row">border-strong / background-inverse (dots inactivos)</th><td data-ratio></td><td>3:1</td><td><span class="kit-badge" data-badge></span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Foco y superficie inversa</span>
+            <div class="kit-grid">
+              <div class="kit-demo">
+                <p class="kit-demo__caption">Fondo claro · <code>--color-border-focus</code></p>
+                <div class="kit-row">
+                  <a class="kit-focus-sample" href="#colors">Enfócame con Tab</a>
+                  <span class="kit-focus-sample kit-ring-static">Anillo de foco</span>
+                </div>
+              </div>
+              <div class="kit-demo" data-surface="inverse">
+                <p class="kit-demo__caption">Bloque oscuro · <code>--color-border-focus-inverse</code></p>
+                <div class="kit-row">
+                  <a class="kit-focus-sample" href="#colors">Enfócame con Tab</a>
+                  <span class="kit-focus-sample kit-ring-static">Anillo de foco</span>
+                </div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-inverse">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-inverse" tabindex="0"><code>&lt;section id="cta" data-surface="inverse"&gt;
+  &lt;h2&gt;Título del bloque oscuro&lt;/h2&gt;
+  &lt;p&gt;El fondo, el texto y el anillo de foco se resuelven solos.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+            <p class="kit-note">El amarillo nunca va como texto sobre el crema ni sobre blanco (≈1.4:1). Como relleno lleva texto oscuro (<code>action-on-secondary</code>); como texto solo aparece sobre fondos oscuros, con <code>--color-text-highlight</code>.</p>
+            <p class="kit-note">El gris de párrafos del diseño (<code>#727979</code>) da 4.30:1 sobre el crema y no llega a AA: se oscureció a <code>--color-neutral-600</code>. Cuerpo y metadatos comparten ese gris porque el diseño usa un solo tono. <code>background-muted</code> no lleva texto de cuerpo (4.36:1).</p>
+          </div>
+        </section>
+        <section class="kit-card" id="typography" aria-labelledby="typography-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 02</p>
+            <h3 id="typography-title">Typography</h3>
+            <p class="kit-card__desc">Mona Sans para todo: el diseño usa una sola grotesca, así que la jerarquía la dan el tamaño y el peso, no el cambio de familia. Los tamaños usan <code>clamp()</code> con base en rem y respetan el zoom del usuario.</p>
+          </header>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Familias</span>
+            <div class="kit-grid">
+              <div class="kit-demo">
+                <p class="kit-family__name"><code>--font-display</code> y <code>--font-sans</code></p>
+                <p class="kit-type__sample" data-font-size="--text-h2" data-font="--font-sans" data-weight="--weight-semibold" data-tracking="--tracking-tight" data-leading="--leading-tight">Mona Sans</p>
+              </div>
+              <div class="kit-demo">
+                <p class="kit-family__name"><code>--font-mono</code> · solo en /kit</p>
+                <p class="kit-type__sample" data-font-size="--text-h3" data-font="--font-mono" data-weight="--weight-medium" data-leading="--leading-tight">JetBrains Mono</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Escala (el tamaño computado se recalcula al cambiar el ancho de la ventana)</span>
+            <div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-hero</code><code data-token-value="--text-hero"></code><span>Semibold · leading tight · tracking tight</span><span>Propio de Esonix: hero y marquee del footer</span><span>Computado: <code data-computed-target="ty-hero" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-hero" data-font-size="--text-hero" data-font="--font-display" data-weight="--weight-semibold" data-leading="--leading-tight" data-tracking="--tracking-tight">Crecer</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-display</code><code data-token-value="--text-display"></code><span>Semibold · leading tight · tracking tight</span><span>Computado: <code data-computed-target="ty-display" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-display" data-font-size="--text-display" data-font="--font-display" data-weight="--weight-semibold" data-leading="--leading-tight" data-tracking="--tracking-tight">Estrategia que se mide</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-giant</code><code data-token-value="--text-giant"></code><span>Semibold · leading tight · tracking tight</span><span>Computado: <code data-computed-target="ty-giant" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-giant" data-font-size="--text-giant" data-font="--font-display" data-weight="--weight-semibold" data-leading="--leading-tight" data-tracking="--tracking-tight">Diagnóstico en dos semanas</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-h1</code><code data-token-value="--text-h1"></code><span>Semibold · leading tight · tracking tight</span><span>Computado: <code data-computed-target="ty-h1" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-h1" data-font-size="--text-h1" data-font="--font-display" data-weight="--weight-semibold" data-leading="--leading-tight" data-tracking="--tracking-tight">Cómo priorizamos la operación antes de crecer</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-h2</code><code data-token-value="--text-h2"></code><span>Semibold · leading snug</span><span>Computado: <code data-computed-target="ty-h2" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-h2" data-font-size="--text-h2" data-font="--font-display" data-weight="--weight-semibold" data-leading="--leading-snug">Tres preguntas antes de contratar una consultora</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-h3</code><code data-token-value="--text-h3"></code><span>Semibold · leading snug</span><span>Computado: <code data-computed-target="ty-h3" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-h3" data-font-size="--text-h3" data-font="--font-display" data-weight="--weight-semibold" data-leading="--leading-snug">Qué medir en el primer mes</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-h4</code><code data-token-value="--text-h4"></code><span>Medium · leading snug</span><span>Computado: <code data-computed-target="ty-h4" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-h4" data-font-size="--text-h4" data-font="--font-display" data-weight="--weight-medium" data-leading="--leading-snug">Planificación financiera</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-h5</code><code data-token-value="--text-h5"></code><span>Medium · leading snug</span><span>Computado: <code data-computed-target="ty-h5" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-h5" data-font-size="--text-h5" data-font="--font-display" data-weight="--weight-medium" data-leading="--leading-snug">Optimización de procesos</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-h6</code><code data-token-value="--text-h6"></code><span>Semibold · leading snug</span><span>Computado: <code data-computed-target="ty-h6" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-h6" data-font-size="--text-h6" data-font="--font-display" data-weight="--weight-semibold" data-leading="--leading-snug">Plan Enterprise</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-body-lg</code><code data-token-value="--text-body-lg"></code><span>Regular · leading normal</span><span>Computado: <code data-computed-target="ty-body-lg" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-body-lg" data-font-size="--text-body-lg" data-font="--font-sans" data-weight="--weight-regular" data-leading="--leading-normal">Revisamos tus números, tu equipo y tus procesos antes de proponer un solo cambio.</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-body</code><code data-token-value="--text-body"></code><span>Regular · leading normal</span><span>Computado: <code data-computed-target="ty-body" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-body" data-font-size="--text-body" data-font="--font-sans" data-weight="--weight-regular" data-leading="--leading-normal">Cada recomendación llega con el responsable, el plazo y la métrica que la valida.</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-sm</code><code data-token-value="--text-sm"></code><span>Regular · leading normal</span><span>Computado: <code data-computed-target="ty-sm" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-sm" data-font-size="--text-sm" data-font="--font-sans" data-weight="--weight-regular" data-leading="--leading-normal">21 oct 2026 · lectura de 4 minutos</p>
+              </div>
+              <div class="kit-type__row">
+                <div class="kit-type__meta"><code>--text-xs</code><code data-token-value="--text-xs"></code><span>Regular · leading normal</span><span>Computado: <code data-computed-target="ty-xs" data-computed-prop="font-size"></code></span></div>
+                <p class="kit-type__sample" id="ty-xs" data-font-size="--text-xs" data-font="--font-sans" data-weight="--weight-regular" data-leading="--leading-normal">Foto: Unsplash</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Pesos disponibles</span>
+            <div class="kit-demo">
+              <div class="kit-row">
+                <span class="kit-weight"><span class="kit-weight__sample" data-font-size="--text-h2" data-font="--font-sans" data-weight="--weight-light">Aa</span><code>--weight-light</code><code data-token-value="--weight-light"></code></span>
+                <span class="kit-weight"><span class="kit-weight__sample" data-font-size="--text-h2" data-font="--font-sans" data-weight="--weight-regular">Aa</span><code>--weight-regular</code><code data-token-value="--weight-regular"></code></span>
+                <span class="kit-weight"><span class="kit-weight__sample" data-font-size="--text-h2" data-font="--font-sans" data-weight="--weight-medium">Aa</span><code>--weight-medium</code><code data-token-value="--weight-medium"></code></span>
+                <span class="kit-weight"><span class="kit-weight__sample" data-font-size="--text-h2" data-font="--font-sans" data-weight="--weight-semibold">Aa</span><code>--weight-semibold</code><code data-token-value="--weight-semibold"></code></span>
+                <span class="kit-weight"><span class="kit-weight__sample" data-font-size="--text-h2" data-font="--font-sans" data-weight="--weight-bold">Aa</span><code>--weight-bold</code><code data-token-value="--weight-bold"></code></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="kit-block">
+            <span class="kit-block__label">Interlineado y tracking</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Tokens de interlineado y tracking">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Uso</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>--leading-tight</code></th><td><code data-token-value="--leading-tight"></code></td><td>hero, display, giant y h1</td></tr>
+                  <tr><th scope="row"><code>--leading-snug</code></th><td><code data-token-value="--leading-snug"></code></td><td>h2 a h6</td></tr>
+                  <tr><th scope="row"><code>--leading-normal</code></th><td><code data-token-value="--leading-normal"></code></td><td>Cuerpo (cumple WCAG 1.4.12: al menos 1.5)</td></tr>
+                  <tr><th scope="row"><code>--leading-relaxed</code></th><td><code data-token-value="--leading-relaxed"></code></td><td>Texto largo</td></tr>
+                  <tr><th scope="row"><code>--tracking-tight</code></th><td><code data-token-value="--tracking-tight"></code></td><td>Solo hero, display, giant y h1</td></tr>
+                  <tr><th scope="row"><code>--tracking-normal</code></th><td><code data-token-value="--tracking-normal"></code></td><td>Cuerpo; nunca se toca el tracking de un párrafo</td></tr>
+                  <tr><th scope="row"><code>--tracking-wide</code></th><td><code data-token-value="--tracking-wide"></code></td><td>Solo mayúsculas cortas: eyebrows y badges</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="kit-note">Los párrafos de lectura larga se mantienen entre 45 y 75 caracteres por línea con <code>max-width</code> en <code>ch</code>. Todavía no hay token para eso: se decide con el primer componente de texto largo. Sin <code>text-align: justify</code> y sin mayúsculas sostenidas en párrafos.</p>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-typography">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-typography" tabindex="0"><code>.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="kit-card" id="spacing" aria-labelledby="spacing-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 03</p>
+            <h3 id="spacing-title">Spacing</h3>
+            <p class="kit-card__desc">Trece pasos en rem, así el espaciado sigue el tamaño de fuente del usuario. Todo margen, padding y gap sale de esta escala.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Escala</span>
+            <div id="spacing-rows" role="list" aria-label="Escala de espaciado"></div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-spacing">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-spacing" tabindex="0"><code>.card {
+  padding: var(--spacing-6);
+  gap: var(--spacing-4);
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="kit-card" id="radius" aria-labelledby="radius-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 04</p>
+            <h3 id="radius-title">Radius</h3>
+            <p class="kit-card__desc">Seis radios. Los botones y badges van en píldora (<code>--radius-full</code>); las imágenes y cards usan los mismos radios, sin blobs.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Radios</span>
+            <div class="kit-demo">
+              <div class="kit-radius">
+                <div class="kit-radius__tile"><span class="kit-radius__shape" data-radius="--radius-xs"></span><code>--radius-xs</code><code data-token-value="--radius-xs"></code></div>
+                <div class="kit-radius__tile"><span class="kit-radius__shape" data-radius="--radius-sm"></span><code>--radius-sm</code><code data-token-value="--radius-sm"></code></div>
+                <div class="kit-radius__tile"><span class="kit-radius__shape" data-radius="--radius-md"></span><code>--radius-md</code><code data-token-value="--radius-md"></code></div>
+                <div class="kit-radius__tile"><span class="kit-radius__shape" data-radius="--radius-lg"></span><code>--radius-lg</code><code data-token-value="--radius-lg"></code></div>
+                <div class="kit-radius__tile"><span class="kit-radius__shape" data-radius="--radius-xl"></span><code>--radius-xl</code><code data-token-value="--radius-xl"></code></div>
+                <div class="kit-radius__tile"><span class="kit-radius__shape" data-radius="--radius-full"></span><code>--radius-full</code><code data-token-value="--radius-full"></code></div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-radius">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-radius" tabindex="0"><code>.card { border-radius: var(--radius-md); }
+.btn  { border-radius: var(--radius-full); }</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="kit-card" id="shadows" aria-labelledby="shadows-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 05</p>
+            <h3 id="shadows-title">Shadows</h3>
+            <p class="kit-card__desc">Tres sombras de elevación, muy suaves como en el diseño (las cards blancas apenas se separan del crema), y dos con el color de marca derivadas con <code>color-mix()</code>. El diseño no muestra glows: quedan disponibles por contrato, sin uso todavía.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Elevación</span>
+            <div class="kit-demo">
+              <div class="kit-shadow-grid">
+                <div class="kit-shadow-sample" data-shadow="--shadow-sm"><code>--shadow-sm</code><span>Foco de inputs</span></div>
+                <div class="kit-shadow-sample" data-shadow="--shadow-md"><code>--shadow-md</code><span>Cards elevadas</span></div>
+                <div class="kit-shadow-sample" data-shadow="--shadow-lg"><code>--shadow-lg</code><span>Modales y dropdowns</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Glow de marca (amarillo y petróleo)</span>
+            <div class="kit-demo">
+              <div class="kit-row">
+                <div class="kit-shadow-sample kit-pill kit-pill--on-secondary" data-bg="--color-action-secondary" data-shadow="--shadow-glow-brand"><code>--shadow-glow-brand</code></div>
+                <div class="kit-shadow-sample kit-pill" data-bg="--color-action-primary" data-shadow="--shadow-glow-accent"><code>--shadow-glow-accent</code></div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-shadows">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-shadows" tabindex="0"><code>.card {
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="kit-card" id="borders" aria-labelledby="borders-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 06</p>
+            <h3 id="borders-title">Borders</h3>
+            <p class="kit-card__desc">Dos anchos válidos. Los controles de formulario usan <code>--color-border-strong</code> para llegar a 3:1 y ser identificables.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Anchos</span>
+            <div class="kit-grid">
+              <div class="kit-border-sample" data-border-width="--border-width-sm"><code>--border-width-sm</code> · <code data-token-value="--border-width-sm"></code></div>
+              <div class="kit-border-sample" data-border-width="--border-width-md"><code>--border-width-md</code> · <code data-token-value="--border-width-md"></code></div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-borders">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-borders" tabindex="0"><code>.input {
+  border: var(--border-width-sm) solid var(--color-border-strong);
+}</code></pre>
+            </div>
+          </div>
+        </section>
+        <section class="kit-card" id="motion" aria-labelledby="motion-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 07</p>
+            <h3 id="motion-title">Motion</h3>
+            <p class="kit-card__desc">El movimiento comunica estado; no decora. Entra con ease-out, sale con ease-in y los cambios de estado usan ease-in-out. Cada token es duración más curva y se usa como <code>transition: color var(--ease-fast)</code>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Las tres duraciones</span>
+            <div class="kit-demo">
+              <div class="kit-motion" id="motion-demo">
+                <div class="kit-motion__lane">
+                  <p><code>--ease-fast</code> · <code data-token-value="--ease-fast"></code> · hover, focus y tap</p>
+                  <div class="kit-motion__track"><span class="kit-motion__box kit-motion__box--fast"></span></div>
+                </div>
+                <div class="kit-motion__lane">
+                  <p><code>--ease-base</code> · <code data-token-value="--ease-base"></code> · abrir, cerrar y cambiar de estado</p>
+                  <div class="kit-motion__track"><span class="kit-motion__box kit-motion__box--base"></span></div>
+                </div>
+                <div class="kit-motion__lane">
+                  <p><code>--ease-slow</code> · <code data-token-value="--ease-slow"></code> · reveals grandes</p>
+                  <div class="kit-motion__track"><span class="kit-motion__box kit-motion__box--slow"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="kit-row">
+              <button type="button" class="kit-btn" data-kit-replay aria-controls="motion-demo">Repetir</button>
+              <span>Preferencia del sistema: <span class="kit-indicator" id="kit-rm"></span></span>
+            </div>
+            <p class="kit-note">Con «reducir movimiento» activo, los tokens caen a <code>0ms</code> y las muestras saltan al estado final. <code>--duration-spin</code> (<code data-token-value="--duration-spin"></code>) es solo duración, para animaciones infinitas como spinners.</p>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-motion">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-motion" tabindex="0"><code>.btn {
+  transition: background-color var(--ease-fast), box-shadow var(--ease-base);
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="kit-card" id="z-index" aria-labelledby="z-index-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 08</p>
+            <h3 id="z-index-title">Z-index</h3>
+            <p class="kit-card__desc">Cinco niveles nombrados por función, no una escala numérica libre. Cada uno tiene un dueño; no se inventan valores intermedios.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Niveles, de menor a mayor</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Niveles de z-index">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Dueño</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>--z-dropdown</code></th><td><code data-token-value="--z-dropdown"></code></td><td>Paneles anclados a un trigger: Tooltip y Dropdown</td></tr>
+                  <tr><th scope="row"><code>--z-sticky</code></th><td><code data-token-value="--z-sticky"></code></td><td>Elementos fixed o sticky persistentes: Scroll Top y la barra del kit</td></tr>
+                  <tr><th scope="row"><code>--z-overlay</code></th><td><code data-token-value="--z-overlay"></code></td><td>Backdrop de Modal y del cajón del kit</td></tr>
+                  <tr><th scope="row"><code>--z-modal</code></th><td><code data-token-value="--z-modal"></code></td><td>El propio Modal, encima de su overlay</td></tr>
+                  <tr><th scope="row"><code>--z-toast</code></th><td><code data-token-value="--z-toast"></code></td><td>Alerts y Toast: siempre por encima de todo</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="kit-card" id="breakpoints" aria-labelledby="breakpoints-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 09</p>
+            <h3 id="breakpoints-title">Breakpoints</h3>
+            <p class="kit-card__desc">Cuatro puntos de corte, mobile-first. No son variables porque <code>@media</code> no lee <code>var()</code>: se escriben directo en el código, siempre con estos valores.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Ahora mismo: <span class="kit-indicator" id="kit-bp"></span></span>
+            <span class="kit-block__label">Breakpoints del theme (para todo <code>@media</code> propio)</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Breakpoints del theme">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Nombre</th><th scope="col">Valor</th><th scope="col">Ejemplo de uso</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>sm</code></th><td>30rem (480px)</td><td>Ajustes de teléfono grande</td></tr>
+                  <tr><th scope="row"><code>md</code></th><td>48rem (768px)</td><td>Tipografía en dos columnas, tablas de más columnas</td></tr>
+                  <tr><th scope="row"><code>lg</code></th><td>64rem (1024px)</td><td>El kit pasa de cajón a sidebar fijo</td></tr>
+                  <tr><th scope="row"><code>xl</code></th><td>80rem (1280px)</td><td>Layouts de escritorio amplio</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <span class="kit-block__label">Grid de Bootstrap 5.3.3 (para las clases <code>col-*</code>)</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Breakpoints del grid de Bootstrap">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Nombre</th><th scope="col">Valor</th><th scope="col">Coincide con el theme</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>sm</code></th><td>576px</td><td>No (480px)</td></tr>
+                  <tr><th scope="row"><code>md</code></th><td>768px</td><td>Sí</td></tr>
+                  <tr><th scope="row"><code>lg</code></th><td>992px</td><td>No (1024px)</td></tr>
+                  <tr><th scope="row"><code>xl</code></th><td>1200px</td><td>No (1280px)</td></tr>
+                  <tr><th scope="row"><code>xxl</code></th><td>1400px</td><td>No existe en el theme</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="kit-note"><strong>Regla:</strong> las columnas usan las clases del grid de Bootstrap con sus breakpoints; todo <code>@media</code> propio usa los del theme. No se mezclan ambos en un mismo componente. Solo <code>md</code> coincide.</p>
+          </div>
+        </section>
+
+        <section class="kit-card" id="page-head" aria-labelledby="page-head-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Foundation · 10</p>
+            <h3 id="page-head-title">Page head</h3>
+            <p class="kit-card__desc">El bloque <code>&lt;head&gt;</code> estándar de una página real. Se copia entero en cada página nueva, en este orden, y se revisan los valores entre llaves. Las páginas de <code>/kit</code> llevan además <code>noindex, nofollow</code>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Plantilla</span>
+            <div class="kit-snippet">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="true" aria-controls="snippet-page-head">Ocultar código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-page-head" tabindex="0"><code>&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;{Título específico} | {Marca}&lt;/title&gt;
+  &lt;meta name="description" content="{Descripción de 140 a 160 caracteres}"&gt;
+  &lt;link rel="canonical" href="https://{dominio-final}/{ruta}"&gt;
+
+  &lt;!-- Open Graph y Twitter --&gt;
+  &lt;meta property="og:type" content="website"&gt;
+  &lt;meta property="og:title" content="{Título específico} | {Marca}"&gt;
+  &lt;meta property="og:description" content="{Descripción}"&gt;
+  &lt;meta property="og:url" content="https://{dominio-final}/{ruta}"&gt;
+  &lt;meta property="og:image" content="https://{dominio-final}/assets/img/og-{pagina}.jpg"&gt; &lt;!-- 1200×630 --&gt;
+  &lt;meta name="twitter:card" content="summary_large_image"&gt;
+
+  &lt;!-- Icono (apple-touch-icon y manifest los aporta cada proyecto) --&gt;
+  &lt;link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"&gt;
+
+  &lt;!-- Fuentes críticas --&gt;
+  &lt;link rel="preload" href="assets/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin&gt;
+
+  &lt;!-- CSS: grid vendorizado, tokens y main, en este orden --&gt;
+  &lt;link rel="stylesheet" href="assets/css/bootstrap-grid.min.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/color.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/spacing.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/radius.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/shadow.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/borders.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/transitions.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/typography.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/tokens/z-index.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/main.css"&gt;
+
+  &lt;!-- JSON-LD: Organization y WebSite en la home; BreadcrumbList en páginas internas --&gt;
+  &lt;script type="application/ld+json"&gt;
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "name": "{Marca}", "url": "https://{dominio-final}/", "logo": "https://{dominio-final}/assets/img/secondary-logo.png" },
+      { "@type": "WebSite", "name": "{Marca}", "url": "https://{dominio-final}/" }
+    ]
+  }
+  &lt;/script&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+            <p class="kit-note">Las rutas son relativas a una página en la raíz de <code>dist/</code>; en una subcarpeta, antepón <code>../</code>. <code>canonical</code> y las URL de Open Graph son absolutas y usan el dominio final, nunca <code>localhost</code>. El <code>title</code> sigue el patrón <code>{Título específico} | {Marca}</code> (50 a 60 caracteres).</p>
+            <p class="kit-note">Scripts, al final del <code>&lt;body&gt;</code> y con <code>defer</code>: <code>lenis.min.js</code>, luego <code>gsap.min.js</code> y <code>ScrollTrigger.min.js</code> solo si la página tiene efectos de scroll, y al final <code>main.js</code>. Swiper se agrega solo en páginas con carrusel. Las páginas de <code>/kit</code> no cargan Lenis.</p>
+          </div>
+        </section>
+        <!-- kit:cards-end -->
+      </section>
+
+      <section class="kit-level" id="atoms" aria-labelledby="atoms-title">
+        <h2 id="atoms-title">Átomos</h2>
+        <p class="kit-level__intro">Las piezas mínimas: iconos, botones, enlaces, etiquetas y controles. No dependen de otro componente del kit; solo tokens y HTML/CSS (el único JS es el de Scroll Top).</p>
+        <section class="kit-card" id="icons" aria-labelledby="icons-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 01</p>
+            <h3 id="icons-title">Icons</h3>
+            <p class="kit-card__desc">Lucide como máscara CSS: la clase <code>.icon</code> hereda el color y el tamaño del contexto (<code>currentColor</code> y <code>1em</code>), así el snippet es una sola línea y no depende de rutas ni de un sprite. Las redes sociales no están en Lucide: son SVG propios del mismo estilo de trazo.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Set completo (18)</span>
+            <ul class="kit-icons">
+              <li class="kit-icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span><code>icon--arrow-up-right</code></li>
+              <li class="kit-icon"><span class="icon icon--arrow-right" aria-hidden="true"></span><code>icon--arrow-right</code></li>
+              <li class="kit-icon"><span class="icon icon--arrow-left" aria-hidden="true"></span><code>icon--arrow-left</code></li>
+              <li class="kit-icon"><span class="icon icon--arrow-up" aria-hidden="true"></span><code>icon--arrow-up</code></li>
+              <li class="kit-icon"><span class="icon icon--plus" aria-hidden="true"></span><code>icon--plus</code></li>
+              <li class="kit-icon"><span class="icon icon--minus" aria-hidden="true"></span><code>icon--minus</code></li>
+              <li class="kit-icon"><span class="icon icon--play" aria-hidden="true"></span><code>icon--play</code></li>
+              <li class="kit-icon"><span class="icon icon--check" aria-hidden="true"></span><code>icon--check</code></li>
+              <li class="kit-icon"><span class="icon icon--circle-check" aria-hidden="true"></span><code>icon--circle-check</code></li>
+              <li class="kit-icon"><span class="icon icon--chevron-down" aria-hidden="true"></span><code>icon--chevron-down</code></li>
+              <li class="kit-icon"><span class="icon icon--x" aria-hidden="true"></span><code>icon--x</code></li>
+              <li class="kit-icon"><span class="icon icon--send" aria-hidden="true"></span><code>icon--send</code></li>
+              <li class="kit-icon"><span class="icon icon--message-square" aria-hidden="true"></span><code>icon--message-square</code></li>
+              <li class="kit-icon"><span class="icon icon--layout-grid" aria-hidden="true"></span><code>icon--layout-grid</code></li>
+              <li class="kit-icon"><span class="icon icon--facebook" aria-hidden="true"></span><code>icon--facebook</code></li>
+              <li class="kit-icon"><span class="icon icon--linkedin" aria-hidden="true"></span><code>icon--linkedin</code></li>
+              <li class="kit-icon"><span class="icon icon--instagram" aria-hidden="true"></span><code>icon--instagram</code></li>
+              <li class="kit-icon"><span class="icon icon--x-twitter" aria-hidden="true"></span><code>icon--x-twitter</code></li>
+            </ul>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Uso</span>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-icons-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-icons-1" tabindex="0"><code>&lt;span class="icon icon--arrow-up-right" aria-hidden="true"&gt;&lt;/span&gt;</code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Icons">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.icon</code></th><td>Base: cuadrado de 1em que pinta el glifo con el color del texto</td></tr>
+                  <tr><th scope="row"><code>.icon--{nombre}</code></th><td>Elige el glifo (ver lista). Se agrega un modificador por ícono nuevo en main.css</td></tr>
+                  <tr><th scope="row"><code>aria-hidden="true"</code></th><td>Siempre: el ícono es decorativo y el nombre accesible lo da el texto o el aria-label del contenedor</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-body (tamaño heredado)</code></li>
+              <li><code>--color-text-primary (color heredado)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Un ícono suelto nunca es el único portador de significado: el botón o enlace que lo contiene lleva texto o <code>aria-label</code>. En modo de colores forzados (Windows alto contraste) el ícono pasa a <code>CanvasText</code>.</p>
+        </section>
+
+        <section class="kit-card" id="button" aria-labelledby="button-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 02</p>
+            <h3 id="button-title">Button</h3>
+            <p class="kit-card__desc">Píldora de texto con un círculo de ícono a la derecha. Por defecto va en petróleo sobre fondo claro; <code>--light</code> es la versión para fondos oscuros; <code>--block</code> ocupa el ancho de su card (pricing) y <code>--accent</code> es su relleno amarillo. Funciona como <code>&lt;button&gt;</code> o como <code>&lt;a&gt;</code>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo claro</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <button type="button" class="btn">
+                Get Started
+                <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+              </button>
+              <a href="#button" class="btn">
+                Learn More
+                <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+              </a>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-button-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-button-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro (<code>btn--light</code>)</span>
+            <div class="kit-demo kit-demo--row" data-surface="inverse" lang="en">
+              <button type="button" class="btn btn--light">
+                Get Started
+                <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+              </button>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-button-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-button-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Ancho de card (<code>btn--block</code>) y su relleno amarillo (<code>btn--accent</code>)</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <button type="button" class="btn btn--block">
+                Get Started
+                <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn--block btn--accent">
+                Get Started
+                <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-button-3">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-button-3" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Deshabilitado</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <button type="button" class="btn" disabled>
+                Get Started
+                <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+              </button>
+              <button type="button" class="btn btn--block" disabled>
+                Get Started
+                <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-button-4">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-button-4" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Button">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.btn</code></th><td>Píldora petróleo con texto blanco y círculo amarillo</td></tr>
+                  <tr><th scope="row"><code>.btn__icon</code></th><td>Círculo de 40px que envuelve el ícono (solo en el botón con círculo)</td></tr>
+                  <tr><th scope="row"><code>.btn--light</code></th><td>Para fondos oscuros: píldora blanca, círculo petróleo</td></tr>
+                  <tr><th scope="row"><code>.btn--block</code></th><td>Ocupa todo el ancho, texto centrado y flecha en línea, sin círculo</td></tr>
+                  <tr><th scope="row"><code>.btn--accent</code></th><td>Relleno amarillo con texto oscuro; se usa con --block (plan destacado)</td></tr>
+                  <tr><th scope="row"><code>disabled / aria-disabled="true"</code></th><td>Estado deshabilitado; en un &lt;a&gt; usar aria-disabled y quitar el href</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-action-primary(-hover/-active/-disabled)</code></li>
+              <li><code>--color-action-secondary(-hover)</code></li>
+              <li><code>--color-action-on-primary</code></li>
+              <li><code>--color-action-on-secondary</code></li>
+              <li><code>--color-surface-default</code></li>
+              <li><code>--color-background-subtle</code></li>
+              <li><code>--spacing-1 / -5 / -6 / -8</code></li>
+              <li><code>--radius-full</code></li>
+              <li><code>--text-body</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--ease-fast</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El texto del botón dice qué pasa al activarlo («Get Started», no «Click here»). El ícono es <code>aria-hidden</code>. El foco usa el anillo global (amarillo sobre fondos oscuros). La altura mínima es 48px, muy por encima de los 24px exigidos.</p>
+        </section>
+
+        <section class="kit-card" id="icon-button" aria-labelledby="icon-button-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 03</p>
+            <h3 id="icon-button-title">Icon Button</h3>
+            <p class="kit-card__desc">Círculo con un solo ícono. Por defecto de contorno sobre fondo claro (flechas del carrusel); <code>--glass</code> va sobre fotos y el amarillo marca hover y estado activo; <code>--sm</code> y <code>--lg</code> cubren el «+» del equipo y el play del video. También es el <strong>Social Icon</strong>: un <code>.icon-btn --sm</code> con el glifo de la red.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Contorno sobre fondo claro (flechas del carrusel)</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <button type="button" class="icon-btn" aria-label="Previous service"><span class="icon icon--arrow-left" aria-hidden="true"></span></button>
+              <button type="button" class="icon-btn" aria-label="Next service"><span class="icon icon--arrow-right" aria-hidden="true"></span></button>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-icon-button-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-icon-button-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Glass sobre foto: «+» del equipo (reposo y activo) y play del video</span>
+            <div class="kit-demo kit-demo--row kit-demo--photo" lang="en">
+              <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" aria-label="Show details for Olivia Bennet" aria-expanded="false"><span class="icon icon--plus" aria-hidden="true"></span></button>
+              <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" aria-label="Hide details for Emma Wilson" aria-expanded="true"><span class="icon icon--plus" aria-hidden="true"></span></button>
+              <button type="button" class="icon-btn icon-btn--glass icon-btn--lg" aria-label="Play testimonial video"><span class="icon icon--play" aria-hidden="true"></span></button>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-icon-button-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-icon-button-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Social Icon (<code>icon-btn--sm</code> con glifo de red)</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <a href="#icon-button" class="icon-btn icon-btn--sm" aria-label="Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a>
+              <a href="#icon-button" class="icon-btn icon-btn--sm" aria-label="LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a>
+              <a href="#icon-button" class="icon-btn icon-btn--sm" aria-label="Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a>
+              <a href="#icon-button" class="icon-btn icon-btn--sm" aria-label="X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-icon-button-3">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-icon-button-3" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Icon Button">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.icon-btn</code></th><td>Círculo de 48px con contorno, fondo blanco e ícono de 18px</td></tr>
+                  <tr><th scope="row"><code>.icon-btn--sm</code></th><td>40px: «+» del equipo y redes sociales</td></tr>
+                  <tr><th scope="row"><code>.icon-btn--lg</code></th><td>64px: play del testimonio en video</td></tr>
+                  <tr><th scope="row"><code>.icon-btn--glass</code></th><td>Velo translúcido con ícono blanco para fotos; hover y estado activo en amarillo</td></tr>
+                  <tr><th scope="row"><code>aria-expanded / aria-pressed="true"</code></th><td>Estado activo del glass (amarillo): el botón de «+» abierto</td></tr>
+                  <tr><th scope="row"><code>aria-label</code></th><td>Obligatorio: el botón no tiene texto visible</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-surface-default</code></li>
+              <li><code>--color-border-default / -strong</code></li>
+              <li><code>--color-overlay / --color-overlay-light</code></li>
+              <li><code>--color-action-secondary</code></li>
+              <li><code>--color-action-on-secondary</code></li>
+              <li><code>--color-text-highlight (play)</code></li>
+              <li><code>--spacing-8 / -9 / -10</code></li>
+              <li><code>--text-body / -h6 / -h5</code></li>
+              <li><code>--ease-fast</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Cada botón lleva <code>aria-label</code> que dice la acción y el objeto («Show details for Olivia Bennet»). El «+» comunica su estado con <code>aria-expanded</code>; el amarillo no es el único indicador. Los 40px mínimos superan los 24px exigidos.</p>
+        </section>
+
+        <section class="kit-card" id="link-arrow" aria-labelledby="link-arrow-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 04</p>
+            <h3 id="link-arrow-title">Link Arrow</h3>
+            <p class="kit-card__desc">Enlace de texto con flecha: «Read More ↗» en los posts y «Contact Us ↗» en la card de FAQ. Subraya en hover, así el estado no depende solo del color. <code>--inverse</code> va sobre cards oscuras y <code>--highlight</code> (amarillo) solo sobre fondo oscuro.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo claro</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <a href="#link-arrow" class="link-arrow">
+                Read More
+                <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+              </a>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-link-arrow-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-link-arrow-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro: <code>--inverse</code> y <code>--highlight</code></span>
+            <div class="kit-demo kit-demo--row" data-surface="inverse" lang="en">
+              <a href="#link-arrow" class="link-arrow link-arrow--inverse">
+                Read More
+                <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+              </a>
+              <a href="#link-arrow" class="link-arrow link-arrow--highlight">
+                Contact Us
+                <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+              </a>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-link-arrow-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-link-arrow-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Link Arrow">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.link-arrow</code></th><td>Texto en color primario, medium, con flecha; subrayado en hover</td></tr>
+                  <tr><th scope="row"><code>.link-arrow--inverse</code></th><td>Texto blanco, para cards y bloques oscuros</td></tr>
+                  <tr><th scope="row"><code>.link-arrow--highlight</code></th><td>Texto amarillo: solo sobre fondo oscuro (nunca sobre el crema, 1.4:1)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-text-primary / -inverse / -highlight</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--spacing-2</code></li>
+              <li><code>--ease-fast</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El texto del enlace es descriptivo; cuando varios «Read More» conviven en una página, cada uno añade al enlace un <code>aria-label</code> o texto visualmente oculto con el título del post.</p>
+        </section>
+
+        <section class="kit-card" id="eyebrow" aria-labelledby="eyebrow-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 05</p>
+            <h3 id="eyebrow-title">Eyebrow</h3>
+            <p class="kit-card__desc">Rótulo corto sobre el título de una sección. El cuadrito es un pseudo-elemento decorativo. <code>--center</code> lo marca a ambos lados para encabezados centrados y <code>--inverse</code> lo pasa a amarillo sobre fondo oscuro.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Alineado a la izquierda</span>
+            <div class="kit-demo" lang="en">
+              <p class="eyebrow">What We Do</p>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-eyebrow-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-eyebrow-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Centrado (<code>--center</code>)</span>
+            <div class="kit-demo" lang="en">
+              <p class="eyebrow eyebrow--center">Our Pricing Plan</p>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-eyebrow-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-eyebrow-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro (<code>--center --inverse</code>)</span>
+            <div class="kit-demo" data-surface="inverse" lang="en">
+              <p class="eyebrow eyebrow--center eyebrow--inverse">Client Feedback</p>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-eyebrow-3">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-eyebrow-3" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Eyebrow">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.eyebrow</code></th><td>Texto de 14px medium con un cuadrito antes</td></tr>
+                  <tr><th scope="row"><code>.eyebrow--center</code></th><td>Centra el bloque y repite el cuadrito después</td></tr>
+                  <tr><th scope="row"><code>.eyebrow--inverse</code></th><td>Texto y cuadrito amarillos (solo sobre fondo oscuro)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-text-primary / -highlight</code></li>
+              <li><code>--text-sm</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--leading-snug</code></li>
+              <li><code>--spacing-1 / -2</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Es un <code>&lt;p&gt;</code>, no un encabezado: no altera la jerarquía h1→h2→h3. El cuadrito es CSS puro, sin ruido para lectores de pantalla.</p>
+        </section>
+
+        <section class="kit-card" id="badge" aria-labelledby="badge-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 06</p>
+            <h3 id="badge-title">Badge</h3>
+            <p class="kit-card__desc">Etiqueta translúcida sobre una foto: el rol de los miembros del equipo y la fecha de los posts. El velo es el <code>--color-overlay</code> del theme (petróleo oscuro al 65%), así el texto blanco se lee sobre cualquier foto. <code>--marker</code> suma el cuadrito amarillo.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre foto</span>
+            <div class="kit-demo kit-demo--row kit-demo--photo" lang="en">
+              <span class="badge">Financial Advisor</span>
+              <span class="badge badge--marker">21 Oct, 2026</span>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-badge-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-badge-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Badge">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.badge</code></th><td>Píldora de 40px con velo oscuro, borde translúcido y texto blanco de 14px</td></tr>
+                  <tr><th scope="row"><code>.badge--marker</code></th><td>Agrega un cuadrito amarillo antes del texto (fechas)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-overlay / --color-overlay-light</code></li>
+              <li><code>--color-text-inverse / -highlight</code></li>
+              <li><code>--text-sm</code></li>
+              <li><code>--weight-medium</code></li>
+              <li><code>--spacing-2 / -4 / -8</code></li>
+              <li><code>--radius-full</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Texto de 14px con el velo sobre foto: el peor caso (foto blanca) da ≈5:1. Una fecha va dentro de <code>&lt;time datetime&gt;</code> cuando la card la usa.</p>
+        </section>
+
+        <section class="kit-card" id="avatar" aria-labelledby="avatar-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 07</p>
+            <h3 id="avatar-title">Avatar</h3>
+            <p class="kit-card__desc">Retrato circular de 40px; <code>--portrait</code> es el retrato cuadrado de autor del testimonio (80px). <strong>Avatar Stack</strong> solapa avatares con un anillo del color del fondo y cierra con un «+» amarillo.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Avatar y retrato de autor</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <img class="avatar" src="../assets/img/h1-testimonial-thumb-img-1.webp" alt="" width="40" height="40">
+              <img class="avatar avatar--portrait" src="../assets/img/h1-testimonial-thumb-img-2.webp" alt="" width="80" height="80">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-avatar-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-avatar-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Avatar Stack</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <div class="avatar-stack">
+                <img class="avatar" src="../assets/img/h1-testimonial-thumb-img-1.webp" alt="" width="40" height="40">
+                <img class="avatar" src="../assets/img/h1-testimonial-thumb-img-2.webp" alt="" width="40" height="40">
+                <img class="avatar" src="../assets/img/h1-testimonial-thumb-img-3.webp" alt="" width="40" height="40">
+                <span class="avatar-stack__more"><span class="icon icon--plus" aria-hidden="true"></span></span>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-avatar-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-avatar-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Avatar">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.avatar</code></th><td>Imagen circular de 40px con object-fit: cover</td></tr>
+                  <tr><th scope="row"><code>.avatar--portrait</code></th><td>Retrato de autor: 80px con esquinas de 8px</td></tr>
+                  <tr><th scope="row"><code>.avatar-stack</code></th><td>Contenedor que solapa a sus hijos; el anillo es --avatar-ring (por defecto, el fondo de página)</td></tr>
+                  <tr><th scope="row"><code>.avatar-stack__more</code></th><td>Cierre amarillo con «+»</td></tr>
+                  <tr><th scope="row"><code>--avatar-ring</code></th><td>Propiedad: poner el color del fondo donde se use el stack (ej. surface-default en una card)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--spacing-8 / -11</code></li>
+              <li><code>--radius-full / -sm</code></li>
+              <li><code>--color-background-muted / -default</code></li>
+              <li><code>--color-action-secondary</code></li>
+              <li><code>--color-action-on-secondary</code></li>
+              <li><code>--border-width-md</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Las caras llevan <code>alt=""</code> porque el texto vecino («3M+ People Using Our Platform», el nombre del autor) ya da el sentido; si el avatar fuera el único contenido, llevaría el nombre. <code>width</code> y <code>height</code> explícitos evitan CLS.</p>
+        </section>
+
+        <section class="kit-card" id="progress" aria-labelledby="progress-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 08</p>
+            <h3 id="progress-title">Progress</h3>
+            <p class="kit-card__desc">Barra de progreso con la etiqueta a la izquierda y el porcentaje a la derecha. Usa el elemento nativo <code>&lt;progress&gt;</code>, así el valor y el rol los expone el navegador sin ARIA a mano.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tres valores</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <div class="progress">
+                <div class="progress__head">
+                  <label for="progress-operational">Operational assessment</label>
+                  <span aria-hidden="true">90%</span>
+                </div>
+                <progress class="progress__bar" id="progress-operational" value="90" max="100">90%</progress>
+              </div>
+              <div class="progress">
+                <div class="progress__head">
+                  <label for="progress-consultation">Consultation &amp; analysis</label>
+                  <span aria-hidden="true">76%</span>
+                </div>
+                <progress class="progress__bar" id="progress-consultation" value="76" max="100">76%</progress>
+              </div>
+              <div class="progress">
+                <div class="progress__head">
+                  <label for="progress-strategic">Strategic interpretation</label>
+                  <span aria-hidden="true">85%</span>
+                </div>
+                <progress class="progress__bar" id="progress-strategic" value="85" max="100">85%</progress>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-progress-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-progress-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Progress">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.progress</code></th><td>Contenedor: cabecera + barra</td></tr>
+                  <tr><th scope="row"><code>.progress__head</code></th><td>Fila con la etiqueta (&lt;label for&gt;) y el porcentaje (aria-hidden)</td></tr>
+                  <tr><th scope="row"><code>.progress__bar</code></th><td>El &lt;progress&gt; nativo: 3px de alto, relleno petróleo sobre pista clara</td></tr>
+                  <tr><th scope="row"><code>value / max</code></th><td>El avance real (0–100); el relleno lo dibuja el navegador</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-action-primary</code></li>
+              <li><code>--color-background-muted</code></li>
+              <li><code>--color-text-primary</code></li>
+              <li><code>--border-width-sm / -md</code></li>
+              <li><code>--radius-full</code></li>
+              <li><code>--ease-slow</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La etiqueta está asociada con <code>&lt;label for&gt;</code> y el navegador anuncia «90%». El porcentaje visible es <code>aria-hidden</code> para no leerlo dos veces. El texto interno de <code>&lt;progress&gt;</code> es el respaldo de navegadores sin soporte.</p>
+        </section>
+
+        <section class="kit-card" id="switch" aria-labelledby="switch-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 09</p>
+            <h3 id="switch-title">Switch</h3>
+            <p class="kit-card__desc">Interruptor sobre un <code>&lt;input type="checkbox" role="switch"&gt;</code> nativo. Apagado, la perilla va a la izquierda; encendido, a la derecha. El texto «Monthly / Annually» del pricing se arma en la Section con dos <code>&lt;label&gt;</code>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Apagado, encendido y deshabilitado</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <input class="switch" type="checkbox" role="switch" id="switch-demo-off">
+              <label for="switch-demo-off">Monthly billing</label>
+              <input class="switch" type="checkbox" role="switch" id="switch-demo-on" checked>
+              <label for="switch-demo-on">Annual billing</label>
+              <input class="switch" type="checkbox" role="switch" id="switch-demo-disabled" disabled>
+              <label for="switch-demo-disabled">Unavailable</label>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-switch-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-switch-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Switch">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.switch</code></th><td>Pista petróleo de 80×40px con perilla blanca ovalada</td></tr>
+                  <tr><th scope="row"><code>role="switch"</code></th><td>Obligatorio: sin él un lector de pantalla lo anuncia como casilla</td></tr>
+                  <tr><th scope="row"><code>checked / disabled</code></th><td>Estados nativos; la perilla se desplaza con :checked</td></tr>
+                  <tr><th scope="row"><code>&lt;label for&gt;</code></th><td>Obligatorio: el nombre accesible no puede ser solo un placeholder</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-action-primary(-hover/-disabled)</code></li>
+              <li><code>--color-surface-default</code></li>
+              <li><code>--spacing-1 / -7 / -8 / -11</code></li>
+              <li><code>--radius-full</code></li>
+              <li><code>--ease-fast / --ease-base</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Es un control nativo: Tab para llegar, Espacio para alternar, y el estado lo anuncia el lector («activado/desactivado»). El estado se ve por la <em>posición</em> de la perilla, no por el color de la pista. Con «reducir movimiento» la perilla salta sin animación.</p>
+        </section>
+
+        <section class="kit-card" id="divider" aria-labelledby="divider-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 10</p>
+            <h3 id="divider-title">Divider</h3>
+            <p class="kit-card__desc">Filete horizontal de 1px sobre un <code>&lt;hr&gt;</code>. <code>--inverse</code> lo adapta a fondos oscuros (divisor de las cards de testimonio y del footer).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo claro</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <hr class="divider">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-divider-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-divider-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro (<code>divider--inverse</code>)</span>
+            <div class="kit-demo kit-demo--narrow" data-surface="inverse" lang="en">
+              <hr class="divider divider--inverse">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-divider-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-divider-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Divider">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.divider</code></th><td>Filete de 1px con el color de borde sutil</td></tr>
+                  <tr><th scope="row"><code>.divider--inverse</code></th><td>Filete translúcido blanco para fondos oscuros</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-border-subtle</code></li>
+              <li><code>--color-overlay-light</code></li>
+              <li><code>--border-width-sm</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> <code>&lt;hr&gt;</code> expone un separador; si el filete es solo decorativo se puede dibujar con <code>border</code> en el componente en vez de usar el átomo.</p>
+        </section>
+
+        <section class="kit-card" id="dots" aria-labelledby="dots-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 11</p>
+            <h3 id="dots-title">Pagination Dots</h3>
+            <p class="kit-card__desc">Puntos de paginación para carruseles (testimonios, stats en mobile). Cada punto es un botón de 24×24px con el punto dibujado en <code>::before</code>. El inactivo usa <code>border-strong</code> y el activo lleva un halo.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo claro</span>
+            <div class="kit-demo kit-demo--row" lang="en">
+              <div class="dots" role="group" aria-label="Choose a story">
+                <button type="button" class="dots__dot" aria-label="Show story 1"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 2"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 3" aria-current="true"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 4"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 5"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 6"></button>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-dots-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-dots-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro (<code>dots--inverse</code>)</span>
+            <div class="kit-demo kit-demo--row" data-surface="inverse" lang="en">
+              <div class="dots dots--inverse" role="group" aria-label="Choose a story">
+                <button type="button" class="dots__dot" aria-label="Show story 1"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 2"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 3" aria-current="true"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 4"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 5"></button>
+                <button type="button" class="dots__dot" aria-label="Show story 6"></button>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-dots-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-dots-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Pagination Dots">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.dots</code></th><td>Fila de puntos; el color activo es --dots-active</td></tr>
+                  <tr><th scope="row"><code>.dots--inverse</code></th><td>Activo amarillo para fondos oscuros</td></tr>
+                  <tr><th scope="row"><code>.dots__dot</code></th><td>Botón de 24×24px; el punto (12px) se dibuja en ::before</td></tr>
+                  <tr><th scope="row"><code>aria-current="true"</code></th><td>Marca el punto activo; el cambio de slide lo mantiene sincronizado (organismo Carrusel)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-border-strong (inactivo)</code></li>
+              <li><code>--color-action-primary / --color-text-highlight (activo)</code></li>
+              <li><code>--spacing-1 / -3 / -6</code></li>
+              <li><code>--radius-full</code></li>
+              <li><code>--ease-base</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Cada botón nombra su destino («Show story 3»); el activo se marca con <code>aria-current</code>, no solo con color. El punto inactivo da ≥3:1 tanto sobre el crema como sobre el fondo oscuro.</p>
+        </section>
+
+        <section class="kit-card" id="scroll-top" aria-labelledby="scroll-top-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 12</p>
+            <h3 id="scroll-top-title">Scroll Top</h3>
+            <p class="kit-card__desc">Botón fijo abajo a la derecha que vuelve al inicio. Aparece al pasar media pantalla y el anillo dibuja el avance del scroll. <strong>Está activo en este mismo kit: baja por la página y míralo.</strong></p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Snippet (va una sola vez, al final del <code>&lt;body&gt;</code>)</span>
+                  <div class="kit-snippet is-collapsed">
+                    <div class="kit-snippet__bar">
+                      <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-scroll-top-1">Ver código</button>
+                      <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+                    </div>
+                    <pre id="snippet-scroll-top-1" tabindex="0"><code>&lt;button type="button" class="scroll-top" aria-label="Back to top"&gt;
+              &lt;span class="icon icon--arrow-up" aria-hidden="true"&gt;&lt;/span&gt;
+            &lt;/button&gt;</code></pre>
+                  </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Scroll Top">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.scroll-top</code></th><td>Círculo fijo de 48px; oculto con visibility hasta que main.js agrega .is-visible</td></tr>
+                  <tr><th scope="row"><code>.is-visible</code></th><td>La pone main.js al pasar el 50% del alto del viewport</td></tr>
+                  <tr><th scope="row"><code>--scroll-progress</code></th><td>Propiedad 0–100 que main.js actualiza; llena el anillo con conic-gradient</td></tr>
+                  <tr><th scope="row"><code>main.js › initScrollTop</code></th><td>Sin JS el botón queda oculto: el sitio sigue usable</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-action-primary (anillo)</code></li>
+              <li><code>--color-border-default (pista)</code></li>
+              <li><code>--color-surface-default</code></li>
+              <li><code>--spacing-5 / -9</code></li>
+              <li><code>--z-sticky</code></li>
+              <li><code>--ease-base</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Tiene <code>aria-label</code>. Oculto usa <code>visibility: hidden</code>, así sale del orden de tabulación. Al activarlo, el foco pasa al <code>&lt;body&gt;</code> para que Tab arranque desde el inicio y no desde el pie. Con Lenis hace el scroll suave del motor; sin él, <code>scroll-behavior</code> respetando «reducir movimiento».</p>
+        </section>
+        <!-- kit:atoms-end -->
+      </section>
+
+      <section class="kit-level" id="molecules" aria-labelledby="molecules-title">
+        <h2 id="molecules-title">Moléculas</h2>
+        <p class="kit-empty">Sin componentes aún. Se construyen solo cuando los átomos que las componen estén completos.</p>
+      </section>
+
+      <section class="kit-level" id="organisms" aria-labelledby="organisms-title">
+        <h2 id="organisms-title">Organismos</h2>
+        <p class="kit-empty">Sin componentes aún. Header, menú mobile, hero, carrusel, acordeón, lista con scroll, marquee, footer y modal de video llegan después de las moléculas.</p>
+      </section>
+
+      <section class="kit-level" id="sections" aria-labelledby="sections-title">
+        <h2 id="sections-title">Sections</h2>
+        <p class="kit-empty">Sin componentes aún. Las secciones de la home se registran acá con las variantes de layout que el diseño pide.</p>
+      </section>
+    </main>
+  </div>
+
+  <button type="button" class="scroll-top" aria-label="Back to top" lang="en">
+    <span class="icon icon--arrow-up" aria-hidden="true"></span>
+  </button>
+
+  <script src="../assets/js/main.js" defer></script>
+  <script>
+(function () {
+  'use strict';
+
+  var $ = function (selector, context) { return (context || document).querySelector(selector); };
+  var $$ = function (selector, context) { return Array.prototype.slice.call((context || document).querySelectorAll(selector)); };
+  var status = $('#kit-status');
+  var lgQuery = window.matchMedia('(min-width: 64rem)');
+
+  /* Anuncio para lectores de pantalla */
+  function announce(message) {
+    status.textContent = '';
+    window.setTimeout(function () { status.textContent = message; }, 50);
+  }
+
+  /* Cajón de navegación (bajo lg) */
+  var sidebar = $('#kit-sidebar');
+  var menuButton = $('#kit-menu');
+  var scrim = $('#kit-scrim');
+  var main = $('#main');
+
+  function setDrawer(open, returnFocus) {
+    sidebar.setAttribute('data-open', String(open));
+    menuButton.setAttribute('aria-expanded', String(open));
+    scrim.hidden = !open;
+    main.inert = open;
+    sidebar.inert = !open;
+    if (open) {
+      var first = $('a', sidebar);
+      if (first) { first.focus(); }
+    } else if (returnFocus) {
+      menuButton.focus();
+    }
+  }
+  function syncLayout() {
+    if (lgQuery.matches) {
+      sidebar.setAttribute('data-open', 'false');
+      menuButton.setAttribute('aria-expanded', 'false');
+      scrim.hidden = true;
+      main.inert = false;
+      sidebar.inert = false;
+    } else if (sidebar.getAttribute('data-open') !== 'true') {
+      sidebar.inert = true;
+    }
+  }
+  menuButton.addEventListener('click', function () {
+    setDrawer(sidebar.getAttribute('data-open') !== 'true', true);
+  });
+  scrim.addEventListener('click', function () { setDrawer(false, true); });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && sidebar.getAttribute('data-open') === 'true') { setDrawer(false, true); }
+  });
+  sidebar.addEventListener('click', function (event) {
+    if (event.target.closest('a') && !lgQuery.matches) { setDrawer(false, false); }
+  });
+  lgQuery.addEventListener('change', syncLayout);
+  syncLayout();
+
+  /* Ítem activo del sidebar (aria-current) */
+  var navLinks = $$('.kit-nav__link');
+  var spied = navLinks
+    .map(function (link) { return document.getElementById(link.getAttribute('href').slice(1)); })
+    .filter(Boolean);
+  if ('IntersectionObserver' in window && spied.length) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) { return; }
+        navLinks.forEach(function (link) { link.removeAttribute('aria-current'); });
+        var active = $('.kit-nav__link[href="#' + entry.target.id + '"]');
+        if (active) {
+          active.setAttribute('aria-current', 'location');
+          active.scrollIntoView({ block: 'nearest' });
+        }
+      });
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    spied.forEach(function (section) { observer.observe(section); });
+  }
+
+  /* Snippets: se generan del innerHTML de la demo, sin la sangría sobrante */
+  function dedent(html) {
+    var lines = html.replace(/^\n+|\s+$/g, '').split('\n');
+    var min = Infinity;
+    lines.forEach(function (line) {
+      if (line.trim()) { min = Math.min(min, line.match(/^\s*/)[0].length); }
+    });
+    if (min === Infinity) { min = 0; }
+    return lines.map(function (line) { return line.slice(min); }).join('\n');
+  }
+  $$('code[data-source="demo"]').forEach(function (code) {
+    var demo = $('.kit-demo', code.closest('.kit-block'));
+    if (demo && !code.textContent.trim()) { code.textContent = dedent(demo.innerHTML); }
+  });
+
+  /* Ver código / Ocultar código */
+  $$('[data-kit-toggle]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var collapsed = button.closest('.kit-snippet').classList.toggle('is-collapsed');
+      button.textContent = collapsed ? 'Ver código' : 'Ocultar código';
+      button.setAttribute('aria-expanded', String(!collapsed));
+    });
+  });
+
+  /* Copiar: Clipboard API con respaldo a execCommand */
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) { return navigator.clipboard.writeText(text); }
+    return new Promise(function (resolve, reject) {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.className = 'visually-hidden';
+      document.body.appendChild(area);
+      area.select();
+      var done = false;
+      try { done = document.execCommand('copy'); } catch (error) { done = false; }
+      document.body.removeChild(area);
+      if (done) { resolve(); } else { reject(new Error('copy')); }
+    });
+  }
+  $$('[data-kit-copy]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var code = $('code', button.closest('.kit-snippet'));
+      copyText(code.textContent).then(function () {
+        announce('Copiado');
+        button.textContent = 'Copiado';
+        window.setTimeout(function () { button.textContent = 'Copiar'; }, 1800);
+      }, function () { announce('No se pudo copiar'); });
+    });
+  });
+
+  /* ===== Valores vivos: todo se lee del CSS real ===== */
+  var rootStyle = getComputedStyle(document.documentElement);
+  var STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  var builders = [];
+  var resizeHooks = [];
+
+  builders.push(function buildScales() {
+    $$('[data-scale]').forEach(function (host) {
+      var base = host.getAttribute('data-scale');
+      var steps = host.hasAttribute('data-steps') ? host.getAttribute('data-steps').split(' ').map(Number) : STEPS;
+      steps.forEach(function (step) {
+        var name = base + '-' + step;
+        var item = document.createElement('li');
+        item.className = 'kit-swatch';
+        item.innerHTML = '<span class="kit-swatch__chip" data-bg="' + name + '"></span>' +
+          '<span class="kit-swatch__step">' + step + '</span>' +
+          '<code class="kit-swatch__value" data-token-value="' + name + '"></code>';
+        host.appendChild(item);
+      });
+    });
+  });
+
+  builders.push(function buildSpacing() {
+    var host = $('#spacing-rows');
+    if (!host) { return; }
+    for (var i = 1; i <= 13; i += 1) {
+      var name = '--spacing-' + i;
+      var row = document.createElement('div');
+      row.className = 'kit-spacing__row';
+      row.setAttribute('role', 'listitem');
+      row.innerHTML = '<code>' + name + '</code>' +
+        '<span class="kit-spacing__bar" id="sp-' + i + '" data-size="' + name + '"></span>' +
+        '<code data-token-value="' + name + '"></code>' +
+        '<code data-computed-target="sp-' + i + '" data-computed-prop="width"></code>';
+      host.appendChild(row);
+    }
+  });
+  builders.push(function buildMotionAndBreakpoints() {
+    /* Preferencia de movimiento reducido y botón "Repetir" */
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function updateMotionPreference() {
+      var indicator = $('#kit-rm');
+      if (indicator) { indicator.textContent = reduced.matches ? 'reducir movimiento: activado' : 'reducir movimiento: desactivado'; }
+    }
+    updateMotionPreference();
+    reduced.addEventListener('change', updateMotionPreference);
+    $$('[data-kit-replay]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        $('#' + button.getAttribute('aria-controls')).classList.toggle('is-active');
+      });
+    });
+
+    /* Indicador de ancho y breakpoint actual (los del theme) */
+    var names = [['xl', '80rem'], ['lg', '64rem'], ['md', '48rem'], ['sm', '30rem']];
+    function updateBreakpoint() {
+      var indicator = $('#kit-bp');
+      if (!indicator) { return; }
+      var current = 'xs';
+      for (var i = 0; i < names.length; i += 1) {
+        if (window.matchMedia('(min-width: ' + names[i][1] + ')').matches) { current = names[i][0]; break; }
+      }
+      indicator.textContent = window.innerWidth + ' px · ' + current;
+    }
+    updateBreakpoint();
+    resizeHooks.push(updateBreakpoint);
+  });
+  /* kit:builders-end */
+
+  var APPLY = {
+    'data-bg': 'backgroundColor',
+    'data-font-size': 'fontSize',
+    'data-font': 'fontFamily',
+    'data-weight': 'fontWeight',
+    'data-leading': 'lineHeight',
+    'data-tracking': 'letterSpacing',
+    'data-radius': 'borderRadius',
+    'data-shadow': 'boxShadow',
+    'data-size': 'width',
+    'data-border-width': 'borderWidth'
+  };
+  function applyTokens() {
+    Object.keys(APPLY).forEach(function (attribute) {
+      $$('[' + attribute + ']').forEach(function (element) {
+        element.style[APPLY[attribute]] = 'var(' + element.getAttribute(attribute) + ')';
+      });
+    });
+  }
+
+  function fillValues() {
+    $$('[data-token-value]').forEach(function (element) {
+      var value = rootStyle.getPropertyValue(element.getAttribute('data-token-value')).trim();
+      element.textContent = value || 'sin definir';
+    });
+  }
+
+  function updateComputed() {
+    $$('[data-computed-target]').forEach(function (element) {
+      var target = document.getElementById(element.getAttribute('data-computed-target'));
+      if (target) {
+        element.textContent = getComputedStyle(target).getPropertyValue(element.getAttribute('data-computed-prop'));
+      }
+    });
+  }
+  resizeHooks.push(updateComputed);
+
+  /* Contraste WCAG calculado con los colores resueltos por el navegador */
+  var probe = document.createElement('span');
+  probe.className = 'visually-hidden';
+  document.body.appendChild(probe);
+
+  function resolveColor(token) {
+    probe.style.color = '';
+    probe.style.color = 'var(' + token + ')';
+    var css = getComputedStyle(probe).color;
+    var numbers = css.match(/-?\d*\.?\d+(?:e-?\d+)?/g).map(Number);
+    var scale = css.indexOf('color(') === 0 ? 255 : 1; /* color(srgb r g b / a) usa 0–1 */
+    return [numbers[0] * scale, numbers[1] * scale, numbers[2] * scale, numbers.length > 3 ? numbers[3] : 1];
+  }
+  function channel(value) {
+    var v = value / 255;
+    return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  }
+  function luminance(rgb) {
+    return 0.2126 * channel(rgb[0]) + 0.7152 * channel(rgb[1]) + 0.0722 * channel(rgb[2]);
+  }
+  function contrastRatio(foreground, background) {
+    var flat = foreground;
+    if (foreground[3] < 1) {
+      flat = [0, 1, 2].map(function (i) { return foreground[i] * foreground[3] + background[i] * (1 - foreground[3]); });
+    }
+    var a = luminance(flat);
+    var b = luminance(background);
+    return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  }
+  function runContrast() {
+    var rows = $$('[data-contrast]');
+    var fails = 0;
+    rows.forEach(function (row) {
+      var pair = row.getAttribute('data-contrast').split('|');
+      var min = parseFloat(row.getAttribute('data-min'));
+      var ratio = contrastRatio(resolveColor(pair[0]), resolveColor(pair[1]));
+      var pass = ratio >= min;
+      var label = 'Falla';
+      if (pass) { label = min >= 4.5 ? (ratio >= 7 ? 'AAA' : 'AA') : 'UI ≥ 3'; }
+      if (!pass) { fails += 1; }
+      $('[data-ratio]', row).textContent = ratio.toFixed(2) + ':1';
+      var badge = $('[data-badge]', row);
+      badge.textContent = label;
+      badge.className = 'kit-badge ' + (pass ? 'kit-badge--pass' : 'kit-badge--fail');
+    });
+    var summary = $('#contrast-summary');
+    if (summary) { summary.textContent = rows.length + ' pares · ' + fails + ' fallan'; }
+    document.documentElement.setAttribute('data-kit-contrast-fails', String(fails));
+  }
+
+  function runLive() {
+    builders.forEach(function (build) { build(); });
+    applyTokens();
+    fillValues();
+    updateComputed();
+    runContrast();
+  }
+  runLive();
+
+  var resizeQueued = false;
+  window.addEventListener('resize', function () {
+    if (resizeQueued) { return; }
+    resizeQueued = true;
+    window.requestAnimationFrame(function () {
+      resizeQueued = false;
+      resizeHooks.forEach(function (hook) { hook(); });
+    });
+  });
+  /* kit:live-end */
+})();
+  </script>
+</body>
+</html>

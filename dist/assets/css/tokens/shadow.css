@@ -1,0 +1,11 @@
+/* Sombras */
+:root {
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.14);
+
+  /* Sombra del propio color del elemento: derivada del token de marca, no negra genérica.
+     glow-brand = amarillo, glow-accent = petróleo. Un rebrand cambia solo el primitivo. */
+  --shadow-glow-brand: 0 6px 20px color-mix(in srgb, var(--color-brand-primary-500) 35%, transparent);
+  --shadow-glow-accent: 0 6px 20px color-mix(in srgb, var(--color-brand-accent-500) 35%, transparent);
+}

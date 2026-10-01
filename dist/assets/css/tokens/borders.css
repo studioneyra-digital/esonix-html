@@ -1,0 +1,5 @@
+/* Anchos de borde: los únicos dos válidos */
+:root {
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
+}

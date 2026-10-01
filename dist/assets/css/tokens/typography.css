@@ -1,0 +1,43 @@
+/* Tipografía — Mona Sans para todo (titulares y cuerpo); JetBrains Mono solo en /kit.
+   El diseño usa una sola grotesca: la jerarquía la dan tamaño y peso, no el cambio de familia. */
+:root {
+  --font-sans: 'Mona Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Mona Sans', var(--font-sans);
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* clamp() con base en rem en el valor preferido: responde al zoom (WCAG 1.4.4).
+     Curva entre los breakpoints sm (480px) y xl (1280px). */
+  /* Propio de Esonix: titular gigante del hero ("FutureGrowth") y marquee del footer.
+     El diseño lo mantiene en ~8.8vw de punta a punta (≈42px a 480px, ≈170px a 1920px),
+     por eso la curva llega hasta 1920px y no se corta en xl como el resto. */
+  --text-hero: clamp(2.5rem, 0.25rem + 8.6vw, 10.75rem); /* 40px → 172px */
+  --text-display: clamp(4rem, 3.4rem + 2vw, 5rem); /* 64px → 80px */
+  --text-giant: clamp(2.75rem, 2rem + 2.5vw, 4rem); /* 44px → 64px */
+  --text-h1: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); /* 36px → 48px */
+  --text-h2: clamp(1.75rem, 1.45rem + 1vw, 2.25rem); /* 28px → 36px */
+  --text-h3: clamp(1.375rem, 1.15rem + 0.75vw, 1.75rem); /* 22px → 28px */
+  --text-h4: clamp(1.4375rem, 1.4rem + 0.125vw, 1.5rem); /* 23px → 24px */
+  --text-h5: 1.375rem; /* 22px */
+  --text-h6: 1.125rem; /* 18px */
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body: 1rem; /* 16px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-xs: 0.75rem; /* 12px */
+
+  --weight-light: 200;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Interlineado: 1.6 en cuerpo cumple WCAG 1.4.12 (≥ 1.5) */
+  --leading-tight: 1.1; /* hero, display, giant, h1 */
+  --leading-snug: 1.25; /* h2–h6 */
+  --leading-normal: 1.6; /* cuerpo */
+  --leading-relaxed: 1.75; /* texto largo */
+
+  /* Tracking: negativo solo en hero/display/giant/h1; suelto solo en mayúsculas cortas */
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.06em; /* 0.04–0.08em */
+}
