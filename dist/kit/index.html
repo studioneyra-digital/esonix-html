@@ -90,8 +90,11 @@
           </ul>
         </div>
         <div class="kit-nav__group">
-          <p class="kit-nav__group-label">Organismos</p>
-          <p class="kit-nav__empty">Sin componentes aún</p>
+          <p class="kit-nav__group-label" id="nav-organisms">Organismos</p>
+          <ul class="kit-nav__list" aria-labelledby="nav-organisms">
+            <li><a class="kit-nav__link" href="#site-header"><span class="kit-nav__num">01</span> Site Header</a></li>
+            <li><a class="kit-nav__link" href="#offcanvas"><span class="kit-nav__num">02</span> Off-canvas</a></li>
+          </ul>
         </div>
         <div class="kit-nav__group">
           <p class="kit-nav__group-label">Sections</p>
@@ -2471,7 +2474,459 @@
 
       <section class="kit-level" id="organisms" aria-labelledby="organisms-title">
         <h2 id="organisms-title">Organismos</h2>
-        <p class="kit-empty">Sin componentes aún. Header, menú mobile, hero, carrusel, acordeón, lista con scroll, marquee, footer y modal de video llegan después de las moléculas.</p>
+        <p class="kit-level__intro">Orquestan estado y varias moléculas o átomos. Su comportamiento vive en <code>main.js</code>, un bloque comentado por organismo; se copian como markup y se configuran con atributos <code>data-*</code> y ARIA, sin fetch propio.</p>
+        <section class="kit-card" id="site-header" aria-labelledby="site-header-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 01</p>
+            <h3 id="site-header-title">Site Header</h3>
+            <p class="kit-card__desc">Barra del sitio sobre la foto del hero: logo, menú en píldora blanca con submenús, redes en texto y teléfono con el círculo del chat. Responde al ancho de su contenedor (container query), no al del viewport: con menos de 48rem quedan el logo y <strong>Menu</strong>, que abre el <a href="#offcanvas">Off-canvas</a>; desde 48rem aparece el menú, desde 64rem el número de teléfono y desde 80rem las redes. Pasa el mouse o haz click en Home, Services, Pages o Blog para ver los submenús.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Barra completa (80rem de ancho), a escala</span>
+            <div class="kit-demo kit-demo--hero kit-demo--hero-full" lang="en">
+              <header class="site-header">
+                <div class="site-header__bar">
+                  <a class="site-header__brand" href="#site-header">
+                    <img class="brand-logo" src="../assets/img/primary-logo.png" alt="Esonix" width="140" height="40">
+                  </a>
+                  <nav class="site-header__nav" aria-label="Main">
+                    <ul class="site-nav__list">
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-home">
+                          Home
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-home" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 01</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 02</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 03</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-services">
+                          Services
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-services" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Marketing Guidance</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Process Optimization</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Sales Improvement</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Service Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-pages">
+                          Pages
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-pages" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">About Us</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolios</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolio Details</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Team Members</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Pricing Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">FAQ Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Error 404</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Coming Soon</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-blog">
+                          Blog
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-blog" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Grid</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Standard</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item"><a class="site-nav__link" href="#site-header">Contact</a></li>
+                    </ul>
+                  </nav>
+                  <ul class="site-header__socials" aria-label="Social media">
+                    <li><a class="site-header__social" href="#site-header">FB<span class="visually-hidden"> Facebook</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">TW<span class="visually-hidden"> Twitter</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">LI<span class="visually-hidden"> LinkedIn</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">IG<span class="visually-hidden"> Instagram</span></a></li>
+                  </ul>
+                  <a class="site-header__phone" href="tel:+880123456789">
+                    <span class="site-header__phone-number">+880 (123) 456 789</span>
+                    <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
+                  </a>
+                  <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
+                    Menu
+                    <span class="icon icon--layout-grid" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </header>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-site-header-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-site-header-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Al ancho de esta columna: achica la ventana para ver cómo se adapta</span>
+            <div class="kit-demo kit-demo--hero" lang="en">
+              <header class="site-header">
+                <div class="site-header__bar">
+                  <a class="site-header__brand" href="#site-header">
+                    <img class="brand-logo" src="../assets/img/primary-logo.png" alt="Esonix" width="140" height="40">
+                  </a>
+                  <nav class="site-header__nav" aria-label="Main">
+                    <ul class="site-nav__list">
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-home-col">
+                          Home
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-home-col" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 01</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 02</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 03</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-services-col">
+                          Services
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-services-col" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Marketing Guidance</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Process Optimization</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Sales Improvement</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Service Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-pages-col">
+                          Pages
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-pages-col" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">About Us</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolios</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolio Details</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Team Members</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Pricing Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">FAQ Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Error 404</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Coming Soon</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-blog-col">
+                          Blog
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-blog-col" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Grid</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Standard</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item"><a class="site-nav__link" href="#site-header">Contact</a></li>
+                    </ul>
+                  </nav>
+                  <ul class="site-header__socials" aria-label="Social media">
+                    <li><a class="site-header__social" href="#site-header">FB<span class="visually-hidden"> Facebook</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">TW<span class="visually-hidden"> Twitter</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">LI<span class="visually-hidden"> LinkedIn</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">IG<span class="visually-hidden"> Instagram</span></a></li>
+                  </ul>
+                  <a class="site-header__phone" href="tel:+880123456789">
+                    <span class="site-header__phone-number">+880 (123) 456 789</span>
+                    <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
+                  </a>
+                  <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
+                    Menu
+                    <span class="icon icon--layout-grid" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </header>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Mobile (barra de menos de 48rem): logo y Menu</span>
+            <div class="kit-demo kit-demo--hero kit-demo--hero-mobile" lang="en">
+              <header class="site-header">
+                <div class="site-header__bar">
+                  <a class="site-header__brand" href="#site-header">
+                    <img class="brand-logo" src="../assets/img/primary-logo.png" alt="Esonix" width="140" height="40">
+                  </a>
+                  <nav class="site-header__nav" aria-label="Main">
+                    <ul class="site-nav__list">
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-home-sm">
+                          Home
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-home-sm" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 01</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 02</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 03</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-services-sm">
+                          Services
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-services-sm" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Marketing Guidance</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Process Optimization</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Sales Improvement</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Service Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-pages-sm">
+                          Pages
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-pages-sm" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">About Us</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolios</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolio Details</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Team Members</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Pricing Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">FAQ Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Error 404</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Coming Soon</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-blog-sm">
+                          Blog
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-blog-sm" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Grid</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Standard</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item"><a class="site-nav__link" href="#site-header">Contact</a></li>
+                    </ul>
+                  </nav>
+                  <ul class="site-header__socials" aria-label="Social media">
+                    <li><a class="site-header__social" href="#site-header">FB<span class="visually-hidden"> Facebook</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">TW<span class="visually-hidden"> Twitter</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">LI<span class="visually-hidden"> LinkedIn</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">IG<span class="visually-hidden"> Instagram</span></a></li>
+                  </ul>
+                  <a class="site-header__phone" href="tel:+880123456789">
+                    <span class="site-header__phone-number">+880 (123) 456 789</span>
+                    <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
+                  </a>
+                  <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
+                    Menu
+                    <span class="icon icon--layout-grid" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </header>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Site Header">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.site-header</code></th><td>Contenedor de consulta (container: site-header); texto blanco y foco amarillo</td></tr>
+                  <tr><th scope="row"><code>.site-header__bar</code></th><td>Barra en píldora con velo blanco al 10% y borde blanco al 30%; reparte los grupos con space-between</td></tr>
+                  <tr><th scope="row"><code>.site-header__brand</code></th><td>Enlace del logo (primary-logo.png, sobre oscuro)</td></tr>
+                  <tr><th scope="row"><code>.site-header--fixed</code></th><td>Variante fija arriba (position: fixed, z-sticky), centrada hasta --site-header-max; el margen alrededor de la barra no captura clics</td></tr>
+                  <tr><th scope="row"><code>.site-header--fixed.is-scrolled</code></th><td>Lo agrega main.js al pasar el 10% del alto de la ventana: la barra pasa a fondo inverso para leerse sobre las secciones claras</td></tr>
+                  <tr><th scope="row"><code>.site-header__nav</code></th><td>Contenedor &lt;nav&gt; del menú; visible desde 48rem de barra</td></tr>
+                  <tr><th scope="row"><code>.site-nav__list / __item / __link</code></th><td>Píldora blanca, ítem posicionado y enlace o botón del menú</td></tr>
+                  <tr><th scope="row"><code>.site-nav__trigger + aria-expanded / aria-controls</code></th><td>Botón que abre su submenú; el chevron gira con aria-expanded="true"</td></tr>
+                  <tr><th scope="row"><code>.site-nav__submenu + data-surface="brand"</code></th><td>Panel petróleo bajo la píldora, con un puente invisible para el hover</td></tr>
+                  <tr><th scope="row"><code>.site-nav__sublink / aria-current="page"</code></th><td>Enlace del submenú; amarillo en hover y en la página actual</td></tr>
+                  <tr><th scope="row"><code>.site-header__socials / __social</code></th><td>Redes en texto («FB - TW - LI - IG»), desde 80rem de barra</td></tr>
+                  <tr><th scope="row"><code>.site-header__phone / __phone-number / __phone-icon</code></th><td>Enlace tel: con el círculo amarillo; bajo 64rem de barra el número es solo para lectores</td></tr>
+                  <tr><th scope="row"><code>.site-header__toggle + data-offcanvas-open</code></th><td>Botón «Menu» (bajo 48rem de barra); aria-controls apunta al id del Off-canvas</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-overlay-light</code></li>
+              <li><code>--color-text-inverse / -highlight / -primary</code></li>
+              <li><code>--color-surface-default</code></li>
+              <li><code>--color-action-primary / -secondary / -secondary-hover / -on-secondary</code></li>
+              <li><code>--color-border-focus-inverse</code></li>
+              <li><code>--text-body-lg / -body</code></li>
+              <li><code>--weight-medium / -semibold</code></li>
+              <li><code>--spacing-2 / -3 / -4 / -5 / -6 / -7 / -8 / -12 / -13</code></li>
+              <li><code>--radius-full / -sm / -xs</code></li>
+              <li><code>--shadow-lg</code></li>
+              <li><code>--color-background-inverse</code></li>
+              <li><code>--z-dropdown / -sticky</code></li>
+              <li><code>--ease-fast / -base</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Home, Services, Pages y Blog no tienen página propia: son <code>&lt;button&gt;</code> con <code>aria-expanded</code> y <code>aria-controls</code> (patrón de divulgación, no <code>role="menu"</code>), se abren con Enter o Espacio y se cierran con Escape devolviendo el foco. Cerrados, los submenús quedan en <code>visibility: hidden</code> y salen del orden de tabulación. Las abreviaturas de redes completan su nombre con texto oculto («FB Facebook»: el nombre contiene lo visible, WCAG 2.5.3) y los guiones no se anuncian. El foco es amarillo sobre la foto y petróleo dentro de la píldora blanca. Para conservar el landmark <code>banner</code>, el <code>&lt;header&gt;</code> no debe quedar dentro de <code>&lt;main&gt;</code> ni de una <code>&lt;section&gt;</code>.</p>
+        </section>
+
+        <section class="kit-card" id="offcanvas" aria-labelledby="offcanvas-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 02</p>
+            <h3 id="offcanvas-title">Off-canvas</h3>
+            <p class="kit-card__desc">Menú mobile: panel crema que entra desde la derecha sobre la página desenfocada, con los submenús como acordeones, Location, Contact y redes. Lo abre el botón <strong>Menu</strong> del <a href="#site-header">Site Header</a> (o cualquier botón con <code>data-offcanvas-open</code> y <code>aria-controls</code>). Abierto, el resto de la página queda <code>inert</code>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Probar y vista estática</span>
+            <div class="kit-demo kit-demo--offcanvas-try" lang="en">
+              <button type="button" class="btn" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
+                Open menu
+                <span class="btn__icon"><span class="icon icon--layout-grid" aria-hidden="true"></span></span>
+              </button>
+              <div class="kit-offcanvas-preview" data-kit-clone="offcanvas-menu" data-kit-open="2"></div>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Markup</span>
+            <div class="kit-demo kit-demo--source" lang="en">
+              <div class="offcanvas" id="offcanvas-menu" data-offcanvas>
+                <div class="offcanvas__backdrop" data-offcanvas-close></div>
+                <div class="offcanvas__panel" role="dialog" aria-modal="true" aria-label="Menu" data-lenis-prevent>
+                  <div class="offcanvas__head">
+                    <a class="offcanvas__brand" href="#offcanvas">
+                      <img class="brand-logo" src="../assets/img/secondary-logo.png" alt="Esonix" width="140" height="40">
+                    </a>
+                    <button type="button" class="offcanvas__close" data-offcanvas-close>
+                      Close
+                      <span class="icon icon--x" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <nav aria-label="Main">
+                    <ul class="offcanvas__list">
+                      <li>
+                        <details class="offcanvas__group" name="offcanvas-nav">
+                          <summary class="offcanvas__link">Home <span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+                          <ul class="offcanvas__sub">
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Home Version 01</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Home Version 02</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Home Version 03</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details class="offcanvas__group" name="offcanvas-nav">
+                          <summary class="offcanvas__link">Services <span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+                          <ul class="offcanvas__sub">
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Marketing Guidance</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Process Optimization</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Sales Improvement</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Service Details</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details class="offcanvas__group" name="offcanvas-nav">
+                          <summary class="offcanvas__link">Pages <span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+                          <ul class="offcanvas__sub">
+                            <li><a class="offcanvas__sublink" href="#offcanvas">About Us</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Portfolios</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Portfolio Details</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Team Members</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Pricing Page</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">FAQ Page</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Error 404</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Coming Soon</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details class="offcanvas__group" name="offcanvas-nav">
+                          <summary class="offcanvas__link">Blog <span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+                          <ul class="offcanvas__sub">
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Blog Grid</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Blog Standard</a></li>
+                            <li><a class="offcanvas__sublink" href="#offcanvas">Blog Details</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li><a class="offcanvas__link" href="#offcanvas">Contact</a></li>
+                    </ul>
+                  </nav>
+                  <div class="offcanvas__info">
+                    <div>
+                      <h2 class="offcanvas__title">Location</h2>
+                      <p>Seattle (major city in the state Washington).</p>
+                    </div>
+                    <div>
+                      <h2 class="offcanvas__title">Contact</h2>
+                      <p class="offcanvas__contact">
+                        <a href="tel:+880123456789">+880 (123) 456 789</a>
+                        <a href="mailto:support@esonix.com">support@esonix.com</a>
+                      </p>
+                    </div>
+                    <ul class="offcanvas__socials" aria-label="Social media">
+                      <li><a class="icon-btn icon-btn--sm" href="#offcanvas" aria-label="Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+                      <li><a class="icon-btn icon-btn--sm" href="#offcanvas" aria-label="LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+                      <li><a class="icon-btn icon-btn--sm" href="#offcanvas" aria-label="Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+                      <li><a class="icon-btn icon-btn--sm" href="#offcanvas" aria-label="X (Twitter)"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-offcanvas-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-offcanvas-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Off-canvas">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.offcanvas + data-offcanvas + id</code></th><td>Capa fija a pantalla completa; main.js la mueve al final de &lt;body&gt;</td></tr>
+                  <tr><th scope="row"><code>.offcanvas.is-open</code></th><td>Estado abierto (lo pone main.js): panel visible y fondo desenfocado</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__backdrop + data-offcanvas-close</code></th><td>Fondo con velo y desenfoque; un click cierra</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__panel + role="dialog" aria-modal="true"</code></th><td>Panel crema que entra desde la derecha; scrollea por dentro (data-lenis-prevent)</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__head / __brand / __close</code></th><td>Logo (secondary-logo.png) y botón «Close» con el filete inferior</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__group + name</code></th><td>&lt;details&gt; de cada submenú; el mismo name deja uno abierto a la vez</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__link</code></th><td>Ítem principal en mayúsculas (summary o enlace)</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__sub / __sublink</code></th><td>Lista y enlaces del submenú</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__info / __title / __contact</code></th><td>Location y Contact</td></tr>
+                  <tr><th scope="row"><code>.offcanvas__socials</code></th><td>Icon Button --sm con el contorno fuerte del diseño</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-background-default</code></li>
+              <li><code>--color-overlay-light</code></li>
+              <li><code>--blur-backdrop</code></li>
+              <li><code>--color-text-primary / -secondary</code></li>
+              <li><code>--color-action-primary</code></li>
+              <li><code>--color-border-default / -strong</code></li>
+              <li><code>--text-h4 / -h5 / -body</code></li>
+              <li><code>--spacing-1 / -2 / -3 / -4 / -7 / -9 / -12 / -13</code></li>
+              <li><code>--radius-sm / -xs</code></li>
+              <li><code>--shadow-lg</code></li>
+              <li><code>--z-modal</code></li>
+              <li><code>--ease-fast / -base / -slow</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El panel es <code>role="dialog"</code> con <code>aria-modal="true"</code> y nombre «Menu». Al abrir, el resto de <code>&lt;body&gt;</code> queda <code>inert</code> (el foco no puede salir), el foco va a «Close» y el botón que lo abrió pasa a <code>aria-expanded="true"</code>; Escape, el fondo o «Close» lo cierran y devuelven el foco a ese botón. Cerrado queda en <code>visibility: hidden</code>, fuera del árbol de accesibilidad. Los submenús son <code>&lt;details&gt;</code> nativos: funcionan con teclado y sin JS. La animación usa <code>--ease-slow</code>, que vale 0 ms con «reducir movimiento».</p>
+        </section>
+        <!-- kit:organisms-end -->
       </section>
 
       <section class="kit-level" id="sections" aria-labelledby="sections-title">
@@ -2563,6 +3018,23 @@
     }, { rootMargin: '-20% 0px -65% 0px' });
     spied.forEach(function (section) { observer.observe(section); });
   }
+
+  /* Vista estática de un organismo fuera de flujo (off-canvas): clona su panel sin ids, sin rol de
+     diálogo y con inert. Corre antes que main.js (defer), que después mueve el original a <body>. */
+  $$('[data-kit-clone]').forEach(function (host) {
+    var source = document.getElementById(host.getAttribute('data-kit-clone'));
+    var panel = source && $('.offcanvas__panel', source);
+    if (!panel) { return; }
+    var copy = panel.cloneNode(true);
+    $$('[id]', copy).forEach(function (el) { el.removeAttribute('id'); });
+    ['role', 'aria-modal', 'aria-label'].forEach(function (attr) { copy.removeAttribute(attr); });
+    $$('details[name]', copy).forEach(function (el) { el.removeAttribute('name'); });
+    var openIndex = host.getAttribute('data-kit-open'); // submenú que se muestra abierto en la vista
+    var group = openIndex !== null ? $$('details', copy)[Number(openIndex)] : null;
+    if (group) { group.open = true; }
+    copy.inert = true;
+    host.appendChild(copy);
+  });
 
   /* Snippets: se generan del innerHTML de la demo, sin la sangría sobrante */
   function dedent(html) {

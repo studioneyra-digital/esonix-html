@@ -134,6 +134,10 @@ rebrand cambia el primitivo en un solo lugar sin tocar componentes.
      color-mix() de --color-brand-primary-500 / --color-brand-accent-500, no negra genérica. */
   --shadow-glow-brand: 0 6px 20px color-mix(in srgb, var(--color-brand-primary-500) 35%, transparent);
   --shadow-glow-accent: 0 6px 20px color-mix(in srgb, var(--color-brand-accent-500) 35%, transparent);
+
+  /* Desenfoque del fondo detrás de un panel (off-canvas): el diseño desenfoca la página sin oscurecerla.
+     Solo en capas sin descendientes position: fixed (backdrop-filter los recortaría). */
+  --blur-backdrop: 6px;
 }
 
 /* borders.css */

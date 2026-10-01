@@ -26,6 +26,9 @@
   --kit-card-min: 17rem;
   --kit-wide: 44rem;
   --kit-medium: 33rem;
+  --kit-hero-min: 34rem;
+  --kit-phone: 30rem;
+  --kit-zoom: 0.72;
 }
 
 /* Base del kit */
@@ -682,4 +685,50 @@ pre {
   max-inline-size: var(--kit-medium);
 }
 /* molecules-kit:end */
+
+/* organisms-kit:start */
+/* Demos de organismos: el header sobre la foto del hero (con alto para que entre el submenú abierto),
+   el bloque fuente oculto (el off-canvas vive fuera de flujo) y la vista estática del panel. */
+.kit-demo--hero {
+  min-block-size: var(--kit-hero-min);
+  padding: var(--spacing-5);
+  border-color: transparent;
+  /* El velo superior es el que pondrá la Section del hero: da al texto blanco el contraste real */
+  background: linear-gradient(var(--color-overlay), transparent 50%), var(--color-background-inverse) url('../img/h1-hero-img.webp') center top / cover;
+}
+/* Barra completa a escala: el demo mide 80rem de contenido (el header ve 80rem en su container query)
+   y zoom lo achica para que entre en la columna; si igual no entra, el bloque scrollea. */
+.kit-block:has(> .kit-demo--hero-full) {
+  overflow-x: auto;
+  contain: inline-size; /* sin esto, los 80rem del demo ensanchan la card y la página en mobile */
+}
+.kit-demo--hero-full {
+  box-sizing: content-box;
+  inline-size: 80rem;
+  zoom: var(--kit-zoom);
+}
+.kit-demo--hero-mobile {
+  max-inline-size: var(--kit-phone);
+}
+.kit-demo--source {
+  display: none;
+}
+.kit-demo--offcanvas-try {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-6);
+}
+.kit-offcanvas-preview {
+  display: flex;
+  justify-content: flex-end;
+  inline-size: min(100%, var(--kit-phone));
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-background-inverse) url('../img/h1-hero-img.webp') left top / cover;
+}
+.kit-offcanvas-preview .offcanvas__panel {
+  position: static;
+  transform: none;
+}
+/* organisms-kit:end */
 /* kit:css-end */

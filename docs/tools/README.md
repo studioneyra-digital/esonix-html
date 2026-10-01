@@ -8,6 +8,8 @@ Scripts de Python 3 (solo librería estándar) que generaron el CSS de los átom
 | `molecules_css.py` | Bloque `/* molecules:start … molecules:end */` de `main.css` (12 moléculas) |
 | `atoms_kit.py` | Nivel «Átomos» del kit (fichas + navegación) y `docs/kit/<átomo>.stories.md` |
 | `molecules_kit.py` | Nivel «Moléculas» del kit y `docs/kit/<molécula>.stories.md` |
+| `organisms_css.py` | Bloque `/* organisms:start … organisms:end */` de `main.css` |
+| `organisms_kit.py` | Nivel «Organismos» del kit y `docs/kit/<organismo>.stories.md` |
 
 ## Uso
 
@@ -34,6 +36,13 @@ Desde cualquier carpeta (la raíz del proyecto sale de la ubicación del script)
 2. Ficha: agregar un `dict` a la lista `A` (átomos) o `M` (moléculas) con `id`, `title`, `desc`, `blocks` (demos con `label`, `html`, `mods`, `surface`), `rows` (clases y atributos), `tokens`, `a11y` y `decisions`. Los demos van en inglés (copy del diseño) y llevan `lang="en"` automáticamente.
 3. Ejecutar los dos scripts del nivel y revisar `git diff`.
 
-## Para los organismos y las sections
+## Organismos
 
-No existen `organisms_*.py` ni `sections_*.py`. Si se quieren generar igual, copiar `molecules_css.py` y `molecules_kit.py`, cambiar los marcadores (`organisms:`), el `id` de la sección y el rótulo «Molécula» por «Organismo». Los organismos llevan JS: ese código va en `main.js`, a mano.
+`organisms_*.py` siguen el mismo patrón, con dos diferencias:
+
+- **El JS va en `main.js`, a mano** (un bloque comentado por organismo). Los scripts no lo tocan.
+- **Bloques especiales en la lista `O`:** `snippet=False` arma un bloque de prueba sin código (p. ej. el botón que abre el off-canvas), y el mod `source` oculta un demo cuyo organismo vive fuera de flujo: el snippet se lee igual de ese demo y `main.js` mueve el organismo a `<body>`. La vista estática del off-canvas la clona el JS inline del kit (`data-kit-clone`), que no se regenera.
+
+## Para las sections
+
+No existe `sections_*.py`. Si se quiere generar igual, copiar los de organismos y cambiar marcadores (`sections:`), el `id` de la sección del kit y el rótulo.

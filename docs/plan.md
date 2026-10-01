@@ -9,7 +9,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 0 · Cimientos | Tokens, Mona Sans, `main.css`/`main.js` base, kit con Foundations | ✅ Hecha |
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
-| 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ⏳ Siguiente |
+| 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ⏳ En curso (Grupo A hecho) |
 | 4 · Sections + `index.html` | Las secciones de la home, responsive | ⬜ |
 
 ## Reglas de cada etapa
@@ -75,7 +75,19 @@ Componen 2–4 átomos y no conocen el contexto de página. Las cards destacadas
 
 Resuelto: foco amarillo sobre cards con foto (`data-surface="inverse"`), «Read More» distinguible (título oculto para lectores) y la elevación de la card de equipo con margen negativo desde `lg`. Pendiente para la Section: reservar el espacio de esa elevación, el cambio Monthly / Annually y el contenedor blanco que une las tres cards Feature.
 
-## Etapa 3 — Organismos ⬜
+## Etapa 3 — Organismos ⏳
+
+Se entrega en tres grupos, cada uno revisado antes del siguiente:
+
+| Grupo | Organismos | Estado |
+|---|---|---|
+| A · Navegación | Site Header (con submenús) y Off-canvas | ✅ Hecho |
+| B · Contenido interactivo | Carrusel (Swiper), Acordeón FAQ, Modal de video | ⬜ |
+| C · Scroll y cierre | Lista de palabras con ScrollTrigger, Marquee, Footer | ⬜ |
+
+**Grupo A, resuelto:** el header responde al ancho de su contenedor con container queries (48/64/80rem sobre el ancho del header), porque la barra completa necesita ~1150px y con el container de Bootstrap ya se desbordaba a 1280px; los submenús son botones de divulgación con hover, Escape y cierre al salir el foco; el off-canvas deja `inert` el resto de `<body>`, detiene Lenis y desenfoca la página con el nuevo token `--blur-backdrop`. CSS y fichas salen de `docs/tools/organisms_*.py`; el JS está en `main.js`.
+
+**Plan original de la etapa:**
 
 - **Header:** logo, links en pill blanca, redes en texto, teléfono con botón de chat; dropdowns de Home, Services, Pages y Blog (Pages con el contenido real del diseño, el resto placeholder).
 - **Menú off-canvas mobile:** acordeones, Location, Contact y redes; `inert` en el resto de la página y cierre con Escape.
@@ -99,6 +111,7 @@ Resuelto: foco amarillo sobre cards con foto (`data-surface="inverse"`), «Read 
 
 ## Supuestos pendientes de confirmar
 
+- **Header:** fijo «por el momento» (variante `site-header--fixed`; pasa a fondo inverso con scroll, estado derivado de tokens porque el diseño no lo muestra); el círculo del chat es un adorno (confirmado); teléfono real +880 (123) 456 789 en header y off-canvas (confirmado); submenús de Home/Services/Blog con placeholder; ícono «Menu» = Lucide `layout-grid` (el del diseño tiene un cuadro girado). La Section reserva el espacio superior y define `scroll-padding-top`.
 - **Scroll Top** aparece al pasar media pantalla (`SHOW_AFTER = 0.5` en `main.js`); el diseño no lo indica.
 - **Estados** hover, active, disabled, switch encendido e input con error, derivados de los tokens existentes.
 - **Alturas:** el botón mide 48 px (el diseño ~52 px) y la barra de progreso 3 px, por salir de la escala de espaciado.
