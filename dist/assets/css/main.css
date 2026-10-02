@@ -1181,18 +1181,22 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 }
 
 /* Accordion Item — <details> nativo: abre con Enter/Espacio sin JS y, con el mismo atributo name en
-   varios ítems, solo uno queda abierto. El «?» y el +/− son decorativos (aria-hidden). */
+   varios ítems, solo uno queda abierto. El «?» y el +/− son decorativos (aria-hidden). Pregunta de 18px
+   en mobile y 24px desde lg, semibold, con la separación medida en el diseño (--accordion-gap). */
 .accordion-item {
   border-block-end: var(--border-width-sm) solid var(--color-border-subtle);
+}
+.accordion-item {
+  --accordion-gap: var(--spacing-5);
 }
 .accordion-item__summary {
   display: flex;
   align-items: center;
-  gap: var(--spacing-5);
-  padding-block: var(--spacing-6);
+  gap: var(--accordion-gap);
+  padding-block: var(--spacing-5);
   color: var(--color-text-primary);
-  font-size: var(--text-h5);
-  font-weight: var(--weight-medium);
+  font-size: var(--text-h6);
+  font-weight: var(--weight-semibold);
   line-height: var(--leading-snug);
   list-style: none;
   cursor: pointer;
@@ -1232,13 +1236,23 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 }
 .accordion-item__panel {
   padding-block-end: var(--spacing-6);
-  padding-inline-start: calc(var(--spacing-8) + var(--spacing-5));
+  padding-inline-start: calc(var(--spacing-8) + var(--accordion-gap));
   color: var(--color-text-secondary);
+}
+@media (min-width: 64rem) {
+  .accordion-item {
+    --accordion-gap: var(--spacing-7);
+  }
+  .accordion-item__summary {
+    padding-block: var(--spacing-7);
+    font-size: var(--text-h4);
+  }
 }
 
 /* Newsletter — <form> con la frase como <label> del campo y el botón de envío dentro del filete. */
 .newsletter {
   display: grid;
+  align-content: start; /* en la fila del footer, más alta, no reparte el espacio sobrante entre sus filas */
   gap: var(--spacing-5);
 }
 .newsletter__title {
@@ -2381,10 +2395,11 @@ html {
 }
 
 /* Section Head — encabezado de sección: __main (eyebrow + h2), __text y __actions (p. ej. las flechas de
-   un carrusel). Bajo xl, todo apilado. --split desde xl (Services): título | texto | flechas en una
-   fila (antes de 1280px el título no tiene lugar y corta en 4 líneas). __main se disuelve
-   (display: contents) y el eyebrow ocupa su propia fila: así el texto y las flechas se alinean con la
-   primera línea del h2 y no con el eyebrow. --center (Pricing): centrado. */
+   un carrusel). Bajo xl, todo apilado. --split desde xl (Services, Team): título | texto | acciones en
+   una fila (antes de 1280px el título no tiene lugar y corta en 4 líneas). __main se disuelve
+   (display: contents) y el eyebrow ocupa su propia fila: así el texto y las acciones se alinean con la
+   primera línea del h2 y no con el eyebrow. Las acciones crean una tercera columna implícita: sin ellas
+   (Team) el texto queda contra el borde derecho. --center (Pricing, Testimonials, Blog): centrado. */
 .section-head {
   display: grid;
   justify-items: start;
@@ -2407,21 +2422,15 @@ html {
   justify-items: center;
   text-align: center;
 }
-.section-head--center {
-  margin-block-end: var(--spacing-6);
-}
 @media (min-width: 64rem) {
   .section-head {
     margin-block-end: var(--spacing-10);
-  }
-  .section-head--center {
-    margin-block-end: var(--spacing-8);
   }
 }
 @media (min-width: 80rem) {
   /* Columnas medidas a 1920: h2 570px, texto 396px y flechas al final */
   .section-head--split {
-    grid-template-columns: minmax(0, 36rem) minmax(0, 25rem) auto;
+    grid-template-columns: minmax(0, 36rem) minmax(0, 25rem);
     justify-content: space-between;
     align-items: start;
     gap: var(--spacing-3) var(--spacing-8);
@@ -2431,6 +2440,16 @@ html {
   }
   .section-head--split .eyebrow {
     grid-column: 1 / -1;
+  }
+  /* Posiciones explícitas: con fila fija y columna automática, la grilla ubicaría el texto antes que el h2 */
+  .section-head--split .section-head__title {
+    grid-area: 2 / 1;
+  }
+  .section-head--split .section-head__text {
+    grid-area: 2 / 2;
+  }
+  .section-head--split .section-head__actions {
+    grid-area: 2 / 3;
   }
 }
 
@@ -2620,6 +2639,9 @@ html {
    beneficios en varias líneas). «Monthly» es un rótulo visual (aria-hidden): el nombre accesible del
    switch es su <label>, «Annually Save 30%» (encendido = precios anuales). main.js cambia los precios y
    anuncia el cambio en la región role="status". */
+.pricing .section-head {
+  margin-block-end: var(--spacing-6); /* el switch va pegado al título */
+}
 .pricing__billing {
   display: flex;
   flex-wrap: wrap;
@@ -2641,6 +2663,9 @@ html {
   margin-inline: auto;
 }
 @media (min-width: 64rem) {
+  .pricing .section-head {
+    margin-block-end: var(--spacing-8);
+  }
   .pricing__billing {
     margin-block-end: var(--spacing-10);
     font-size: var(--text-h4);
@@ -2651,6 +2676,250 @@ html {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--spacing-6);
     max-inline-size: none;
+  }
+}
+
+/* Stats — solo mobile (el diseño desktop no la tiene; se oculta desde lg sin duplicar contenido). Arriba,
+   la pastilla «4,000+ Clients…» sobre un filete a todo el ancho; después el título y tres Stat centrados,
+   separados por filetes, cada uno con un indicador de 3 cuadritos (1, 2 y 3 encendidos: decorativo). */
+.stats__pill {
+  display: flex;
+  align-items: center;
+  margin: 0 0 var(--spacing-8);
+}
+.stats__pill::before,
+.stats__pill::after {
+  content: '';
+  flex: 1;
+  border-block-start: var(--border-width-sm) solid var(--color-border-default);
+}
+.stats__pill span {
+  padding: var(--spacing-2) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-medium);
+}
+.stats__title {
+  max-inline-size: 12rem; /* corta donde el diseño: «Facts prove the / outcome» */
+  margin: 0 auto var(--spacing-7);
+  font-size: var(--text-h5);
+  text-align: center;
+}
+.stats__list {
+  margin: 0;
+  padding: 0;
+  border-block-end: var(--border-width-sm) solid var(--color-border-default);
+  list-style: none;
+}
+.stats__item {
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-5);
+  padding-block: var(--spacing-7);
+  border-block-start: var(--border-width-sm) solid var(--color-border-default);
+}
+.stats__item .stat {
+  gap: var(--spacing-5);
+}
+.stats__item .stat p:last-child {
+  max-inline-size: 12rem; /* etiqueta en dos líneas, como el diseño */
+  margin-inline: auto;
+}
+.stats__level {
+  display: flex;
+  gap: var(--spacing-2);
+}
+.stats__level span {
+  inline-size: var(--spacing-2);
+  block-size: var(--spacing-2);
+  background-color: var(--color-border-default);
+}
+.stats__level .is-on {
+  background-color: var(--color-action-primary);
+}
+@media (min-width: 64rem) {
+  .stats {
+    display: none;
+  }
+}
+
+/* Testimonials — bloque oscuro (data-surface="inverse") con la foto de fondo desenfocada bajo un velo
+   denso, encabezado centrado y el Carousel con dots en el contenedor ancho; los slides vecinos sangran y
+   la sección los recorta (overflow: clip en ambos ejes, para que la foto respete el radio). Radio en las
+   cuatro esquinas en mobile y solo arriba desde lg, como el diseño. Arranca en el tercer testimonio
+   (Isabella, con el tercer dot activo como el diseño). */
+.testimonials {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding-block: var(--spacing-12) var(--spacing-11);
+  border-radius: var(--radius-xl);
+}
+.testimonials__media {
+  position: absolute;
+  inset: calc(-2 * var(--blur-photo)); /* el borde difuminado del desenfoque queda fuera del recorte */
+  z-index: -1;
+}
+.testimonials__media img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+  object-fit: cover;
+  filter: blur(var(--blur-photo));
+}
+.testimonials__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-background-inverse) 85%, transparent);
+}
+.testimonials .carousel {
+  gap: var(--spacing-9);
+}
+@media (min-width: 64rem) {
+  .testimonials {
+    padding-block: var(--spacing-13) var(--spacing-10);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+  .testimonials .carousel {
+    gap: var(--spacing-10);
+  }
+}
+
+/* Team — Section Head --split (título y texto, desde xl) y tres Card Team: apiladas en mobile, en 3
+   columnas desde lg con la central elevada 20px arriba y abajo (margen negativo de la molécula). La
+   grilla reserva ese espacio con su padding, así la card elevada no invade el encabezado. */
+.team__grid {
+  display: grid;
+  gap: var(--spacing-6);
+}
+@media (min-width: 64rem) {
+  .team__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-block: var(--spacing-5);
+  }
+}
+
+/* Logos — solo mobile. Grilla de 2 columnas con filetes entre celdas: 7 logos (las 4 imágenes de partners
+   repetidas, decisión del equipo) y la celda «Join with Us ↗». Los filetes son el fondo de la grilla que
+   asoma por un gap de 1px; así no dependen de cuántas celdas haya. */
+.logos {
+  padding-block-start: 0; /* el diseño la pega a Team */
+}
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--border-width-sm);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background-color: var(--color-border-default);
+  list-style: none;
+}
+.logo-grid__cell {
+  display: grid;
+  place-items: center;
+  min-block-size: calc(var(--spacing-11) + var(--spacing-5)); /* filas de 100px, como el diseño */
+  padding: var(--spacing-4);
+  background-color: var(--color-background-default);
+}
+@media (min-width: 64rem) {
+  .logos {
+    display: none;
+  }
+}
+
+/* FAQ — a la izquierda el encabezado y la Card CTA (abajo, a ras del final del acordeón); a la derecha el
+   Accordion. Columnas medidas a 1920: 525 y 720px. En mobile: encabezado, CTA y acordeón apilados. */
+.faq__grid {
+  display: grid;
+  gap: var(--spacing-8);
+}
+.faq__intro {
+  display: grid;
+  align-content: start;
+  gap: var(--spacing-8);
+}
+.faq__intro .section-head {
+  margin: 0;
+}
+@media (min-width: 64rem) {
+  .faq__grid {
+    grid-template-columns: minmax(0, 33rem) minmax(0, 45rem);
+    justify-content: space-between;
+  }
+  .faq__intro {
+    align-content: space-between;
+    gap: var(--spacing-10);
+  }
+}
+
+/* Blog — Section Head --center, tres Card Post en el contenedor ancho (3 columnas desde lg) y el botón
+   «View All Blog» centrado debajo. */
+.blog__grid {
+  display: grid;
+  gap: var(--spacing-9);
+}
+.blog__actions {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--spacing-9);
+}
+@media (min-width: 64rem) {
+  .blog__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-6);
+  }
+  .blog__actions {
+    margin-block-start: var(--spacing-10);
+  }
+}
+
+/* Footer de la página — el Site Footer (organismo) con el Marquee arriba y la foto h1-footer-bg muy
+   desenfocada bajo un velo denso, detrás de los dos. El Marquee va sin su propio data-surface: toma el
+   del footer y deja ver la foto. */
+.page-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.page-footer__media {
+  position: absolute;
+  inset: calc(-2 * var(--blur-photo));
+  z-index: -1;
+}
+.page-footer__media img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+  object-fit: cover;
+  filter: blur(var(--blur-photo));
+}
+.page-footer__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-background-inverse) 85%, transparent);
+}
+/* Aire medido en el diseño: el badge del Marquee arranca ~65px debajo del borde (desktop) y el título del
+   newsletter queda ~108px debajo del badge */
+.page-footer .marquee {
+  padding-block-start: var(--spacing-11);
+}
+.page-footer > .container {
+  padding-block-start: var(--spacing-9);
+}
+@media (min-width: 64rem) {
+  .page-footer .marquee {
+    padding-block-start: var(--spacing-12);
+  }
+  .page-footer > .container {
+    padding-block-start: var(--spacing-10);
   }
 }
 /* sections:end */

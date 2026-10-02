@@ -367,7 +367,8 @@ M.append(dict(id='accordion-item', title='Accordion Item',
   tokens=['--color-border-subtle', '--color-background-subtle', '--color-action-secondary / -on-secondary', '--text-h5', '--weight-medium', '--spacing-5 / -6 / -8', '--ease-base'],
   a11y='El <code>&lt;summary&gt;</code> es el botón: se llega con Tab y el navegador anuncia «expandido/contraído» sin ARIA. La fila entera es el área de clic (más de 48px de alto). El «?» y el +/− son <code>aria-hidden</code>. El estado no depende solo del amarillo: cambia también el ícono.',
   a11y_md='`<summary>` nativo: Tab, Enter/Espacio y estado anunciado sin ARIA; fila de 48px+; +/− cambia con el estado.',
-  decisions=['Se usa `<details name>` nativo en lugar del `<button aria-expanded>` con JS que planteaba el plan: es exclusivo, accesible y no necesita script. Si hace falta animar la altura, se agrega después con `::details-content`.',
+  decisions=['Pregunta semibold de 24px desde lg y 18px en mobile (el diseño mide ~20px; con 18 los cortes de línea coinciden), con 32px de separación del «?» (20px en mobile): medido en los PNG a resolución real (Etapa 4, Grupo C); antes, 22px medium en todos los anchos.',
+             'Se usa `<details name>` nativo en lugar del `<button aria-expanded>` con JS que planteaba el plan: es exclusivo, accesible y no necesita script. Si hace falta animar la altura, se agrega después con `::details-content`.',
              'La copia del diseño escribe «in ?»; se normalizó a «in?».']))
 
 M.append(dict(id='newsletter', title='Newsletter',
@@ -388,7 +389,8 @@ M.append(dict(id='newsletter', title='Newsletter',
   tokens=['--color-text-inverse / -inverse-secondary / -highlight', '--text-h4 / -h6', '--weight-medium', '--spacing-5 / -8 / -9', '--ease-fast'],
   a11y='La frase es el <code>&lt;label for&gt;</code> del campo, así el nombre accesible es visible. El botón tiene <code>aria-label</code> y 40px de lado. Falta definir el aviso de éxito o error: cuando exista backend, se anuncia con <code>role="status"</code> sin robar el foco.',
   a11y_md='La frase es el `<label for>`; botón con `aria-label`; el aviso de resultado va con `role="status"`.',
-  decisions=['El sitio es estático y sin backend: el `action` queda en `#` y el envío se conecta por proyecto (servicio de formularios o email).']))
+  decisions=['`align-content: start`: en la fila del footer (más alta que el formulario) el campo quedaba separado del título (Etapa 4, Grupo C).',
+             'El sitio es estático y sin backend: el `action` queda en `#` y el envío se conecta por proyecto (servicio de formularios o email).']))
 
 # ------------------------------------------------------------------ render
 def indent(txt, n):

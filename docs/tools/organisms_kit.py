@@ -187,16 +187,17 @@ SERVICES = [
     ('Financial Planning', 'gem', 'h1-service-img-5.webp', 'Our advisors build budgets, forecasts and funding plans that keep every decision tied to your numbers.', False),
     ('Brand Strategy', 'lightbulb', 'h1-service-img-1.webp', 'We help companies define a clear position and a message that strengthens their market presence.', False),
 ]
-# Testimonials: James, Isabella y David son del diseño; Jonathan aparece cortado (cita completada) y los
-# dos últimos son placeholder. Los tres en video usan el único video entregado.
+# Testimonials: James, Isabella y David son del diseño; Jonathan aparece cortado (cita completada); Michael
+# y Sophia son placeholder. Orden del diseño: Isabella es la tercera (tercer dot activo) y el parcial de la
+# izquierda es un testimonio en video. Los tres en video usan el único video entregado.
 VIDEO_ID = 'RqueNBILfVU'
 TESTIMONIALS = [
+    ('video', 'h1-testimonial-large-img-1.webp', 'Michael Brooks', 'Founder, Brooks &amp; Co.', 'They stayed committed to every milestone and helped us improve how the whole company works.'),
     ('text', 'h1-testimonial-thumb-img-1.webp', 'James Anderson', 'Entrepreneur, Brand Strategist', 'We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.'),
     ('video', 'h1-testimonial-large-img-2.webp', 'Isabella Harris', 'CEO &amp; Founder', 'Working with this consulting team completely transformed our business operations.'),
     ('text', 'h1-testimonial-thumb-img-2.webp', 'David Thompson', 'Sales Director, HR Consultant', 'Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy.'),
     ('video', 'h1-testimonial-large-img-3.webp', 'Jonathan Walker', 'Operations Manager', 'Their business insights and personalized solutions had a real impact on our growth.'),
     ('text', 'h1-testimonial-thumb-img-3.webp', 'Sophia Martinez', 'Marketing Director', 'From the first workshop, the team understood our goals and turned them into a plan we could actually execute.'),
-    ('video', 'h1-testimonial-large-img-1.webp', 'Michael Brooks', 'Founder, Brooks &amp; Co.', 'They stayed committed to every milestone and helped us improve how the whole company works.'),
 ]
 FAQ = [
     (False, 'How can consulting help my business grow?', 'Consulting brings an outside view, proven methods and focused support, so you can find opportunities and act on them faster.'),

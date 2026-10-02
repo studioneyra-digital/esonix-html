@@ -91,6 +91,21 @@ Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides
   <div class="swiper carousel__viewport">
     <div class="swiper-wrapper">
       <div class="swiper-slide carousel__slide">
+        <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
+          <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-1.webp" alt="" width="1048" height="920" loading="lazy">
+          <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Michael Brooks" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Michael Brooks"><span class="icon icon--play" aria-hidden="true"></span></button>
+          <div class="card-testimonial__body">
+            <figcaption class="card-testimonial__footer">
+              <p class="card-testimonial__author"><span><span class="card-testimonial__name">Michael Brooks,</span> Founder, Brooks & Co.</span></p>
+              <hr class="divider divider--inverse">
+            </figcaption>
+            <blockquote class="card-testimonial__quote">
+              <p>“They stayed committed to every milestone and helped us improve how the whole company works.”</p>
+            </blockquote>
+          </div>
+        </figure>
+      </div>
+      <div class="swiper-slide carousel__slide">
         <figure class="card-testimonial" data-surface="brand">
           <blockquote class="card-testimonial__quote">
             <p>“We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.”</p>
@@ -160,21 +175,6 @@ Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides
               <span><span class="card-testimonial__name">Sophia Martinez,</span> Marketing Director</span>
             </p>
           </figcaption>
-        </figure>
-      </div>
-      <div class="swiper-slide carousel__slide">
-        <figure class="card-photo card-testimonial card-testimonial--video" data-surface="inverse">
-          <img class="card-photo__img" src="../assets/img/h1-testimonial-large-img-1.webp" alt="" width="1048" height="920" loading="lazy">
-          <button type="button" class="icon-btn icon-btn--glass icon-btn--lg card-testimonial__play" aria-label="Play video testimonial from Michael Brooks" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Video testimonial from Michael Brooks"><span class="icon icon--play" aria-hidden="true"></span></button>
-          <div class="card-testimonial__body">
-            <figcaption class="card-testimonial__footer">
-              <p class="card-testimonial__author"><span><span class="card-testimonial__name">Michael Brooks,</span> Founder, Brooks & Co.</span></p>
-              <hr class="divider divider--inverse">
-            </figcaption>
-            <blockquote class="card-testimonial__quote">
-              <p>“They stayed committed to every milestone and helped us improve how the whole company works.”</p>
-            </blockquote>
-          </div>
         </figure>
       </div>
     </div>

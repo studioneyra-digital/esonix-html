@@ -44,4 +44,5 @@ La frase es el `<label for>`; botón con `aria-label`; el aviso de resultado va 
 
 ## Decisiones y excepciones
 
+- `align-content: start`: en la fila del footer (más alta que el formulario) el campo quedaba separado del título (Etapa 4, Grupo C).
 - El sitio es estático y sin backend: el `action` queda en `#` y el envío se conecta por proyecto (servicio de formularios o email).

@@ -479,18 +479,22 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 }
 
 /* Accordion Item — <details> nativo: abre con Enter/Espacio sin JS y, con el mismo atributo name en
-   varios ítems, solo uno queda abierto. El «?» y el +/− son decorativos (aria-hidden). */
+   varios ítems, solo uno queda abierto. El «?» y el +/− son decorativos (aria-hidden). Pregunta de 18px
+   en mobile y 24px desde lg, semibold, con la separación medida en el diseño (--accordion-gap). */
 .accordion-item {
   border-block-end: var(--border-width-sm) solid var(--color-border-subtle);
+}
+.accordion-item {
+  --accordion-gap: var(--spacing-5);
 }
 .accordion-item__summary {
   display: flex;
   align-items: center;
-  gap: var(--spacing-5);
-  padding-block: var(--spacing-6);
+  gap: var(--accordion-gap);
+  padding-block: var(--spacing-5);
   color: var(--color-text-primary);
-  font-size: var(--text-h5);
-  font-weight: var(--weight-medium);
+  font-size: var(--text-h6);
+  font-weight: var(--weight-semibold);
   line-height: var(--leading-snug);
   list-style: none;
   cursor: pointer;
@@ -530,13 +534,23 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 }
 .accordion-item__panel {
   padding-block-end: var(--spacing-6);
-  padding-inline-start: calc(var(--spacing-8) + var(--spacing-5));
+  padding-inline-start: calc(var(--spacing-8) + var(--accordion-gap));
   color: var(--color-text-secondary);
+}
+@media (min-width: 64rem) {
+  .accordion-item {
+    --accordion-gap: var(--spacing-7);
+  }
+  .accordion-item__summary {
+    padding-block: var(--spacing-7);
+    font-size: var(--text-h4);
+  }
 }
 
 /* Newsletter — <form> con la frase como <label> del campo y el botón de envío dentro del filete. */
 .newsletter {
   display: grid;
+  align-content: start; /* en la fila del footer, más alta, no reparte el espacio sobrante entre sus filas */
   gap: var(--spacing-5);
 }
 .newsletter__title {

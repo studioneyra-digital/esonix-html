@@ -71,5 +71,6 @@ Pregunta de la FAQ sobre `<details>` nativo; con el mismo `name` solo uno queda 
 
 ## Decisiones y excepciones
 
+- Pregunta semibold de 24px desde lg y 18px en mobile (el diseño mide ~20px; con 18 los cortes de línea coinciden), con 32px de separación del «?» (20px en mobile): medido en los PNG a resolución real (Etapa 4, Grupo C); antes, 22px medium en todos los anchos.
 - Se usa `<details name>` nativo en lugar del `<button aria-expanded>` con JS que planteaba el plan: es exclusivo, accesible y no necesita script. Si hace falta animar la altura, se agrega después con `::details-content`.
 - La copia del diseño escribe «in ?»; se normalizó a «in?».

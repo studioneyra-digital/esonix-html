@@ -51,7 +51,7 @@ Word List, Marquee, Footer y Progress corregidos contra el diseño a resolución
 - Pendiente de decidir aquí: si el avatar stack usa los avatares del kit o el PNG `h1-about-users.png`.
 
 ### Grupo B · Services, Why Choose Us, Finance y Pricing
-**Estado: en revisión.** Hecho: las cuatro secciones en `index.html` (con Swiper sumado al `<head>` y a los scripts), comparadas contra los PNG a 1920 y 480 px y revisadas a 1440, 1280, 1024, 800 y 390 px (sin desborde horizontal); fichas en el kit desde `sections_kit.py`.
+**Estado: hecho (`4609855`).** Hecho: las cuatro secciones en `index.html` (con Swiper sumado al `<head>` y a los scripts), comparadas contra los PNG a 1920 y 480 px y revisadas a 1440, 1280, 1024, 800 y 390 px (sin desborde horizontal); fichas en el kit desde `sections_kit.py`.
 - **Section Head** (`.section-head`, `__main`, `__title`, `__text`, `__actions`): apilado; `--split` desde xl (Services) y `--center` (Pricing). Contenedores con `--container-width` / `--container-wide-width`.
 - **Carousel:** activo centrado; `data-carousel-start` / `-start-wide` y `data-carousel-highlight`. Con menos de 6 slides, `main.js` duplica la tanda completa (copias con `aria-hidden` + `inert`): con 5 slides, Swiper dejaba un hueco a la derecha al avanzar. Reemplaza al truco `loopAdditionalSlides` + `loopFix`. Card Service con transición del destacado.
 - **Why Choose Us:** grilla con `--why-container` / `--why-indent` (el texto se alinea con el `.container` en todos los anchos y la foto llega al borde del ancho) y `.feature-strip`. «Read More» de la card 02 se mantiene en mobile.
@@ -66,6 +66,15 @@ Plan original:
 - Switch Monthly/Annually con precios anuales derivados del 30 %: 27.9 / 34.9 / 41.9.
 
 ### Grupo C · Stats, Testimonials, Team, Logos, FAQ, Blog y Footer
+**Estado: en revisión.** Hecho: las siete secciones (footer con marcador `section:footer`, fuera de `<main>`), comparadas contra los PNG a 1920 y 480 px y revisadas a 1280, 1024, 768 y 390 px; 13 fichas de Sections en el kit.
+- **Stats** y **Logos**: solo mobile (`display: none` desde lg). Indicador de 3 cuadritos (`.stats__level`) y `.logo-grid` (filetes = fondo de la grilla + gap de 1px) viven en el bloque de Sections.
+- **Testimonials:** `data-surface="inverse"`, foto con `--blur-photo` + velo inverso al 85%, radio en las 4 esquinas en mobile y solo arriba desde lg (así los PNG); orden del diseño (Isabella tercera, `data-carousel-start="2"`), también en el kit.
+- **Team:** `.section-head--split` sin acciones (columnas explícitas; las acciones crean una 3.ª columna implícita); la grilla reserva con padding los 20px de la card elevada.
+- **FAQ:** columnas 33rem | 45rem; la Card CTA baja al final de la columna. **Blog:** 3 columnas desde lg, `&nbsp;` en «&amp; Expert». **Footer:** `.page-footer` con Marquee (sin `data-surface` propio) y foto desenfocada.
+- **Correcciones a niveles anteriores:** Accordion Item (pregunta semibold 24px desde lg / 18px mobile, separación `--accordion-gap`); Newsletter con `align-content: start` (el campo se separaba del título en la fila del footer); Section Head `--center` sin margen propio (Pricing lo ajusta en `.pricing .section-head`).
+- **Desvíos que quedan:** acordeón ~50px más corto que la Card CTA a 1920; cifras de Stats a 36px (diseño ≈ 42); logos de partners en negro (el diseño los muestra en gris).
+
+Plan original:
 - Stats y Logos solo en mobile (`display: none` desde `lg`, sin duplicar contenido).
 - Testimonials sobre fondo oscuro con foto y esquinas superiores redondeadas.
 - Card Team elevada: reservar el espacio de su elevación con margen negativo desde `lg`.
