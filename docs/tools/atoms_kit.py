@@ -197,24 +197,24 @@ A.append(dict(id='avatar', title='Avatar',
   decisions=['El diseño usa una imagen horneada con 3 caras (`h1-about-users.png`); aquí se arma con avatares reales para que el stack sea reutilizable. Las caras de los demos son las de los testimonios, no las del PNG.']))
 
 A.append(dict(id='progress', title='Progress',
-  desc='Barra de progreso con la etiqueta a la izquierda y el porcentaje a la derecha. Usa el elemento nativo <code>&lt;progress&gt;</code>, así el valor y el rol los expone el navegador sin ARIA a mano.',
-  desc_md='Barra con etiqueta y porcentaje. Usa `<progress>` nativo.',
-  blocks=[dict(label='Tres valores', mods='narrow', html=d('''
-      <div class="progress">
+  desc='Barra de progreso con la etiqueta a la izquierda y el porcentaje alineado al final del relleno, como el diseño. Usa el elemento nativo <code>&lt;progress&gt;</code>, así el valor y el rol los expone el navegador sin ARIA a mano.',
+  desc_md='Barra con etiqueta y porcentaje alineado al final del relleno (`--progress`). Usa `<progress>` nativo.',
+  blocks=[dict(label='Tres valores', mods='medium stack', html=d('''
+      <div class="progress" style="--progress: 90">
         <div class="progress__head">
           <label for="progress-operational">Operational assessment</label>
           <span aria-hidden="true">90%</span>
         </div>
         <progress class="progress__bar" id="progress-operational" value="90" max="100">90%</progress>
       </div>
-      <div class="progress">
+      <div class="progress" style="--progress: 76">
         <div class="progress__head">
           <label for="progress-consultation">Consultation &amp; analysis</label>
           <span aria-hidden="true">76%</span>
         </div>
         <progress class="progress__bar" id="progress-consultation" value="76" max="100">76%</progress>
       </div>
-      <div class="progress">
+      <div class="progress" style="--progress: 85">
         <div class="progress__head">
           <label for="progress-strategic">Strategic interpretation</label>
           <span aria-hidden="true">85%</span>
@@ -224,11 +224,14 @@ A.append(dict(id='progress', title='Progress',
   rows=[('.progress', 'Contenedor: cabecera + barra'),
         ('.progress__head', 'Fila con la etiqueta (&lt;label for&gt;) y el porcentaje (aria-hidden)'),
         ('.progress__bar', 'El &lt;progress&gt; nativo: 3px de alto, relleno petróleo sobre pista clara'),
-        ('value / max', 'El avance real (0–100); el relleno lo dibuja el navegador')],
+        ('value / max', 'El avance real (0–100); el relleno lo dibuja el navegador'),
+        ('style="--progress: 90"', 'Mismo valor que value: lleva el porcentaje al final del relleno (sin ella, al final de la pista)')],
   tokens=['--color-action-primary', '--color-background-muted', '--color-text-primary', '--border-width-sm / -md', '--radius-full', '--ease-slow'],
   a11y='La etiqueta está asociada con <code>&lt;label for&gt;</code> y el navegador anuncia «90%». El porcentaje visible es <code>aria-hidden</code> para no leerlo dos veces. El texto interno de <code>&lt;progress&gt;</code> es el respaldo de navegadores sin soporte.',
   a11y_md='`<label for>` + valor nativo; el % visible es `aria-hidden`.',
-  decisions=['El diseño no muestra animación de llenado: el relleno aparece en su valor final. Una animación al entrar al viewport se decide en la Section.']))
+  decisions=['El diseño no muestra animación de llenado: el relleno aparece en su valor final. Una animación al entrar al viewport se decide en la Section.',
+             'El valor se escribe dos veces (`value` y `--progress`) porque CSS todavía no puede leer `attr(value)` como número en todos los navegadores objetivo; con JS se podría sincronizar, pero se prefirió que funcione sin JS.',
+             'Con valores bajos en una fila angosta la etiqueta pasa a dos líneas (el porcentaje no cruza el final del relleno). En el diseño las barras miden 400px y no ocurre.']))
 
 A.append(dict(id='switch', title='Switch',
   desc='Interruptor sobre un <code>&lt;input type="checkbox" role="switch"&gt;</code> nativo. Apagado, la perilla va a la izquierda; encendido, a la derecha. El texto «Monthly / Annually» del pricing se arma en la Section con dos <code>&lt;label&gt;</code>.',

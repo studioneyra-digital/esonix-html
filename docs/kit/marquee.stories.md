@@ -5,7 +5,7 @@
 
 ## Descripción
 
-Franja del footer: «Connect With Us • Let's Grow» en bucle horizontal infinito (CSS puro), con el badge del logo centrado y estático encima. El texto duplicado del bucle es `aria-hidden`, con una frase para lectores al lado.
+Franja del footer: «Connect With Us  Let's Grow» en bucle horizontal (CSS puro), translúcido salvo «Grow», con el badge del logo centrado y estático. Texto duplicado `aria-hidden` + una frase para lectores.
 
 ## Snippets
 
@@ -16,39 +16,26 @@ Franja del footer: «Connect With Us • Let's Grow» en bucle horizontal infini
   <div class="marquee__viewport" aria-hidden="true">
     <div class="marquee__track">
       <div class="marquee__group">
-    <span class="marquee__text">Connect With Us</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Let's Grow</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Connect With Us</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Let's Grow</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Connect With Us</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Let's Grow</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
+        <span class="marquee__text">Connect With Us</span>
+        <span class="marquee__text">Let's <span class="marquee__accent">Grow</span></span>
+        <span class="marquee__text">Connect With Us</span>
+        <span class="marquee__text">Let's <span class="marquee__accent">Grow</span></span>
+        <span class="marquee__text">Connect With Us</span>
+        <span class="marquee__text">Let's <span class="marquee__accent">Grow</span></span>
       </div>
       <div class="marquee__group">
-    <span class="marquee__text">Connect With Us</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Let's Grow</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Connect With Us</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Let's Grow</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Connect With Us</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
-    <span class="marquee__text">Let's Grow</span>
-    <span class="marquee__dot" aria-hidden="true">•</span>
+        <span class="marquee__text">Connect With Us</span>
+        <span class="marquee__text">Let's <span class="marquee__accent">Grow</span></span>
+        <span class="marquee__text">Connect With Us</span>
+        <span class="marquee__text">Let's <span class="marquee__accent">Grow</span></span>
+        <span class="marquee__text">Connect With Us</span>
+        <span class="marquee__text">Let's <span class="marquee__accent">Grow</span></span>
       </div>
     </div>
   </div>
   <p class="visually-hidden">Connect with us. Let's grow.</p>
   <div class="marquee__badge" aria-hidden="true">
-    <span class="icon icon--hexagon marquee__badge-icon" aria-hidden="true"></span>
-    <span class="marquee__badge-text">Esonix</span>
+    <img class="marquee__badge-logo" src="../assets/img/primary-logo.png" alt="" width="140" height="40">
   </div>
 </div>
 ```
@@ -60,29 +47,32 @@ Franja del footer: «Connect With Us • Let's Grow» en bucle horizontal infini
 | `.marquee` | Contenedor; recorta el texto que sangra a los costados |
 | `.marquee__viewport + aria-hidden` | Capa visual del bucle, oculta para lectores |
 | `.marquee__track / __group` | Dos grupos idénticos; la animación mueve -50% (el ancho de uno) |
-| `.marquee__text / __dot` | Frase y separador del bucle |
+| `.marquee__text` | Frase del bucle, blanco al 25% |
+| `.marquee__accent` | La palabra en blanco pleno («Grow») |
 | `.visually-hidden` | Frase única «Connect with us. Let's grow.» para lectores |
-| `.marquee__badge + aria-hidden` | Badge circular estático (ícono + «Esonix»), decorativo |
+| `.marquee__badge + aria-hidden / __badge-logo` | Círculo estático con el logo (primary-logo.png), decorativo |
 
 ## Tokens que consume
 
-- `--text-hero`
-- `--weight-bold`
+- `--text-hero / -display (piso en mobile)`
+- `--weight-semibold`
 - `--leading-tight`
-- `--color-text-inverse / -highlight`
+- `--tracking-tight`
+- `--color-text-inverse`
 - `--color-background-inverse`
-- `--text-h2 / -h3 / -sm`
-- `--tracking-wide`
-- `--spacing-1 / -4 / -9 / -10`
+- `--shadow-lg`
 - `--radius-full`
 - `--border-width-sm`
+- `--spacing-7 / -10`
 
 ## Accesibilidad
 
-Texto animado + duplicado en `aria-hidden`, con una frase visualmente oculta equivalente al lado. Badge decorativo (el nombre ya está en el logo). Animación detenida con `prefers-reduced-motion: reduce`.
+Texto animado + duplicado en `aria-hidden`, con una frase visualmente oculta al lado. Badge decorativo. Animación detenida con `prefers-reduced-motion: reduce`.
 
 ## Decisiones y excepciones
 
-- El diseño no muestra el badge en movimiento: se deja estático (solo el texto de fondo gira); animarlo también habría sido una invención no declarada.
-- Duración del bucle (30s) no sale del diseño (es una franja estática): se deriva para que se lea cómodo, no para que compita por atención.
-- Separador «•» en vez del espacio del diseño: distingue las dos frases sin depender solo del salto de línea.
+- Texto translúcido (blanco al 25%) con «Grow» en blanco pleno, como el diseño a resolución real; no hay separador visible entre frases (el diseño tapa ese hueco con el badge).
+- Badge con el logo real (`primary-logo.png`), no un ícono: así lo muestra el diseño. Diámetro medido: 160px a 480 → 250px a 1920.
+- El diseño no muestra el badge en movimiento: se deja estático (solo el texto de fondo se mueve).
+- Duración del bucle (30s): no sale del diseño (es una imagen fija); se deriva para que se lea cómodo.
+- `contain: inline-size` en `.marquee`: sin ella, el ancho del texto repetido (miles de px) estira cualquier ancestro grid o flex con columna automática (pasó en el kit) aunque el marquee tenga `overflow: hidden`.

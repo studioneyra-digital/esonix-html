@@ -627,6 +627,11 @@ pre {
   gap: var(--spacing-5);
   max-inline-size: var(--kit-narrow);
 }
+/* Apila los ejemplos con separación, combinable con un ancho (--medium, --narrow-wide) */
+.kit-demo--stack {
+  display: grid;
+  gap: var(--spacing-5);
+}
 .kit-demo--photo {
   border-color: transparent;
   background: var(--color-background-inverse) url('../img/h1-team-member-img-1.webp') center / cover;

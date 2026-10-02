@@ -138,6 +138,10 @@ rebrand cambia el primitivo en un solo lugar sin tocar componentes.
   /* Desenfoque del fondo detrás de un panel (off-canvas): el diseño desenfoca la página sin oscurecerla.
      Solo en capas sin descendientes position: fixed (backdrop-filter los recortaría). */
   --blur-backdrop: 6px;
+
+  /* Desenfoque de texto en segundo plano (palabras inactivas del Word List): se lee la forma de la
+     palabra pero no compite con la activa, que queda nítida. */
+  --blur-text: 4px;
 }
 
 /* borders.css */

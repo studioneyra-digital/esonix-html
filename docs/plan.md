@@ -10,7 +10,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ✅ Hecha (Grupos A, B y C) |
-| 4 · Sections + `index.html` | Las secciones de la home, responsive | ⬜ |
+| 4 · Sections + `index.html` | Las secciones de la home, responsive | ⏳ En curso (Grupo 0 hecho) |
 
 ## Reglas de cada etapa
 
@@ -90,7 +90,7 @@ Se entrega en tres grupos, cada uno revisado antes del siguiente:
 **Grupo B, resuelto y aprobado (commit `82899e5`):** carrusel sobre Swiper 11 (loop con un vecino asomando a cada lado desde la carga, 1/2/3 slides según el ancho del carrusel, igual que el header, a11y de Swiper, flechas vinculadas por `aria-controls` y dots generados por `main.js`); acordeón como grupo de `<details name>` con altura animada por `::details-content`; modal de video con `<dialog>` nativo y el iframe de youtube-nocookie creado recién en el click. El kit carga `swiper-bundle.min.css/js`; la Section que use el carrusel recorta con `overflow-x: clip`.
 
 **Grupo C, resuelto:** Word List del bloque Finance/Advisory/Growth/Strategy sin `pin` (a diferencia del patrón habitual de este efecto): cada palabra dispara un `ScrollTrigger.create` propio con `start`/`end` en una franja angosta alrededor del centro del viewport, y `onEnter`/`onEnterBack` activan a la palabra y a su Card Project (`data-word-for` → id de la card); el alto de scroll lo dan las propias palabras en `--text-giant`, no un pin artificial. Bajo `lg` es el eyebrow «Works» (átomo Eyebrow) y las cuatro cards apiladas, sin el efecto. Marquee en CSS puro (`@keyframes` con dos `.marquee__group` idénticos, `translateX(-50%)`), con el badge del logo centrado y **estático** (el diseño no muestra el badge en movimiento, así que no se animó); se detiene con `prefers-reduced-motion`. Site Footer con la molécula Newsletter, Utility Page, Follow Us, Our Offices y la barra legal; corrige los dos errores del export del diseño (`Pixenium` → Esonix, `404 Not Error` → Error 404).
-Encontrado en QA: la Card Project (siempre blanca) pierde su título cuando vive dentro de `data-surface="inverse"` (el Word List es el primer caso real) porque la regla de foundations pone todos los `h1`–`h6` en blanco dentro de una superficie inversa — se corrigió con una excepción de alta especificidad (`html .card-project :is(h1...h6)`) en `molecules_css.py`, mismo truco que ya usan las superficies. Aparte, un rato largo de QA se fue detrás de un "bug" de ensanchamiento del Marquee que en realidad era **caché del navegador** sirviendo un `kit.css` viejo pese a `reload()`: con `python -m http.server` sin cabeceras de caché, Chrome puede reusar el CSS cacheado de la sesión anterior; hace falta un servidor con `Cache-Control: no-store` (y `ThreadingHTTPServer`, el servidor simple de un solo hilo rechaza conexiones concurrentes) para confiar en un QA local — ver `playwright-cli-qa-recipes` en memoria.
+Encontrado en QA: la Card Project (siempre blanca) pierde su título cuando vive dentro de `data-surface="inverse"` (el Word List es el primer caso real) porque la regla de foundations pone todos los `h1`–`h6` en blanco dentro de una superficie inversa — se corrigió con una excepción de alta especificidad (`html .card-project :is(h1...h6)`) en `molecules_css.py`, mismo truco que ya usan las superficies. El ensanchamiento del Marquee en el kit **era un bug real** (en el Grupo C se atribuyó por error solo a la caché del navegador y se revirtió el arreglo; se corrigió en el Grupo 0 de la Etapa 4 con `contain: inline-size`). La caché también existía: para QA local hace falta un servidor con `Cache-Control: no-store` y `ThreadingHTTPServer`, y verificar midiendo (`getBoundingClientRect`), no a ojo sobre una captura — ver `playwright-cli-qa-recipes` en memoria.
 
 **Plan original de la etapa:**
 
@@ -103,7 +103,7 @@ Encontrado en QA: la Card Project (siempre blanca) pierde su título cuando vive
 - **Footer:** newsletter, Utility Page, Follow Us, Our Offices y barra legal.
 - **Modal de video:** `<dialog>` nativo; el iframe de `youtube-nocookie` se crea recién al hacer click, para no cargar YouTube al abrir la página.
 
-## Etapa 4 — Sections + `index.html` ⬜
+## Etapa 4 — Sections + `index.html` ⏳
 
 - Las 11 secciones: Hero, What We Do, Services, Why Choose Us, Finance/Advisory/Growth/Strategy, Pricing, Testimonials, Team, FAQ, Blog y Footer; más **Stats** y **Logos** solo en mobile.
 - **Un solo `<h1>`** («Expert Guidance for FutureGrowth»); los títulos de sección son `<h2>` con tamaño `--text-h1` (≈ 48 px, lo que mide el diseño).
@@ -114,10 +114,31 @@ Encontrado en QA: la Card Project (siempre blanca) pierde su título cuando vive
 - Sin animaciones de entrada (reveals): el diseño no las muestra. Se suman en una etapa aparte si se quieren.
 - Verificación final: capturas por breakpoint contra los PNG, Lighthouse sobre archivos servidos (LCP < 2.5 s, CLS < 0.1, INP < 200 ms) y reporte de lo que no se pudo igualar.
 
+Se entrega en grupos, cada uno revisado antes del siguiente. Antes de construir cada sección se recorta el PNG a resolución real (a escala reducida se leyeron mal tres organismos del Grupo C).
+
+| Grupo | Contenido | Estado |
+|---|---|---|
+| 0 · Correcciones | Word List, Marquee, Footer y Progress contra el diseño a resolución real | ✅ Hecho |
+| A · Esqueleto + Hero + What We Do | `index.html` (`<head>` SEO, header fijo, `scroll-padding-top`, Scroll Top, scripts), sistema de layout (contenedor de 1320 y ancho de 1620, ritmo vertical, encabezado de sección), Hero, What We Do | ⬜ |
+| B · Services, Why Choose Us, Finance, Pricing | Carrusel con slide activo destacado, franja Card Feature sobre la foto, bloque Finance con fondo fijo, switch mensual/anual | ⬜ |
+| C · Stats, Testimonials, Team, Logos, FAQ, Blog, Footer | Stats y Logos solo mobile; card de equipo elevada con espacio reservado | ⬜ |
+| D · Cierre | `sitemap.xml`, `robots.txt`, Lighthouse, comparación por breakpoint, reporte de diferencias | ⬜ |
+
+**Decisiones del equipo (Etapa 4):**
+- Dominio placeholder `https://esonix.example` para `canonical`, Open Graph y JSON-LD (reemplazar al pasar a producción).
+- Fondo del bloque Finance: foto desenfocada **fija** (no cambia con la card activa).
+- «Works» en mobile: gigante y tenue, decorativo (`aria-hidden`), con el `<h2>` real oculto para lectores.
+- Logos mobile: las 4 imágenes de partners se repiten para completar las 7 celdas del diseño.
+- Etiqueta del «30+» de Stats (el diseño no la trae): «Years of Consulting Experience».
+- Carrusel de Services: se destaca el **slide activo** (reemplaza la card destacada fija del Grupo B).
+- Kit · nivel Sections: `index.html` es la fuente; un `sections_kit.py` extrae cada sección (entre marcadores `<!-- section:id -->`) para armar su ficha.
+
+**Grupo 0, resuelto:** Word List con palabras inactivas desenfocadas (token nuevo `--blur-text`, 4px) en `--text-display`, «Works» decorativo en mobile y `<h2>` oculto; Marquee translúcido con «Grow» en blanco pleno, badge con el logo real, tamaño mínimo `--text-display` en mobile y `contain: inline-size` (el texto repetido estiraba cualquier ancestro grid/flex); Footer con columnas en las posiciones medidas (`minmax(0, 24rem) repeat(3, auto)` + `space-between`), enlaces en 2 columnas en mobile, ciudades en blanco semibold y filete legal a todo el ancho (`.container` interno); Progress con el porcentaje al final del relleno (`--progress`) y modificador de kit `--stack`.
+
 ## Supuestos pendientes de confirmar
 
 - **Header:** fijo «por el momento» (variante `site-header--fixed`; pasa a fondo inverso con scroll, estado derivado de tokens porque el diseño no lo muestra); el círculo del chat es un adorno (confirmado); teléfono real +880 (123) 456 789 en header y off-canvas (confirmado); submenús de Home/Services/Blog con placeholder; ícono «Menu» = Lucide `layout-grid` (el del diseño tiene un cuadro girado). La Section reserva el espacio superior y define `scroll-padding-top`.
-- **Carrusel:** card destacada fija (Process Optimization), según lo aprobado; en el diseño mobile la card oscura es la primera visible, lo que sugiere destacar el slide activo. Testimonios de Jonathan Walker, Sophia Martinez y Michael Brooks, y servicios Financial Planning y Brand Strategy, con placeholder; los tres videos usan el único entregado.
+- **Carrusel:** se destaca el slide activo (decisión del equipo en la Etapa 4; reemplaza la card destacada fija). Testimonios de Jonathan Walker, Sophia Martinez y Michael Brooks, y servicios Financial Planning y Brand Strategy, con placeholder; los tres videos usan el único entregado.
 - **Modal de video:** no está en el diseño (fondo inverso, velo `--color-overlay`, fundido).
 - **Scroll Top** aparece al pasar media pantalla (`SHOW_AFTER = 0.5` en `main.js`); el diseño no lo indica.
 - **Estados** hover, active, disabled, switch encendido e input con error, derivados de los tokens existentes.
@@ -129,7 +150,7 @@ Encontrado en QA: la Card Project (siempre blanca) pierde su título cuando vive
 - **Card Pricing:** el último beneficio atenuado es solo énfasis visual; no se marcó como «no incluido» porque el diseño no lo aclara.
 - **Radios:** las cards del diseño miden ~20px de esquina; se usa `--radius-lg` (24px) en cards y `--radius-md` (16px) en sus fotos.
 - **Iconos de servicios, planes y FAQ:** Lucide equivalentes a los glifos del diseño, hasta tener los del cliente.
-- **Word List:** sin `pin` de ScrollTrigger (ver decisión en Grupo C); contraste AA no aplica a las palabras inactivas (contorno, relleno transparente) por ser el mismo efecto «fantasma» del diseño — excepción declarada en `word-list.stories.md`. Advisory, Growth y Strategy son cards placeholder; solo Finance sale del diseño.
+- **Word List:** sin `pin` de ScrollTrigger; las palabras inactivas (desenfocadas) no llegan a contraste AA a propósito — excepción declarada en `word-list.stories.md`. Advisory, Growth y Strategy son cards placeholder; solo Finance sale del diseño.
 - **Marquee:** badge del logo estático (el diseño no lo muestra en movimiento); duración del bucle (30s) no sale del diseño, se deriva para lectura cómoda.
 - **Footer:** «Pixenium» y «404 Not Error» (errores del export) se corrigen a «Esonix» y «Error 404»; enlaces de Utility Page, Follow Us y legales son placeholder.
 

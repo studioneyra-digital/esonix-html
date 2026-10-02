@@ -5,28 +5,28 @@
 
 ## Descripción
 
-Barra con etiqueta y porcentaje. Usa `<progress>` nativo.
+Barra con etiqueta y porcentaje alineado al final del relleno (`--progress`). Usa `<progress>` nativo.
 
 ## Snippets
 
 **Tres valores**
 
 ```html
-<div class="progress">
+<div class="progress" style="--progress: 90">
   <div class="progress__head">
     <label for="progress-operational">Operational assessment</label>
     <span aria-hidden="true">90%</span>
   </div>
   <progress class="progress__bar" id="progress-operational" value="90" max="100">90%</progress>
 </div>
-<div class="progress">
+<div class="progress" style="--progress: 76">
   <div class="progress__head">
     <label for="progress-consultation">Consultation & analysis</label>
     <span aria-hidden="true">76%</span>
   </div>
   <progress class="progress__bar" id="progress-consultation" value="76" max="100">76%</progress>
 </div>
-<div class="progress">
+<div class="progress" style="--progress: 85">
   <div class="progress__head">
     <label for="progress-strategic">Strategic interpretation</label>
     <span aria-hidden="true">85%</span>
@@ -43,6 +43,7 @@ Barra con etiqueta y porcentaje. Usa `<progress>` nativo.
 | `.progress__head` | Fila con la etiqueta (<label for>) y el porcentaje (aria-hidden) |
 | `.progress__bar` | El <progress> nativo: 3px de alto, relleno petróleo sobre pista clara |
 | `value / max` | El avance real (0–100); el relleno lo dibuja el navegador |
+| `style="--progress: 90"` | Mismo valor que value: lleva el porcentaje al final del relleno (sin ella, al final de la pista) |
 
 ## Tokens que consume
 
@@ -60,3 +61,5 @@ Barra con etiqueta y porcentaje. Usa `<progress>` nativo.
 ## Decisiones y excepciones
 
 - El diseño no muestra animación de llenado: el relleno aparece en su valor final. Una animación al entrar al viewport se decide en la Section.
+- El valor se escribe dos veces (`value` y `--progress`) porque CSS todavía no puede leer `attr(value)` como número en todos los navegadores objetivo; con JS se podría sincronizar, pero se prefirió que funcione sin JS.
+- Con valores bajos en una fila angosta la etiqueta pasa a dos líneas (el porcentaje no cruza el final del relleno). En el diseño las barras miden 400px y no ocurre.

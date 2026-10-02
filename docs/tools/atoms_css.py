@@ -334,7 +334,9 @@ __ICON_RULES__
 }
 
 /* Progress — <progress> nativo (valor y rol salen del navegador). La etiqueta es un <label for>;
-   el porcentaje visible es aria-hidden porque el valor ya se anuncia. */
+   el porcentaje visible es aria-hidden porque el valor ya se anuncia. Como en el diseño, el porcentaje
+   termina donde termina el relleno: --progress (0–100, el mismo valor del <progress>) recorta la fila
+   por la derecha. Sin --progress queda al final de la pista. */
 .progress {
   display: grid;
   gap: var(--spacing-3);
@@ -343,6 +345,7 @@ __ICON_RULES__
   display: flex;
   justify-content: space-between;
   gap: var(--spacing-4);
+  padding-inline-end: calc((100 - var(--progress, 100)) * 1%);
   color: var(--color-text-primary);
 }
 .progress__bar {
