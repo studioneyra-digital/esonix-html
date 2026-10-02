@@ -2,7 +2,8 @@
  * Esonix — JS del theme. Vanilla, cargado con `defer`.
  * Cada componente con comportamiento agrega su propio bloque comentado con su nombre.
  * Los efectos pesados (GSAP, Swiper) se inicializan con IntersectionObserver al entrar al
- * viewport, no en DOMContentLoaded (docs/stack.md, "Equivalente a islands").
+ * viewport, no en DOMContentLoaded (docs/stack.md, "Equivalente a islands"). Sus librerías tampoco
+ * van en el HTML: las pide requireLib() (ver "Carga diferida de librerías").
  */
 (function () {
   'use strict';
@@ -11,39 +12,88 @@
 
   /* ===== Utilidades compartidas ===== */
 
-  /* Inicializa `init(element)` recién cuando el elemento se acerca al viewport (una sola vez) */
-  function whenVisible(element, init) {
+  /* Inicializa `init(element)` recién cuando el elemento se acerca al viewport (una sola vez).
+     `margin`: distancia de anticipación (rootMargin); por defecto 200px. */
+  function whenVisible(element, init, margin) {
     if (!('IntersectionObserver' in window)) { init(element); return; }
     var observer = new IntersectionObserver(function (entries, obs) {
       if (!entries[0].isIntersecting) { return; }
       obs.disconnect();
       init(element);
-    }, { rootMargin: '200px' });
+    }, { rootMargin: margin || '200px' });
     observer.observe(element);
   }
-  window.Esonix = { whenVisible: whenVisible, lenis: null };
+
+  /* Carga diferida de librerías: GSAP + ScrollTrigger (≈ 46 KB gzip) y Swiper (≈ 44 KB) no van como
+     <script> en la página: con ellas en el HTML compiten por la red con la foto del hero y el LCP mobile
+     sube ~370 ms (Lighthouse, 4G simulada; Etapa 4 · Grupo D). Se piden cuando el primer componente
+     que las usa está a una pantalla de distancia (preloadLib), así llegan antes de que se vea; no en el
+     evento load, que en una conexión rápida cae antes del LCP y Lighthouse las cuenta igual. Si la
+     página ya las trae con <script> (el kit carga Swiper), se usan esas. Salen de la carpeta de main.js. */
+  var scriptBase = document.currentScript ? document.currentScript.src.replace(/[^/]*$/, '') : '';
+  var scriptPromises = {};
+  function loadScript(file) {
+    if (!scriptPromises[file]) {
+      scriptPromises[file] = new Promise(function (resolve, reject) {
+        var script = document.createElement('script');
+        script.src = scriptBase + file;
+        script.async = false; // las inyectadas juntas se ejecutan en orden (ScrollTrigger después de GSAP)
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+    return scriptPromises[file];
+  }
+  var libs = {
+    gsap: {
+      ready: function () { return Boolean(window.gsap && window.ScrollTrigger); },
+      files: ['gsap.min.js', 'ScrollTrigger.min.js'],
+      setup: function () {
+        window.gsap.registerPlugin(window.ScrollTrigger);
+        // Lenis mueve el scroll real: ScrollTrigger se actualiza con su evento (docs/stack.md)
+        if (window.Esonix.lenis) { window.Esonix.lenis.on('scroll', window.ScrollTrigger.update); }
+      }
+    },
+    swiper: {
+      ready: function () { return typeof window.Swiper === 'function'; },
+      files: ['swiper-bundle.min.js'],
+      setup: function () {}
+    }
+  };
+  var libPromises = {};
+  // Promesa que se cumple con la librería lista; se rechaza si no carga (el componente queda sin JS)
+  function requireLib(name) {
+    if (!libPromises[name]) {
+      var lib = libs[name];
+      var loading = lib.ready() ? Promise.resolve() : Promise.all(lib.files.map(loadScript));
+      libPromises[name] = loading.then(lib.setup);
+    }
+    return libPromises[name];
+  }
+  // Precarga con una pantalla de anticipación sobre el primer componente que la usa
+  var PRELOAD_MARGIN = '100% 0px';
+  function preloadLib(name, selector) {
+    var first = document.querySelector(selector);
+    if (!first) { return; }
+    whenVisible(first, function () { requireLib(name).catch(function () {}); }, PRELOAD_MARGIN);
+  }
+  window.Esonix = { whenVisible: whenVisible, requireLib: requireLib, lenis: null };
 
   /* ===== Scroll suave: Lenis + ScrollTrigger ===== */
   /* Lenis solo se carga en las páginas del sitio (no en /kit). Sin "reducir movimiento":
-     con la preferencia activa queda el scroll nativo. */
+     con la preferencia activa queda el scroll nativo. Lenis corre en su propio requestAnimationFrame
+     desde el inicio; GSAP llega después (carga diferida) y su setup suscribe ScrollTrigger al scroll
+     de Lenis. */
   function initSmoothScroll() {
     if (typeof window.Lenis !== 'function' || reducedMotion.matches) { return; }
     var lenis = new window.Lenis();
     window.Esonix.lenis = lenis;
-
-    if (window.gsap && window.ScrollTrigger) {
-      // ScrollTrigger escucha el scroll de Lenis y ambos comparten el ticker de GSAP
-      window.gsap.registerPlugin(window.ScrollTrigger);
-      lenis.on('scroll', window.ScrollTrigger.update);
-      window.gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-      window.gsap.ticker.lagSmoothing(0);
-    } else {
-      var raf = function (time) {
-        lenis.raf(time);
-        window.requestAnimationFrame(raf);
-      };
+    var raf = function (time) {
+      lenis.raf(time);
       window.requestAnimationFrame(raf);
-    }
+    };
+    window.requestAnimationFrame(raf);
   }
   initSmoothScroll();
 
@@ -238,8 +288,12 @@
      Copias: con el activo centrado se ven a la vez hasta 5 slides (3 enteros y 2 parciales) y el loop de
      Swiper necesita uno de repuesto para que no quede un hueco en un costado durante la transición. Si hay
      menos de MIN_SLIDES, main.js duplica la tanda completa (así el orden del loop no se altera); las copias
-     van con aria-hidden e inert, y el nombre «N of M», los dots y el destacado cuentan solo los originales. */
+     van con aria-hidden e inert, y el nombre «N of M», los dots y el destacado cuentan solo los originales.
+     Teclado: solo los slides enteros en pantalla entran en el orden de Tab. Con loop, que el foco deslice
+     el carrusel (scrollOnFocus de Swiper) reordena los slides en el DOM y el Tab no sale nunca (trampa de
+     foco); los controles de los demás van con tabindex="-1" y se llega a ellos con flechas, dots o teclado. */
   var MIN_SLIDES = 6;
+  var SLIDE_FOCUSABLE = 'a[href], button, input, select, textarea';
   var rootStyle = getComputedStyle(document.documentElement);
   function tokenRem(name) { return parseFloat(rootStyle.getPropertyValue(name)) || 0; }
 
@@ -287,15 +341,32 @@
       spaceBetween: gapSm,
       breakpointsBase: 'container',
       breakpoints: breakpoints,
+      watchSlidesProgress: true, // marca .swiper-slide-fully-visible (orden de Tab)
       keyboard: { enabled: true, onlyInViewport: true },
       a11y: {
         enabled: true,
+        scrollOnFocus: false,
         slideRole: 'group',
         itemRoleDescriptionMessage: 'slide',
         slideLabelMessage: '' // el nombre «N of M» lo pone main.js sin contar las copias
       }
     });
     var total = swiper.slides.length; // originales + copias
+
+    // Orden de Tab: tabindex="-1" (no inert) para que el lector de pantalla siga leyendo todos los slides.
+    // Supone que el contenido de los slides no trae tabindex propio.
+    var syncTabStops = function () {
+      swiper.slides.forEach(function (slide) {
+        if (slide.inert) { return; } // copias
+        var hidden = !slide.classList.contains('swiper-slide-fully-visible');
+        slide.querySelectorAll(SLIDE_FOCUSABLE).forEach(function (element) {
+          if (hidden) { element.setAttribute('tabindex', '-1'); } else { element.removeAttribute('tabindex'); }
+        });
+      });
+    };
+    swiper.on('transitionEnd', syncTabStops);
+    swiper.on('resize', syncTabStops);
+    syncTabStops();
     // Índice del original (0 a count - 1) que corresponde al slide activo, sea original o copia
     function activeOriginal() { return swiper.realIndex % count; }
 
@@ -362,8 +433,14 @@
 
   function initCarousels() {
     var carousels = document.querySelectorAll('[data-carousel]');
-    if (!carousels.length || typeof window.Swiper !== 'function') { return; }
-    carousels.forEach(function (carousel) { whenVisible(carousel, initCarousel); });
+    if (!carousels.length) { return; }
+    preloadLib('swiper', '[data-carousel]');
+    carousels.forEach(function (carousel) {
+      whenVisible(carousel, function () {
+        // Si Swiper no carga, queda el estado sin JS: fila con scroll horizontal nativo
+        requireLib('swiper').then(function () { initCarousel(carousel); }, function () {});
+      });
+    });
   }
   initCarousels();
 
@@ -410,11 +487,12 @@
   /* Sin pin: cada palabra dispara un ScrollTrigger propio cuando su centro cruza el centro del viewport
      (una franja angosta, 60%–40% de alto) y marca como activos a ella y a su Card Project (data-word-for
      = id de la card). onEnter cubre bajar, onEnterBack cubre subir; nunca hay dos activas a la vez porque
-     setActive() desactiva el resto. Sin «reducir movimiento» (o sin GSAP/ScrollTrigger) queda el estado
-     del markup, que ya trae Growth activa como el diseño. */
+     setActive() desactiva el resto. Con «reducir movimiento» (o si GSAP no carga) queda el estado del
+     markup, que ya trae Growth activa como el diseño; en ese caso GSAP ni siquiera se pide. */
   function initWordList() {
     var lists = document.querySelectorAll('[data-word-list]');
-    if (!lists.length || reducedMotion.matches || !window.gsap || !window.ScrollTrigger) { return; }
+    if (!lists.length || reducedMotion.matches) { return; }
+    preloadLib('gsap', '[data-word-list]');
 
     function initOne(list) {
       var words = Array.prototype.slice.call(list.querySelectorAll('.word-list__word'));
@@ -438,7 +516,11 @@
         });
       });
     }
-    lists.forEach(function (list) { whenVisible(list, initOne); });
+    lists.forEach(function (list) {
+      whenVisible(list, function () {
+        requireLib('gsap').then(function () { initOne(list); }, function () {});
+      });
+    });
   }
   initWordList();
 

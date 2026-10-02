@@ -21,7 +21,7 @@ def extract(sid):
 
 def for_kit(markup):
     # Rutas relativas a /kit y ids con sufijo: el kit ya tiene demos con los mismos ids (p. ej. Progress)
-    out = markup.replace('src="assets/', 'src="../assets/')
+    out = re.sub(r'\b(src|srcset)="assets/', r'\1="../assets/', markup)
     ids = re.findall(r'\bid="([^"]+)"', out)
     for i in ids:
         out = re.sub(r'(\b(?:id|for|aria-labelledby|aria-controls|aria-describedby|data-word-for)=")%s"' % re.escape(i), r'\g<1>%s-section"' % i, out)

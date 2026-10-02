@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mantener a mano: una <url> por página pública con su URL absoluta del dominio final.
+     /kit queda afuera (noindex). Reemplazar esonix.example al pasar a producción. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://esonix.example/</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
+</urlset>

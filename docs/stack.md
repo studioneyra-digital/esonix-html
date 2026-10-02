@@ -25,6 +25,8 @@ observer.observe(el);
 
 Importar/usar solo los plugins de GSAP que el componente necesite — nunca el bundle completo.
 
+**Las librerías tampoco van en el HTML** (Esonix, Etapa 4): GSAP + ScrollTrigger y Swiper no se cargan con `<script>`; `main.js` las pide con `window.Esonix.requireLib('gsap' | 'swiper')`, que inyecta los archivos vendorizados de `assets/js/` cuando el primer componente que las usa está a una pantalla de distancia (`rootMargin: '100% 0px'`) y resuelve una promesa al estar listas. Con ellas en el `<head>`/`defer` competían por la red con la foto del hero y el LCP mobile de Lighthouse no bajaba de 2.9 s; así queda en ~2.1 s. Solo Lenis (4 KB) y `main.js` van con `defer`. Si una página ya trae la librería por `<script>` (el kit carga Swiper), `requireLib` usa esa. Componente nuevo que necesite una librería pesada: sumarla al objeto `libs` de `main.js` y pedirla con `requireLib`, no con un `<script>`.
+
 ## Lenis + GSAP/ScrollTrigger
 
 - **Lenis** es el motor de scroll (smooth/inertia scroll); no anima nada por sí solo. **GSAP + ScrollTrigger** resuelve animaciones ligadas al scroll y pinning.

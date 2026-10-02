@@ -37,7 +37,7 @@ Site Footer + Marquee arriba, con la foto desenfocada (`--blur-photo`) y velo de
     </div>
     <p class="visually-hidden">Connect with us. Let's grow.</p>
     <div class="marquee__badge" aria-hidden="true">
-      <img class="marquee__badge-logo" src="assets/img/primary-logo.png" alt="" width="140" height="40">
+      <img class="marquee__badge-logo" src="assets/img/primary-logo.png" alt="" width="140" height="40" loading="lazy">
     </div>
   </div>
   <div class="container">

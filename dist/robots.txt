@@ -1,0 +1,6 @@
+# /kit no se bloquea acá: lleva <meta name="robots" content="noindex, nofollow">
+# y el buscador tiene que poder rastrearla para leerlo.
+User-agent: *
+Allow: /
+
+Sitemap: https://esonix.example/sitemap.xml

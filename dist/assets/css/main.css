@@ -2181,6 +2181,12 @@ html {
   inset: 0;
   z-index: -1;
 }
+/* El <picture> (recorte vertical bajo sm, foto entera desde sm) no genera caja: la img se mide contra
+   .hero__media, como si fuera hija directa. El recorte de la versión mobile está calculado para que, con
+   el mismo object-position, el encuadre sea el de la foto entera. */
+.hero__media picture {
+  display: contents;
+}
 .hero__media img {
   inline-size: 100%;
   block-size: 100%;

@@ -12,7 +12,10 @@ Foto a sangre con velo; texto + «Get Started»; Card Hero escalonada a la derec
 ```html
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__media">
-    <img src="assets/img/h1-hero-img.webp" alt="" width="1920" height="1000" fetchpriority="high">
+    <picture>
+      <source media="(max-width: 29.99rem)" srcset="assets/img/h1-hero-img-mobile.webp" width="800" height="1000">
+      <img src="assets/img/h1-hero-img.webp" alt="" width="1920" height="1000" fetchpriority="high">
+    </picture>
   </div>
   <div class="container-wide hero__top">
     <div class="hero__intro">
@@ -34,7 +37,7 @@ Foto a sangre con velo; texto + «Get Started»; Card Hero escalonada a la derec
     <div class="container-wide">
       <h1 class="hero__title" id="hero-title">
         <span class="hero__kicker">Expert Guidance for</span>
-        <span class="hero__headline">FutureGrowth</span>
+        <span class="hero__headline">Future<span class="visually-hidden"> </span>Growth</span>
       </h1>
     </div>
   </div>

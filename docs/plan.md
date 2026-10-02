@@ -10,7 +10,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ✅ Hecha (Grupos A, B y C) |
-| 4 · Sections + `index.html` | Las secciones de la home, responsive | ⏳ En curso (Grupos 0, A y B hechos, C en revisión; falta D) |
+| 4 · Sections + `index.html` | Las secciones de la home, responsive | ✅ Hecha (Grupos 0, A, B, C y D) |
 
 ## Reglas de cada etapa
 
@@ -103,14 +103,14 @@ Encontrado en QA: la Card Project (siempre blanca) pierde su título cuando vive
 - **Footer:** newsletter, Utility Page, Follow Us, Our Offices y barra legal.
 - **Modal de video:** `<dialog>` nativo; el iframe de `youtube-nocookie` se crea recién al hacer click, para no cargar YouTube al abrir la página.
 
-## Etapa 4 — Sections + `index.html` ⏳
+## Etapa 4 — Sections + `index.html` ✅
 
 - Las 11 secciones: Hero, What We Do, Services, Why Choose Us, Finance/Advisory/Growth/Strategy, Pricing, Testimonials, Team, FAQ, Blog y Footer; más **Stats** y **Logos** solo en mobile.
 - **Un solo `<h1>`** («Expert Guidance for FutureGrowth»); los títulos de sección son `<h2>` con tamaño `--text-h1` (≈ 48 px, lo que mide el diseño).
 - Precios anuales derivados del 30%: 27.9 / 34.9 / 41.9 (no inventados); el switch Monthly / Annually los intercambia.
 - Cambio de layout desktop → mobile en `lg` (1024 px). El diseño no muestra tamaños intermedios: tablet se infiere de los dos extremos.
 - `<head>` estándar de `seo.md` en la página (title, description, canonical, OG/Twitter, JSON-LD `Organization` y `WebSite`); `sitemap.xml` y `robots.txt`.
-- Imágenes con `<picture>` WebP, `width`/`height` explícitos, `loading="lazy"` salvo la del hero.
+- Imágenes WebP con `width`/`height` explícitos, `loading="lazy"` salvo las de arriba del pliegue; `<picture>` solo en el hero (recorte vertical para mobile, dirección de arte). JS pesado (GSAP, Swiper) cargado a demanda (`docs/stack.md`).
 - Sin animaciones de entrada (reveals): el diseño no las muestra. Se suman en una etapa aparte si se quieren.
 - Verificación final: capturas por breakpoint contra los PNG, Lighthouse sobre archivos servidos (LCP < 2.5 s, CLS < 0.1, INP < 200 ms) y reporte de lo que no se pudo igualar.
 
@@ -119,10 +119,10 @@ Se entrega en grupos, cada uno revisado antes del siguiente. Antes de construir 
 | Grupo | Contenido | Estado |
 |---|---|---|
 | 0 · Correcciones | Word List, Marquee, Footer y Progress contra el diseño a resolución real | ✅ Hecho |
-| A · Esqueleto + Hero + What We Do | `index.html` (`<head>` SEO, header fijo, `scroll-padding-top`, Scroll Top, scripts), sistema de layout (contenedor de 1320 y ancho de 1620, ritmo vertical), Hero, What We Do | 🔍 En revisión |
-| B · Services, Why Choose Us, Finance, Pricing | Carrusel con slide activo destacado, franja Card Feature sobre la foto, bloque Finance con fondo fijo, switch mensual/anual | ⬜ |
-| C · Stats, Testimonials, Team, Logos, FAQ, Blog, Footer | Stats y Logos solo mobile; card de equipo elevada con espacio reservado | ⬜ |
-| D · Cierre | `sitemap.xml`, `robots.txt`, Lighthouse, comparación por breakpoint, reporte de diferencias | ⬜ |
+| A · Esqueleto + Hero + What We Do | `index.html` (`<head>` SEO, header fijo, `scroll-padding-top`, Scroll Top, scripts), sistema de layout (contenedor de 1320 y ancho de 1620, ritmo vertical), Hero, What We Do | ✅ Hecho |
+| B · Services, Why Choose Us, Finance, Pricing | Carrusel con slide activo destacado, franja Card Feature sobre la foto, bloque Finance con fondo fijo, switch mensual/anual | ✅ Hecho |
+| C · Stats, Testimonials, Team, Logos, FAQ, Blog, Footer | Stats y Logos solo mobile; card de equipo elevada con espacio reservado | ✅ Hecho |
+| D · Cierre | `sitemap.xml`, `robots.txt`, Lighthouse, comparación por breakpoint, reporte de diferencias | ✅ Hecho (detalle y reporte en `plan-etapa-4.md`) |
 
 **Decisiones del equipo (Etapa 4):**
 - Dominio placeholder `https://esonix.example` para `canonical`, Open Graph y JSON-LD (reemplazar al pasar a producción).

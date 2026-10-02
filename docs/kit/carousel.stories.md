@@ -208,7 +208,7 @@ Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides
 
 ## Accesibilidad
 
-Región con `aria-roledescription="carousel"` y nombre; slides `role="group"` «N of M» (a11y de Swiper, `aria-live="polite"`). Flechas y dots son `<button>`; dot actual con `aria-current`. Sin autoplay; velocidad `--ease-slow` (0 con reduced motion). Sin JS: fila con scroll nativo.
+Región con `aria-roledescription="carousel"` y nombre; slides `role="group"` «N of M» (a11y de Swiper, `aria-live="polite"`). Flechas y dots son `<button>`; dot actual con `aria-current`. Tab solo entra en los slides enteros en pantalla (los demás, `tabindex="-1"`). Sin autoplay; velocidad `--ease-slow` (0 con reduced motion). Sin JS: fila con scroll nativo.
 
 ## Decisiones y excepciones
 
@@ -217,4 +217,5 @@ Región con `aria-roledescription="carousel"` y nombre; slides `role="group"` «
 - Copias: con el activo centrado se ven a la vez hasta 5 slides y el loop de Swiper necesita uno de repuesto; con 5 slides, al avanzar quedaba un hueco en el costado derecho que se llenaba de golpe al final de la transición. Si hay menos de 6, `main.js` duplica la tanda completa (no un solo slide, para no repetir uno dentro de la misma vuelta); las copias van con `aria-hidden` e `inert`, y el nombre «N of M», los dots y el destacado cuentan solo los originales. Reemplaza al truco anterior (`loopAdditionalSlides` + `loopFix`).
 - Testimonios: Jonathan Walker (cortado en el diseño), Sophia Martinez y Michael Brooks son placeholder, igual que dos de los cinco servicios. Los tres videos usan el único video entregado.
 - Dots: uno por slide original (el diseño muestra 6 para 6 testimonios); el activo es el slide centrado. Con copias, un dot lleva al ejemplar más cercano de ese slide.
+- Trampa de foco corregida en la Etapa 4 (Grupo D): con `loop`, el `scrollOnFocus` del módulo a11y de Swiper deslizaba el carrusel hacia el slide enfocado, el loop reordenaba los slides en el DOM y el siguiente Tab volvía a caer adentro, sin salir nunca (WCAG 2.1.2). Ahora `scrollOnFocus: false`, `watchSlidesProgress: true` y `main.js` sincroniza el `tabindex` con `.swiper-slide-fully-visible` en `transitionEnd` y `resize` (patrón de carrusel de la WAI-APG).
 - Swiper vendorizado (11.2.10) con su CSS `swiper-bundle.min.css`; no se usan sus flechas ni su paginación, sino los átomos del theme.

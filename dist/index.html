@@ -53,7 +53,8 @@
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/h1-hero-img.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/img/h1-hero-img-mobile.webp" as="image" fetchpriority="high" media="(max-width: 29.99rem)">
+  <link rel="preload" href="assets/img/h1-hero-img.webp" as="image" fetchpriority="high" media="(min-width: 30rem)">
   <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="assets/css/tokens/color.css">
@@ -150,7 +151,10 @@
     <!-- section:hero -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__media">
-        <img src="assets/img/h1-hero-img.webp" alt="" width="1920" height="1000" fetchpriority="high">
+        <picture>
+          <source media="(max-width: 29.99rem)" srcset="assets/img/h1-hero-img-mobile.webp" width="800" height="1000">
+          <img src="assets/img/h1-hero-img.webp" alt="" width="1920" height="1000" fetchpriority="high">
+        </picture>
       </div>
       <div class="container-wide hero__top">
         <div class="hero__intro">
@@ -172,7 +176,7 @@
         <div class="container-wide">
           <h1 class="hero__title" id="hero-title">
             <span class="hero__kicker">Expert Guidance for</span>
-            <span class="hero__headline">FutureGrowth</span>
+            <span class="hero__headline">Future<span class="visually-hidden"> </span>Growth</span>
           </h1>
         </div>
       </div>
@@ -877,7 +881,7 @@
       </div>
       <p class="visually-hidden">Connect with us. Let's grow.</p>
       <div class="marquee__badge" aria-hidden="true">
-        <img class="marquee__badge-logo" src="assets/img/primary-logo.png" alt="" width="140" height="40">
+        <img class="marquee__badge-logo" src="assets/img/primary-logo.png" alt="" width="140" height="40" loading="lazy">
       </div>
     </div>
     <div class="container">
@@ -942,7 +946,7 @@
     <div class="offcanvas__panel" role="dialog" aria-modal="true" aria-label="Menu" data-lenis-prevent>
       <div class="offcanvas__head">
         <a class="offcanvas__brand" href="./">
-          <img class="brand-logo" src="assets/img/secondary-logo.png" alt="Esonix" width="140" height="40">
+          <img class="brand-logo" src="assets/img/secondary-logo.png" alt="Esonix" width="140" height="40" loading="lazy">
         </a>
         <button type="button" class="offcanvas__close" data-offcanvas-close>
           Close
@@ -1027,9 +1031,6 @@
   </button>
 
   <script src="assets/js/lenis.min.js" defer></script>
-  <script src="assets/js/gsap.min.js" defer></script>
-  <script src="assets/js/ScrollTrigger.min.js" defer></script>
-  <script src="assets/js/swiper-bundle.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>

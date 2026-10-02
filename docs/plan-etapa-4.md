@@ -66,7 +66,7 @@ Plan original:
 - Switch Monthly/Annually con precios anuales derivados del 30 %: 27.9 / 34.9 / 41.9.
 
 ### Grupo C · Stats, Testimonials, Team, Logos, FAQ, Blog y Footer
-**Estado: en revisión.** Hecho: las siete secciones (footer con marcador `section:footer`, fuera de `<main>`), comparadas contra los PNG a 1920 y 480 px y revisadas a 1280, 1024, 768 y 390 px; 13 fichas de Sections en el kit.
+**Estado: hecho (`29b53b0`).** Hecho: las siete secciones (footer con marcador `section:footer`, fuera de `<main>`), comparadas contra los PNG a 1920 y 480 px y revisadas a 1280, 1024, 768 y 390 px; 13 fichas de Sections en el kit.
 - **Stats** y **Logos**: solo mobile (`display: none` desde lg). Indicador de 3 cuadritos (`.stats__level`) y `.logo-grid` (filetes = fondo de la grilla + gap de 1px) viven en el bloque de Sections.
 - **Testimonials:** `data-surface="inverse"`, foto con `--blur-photo` + velo inverso al 85%, radio en las 4 esquinas en mobile y solo arriba desde lg (así los PNG); orden del diseño (Isabella tercera, `data-carousel-start="2"`), también en el kit.
 - **Team:** `.section-head--split` sin acciones (columnas explícitas; las acciones crean una 3.ª columna implícita); la grilla reserva con padding los 20px de la card elevada.
@@ -81,6 +81,26 @@ Plan original:
 - Footer completo con el Marquee encima.
 
 ### Grupo D · Cierre
+**Estado: hecho y aprobado.** Hecho:
+- **SEO técnico:** `dist/sitemap.xml` (solo la home; `/kit` afuera) y `dist/robots.txt` con el sitemap. `/kit` **no** se bloquea en robots: lleva `noindex, nofollow` y el buscador tiene que poder rastrearla para leerlo. El `<head>` de la página ya cumplía `seo.md` desde el Grupo A.
+- **Imágenes:** todas con `width`/`height` reales (verificado contra el archivo), `lazy` salvo lo de arriba del pliegue (logo del header, hero, card del hero); se sumó `lazy` al logo del footer y al badge del Marquee, que se pedían al inicio. Hero con dirección de arte: `<picture>` con `h1-hero-img-mobile.webp` (recorte 800×1000 desde x = 672, calculado para que con el mismo `object-position` el encuadre sea idéntico) bajo `sm` y precarga por `media`; `.hero__media picture { display: contents }`.
+- **Performance:** GSAP + ScrollTrigger y Swiper salen del HTML y los carga `main.js` a demanda (`requireLib`, una pantalla antes de su componente; ver `docs/stack.md`). Lighthouse sobre HTTP/2 + gzip (como un hosting real): **mobile LCP 2.03–2.20 s, CLS 0, TBT ≤ 84 ms, performance 98–99** (antes 2.93 s); **desktop LCP 0.53 s, performance 100**. INP no se mide en una navegación de laboratorio; TBT ≈ 0 es su indicador. Sin desplazamientos de layout al llegar a los carruseles con 4G lenta emulada. Nota: con el `http.server` de Python (sin compresión, HTTP/1.1) el LCP mobile da ~5.8 s; no es representativo.
+- **Accesibilidad:** **trampa de foco corregida** en el carrusel de Testimonials (WCAG 2.1.2, nivel A): con `loop`, el `scrollOnFocus` de Swiper deslizaba el carrusel hacia el slide enfocado, el loop reordenaba el DOM y el Tab no salía nunca. Ahora solo los slides enteros en pantalla entran en el orden de Tab (ficha del Carousel). `h1` con espacio para lectores (`Future<span class="visually-hidden"> </span>Growth`; se anunciaba «FutureGrowth»). Contraste del número activo en el nav del kit (4.36 → hereda el color del enlace). axe en la página: solo adornos `aria-hidden` (ver abajo). Teclado a 1440/1024/768/390: orden lógico, foco visible, skip link funcional, nada tapado por el header fijo. Árbol de accesibilidad: un `h1`, sin saltos de nivel, landmarks con nombre.
+- **Comparación final** contra los PNG (página ensamblada lado a lado, desktop 1920 y mobile 480): alto total desktop 10 181 px contra 10 162 del diseño; mobile 17 096 contra 16 412.
+- `sections_kit.py` ahora reescribe también `srcset` a `../assets/`.
+
+**Reporte: lo que no se pudo (o no se quiso) igualar**
+- **Tipografía:** títulos de sección con `--text-h1` = 36 px en mobile contra ≈ 32 px del diseño (medido en 5 secciones; explica buena parte de los 684 px extra en mobile) y 48 px en desktop contra ≈ 50; cifras de Stats a 36 px contra ≈ 42. Decisión del equipo: se mantiene el token.
+- **Ritmo:** 192 px entre secciones (96 + 96) contra ≈ 170 del diseño. Acordeón del FAQ ~50 px más corto que la Card CTA a 1920. Imagen de Card Post 4:3 (diseño ≈ 1.38).
+- **Color:** velo de Finance más denso que el diseño, para que haya contraste. Logos de partners en negro (el diseño, en gris). Gris de cuerpo neutral-600 en vez del #727979 del diseño (no pasa AA).
+- **Iconos:** Lucide en lugar de los glifos propios del diseño (servicios, planes, FAQ, «Menu»).
+- **Contraste exento por decorativo** (`aria-hidden`, WCAG 1.4.3 «pure decoration»): números «01/03» de Card Feature (1.63:1), marca de agua «Works» en mobile, palabras inactivas del Word List y texto del Marquee.
+- **Contenido placeholder:** Financial Planning y Brand Strategy (servicios), Michael Brooks, Sophia Martinez y Jonathan Walker (testimonios; los tres videos usan el único entregado), respuestas 1, 3 y 4 del FAQ, cards Advisory / Growth / Strategy del Word List, enlaces del footer y submenús del header.
+- **Artefactos del export que no se replican:** encabezado del Blog duplicado, «Pixenium», «404 Not Error», barra repetida en What We Do mobile, ítem repetido en Premium mobile y los cuatro títulos «Corporate Finance Management» de Works mobile.
+- **Kit (no afecta a la página):** axe marca duplicados de landmarks y un salto de encabezados porque el kit muestra las Sections reales (con su `h1`) dentro de su propia estructura, y falsos positivos de contraste sobre la foto del hero.
+- **Pendiente del usuario:** pase con lector de pantalla real (NVDA + Firefox o VoiceOver); no se pudo hacer desde el entorno de Claude Code. Validar el JSON-LD en Rich Results Test y repetir Lighthouse en el hosting final, con el dominio real en lugar de `esonix.example`.
+
+Plan original:
 - `sitemap.xml` y `robots.txt`; `/kit` queda con `noindex` y fuera del sitemap.
 - Imágenes con `<picture>` WebP, `width`/`height` explícitos y `loading="lazy"`, salvo la del hero (`eager` + `fetchpriority="high"`).
 - Lighthouse sobre archivos servidos: LCP < 2.5 s, CLS < 0.1, INP < 200 ms.

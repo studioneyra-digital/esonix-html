@@ -3173,7 +3173,7 @@
               <li><code>Card Service y Card Testimonial (moléculas)</code></li>
             </ul>
           </div>
-          <p class="kit-note"><strong>Accesibilidad:</strong> La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (rol del módulo a11y de Swiper; el nombre lo pone <code>main.js</code> sin contar las copias del loop, que van con <code>aria-hidden</code> e <code>inert</code>; Swiper además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Con el foco en un slide que no se ve, Swiper lo trae a la vista. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.</p>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (rol del módulo a11y de Swiper; el nombre lo pone <code>main.js</code> sin contar las copias del loop, que van con <code>aria-hidden</code> e <code>inert</code>; Swiper además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Teclado: solo los controles de los slides enteros en pantalla entran en el orden de Tab; los de los demás llevan <code>tabindex="-1"</code> (no <code>inert</code>: el lector de pantalla sigue leyendo todos los slides) y se llega a ellos con flechas, dots o las flechas del teclado. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.</p>
         </section>
 
         <section class="kit-card" id="accordion" aria-labelledby="accordion-title">
@@ -3620,7 +3620,10 @@
             <div class="kit-demo kit-demo--section" lang="en">
               <section class="hero" aria-labelledby="hero-title-section">
                 <div class="hero__media">
-                  <img src="../assets/img/h1-hero-img.webp" alt="" width="1920" height="1000" fetchpriority="high">
+                  <picture>
+                    <source media="(max-width: 29.99rem)" srcset="../assets/img/h1-hero-img-mobile.webp" width="800" height="1000">
+                    <img src="../assets/img/h1-hero-img.webp" alt="" width="1920" height="1000" fetchpriority="high">
+                  </picture>
                 </div>
                 <div class="container-wide hero__top">
                   <div class="hero__intro">
@@ -3642,7 +3645,7 @@
                   <div class="container-wide">
                     <h1 class="hero__title" id="hero-title-section">
                       <span class="hero__kicker">Expert Guidance for</span>
-                      <span class="hero__headline">FutureGrowth</span>
+                      <span class="hero__headline">Future<span class="visually-hidden"> </span>Growth</span>
                     </h1>
                   </div>
                 </div>
@@ -4871,7 +4874,7 @@
                   </div>
                   <p class="visually-hidden">Connect with us. Let's grow.</p>
                   <div class="marquee__badge" aria-hidden="true">
-                    <img class="marquee__badge-logo" src="../assets/img/primary-logo.png" alt="" width="140" height="40">
+                    <img class="marquee__badge-logo" src="../assets/img/primary-logo.png" alt="" width="140" height="40" loading="lazy">
                   </div>
                 </div>
                 <div class="container">
