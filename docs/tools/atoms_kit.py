@@ -150,13 +150,14 @@ A.append(dict(id='eyebrow', title='Eyebrow',
     dict(label='Sobre fondo oscuro (<code>--center --inverse</code>)', surface='inverse', html=d('''
       <p class="eyebrow eyebrow--center eyebrow--inverse">Client Feedback</p>''')),
   ],
-  rows=[('.eyebrow', 'Texto de 14px medium con un cuadrito antes'),
+  rows=[('.eyebrow', 'Texto de 16px medium con un cuadrito antes'),
         ('.eyebrow--center', 'Centra el bloque y repite el cuadrito después'),
         ('.eyebrow--inverse', 'Texto y cuadrito amarillos (solo sobre fondo oscuro)')],
-  tokens=['--color-text-primary / -highlight', '--text-sm', '--weight-medium', '--leading-snug', '--spacing-1 / -2'],
+  tokens=['--color-text-primary / -highlight', '--text-body', '--weight-medium', '--leading-snug', '--spacing-1 / -2'],
   a11y='Es un <code>&lt;p&gt;</code>, no un encabezado: no altera la jerarquía h1→h2→h3. El cuadrito es CSS puro, sin ruido para lectores de pantalla.',
   a11y_md='`<p>`, no encabezado: no altera la jerarquía. El cuadrito es CSS puro.',
-  decisions=['El cuadrito mide 6px (1.5 × `--spacing-1`) porque así lo muestra el diseño; sale de la escala por cálculo.']))
+  decisions=['El cuadrito mide 6px (1.5 × `--spacing-1`) porque así lo muestra el diseño; sale de la escala por cálculo.',
+             'Texto de 16px (`--text-body`): medido en los PNG a resolución real (Etapa 4, Grupo B), los cuatro eyebrows de la home miden 1,16 veces lo que medían con `--text-sm`, tanto en desktop como en mobile.']))
 
 A.append(dict(id='badge', title='Badge',
   desc='Etiqueta translúcida sobre una foto: el rol de los miembros del equipo y la fecha de los posts. El velo es el <code>--color-overlay</code> del theme (petróleo oscuro al 65%), así el texto blanco se lee sobre cualquier foto. <code>--marker</code> suma el cuadrito amarillo.',

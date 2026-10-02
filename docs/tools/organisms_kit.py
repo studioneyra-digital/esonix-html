@@ -249,9 +249,9 @@ def testimonial_card(kind, img, name, role, quote):
         '  </div>',
         '</figure>'])
 
-def carousel(cid, label, slides, dots=None):
+def carousel(cid, label, slides, dots=None, attrs=''):
     items = '\n'.join('\n'.join(['    <div class="swiper-slide carousel__slide">', textwrap.indent(s, '      '), '    </div>']) for s in slides)
-    out = ['<div class="carousel" id="%s" data-carousel role="region" aria-roledescription="carousel" aria-label="%s">' % (cid, label),
+    out = ['<div class="carousel" id="%s" data-carousel%s role="region" aria-roledescription="carousel" aria-label="%s">' % (cid, attrs, label),
            '  <div class="swiper carousel__viewport">',
            '    <div class="swiper-wrapper">',
            textwrap.indent(items, '  '),
@@ -296,24 +296,28 @@ def video_modal():
         '</dialog>'])
 
 O.append(dict(id='carousel', title='Carousel',
-  desc='Base de Swiper para los carruseles de la home: loop, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.',
-  desc_md='Base de Swiper (loop, arrastre, teclado) con 1/2/3 slides según el ancho del carrusel (48 y 64rem, container). Los vecinos sangran fuera; la Section recorta con `overflow-x: clip`. Flechas vinculadas por `aria-controls` (en cualquier lugar) o dots generados por `main.js`.',
-  blocks=[dict(label='Services: flechas y card destacada fija', mods='bleed bleed-arrows', html=arrows('carousel-services', 'service') + '\n' + carousel('carousel-services', 'Services', [service_card(*s) for s in SERVICES])),
-          dict(label='Testimonials: dots, sobre fondo oscuro', mods='bleed', surface='inverse', html=carousel('carousel-testimonials', 'Client stories', [testimonial_card(*t) for t in TESTIMONIALS], dots='Show story'))],
+  desc='Base de Swiper para los carruseles de la home: loop con el slide activo <strong>centrado</strong>, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y destaca el slide activo (<code>data-carousel-highlight</code>); Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.',
+  desc_md='Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides según el ancho del carrusel (48 y 64rem, container). Los vecinos sangran fuera; la Section recorta con `overflow-x: clip`. Flechas vinculadas por `aria-controls` (en cualquier lugar) o dots generados por `main.js`. `data-carousel-highlight` destaca el slide activo; `data-carousel-start` / `-start-wide` eligen el inicial.',
+  blocks=[dict(label='Services: flechas y slide activo destacado', mods='bleed bleed-arrows', html=arrows('carousel-services', 'service') + '\n' + carousel('carousel-services', 'Services', [service_card(*s) for s in SERVICES], attrs=' data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1"')),
+          dict(label='Testimonials: dots, sobre fondo oscuro', mods='bleed', surface='inverse', html=carousel('carousel-testimonials', 'Client stories', [testimonial_card(*t) for t in TESTIMONIALS], dots='Show story', attrs=' data-carousel-start="2"'))],
   rows=[('.carousel + data-carousel + id', 'Contenedor (container: carousel); main.js lo inicia al acercarse al viewport'),
         ('role="region" aria-roledescription="carousel" aria-label', 'Región con nombre propio («Services», «Client stories»)'),
         ('.swiper.carousel__viewport / .swiper-wrapper', 'Estructura de Swiper; el viewport deja ver los slides vecinos'),
         ('.swiper-slide.carousel__slide', 'Un slide; iguala la altura de las cards'),
         ('.carousel__arrows', 'Fila de flechas (Icon Button); puede vivir fuera del carrusel'),
         ('data-carousel-prev / data-carousel-next + aria-controls', 'Flechas: aria-controls apunta al id del carrusel'),
-        ('.dots + data-carousel-dots="Show story"', 'Contenedor de los dots: main.js crea un botón por slide con ese prefijo de nombre')],
+        ('.dots + data-carousel-dots="Show story"', 'Contenedor de los dots: main.js crea un botón por slide original con ese prefijo de nombre'),
+        ('data-carousel-start="2"', 'Slide inicial (índice desde 0; por defecto 0)'),
+        ('data-carousel-start-wide="1"', 'Slide inicial cuando el carrusel mide 64rem o más (3 por vista); si falta, vale data-carousel-start'),
+        ('data-carousel-highlight', 'La card del slide activo recibe data-surface="brand" y las demás lo pierden; el markup trae destacada la inicial (estado sin JS)')],
   tokens=['--spacing-5 / -6 (separación)', '--spacing-9', '--ease-slow (velocidad)', 'Icon Button y Pagination Dots (átomos)', 'Card Service y Card Testimonial (moléculas)'],
-  a11y='La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (módulo a11y de Swiper, que además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Con el foco en un slide que no se ve, Swiper lo trae a la vista. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.',
+  a11y='La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (rol del módulo a11y de Swiper; el nombre lo pone <code>main.js</code> sin contar las copias del loop, que van con <code>aria-hidden</code> e <code>inert</code>; Swiper además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Con el foco en un slide que no se ve, Swiper lo trae a la vista. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.',
   a11y_md='Región con `aria-roledescription="carousel"` y nombre; slides `role="group"` «N of M» (a11y de Swiper, `aria-live="polite"`). Flechas y dots son `<button>`; dot actual con `aria-current`. Sin autoplay; velocidad `--ease-slow` (0 con reduced motion). Sin JS: fila con scroll nativo.',
   decisions=['Slides por vista según el ancho del carrusel (`breakpointsBase: container`), igual que el header: con el container de Bootstrap, 3 slides desde 1200px de viewport y 2 entre 768 y 1199px. El diseño solo muestra 1920 (3) y 480px (1). En la columna del kit a 1440px se ven 2.',
-             'Card destacada fija (Process Optimization), según la decisión aprobada. Ojo: en el diseño mobile la card oscura es la primera visible (Marketing Guidance), lo que sugeriría que se destaca el slide activo. Pendiente de confirmar.',
+             'Slide activo centrado y destacado (decisión del usuario en la Etapa 4; reemplaza a la card destacada fija): en desktop el diseño muestra la oscura al centro con dos enteras y dos parciales a los costados; en mobile, la oscura es la única visible. Services arranca en Marketing Guidance en mobile y en Process Optimization con 3 por vista, como el diseño; Testimonials, en el tercer slide (el diseño marca el tercer dot).',
+             'Copias: con el activo centrado se ven a la vez hasta 5 slides y el loop de Swiper necesita uno de repuesto; con 5 slides, al avanzar quedaba un hueco en el costado derecho que se llenaba de golpe al final de la transición. Si hay menos de 6, `main.js` duplica la tanda completa (no un solo slide, para no repetir uno dentro de la misma vuelta); las copias van con `aria-hidden` e `inert`, y el nombre «N of M», los dots y el destacado cuentan solo los originales. Reemplaza al truco anterior (`loopAdditionalSlides` + `loopFix`).',
              'Testimonios: Jonathan Walker (cortado en el diseño), Sophia Martinez y Michael Brooks son placeholder, igual que dos de los cinco servicios. Los tres videos usan el único video entregado.',
-             'Dots: uno por slide (el diseño muestra 6 para 6 testimonios); el activo es el primer slide visible.',
+             'Dots: uno por slide original (el diseño muestra 6 para 6 testimonios); el activo es el slide centrado. Con copias, un dot lleva al ejemplar más cercano de ese slide.',
              'Swiper vendorizado (11.2.10) con su CSS `swiper-bundle.min.css`; no se usan sus flechas ni su paginación, sino los átomos del theme.']))
 
 O.append(dict(id='accordion', title='Accordion',

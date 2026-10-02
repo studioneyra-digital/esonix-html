@@ -1,5 +1,7 @@
 # Traspaso — Etapa 4, para retomar en otra sesión
 
+> **Actualización:** el Grupo A se commiteó (`6b1c63f`) y el Grupo B está **construido y en revisión, sin commit** (estado y decisiones en `docs/plan-etapa-4.md`, Grupo B). Lo que sigue describe el punto de partida del B y queda como referencia del análisis; borrar este archivo al commitear el Grupo B.
+
 Documento temporal: describe dónde quedó el trabajo el 2026-10-02 y cómo seguir. Se puede borrar al cerrar el Grupo B. El plan completo de la etapa está en `docs/plan-etapa-4.md`; el estado general, en `docs/plan.md`.
 
 ## 1. Estado del repo

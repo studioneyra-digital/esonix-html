@@ -40,7 +40,7 @@ Card de servicio: foto, ícono, título y texto. `data-surface="brand"` la desta
 |---|---|
 | `.card-service` | Card blanca con sombra suave; ocupa el alto de su contenedor |
 | `.card-service__media` | Foto 5:3 con esquinas redondeadas (la fuente es 1500×900) |
-| `.card-service__head / __icon / __title` | Fila con el ícono de 32px y el título (h3) al lado |
+| `.card-service__head / __icon / __title` | Ícono de 40px y título (h3); __head se disuelve en la grilla de __body y el párrafo queda sangrado bajo el título |
 | `data-surface="brand"` | Versión destacada: fondo petróleo, texto claro, ícono amarillo y foco amarillo |
 
 ## Tokens que consume
@@ -59,5 +59,6 @@ Foto decorativa; título `h3`; ícono `aria-hidden`; la card no es un enlace.
 
 ## Decisiones y excepciones
 
+- Texto sangrado bajo el título e ícono de 40px, medidos en el PNG a resolución real (Etapa 4, Grupo B); antes el párrafo arrancaba bajo el ícono.
 - Los iconos del diseño son glifos propios de cada servicio; aquí se usan Lucide equivalentes (target, trending-up, chart-pie, users, lightbulb) hasta tener los del cliente.
 - Las cards del diseño tienen esquinas de ~20px: se usa `--radius-lg` (24px) para cards y `--radius-md` (16px) para sus fotos.

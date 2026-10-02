@@ -16,4 +16,7 @@
   /* Desenfoque de texto en segundo plano (palabras inactivas del Word List): se lee la forma de la palabra
      pero no compite con la activa, que queda nítida. */
   --blur-text: 4px;
+  /* Desenfoque de una foto de fondo (bloque Finance): se reconoce la escena pero no compite con el texto.
+     Va en filter sobre la capa de la imagen, nunca en backdrop-filter. */
+  --blur-photo: 12px;
 }

@@ -5,18 +5,18 @@
 
 ## Descripción
 
-Base de Swiper (loop, arrastre, teclado) con 1/2/3 slides según el ancho del carrusel (48 y 64rem, container). Los vecinos sangran fuera; la Section recorta con `overflow-x: clip`. Flechas vinculadas por `aria-controls` (en cualquier lugar) o dots generados por `main.js`.
+Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides según el ancho del carrusel (48 y 64rem, container). Los vecinos sangran fuera; la Section recorta con `overflow-x: clip`. Flechas vinculadas por `aria-controls` (en cualquier lugar) o dots generados por `main.js`. `data-carousel-highlight` destaca el slide activo; `data-carousel-start` / `-start-wide` eligen el inicial.
 
 ## Snippets
 
-**Services: flechas y card destacada fija**
+**Services: flechas y slide activo destacado**
 
 ```html
 <div class="carousel__arrows">
   <button type="button" class="icon-btn" data-carousel-prev aria-controls="carousel-services" aria-label="Previous service"><span class="icon icon--arrow-left" aria-hidden="true"></span></button>
   <button type="button" class="icon-btn" data-carousel-next aria-controls="carousel-services" aria-label="Next service"><span class="icon icon--arrow-right" aria-hidden="true"></span></button>
 </div>
-<div class="carousel" id="carousel-services" data-carousel role="region" aria-roledescription="carousel" aria-label="Services">
+<div class="carousel" id="carousel-services" data-carousel data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1" role="region" aria-roledescription="carousel" aria-label="Services">
   <div class="swiper carousel__viewport">
     <div class="swiper-wrapper">
       <div class="swiper-slide carousel__slide">
@@ -87,7 +87,7 @@ Base de Swiper (loop, arrastre, teclado) con 1/2/3 slides según el ancho del ca
 **Testimonials: dots, sobre fondo oscuro**
 
 ```html
-<div class="carousel" id="carousel-testimonials" data-carousel role="region" aria-roledescription="carousel" aria-label="Client stories">
+<div class="carousel" id="carousel-testimonials" data-carousel data-carousel-start="2" role="region" aria-roledescription="carousel" aria-label="Client stories">
   <div class="swiper carousel__viewport">
     <div class="swiper-wrapper">
       <div class="swiper-slide carousel__slide">
@@ -193,7 +193,10 @@ Base de Swiper (loop, arrastre, teclado) con 1/2/3 slides según el ancho del ca
 | `.swiper-slide.carousel__slide` | Un slide; iguala la altura de las cards |
 | `.carousel__arrows` | Fila de flechas (Icon Button); puede vivir fuera del carrusel |
 | `data-carousel-prev / data-carousel-next + aria-controls` | Flechas: aria-controls apunta al id del carrusel |
-| `.dots + data-carousel-dots="Show story"` | Contenedor de los dots: main.js crea un botón por slide con ese prefijo de nombre |
+| `.dots + data-carousel-dots="Show story"` | Contenedor de los dots: main.js crea un botón por slide original con ese prefijo de nombre |
+| `data-carousel-start="2"` | Slide inicial (índice desde 0; por defecto 0) |
+| `data-carousel-start-wide="1"` | Slide inicial cuando el carrusel mide 64rem o más (3 por vista); si falta, vale data-carousel-start |
+| `data-carousel-highlight` | La card del slide activo recibe data-surface="brand" y las demás lo pierden; el markup trae destacada la inicial (estado sin JS) |
 
 ## Tokens que consume
 
@@ -210,7 +213,8 @@ Región con `aria-roledescription="carousel"` y nombre; slides `role="group"` «
 ## Decisiones y excepciones
 
 - Slides por vista según el ancho del carrusel (`breakpointsBase: container`), igual que el header: con el container de Bootstrap, 3 slides desde 1200px de viewport y 2 entre 768 y 1199px. El diseño solo muestra 1920 (3) y 480px (1). En la columna del kit a 1440px se ven 2.
-- Card destacada fija (Process Optimization), según la decisión aprobada. Ojo: en el diseño mobile la card oscura es la primera visible (Marketing Guidance), lo que sugeriría que se destaca el slide activo. Pendiente de confirmar.
+- Slide activo centrado y destacado (decisión del usuario en la Etapa 4; reemplaza a la card destacada fija): en desktop el diseño muestra la oscura al centro con dos enteras y dos parciales a los costados; en mobile, la oscura es la única visible. Services arranca en Marketing Guidance en mobile y en Process Optimization con 3 por vista, como el diseño; Testimonials, en el tercer slide (el diseño marca el tercer dot).
+- Copias: con el activo centrado se ven a la vez hasta 5 slides y el loop de Swiper necesita uno de repuesto; con 5 slides, al avanzar quedaba un hueco en el costado derecho que se llenaba de golpe al final de la transición. Si hay menos de 6, `main.js` duplica la tanda completa (no un solo slide, para no repetir uno dentro de la misma vuelta); las copias van con `aria-hidden` e `inert`, y el nombre «N of M», los dots y el destacado cuentan solo los originales. Reemplaza al truco anterior (`loopAdditionalSlides` + `loopFix`).
 - Testimonios: Jonathan Walker (cortado en el diseño), Sophia Martinez y Michael Brooks son placeholder, igual que dos de los cinco servicios. Los tres videos usan el único video entregado.
-- Dots: uno por slide (el diseño muestra 6 para 6 testimonios); el activo es el primer slide visible.
+- Dots: uno por slide original (el diseño muestra 6 para 6 testimonios); el activo es el slide centrado. Con copias, un dot lleva al ejemplar más cercano de ese slide.
 - Swiper vendorizado (11.2.10) con su CSS `swiper-bundle.min.css`; no se usan sus flechas ni su paginación, sino los átomos del theme.

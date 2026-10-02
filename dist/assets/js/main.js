@@ -228,10 +228,18 @@
   initOffcanvas();
 
   /* ===== Carousel (Swiper) ===== */
-  /* Cada [data-carousel] se inicia al acercarse al viewport. Flechas: botones [data-carousel-prev] /
-     [data-carousel-next] con aria-controls = id del carrusel, en cualquier lugar de la página. Dots: un
-     .dots[data-carousel-dots] dentro del carrusel; main.js crea un botón por slide y el valor del
-     atributo es el prefijo de su nombre («Show story» → «Show story 3»). */
+  /* Cada [data-carousel] se inicia al acercarse al viewport. El slide activo va centrado. Flechas: botones
+     [data-carousel-prev] / [data-carousel-next] con aria-controls = id del carrusel, en cualquier lugar de
+     la página. Dots: un .dots[data-carousel-dots] dentro del carrusel; main.js crea un botón por slide y
+     el valor del atributo es el prefijo de su nombre («Show story» → «Show story 3»).
+     Slide inicial: data-carousel-start (índice desde 0; por defecto 0) y, si el carrusel mide 64rem o más
+     (3 por vista), data-carousel-start-wide. data-carousel-highlight: la card del slide activo recibe
+     data-surface="brand" y las demás lo pierden (el markup trae destacada la inicial, el estado sin JS).
+     Copias: con el activo centrado se ven a la vez hasta 5 slides (3 enteros y 2 parciales) y el loop de
+     Swiper necesita uno de repuesto para que no quede un hueco en un costado durante la transición. Si hay
+     menos de MIN_SLIDES, main.js duplica la tanda completa (así el orden del loop no se altera); las copias
+     van con aria-hidden e inert, y el nombre «N of M», los dots y el destacado cuentan solo los originales. */
+  var MIN_SLIDES = 6;
   var rootStyle = getComputedStyle(document.documentElement);
   function tokenRem(name) { return parseFloat(rootStyle.getPropertyValue(name)) || 0; }
 
@@ -245,9 +253,34 @@
     breakpoints[48 * rem] = { slidesPerView: 2, spaceBetween: gapMd };
     breakpoints[64 * rem] = { slidesPerView: 3, spaceBetween: gapMd };
 
+    // Nombre de cada slide antes de copiar: «N of M» sobre los originales (reemplaza al del módulo a11y)
+    var wrapper = viewport.querySelector('.swiper-wrapper');
+    var originals = Array.prototype.slice.call(wrapper.children);
+    var count = originals.length;
+    originals.forEach(function (slide, index) {
+      slide.setAttribute('aria-label', (index + 1) + ' of ' + count);
+    });
+    if (count > 1 && count < MIN_SLIDES) {
+      originals.forEach(function (slide) {
+        var copy = slide.cloneNode(true);
+        copy.removeAttribute('aria-label');
+        copy.setAttribute('aria-hidden', 'true');
+        copy.inert = true;
+        copy.querySelectorAll('[id]').forEach(function (element) { element.removeAttribute('id'); });
+        wrapper.appendChild(copy);
+      });
+    }
+
+    var wide = carousel.getBoundingClientRect().width >= 64 * rem;
+    var start = Number(carousel.getAttribute('data-carousel-start')) || 0;
+    if (wide && carousel.hasAttribute('data-carousel-start-wide')) {
+      start = Number(carousel.getAttribute('data-carousel-start-wide')) || 0;
+    }
+
     var swiper = new window.Swiper(viewport, {
       loop: true,
-      loopAdditionalSlides: 1, // deja un slide de más a cada lado: el vecino izquierdo asoma desde el inicio
+      centeredSlides: true,
+      initialSlide: start,
       speed: parseFloat(rootStyle.getPropertyValue('--ease-slow')) || 0, // 420 ms; 0 con reducir movimiento
       grabCursor: true,
       slidesPerView: 1,
@@ -259,12 +292,30 @@
         enabled: true,
         slideRole: 'group',
         itemRoleDescriptionMessage: 'slide',
-        slideLabelMessage: '{{index}} of {{slidesLength}}'
+        slideLabelMessage: '' // el nombre «N of M» lo pone main.js sin contar las copias
       }
     });
-    // Al iniciar, el loop todavía no ubicó ningún slide antes del primero: se lo pide para que el vecino
-    // izquierdo asome desde la carga, como el diseño (después lo mantiene loopAdditionalSlides)
-    swiper.loopFix({ direction: 'prev' });
+    var total = swiper.slides.length; // originales + copias
+    // Índice del original (0 a count - 1) que corresponde al slide activo, sea original o copia
+    function activeOriginal() { return swiper.realIndex % count; }
+
+    // Destacado del slide activo. En loop, Swiper reordena los slides: se compara el índice original
+    // (data-swiper-slide-index) con realIndex, no la posición en el DOM.
+    if (carousel.hasAttribute('data-carousel-highlight')) {
+      var syncHighlight = function () {
+        swiper.slides.forEach(function (slide) {
+          var card = slide.firstElementChild;
+          if (!card) { return; }
+          if (Number(slide.getAttribute('data-swiper-slide-index')) === swiper.realIndex) {
+            card.setAttribute('data-surface', 'brand');
+          } else {
+            card.removeAttribute('data-surface');
+          }
+        });
+      };
+      swiper.on('realIndexChange', syncHighlight);
+      syncHighlight();
+    }
 
     if (carousel.id) {
       document.querySelectorAll('[data-carousel-prev][aria-controls="' + carousel.id + '"]').forEach(function (button) {
@@ -278,8 +329,7 @@
     var dots = carousel.querySelector('[data-carousel-dots]');
     if (dots) {
       var label = dots.getAttribute('data-carousel-dots') || 'Show slide';
-      var total = swiper.slides.length;
-      for (var i = 0; i < total; i += 1) {
+      for (var i = 0; i < count; i += 1) {
         var dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'dots__dot';
@@ -289,11 +339,20 @@
       }
       dots.addEventListener('click', function (event) {
         var dot = event.target.closest('.dots__dot');
-        if (dot) { swiper.slideToLoop(Number(dot.dataset.index)); }
+        if (!dot) { return; }
+        // Con copias, cada original aparece dos veces en el loop: se va al ejemplar más cercano
+        var target = Number(dot.dataset.index);
+        var best = target;
+        for (var copyIndex = target; copyIndex < total; copyIndex += count) {
+          var distance = Math.abs(copyIndex - swiper.realIndex);
+          var bestDistance = Math.abs(best - swiper.realIndex);
+          if (Math.min(distance, total - distance) < Math.min(bestDistance, total - bestDistance)) { best = copyIndex; }
+        }
+        swiper.slideToLoop(best);
       });
       var syncDots = function () {
         Array.prototype.forEach.call(dots.children, function (dot, index) {
-          if (index === swiper.realIndex) { dot.setAttribute('aria-current', 'true'); } else { dot.removeAttribute('aria-current'); }
+          if (index === activeOriginal()) { dot.setAttribute('aria-current', 'true'); } else { dot.removeAttribute('aria-current'); }
         });
       };
       swiper.on('realIndexChange', syncDots);
@@ -382,4 +441,31 @@
     lists.forEach(function (list) { whenVisible(list, initOne); });
   }
   initWordList();
+
+  /* ===== Pricing: switch mensual / anual ===== */
+  /* El switch de [data-pricing] cambia el texto de cada [data-price-monthly][data-price-annual] de la
+     misma sección. La región role="status" anuncia el cambio solo cuando el usuario mueve el switch (no
+     al cargar). Sin JS quedan los precios mensuales del markup. */
+  function initPricingSwitch() {
+    document.querySelectorAll('[data-pricing]').forEach(function (billing) {
+      var toggle = billing.querySelector('input[role="switch"]');
+      var status = billing.querySelector('[data-pricing-status]');
+      var scope = billing.closest('section') || document;
+      var prices = scope.querySelectorAll('[data-price-monthly][data-price-annual]');
+      if (!toggle || !prices.length) { return; }
+
+      function update(announce) {
+        var annual = toggle.checked;
+        prices.forEach(function (price) {
+          price.textContent = price.getAttribute(annual ? 'data-price-annual' : 'data-price-monthly');
+        });
+        if (announce && status) {
+          status.textContent = annual ? 'Showing annual prices, 30% off.' : 'Showing monthly prices.';
+        }
+      }
+      toggle.addEventListener('change', function () { update(true); });
+      update(false); // el navegador puede restaurar el switch marcado al volver atrás
+    });
+  }
+  initPricingSwitch();
 })();

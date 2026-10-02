@@ -10,7 +10,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ✅ Hecha (Grupos A, B y C) |
-| 4 · Sections + `index.html` | Las secciones de la home, responsive | ⏳ En curso (Grupo 0 hecho, A en revisión) |
+| 4 · Sections + `index.html` | Las secciones de la home, responsive | ⏳ En curso (Grupos 0 y A hechos, B en revisión) |
 
 ## Reglas de cada etapa
 
@@ -26,7 +26,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 - Tokens de Skyline reemplazados por los de `design-tokens.md`; la fuente es **Mona Sans** (única familia, más JetBrains Mono solo en `/kit`).
 - Token propio **`--text-hero`** (≈ 40 px en mobile, ≈ 170 px a 1920 px) para el titular gigante del hero y el marquee del footer.
 - Logo solo en PNG: `secondary-logo.png` sobre fondo claro, `primary-logo.png` sobre oscuro.
-- Cards destacadas (Process Optimization, Why Choose 02, Emma Wilson elevada, plan Enterprise): **siempre destacadas**, no son hover.
+- Cards destacadas (Why Choose 02, Emma Wilson elevada, plan Enterprise): **siempre destacadas**, no son hover. En el carrusel de Services se destaca el **slide activo** (Etapa 4; antes, Process Optimization fija).
 - Card «01 Creative Business Insights» del hero: **estática**.
 - Bloque Finance / Advisory / Growth / Strategy: la palabra activa **cambia con el scroll**; las otras cards llevan texto placeholder.
 - Testimonio en video: `https://youtu.be/RqueNBILfVU`.

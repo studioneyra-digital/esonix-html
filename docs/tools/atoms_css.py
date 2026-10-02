@@ -249,7 +249,7 @@ __ICON_RULES__
   align-items: center;
   gap: var(--spacing-2);
   color: var(--color-text-primary);
-  font-size: var(--text-sm);
+  font-size: var(--text-body);
   font-weight: var(--weight-medium);
   line-height: var(--leading-snug);
 }

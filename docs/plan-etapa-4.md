@@ -42,7 +42,7 @@ Ensamblar la home de Esonix con los componentes de las Etapas 1–3 y compararla
 Word List, Marquee, Footer y Progress corregidos contra el diseño a resolución real.
 
 ### Grupo A · Esqueleto, Hero y What We Do
-**Estado: en revisión.** Hecho: `index.html` con `<head>` completo (canonical, OG con `og-image.jpg` 1200×630 generada desde el hero, Twitter, JSON-LD `Organization` + `WebSite`, preload de la fuente y de la foto del hero), header fijo, off-canvas, Scroll Top, footer provisorio; capa de layout (`.container` a 1320 de contenido, `.container-wide` a 1620, `--header-offset`, `scroll-padding`, `.section`, `.section-title`, `.photo-frame`); Hero y What We Do comparados contra los PNG a 1920 y 480 px (desvíos ≤ 16 px); `sections_kit.py` y fichas en el kit. Decisiones: CSS Grid en vez de `col-*` (excepción en `design-tokens.md`), Avatar Stack del kit en vez de `h1-about-users.png`, `<img>` WebP con dimensiones (no hay formato legacy para un `<picture>`). El patrón de encabezado de sección pasa al Grupo B, donde tiene su primer uso (Services).
+**Estado: hecho (`6b1c63f`).** Hecho: `index.html` con `<head>` completo (canonical, OG con `og-image.jpg` 1200×630 generada desde el hero, Twitter, JSON-LD `Organization` + `WebSite`, preload de la fuente y de la foto del hero), header fijo, off-canvas, Scroll Top, footer provisorio; capa de layout (`.container` a 1320 de contenido, `.container-wide` a 1620, `--header-offset`, `scroll-padding`, `.section`, `.section-title`, `.photo-frame`); Hero y What We Do comparados contra los PNG a 1920 y 480 px (desvíos ≤ 16 px); `sections_kit.py` y fichas en el kit. Decisiones: CSS Grid en vez de `col-*` (excepción en `design-tokens.md`), Avatar Stack del kit en vez de `h1-about-users.png`, `<img>` WebP con dimensiones (no hay formato legacy para un `<picture>`). El patrón de encabezado de sección pasa al Grupo B, donde tiene su primer uso (Services).
 
 - `dist/index.html` con el `<head>` estándar de `docs/seo.md`: title y description únicos, canonical, Open Graph, Twitter Card, JSON-LD `Organization` y `WebSite`, favicon, preload de Mona Sans.
 - Header fijo con `scroll-padding-top`, Scroll Top, off-canvas, y scripts en orden (Lenis, GSAP, ScrollTrigger, Swiper, `main.js`).
@@ -51,6 +51,15 @@ Word List, Marquee, Footer y Progress corregidos contra el diseño a resolución
 - Pendiente de decidir aquí: si el avatar stack usa los avatares del kit o el PNG `h1-about-users.png`.
 
 ### Grupo B · Services, Why Choose Us, Finance y Pricing
+**Estado: en revisión.** Hecho: las cuatro secciones en `index.html` (con Swiper sumado al `<head>` y a los scripts), comparadas contra los PNG a 1920 y 480 px y revisadas a 1440, 1280, 1024, 800 y 390 px (sin desborde horizontal); fichas en el kit desde `sections_kit.py`.
+- **Section Head** (`.section-head`, `__main`, `__title`, `__text`, `__actions`): apilado; `--split` desde xl (Services) y `--center` (Pricing). Contenedores con `--container-width` / `--container-wide-width`.
+- **Carousel:** activo centrado; `data-carousel-start` / `-start-wide` y `data-carousel-highlight`. Con menos de 6 slides, `main.js` duplica la tanda completa (copias con `aria-hidden` + `inert`): con 5 slides, Swiper dejaba un hueco a la derecha al avanzar. Reemplaza al truco `loopAdditionalSlides` + `loopFix`. Card Service con transición del destacado.
+- **Why Choose Us:** grilla con `--why-container` / `--why-indent` (el texto se alinea con el `.container` en todos los anchos y la foto llega al borde del ancho) y `.feature-strip`. «Read More» de la card 02 se mantiene en mobile.
+- **Finance:** foto fija como capa `position: fixed` recortada por `clip-path`, token nuevo `--blur-photo` (12px), radio `--radius-xl`.
+- **Pricing:** `initPricingSwitch` en `main.js` con anuncio `role="status"` solo al cambiar; tres columnas desde xl.
+- **Correcciones a niveles anteriores** (medidas en los PNG): Eyebrow a 16px (`--text-body`, antes 14px); Card Service con el texto sangrado bajo el título e ícono de 40px.
+
+Plan original:
 - Carrusel de Services que destaca el **slide activo** (reemplaza la card destacada fija del Grupo B de la Etapa 3).
 - Franja de 3 Card Feature sobre la foto de Why Choose, con el contenedor blanco que las une.
 - Bloque Finance con foto desenfocada **fija** y el Word List.

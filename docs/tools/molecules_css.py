@@ -35,7 +35,10 @@ CSS = r'''/* molecules:start */
   object-fit: cover;
 }
 
-/* Card Service — foto, ícono y texto. data-surface="brand" la destaca (petróleo, ícono amarillo). */
+/* Card Service — foto, ícono y texto. data-surface="brand" la destaca (petróleo, ícono amarillo). El cambio
+   de destacado se anima: en el carrusel de Services la destacada es el slide activo y cambia con él. El
+   texto va sangrado bajo el título, no bajo el ícono, como el diseño: __head se disuelve en la grilla de
+   __body (ícono | título, y el párrafo en la segunda columna). */
 .card-service {
   display: flex;
   flex-direction: column;
@@ -46,6 +49,7 @@ CSS = r'''/* molecules:start */
   background-color: var(--color-surface-default);
   box-shadow: var(--shadow-sm);
   color: var(--color-text-secondary);
+  transition: background-color var(--ease-base), color var(--ease-base), box-shadow var(--ease-base);
 }
 .card-service__media {
   display: block;
@@ -56,21 +60,26 @@ CSS = r'''/* molecules:start */
 }
 .card-service__body {
   display: grid;
-  gap: var(--spacing-3);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-3) var(--spacing-5);
   padding: 0 var(--spacing-5) var(--spacing-5);
 }
 .card-service__head {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
+  display: contents;
+}
+.card-service__body > p {
+  grid-column: 2;
 }
 .card-service__icon {
-  font-size: var(--spacing-7);
+  font-size: var(--spacing-8);
   color: var(--color-text-primary);
+  transition: color var(--ease-base);
 }
 .card-service__title {
   font-size: var(--text-h4);
   font-weight: var(--weight-medium);
+  transition: color var(--ease-base);
 }
 .card-service[data-surface] {
   box-shadow: none;

@@ -108,6 +108,10 @@
           <ul class="kit-nav__list" aria-labelledby="nav-sections">
             <li><a class="kit-nav__link" href="#hero"><span class="kit-nav__num">01</span> Hero</a></li>
             <li><a class="kit-nav__link" href="#what-we-do"><span class="kit-nav__num">02</span> What We Do</a></li>
+            <li><a class="kit-nav__link" href="#services"><span class="kit-nav__num">03</span> Services</a></li>
+            <li><a class="kit-nav__link" href="#why-choose-us"><span class="kit-nav__num">04</span> Why Choose Us</a></li>
+            <li><a class="kit-nav__link" href="#finance"><span class="kit-nav__num">05</span> Finance</a></li>
+            <li><a class="kit-nav__link" href="#pricing"><span class="kit-nav__num">06</span> Pricing</a></li>
           </ul>
         </div>
       </nav>
@@ -1122,7 +1126,7 @@
               <table class="kit-table">
                 <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row"><code>.eyebrow</code></th><td>Texto de 14px medium con un cuadrito antes</td></tr>
+                  <tr><th scope="row"><code>.eyebrow</code></th><td>Texto de 16px medium con un cuadrito antes</td></tr>
                   <tr><th scope="row"><code>.eyebrow--center</code></th><td>Centra el bloque y repite el cuadrito después</td></tr>
                   <tr><th scope="row"><code>.eyebrow--inverse</code></th><td>Texto y cuadrito amarillos (solo sobre fondo oscuro)</td></tr>
                 </tbody>
@@ -1133,7 +1137,7 @@
             <span class="kit-block__label">Tokens que consume</span>
             <ul class="kit-spec">
               <li><code>--color-text-primary / -highlight</code></li>
-              <li><code>--text-sm</code></li>
+              <li><code>--text-body</code></li>
               <li><code>--weight-medium</code></li>
               <li><code>--leading-snug</code></li>
               <li><code>--spacing-1 / -2</code></li>
@@ -1662,7 +1666,7 @@
                 <tbody>
                   <tr><th scope="row"><code>.card-service</code></th><td>Card blanca con sombra suave; ocupa el alto de su contenedor</td></tr>
                   <tr><th scope="row"><code>.card-service__media</code></th><td>Foto 5:3 con esquinas redondeadas (la fuente es 1500×900)</td></tr>
-                  <tr><th scope="row"><code>.card-service__head / __icon / __title</code></th><td>Fila con el ícono de 32px y el título (h3) al lado</td></tr>
+                  <tr><th scope="row"><code>.card-service__head / __icon / __title</code></th><td>Ícono de 40px y título (h3); __head se disuelve en la grilla de __body y el párrafo queda sangrado bajo el título</td></tr>
                   <tr><th scope="row"><code>data-surface="brand"</code></th><td>Versión destacada: fondo petróleo, texto claro, ícono amarillo y foco amarillo</td></tr>
                 </tbody>
               </table>
@@ -2942,16 +2946,16 @@
           <header class="kit-card__header">
             <p class="kit-card__tag">Organismo · 03</p>
             <h3 id="carousel-title">Carousel</h3>
-            <p class="kit-card__desc">Base de Swiper para los carruseles de la home: loop, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.</p>
+            <p class="kit-card__desc">Base de Swiper para los carruseles de la home: loop con el slide activo <strong>centrado</strong>, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y destaca el slide activo (<code>data-carousel-highlight</code>); Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.</p>
           </header>
           <div class="kit-block">
-            <span class="kit-block__label">Services: flechas y card destacada fija</span>
+            <span class="kit-block__label">Services: flechas y slide activo destacado</span>
             <div class="kit-demo kit-demo--bleed kit-demo--bleed-arrows" lang="en">
               <div class="carousel__arrows">
                 <button type="button" class="icon-btn" data-carousel-prev aria-controls="carousel-services" aria-label="Previous service"><span class="icon icon--arrow-left" aria-hidden="true"></span></button>
                 <button type="button" class="icon-btn" data-carousel-next aria-controls="carousel-services" aria-label="Next service"><span class="icon icon--arrow-right" aria-hidden="true"></span></button>
               </div>
-              <div class="carousel" id="carousel-services" data-carousel role="region" aria-roledescription="carousel" aria-label="Services">
+              <div class="carousel" id="carousel-services" data-carousel data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1" role="region" aria-roledescription="carousel" aria-label="Services">
                 <div class="swiper carousel__viewport">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide carousel__slide">
@@ -3029,7 +3033,7 @@
           <div class="kit-block">
             <span class="kit-block__label">Testimonials: dots, sobre fondo oscuro</span>
             <div class="kit-demo kit-demo--bleed" data-surface="inverse" lang="en">
-              <div class="carousel" id="carousel-testimonials" data-carousel role="region" aria-roledescription="carousel" aria-label="Client stories">
+              <div class="carousel" id="carousel-testimonials" data-carousel data-carousel-start="2" role="region" aria-roledescription="carousel" aria-label="Client stories">
                 <div class="swiper carousel__viewport">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide carousel__slide">
@@ -3144,7 +3148,10 @@
                   <tr><th scope="row"><code>.swiper-slide.carousel__slide</code></th><td>Un slide; iguala la altura de las cards</td></tr>
                   <tr><th scope="row"><code>.carousel__arrows</code></th><td>Fila de flechas (Icon Button); puede vivir fuera del carrusel</td></tr>
                   <tr><th scope="row"><code>data-carousel-prev / data-carousel-next + aria-controls</code></th><td>Flechas: aria-controls apunta al id del carrusel</td></tr>
-                  <tr><th scope="row"><code>.dots + data-carousel-dots="Show story"</code></th><td>Contenedor de los dots: main.js crea un botón por slide con ese prefijo de nombre</td></tr>
+                  <tr><th scope="row"><code>.dots + data-carousel-dots="Show story"</code></th><td>Contenedor de los dots: main.js crea un botón por slide original con ese prefijo de nombre</td></tr>
+                  <tr><th scope="row"><code>data-carousel-start="2"</code></th><td>Slide inicial (índice desde 0; por defecto 0)</td></tr>
+                  <tr><th scope="row"><code>data-carousel-start-wide="1"</code></th><td>Slide inicial cuando el carrusel mide 64rem o más (3 por vista); si falta, vale data-carousel-start</td></tr>
+                  <tr><th scope="row"><code>data-carousel-highlight</code></th><td>La card del slide activo recibe data-surface="brand" y las demás lo pierden; el markup trae destacada la inicial (estado sin JS)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -3159,7 +3166,7 @@
               <li><code>Card Service y Card Testimonial (moléculas)</code></li>
             </ul>
           </div>
-          <p class="kit-note"><strong>Accesibilidad:</strong> La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (módulo a11y de Swiper, que además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Con el foco en un slide que no se ve, Swiper lo trae a la vista. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.</p>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (rol del módulo a11y de Swiper; el nombre lo pone <code>main.js</code> sin contar las copias del loop, que van con <code>aria-hidden</code> e <code>inert</code>; Swiper además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Con el foco en un slide que no se ve, Swiper lo trae a la vista. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.</p>
         </section>
 
         <section class="kit-card" id="accordion" aria-labelledby="accordion-title">
@@ -3783,6 +3790,444 @@
             </ul>
           </div>
           <p class="kit-note"><strong>Accesibilidad:</strong> El orden del DOM es el de lectura (título, texto, barras, cifra, fotos); la grilla solo reacomoda la vista, así el orden de tabulación no salta. Cada barra es un <code>&lt;progress&gt;</code> con <code>&lt;label for&gt;</code>. Las fotos llevan <code>alt</code> descriptivo; los avatares son decorativos.</p>
+        </section>
+
+        <section class="kit-card" id="services" aria-labelledby="services-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 03</p>
+            <h3 id="services-title">Services</h3>
+            <p class="kit-card__desc">Section Head partido (título, texto y las flechas del carrusel en una fila desde xl; apilado antes) y, debajo, el <a href="#carousel">Carousel</a> de <a href="#card-service">Card Service</a> en el contenedor ancho: el slide activo va centrado y destacado (<code>data-carousel-highlight</code>), con los vecinos sangrando hasta el borde de la ventana. La sección los recorta con <code>overflow-x: clip</code>. Fuente: <code>dist/index.html</code> (<a href="../index.html#services">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section services" id="services-section" aria-labelledby="services-title-section">
+                <div class="container">
+                  <div class="section-head section-head--split">
+                    <div class="section-head__main">
+                      <p class="eyebrow">Exclusive Services</p>
+                      <h2 class="section-title section-head__title" id="services-title-section">Innovative Solutions for Business Success</h2>
+                    </div>
+                    <p class="section-head__text">We believe successful businesses are built through strong planning, efficient management, &amp; innovative decision-making.</p>
+                    <div class="carousel__arrows section-head__actions">
+                      <button type="button" class="icon-btn" data-carousel-prev aria-controls="carousel-services-section" aria-label="Previous service"><span class="icon icon--arrow-left" aria-hidden="true"></span></button>
+                      <button type="button" class="icon-btn" data-carousel-next aria-controls="carousel-services-section" aria-label="Next service"><span class="icon icon--arrow-right" aria-hidden="true"></span></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="container-wide">
+                  <div class="carousel" id="carousel-services-section" data-carousel data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1" role="region" aria-roledescription="carousel" aria-label="Services">
+                    <div class="swiper carousel__viewport">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide carousel__slide">
+                          <article class="card-service">
+                            <img class="card-service__media" src="../assets/img/h1-service-img-2.webp" alt="" width="1500" height="900" loading="lazy">
+                            <div class="card-service__body">
+                              <div class="card-service__head">
+                                <span class="icon icon--target card-service__icon" aria-hidden="true"></span>
+                                <h3 class="card-service__title">Marketing Guidance</h3>
+                              </div>
+                              <p>Through expert insights and strategic planning, marketing guidance enables businesses to understand customer.</p>
+                            </div>
+                          </article>
+                        </div>
+                        <div class="swiper-slide carousel__slide">
+                          <article class="card-service" data-surface="brand">
+                            <img class="card-service__media" src="../assets/img/h1-service-img-3.webp" alt="" width="1500" height="900" loading="lazy">
+                            <div class="card-service__body">
+                              <div class="card-service__head">
+                                <span class="icon icon--trending-up card-service__icon" aria-hidden="true"></span>
+                                <h3 class="card-service__title">Process Optimization</h3>
+                              </div>
+                              <p>By analyzing existing operations and implementing effective improvements, process optimization helps business.</p>
+                            </div>
+                          </article>
+                        </div>
+                        <div class="swiper-slide carousel__slide">
+                          <article class="card-service">
+                            <img class="card-service__media" src="../assets/img/h1-service-img-4.webp" alt="" width="1500" height="900" loading="lazy">
+                            <div class="card-service__body">
+                              <div class="card-service__head">
+                                <span class="icon icon--chart-pie card-service__icon" aria-hidden="true"></span>
+                                <h3 class="card-service__title">Sales Improvement</h3>
+                              </div>
+                              <p>We support businesses in improving sales performance through training, strategy development.</p>
+                            </div>
+                          </article>
+                        </div>
+                        <div class="swiper-slide carousel__slide">
+                          <article class="card-service">
+                            <img class="card-service__media" src="../assets/img/h1-service-img-5.webp" alt="" width="1500" height="900" loading="lazy">
+                            <div class="card-service__body">
+                              <div class="card-service__head">
+                                <span class="icon icon--gem card-service__icon" aria-hidden="true"></span>
+                                <h3 class="card-service__title">Financial Planning</h3>
+                              </div>
+                              <p>Our advisors build budgets, forecasts and funding plans that keep every decision tied to your numbers.</p>
+                            </div>
+                          </article>
+                        </div>
+                        <div class="swiper-slide carousel__slide">
+                          <article class="card-service">
+                            <img class="card-service__media" src="../assets/img/h1-service-img-1.webp" alt="" width="1500" height="900" loading="lazy">
+                            <div class="card-service__body">
+                              <div class="card-service__head">
+                                <span class="icon icon--lightbulb card-service__icon" aria-hidden="true"></span>
+                                <h3 class="card-service__title">Brand Strategy</h3>
+                              </div>
+                              <p>We help companies define a clear position and a message that strengthens their market presence.</p>
+                            </div>
+                          </article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-services-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-services-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Services">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>section.section.services</code></th><td>Recorta en horizontal los slides que sangran</td></tr>
+                  <tr><th scope="row"><code>.section-head</code></th><td>Encabezado de sección: __main (eyebrow + h2), __text y __actions, apilados</td></tr>
+                  <tr><th scope="row"><code>.section-head--split</code></th><td>Desde xl: título | texto | flechas en una fila; el texto y las flechas se alinean con la primera línea del h2</td></tr>
+                  <tr><th scope="row"><code>.section-head__title</code></th><td>h2 acotado a 38rem para cortar donde el diseño</td></tr>
+                  <tr><th scope="row"><code>.carousel__arrows.section-head__actions</code></th><td>Flechas del carrusel (aria-controls = id del carrusel)</td></tr>
+                  <tr><th scope="row"><code>data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1"</code></th><td>Destaca el slide activo; arranca en Marketing Guidance (1 o 2 por vista) y en Process Optimization (3 por vista)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h1 (section-title)</code></li>
+              <li><code>--spacing-3 / -5 / -8 / -10</code></li>
+              <li><code>Eyebrow, Icon Button (átomos)</code></li>
+              <li><code>Card Service (molécula)</code></li>
+              <li><code>Carousel (organismo)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El carrusel es una región con nombre («Services») y cada slide un grupo «N of 5»; las copias que agrega <code>main.js</code> para el loop van con <code>aria-hidden</code> e <code>inert</code>. Las flechas están antes del carrusel en el orden de lectura y lo controlan por <code>aria-controls</code>. El destacado es solo visual: no cambia el contenido que se anuncia.</p>
+        </section>
+
+        <section class="kit-card" id="why-choose-us" aria-labelledby="why-choose-us-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 04</p>
+            <h3 id="why-choose-us-title">Why Choose Us</h3>
+            <p class="kit-card__desc">Texto a la izquierda, foto a la derecha y, montada sobre el borde inferior de la foto, la <strong>Feature Strip</strong>: un contenedor blanco que junta tres <a href="#card-feature">Card Feature</a> (la del medio, destacada con foto). Desde lg el texto arranca en el borde del <code>.container</code> y la foto llega al del <code>.container-wide</code>. En mobile: texto, foto y la franja apilada, montada 92px sobre la foto. Fuente: <code>dist/index.html</code> (<a href="../index.html#why-choose-us">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section why-choose" id="why-choose-us-section" aria-labelledby="why-choose-title-section">
+                <div class="container-wide why-choose__grid">
+                  <div class="why-choose__intro">
+                    <p class="eyebrow">Why Choose Us</p>
+                    <h2 class="section-title why-choose__title" id="why-choose-title-section">Why Businesses Trust Our Consulting</h2>
+                    <p class="why-choose__text">We believe every business is unique, which is why we offer tailored consulting services &amp; ongoing support. By working closely with your team, &amp; future objectives.</p>
+                  </div>
+                  <img class="why-choose__media" src="../assets/img/h1-why-choose-img.webp" alt="A consultant and a client reviewing a plan together at the office" width="1125" height="1095" loading="lazy">
+                  <div class="feature-strip why-choose__strip">
+                    <article class="card-feature">
+                      <p class="card-feature__number" aria-hidden="true">01</p>
+                      <div class="card-feature__body">
+                        <h3 class="card-feature__title">Tailored business solutions</h3>
+                        <p>We provide tailored business solution designed to match your unique goals</p>
+                      </div>
+                    </article>
+                    <article class="card-feature" data-surface="brand">
+                      <img class="card-feature__bg" src="../assets/img/h1-feature-bg-image.webp" alt="" width="1320" height="960" loading="lazy">
+                      <p class="card-feature__number" aria-hidden="true">02</p>
+                      <div class="card-feature__body">
+                        <h3 class="card-feature__title">Results-focused strategies</h3>
+                        <p>Our results-focused strategies are designed to deliver measurable business growth</p>
+                        <a href="#services" class="link-arrow link-arrow--inverse">
+                          Read More<span class="visually-hidden"> about results-focused strategies</span>
+                          <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                    </article>
+                    <article class="card-feature">
+                      <p class="card-feature__number" aria-hidden="true">03</p>
+                      <div class="card-feature__body">
+                        <h3 class="card-feature__title">Proven success methods</h3>
+                        <p>With a focus on practical results, we create strategies that deliver lasting value</p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-why-choose-us-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-why-choose-us-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Why Choose Us">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.container-wide.why-choose__grid</code></th><td>Grilla: --why-indent | texto 54fr | foto 46fr | --why-indent (columna central única bajo lg)</td></tr>
+                  <tr><th scope="row"><code>--why-container / --why-indent</code></th><td>Ancho de contenido del .container en cada breakpoint y la sangría que resulta; alinea el texto con las otras secciones</td></tr>
+                  <tr><th scope="row"><code>.why-choose__intro / __title / __text</code></th><td>Eyebrow, h2 (corta en 36rem, como el diseño) y párrafo</td></tr>
+                  <tr><th scope="row"><code>.why-choose__media</code></th><td>Foto 1125:1095 que ocupa las dos filas; se estira si el texto es más alto</td></tr>
+                  <tr><th scope="row"><code>.feature-strip.why-choose__strip</code></th><td>Franja blanca con borde: en fila desde lg, apilada antes; montada sobre la foto</td></tr>
+                  <tr><th scope="row"><code>.feature-strip .card-feature</code></th><td>Cards normales sin fondo ni sombra; alto mínimo 18rem (20rem desde lg)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--container-width</code></li>
+              <li><code>--color-surface-default</code></li>
+              <li><code>--color-border-subtle</code></li>
+              <li><code>--radius-lg</code></li>
+              <li><code>--shadow-sm</code></li>
+              <li><code>--border-width-sm</code></li>
+              <li><code>--spacing-3 / -4 / -5 / -9 / -10 / -11</code></li>
+              <li><code>Eyebrow (átomo)</code></li>
+              <li><code>Card Feature (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Orden del DOM = orden de lectura: texto, foto y las tres cards. La foto lleva <code>alt</code> descriptivo; el fondo de la card destacada es decorativo. El «Read More» de la card 02 tiene nombre completo («Read More about results-focused strategies») con texto oculto.</p>
+        </section>
+
+        <section class="kit-card" id="finance" aria-labelledby="finance-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 05</p>
+            <h3 id="finance-title">Finance</h3>
+            <p class="kit-card__desc">El <a href="#word-list">Word List</a> como sección. Desde lg, un bloque a todo el ancho con radio de 40px, la foto desenfocada <strong>fija</strong> detrás (no se desplaza con la página) y el contenido centrado en vertical; la Card Project activa queda a la derecha con 524px. Bajo lg no hay bloque: «Works» tenue y las cards apiladas sobre el crema. Fuente: <code>dist/index.html</code> (<a href="../index.html#finance">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section finance" id="finance-section" aria-labelledby="works-title-section">
+                <div class="finance__media">
+                  <img src="../assets/img/h1-portfolio-img-3.webp" alt="" width="1920" height="1084" loading="lazy">
+                </div>
+                <div class="container">
+                  <div class="word-list" data-word-list>
+                    <h2 class="visually-hidden" id="works-title-section">Works</h2>
+                    <p class="word-list__watermark" aria-hidden="true">Works</p>
+                    <ul class="word-list__words" role="list">
+                      <li><span class="word-list__word" data-word-for="word-finance-section">Finance</span></li>
+                      <li><span class="word-list__word" data-word-for="word-advisory-section">Advisory</span></li>
+                      <li><span class="word-list__word is-active" data-word-for="word-growth-section">Growth</span></li>
+                      <li><span class="word-list__word" data-word-for="word-strategy-section">Strategy</span></li>
+                    </ul>
+                    <div class="word-list__media">
+                      <article class="card-project word-list__card" id="word-finance-section">
+                        <img class="card-project__img" src="../assets/img/h1-portfolio-img-3.webp" alt="" width="1920" height="1084" loading="lazy">
+                        <div class="card-project__caption">
+                          <span class="card-project__index" aria-hidden="true">// 01</span>
+                          <h3 class="card-project__title">Corporate Finance Management</h3>
+                        </div>
+                      </article>
+                      <article class="card-project word-list__card" id="word-advisory-section">
+                        <img class="card-project__img" src="../assets/img/h1-portfolio-img-1.webp" alt="" width="1920" height="1076" loading="lazy">
+                        <div class="card-project__caption">
+                          <span class="card-project__index" aria-hidden="true">// 02</span>
+                          <h3 class="card-project__title">Advisory Services</h3>
+                        </div>
+                      </article>
+                      <article class="card-project word-list__card is-active" id="word-growth-section">
+                        <img class="card-project__img" src="../assets/img/h1-portfolio-img-2.webp" alt="" width="1920" height="765" loading="lazy">
+                        <div class="card-project__caption">
+                          <span class="card-project__index" aria-hidden="true">// 03</span>
+                          <h3 class="card-project__title">Growth Strategy Planning</h3>
+                        </div>
+                      </article>
+                      <article class="card-project word-list__card" id="word-strategy-section">
+                        <img class="card-project__img" src="../assets/img/h1-portfolio-img-4.webp" alt="" width="1920" height="1076" loading="lazy">
+                        <div class="card-project__caption">
+                          <span class="card-project__index" aria-hidden="true">// 04</span>
+                          <h3 class="card-project__title">Market Strategy Execution</h3>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-finance-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-finance-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Finance">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>section.section.finance + aria-labelledby="works-title"</code></th><td>Desde lg: bloque de 59rem de alto mínimo con clip-path redondeado</td></tr>
+                  <tr><th scope="row"><code>.finance__media</code></th><td>Capa position: fixed con la foto (filter: blur(--blur-photo)) y el velo; el clip-path de la sección la recorta</td></tr>
+                  <tr><th scope="row"><code>.finance .word-list__media</code></th><td>Columna de cards acotada a 524px, alineada a la derecha con 20px de margen</td></tr>
+                  <tr><th scope="row"><code>h2#works-title.visually-hidden</code></th><td>Nombre de la sección (el diseño no muestra título en desktop)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--blur-photo (nuevo)</code></li>
+              <li><code>--radius-xl</code></li>
+              <li><code>--color-overlay</code></li>
+              <li><code>--color-background-inverse</code></li>
+              <li><code>--spacing-5</code></li>
+              <li><code>Word List (organismo)</code></li>
+              <li><code>Card Project (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La sección se nombra con el <code>&lt;h2&gt;</code> oculto «Works». La foto de fondo es decorativa (<code>alt=""</code>) y no se carga bajo lg (está en una capa con <code>display: none</code> y <code>loading="lazy"</code>). El velo mantiene el contraste de la palabra activa en blanco. Con «reducir movimiento» el Word List queda en su estado inicial (Growth activa).</p>
+        </section>
+
+        <section class="kit-card" id="pricing" aria-labelledby="pricing-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 06</p>
+            <h3 id="pricing-title">Pricing</h3>
+            <p class="kit-card__desc">Section Head centrado, el switch mensual / anual y las tres <a href="#card-pricing">Card Pricing</a> (en 3 columnas desde xl; antes, una columna centrada). <code>main.js</code> cambia los precios al mover el <a href="#switch">Switch</a> y lo anuncia en una región <code>role="status"</code>. Fuente: <code>dist/index.html</code> (<a href="../index.html#pricing">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section pricing" id="pricing-section" aria-labelledby="pricing-title-section">
+                <div class="container">
+                  <div class="section-head section-head--center">
+                    <div class="section-head__main">
+                      <p class="eyebrow eyebrow--center">Our Pricing Plan</p>
+                      <h2 class="section-title section-head__title" id="pricing-title-section">Plans Designed for Every Stage of Growth</h2>
+                    </div>
+                  </div>
+                  <div class="pricing__billing" data-pricing>
+                    <span class="pricing__billing-label" aria-hidden="true">Monthly</span>
+                    <input class="switch" type="checkbox" role="switch" id="pricing-annual-section">
+                    <label class="pricing__billing-label" for="pricing-annual-section">Annually Save 30%</label>
+                    <p class="visually-hidden" role="status" data-pricing-status></p>
+                  </div>
+                  <div class="pricing__grid">
+                    <article class="card-pricing">
+                      <header class="card-pricing__head">
+                        <span class="card-pricing__icon"><span class="icon icon--rocket" aria-hidden="true"></span></span>
+                        <div>
+                          <h3 class="card-pricing__name">Starter Plan</h3>
+                          <p>Core strategies for business success</p>
+                        </div>
+                      </header>
+                      <p class="card-pricing__price"><span class="card-pricing__amount" data-price-monthly="$39.9" data-price-annual="$27.9">$39.9</span> <span>/ Month</span></p>
+                      <a href="#site-footer" class="btn btn--block">
+                        Get Started<span class="visually-hidden"> with the Starter Plan</span>
+                        <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                      </a>
+                      <ul class="card-pricing__list">
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Growth Recommendations</li>
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Monthly Strategy Consultation</li>
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Basic Market Analysis</li>
+                        <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Email support</li>
+                      </ul>
+                    </article>
+                    <article class="card-pricing" data-surface="brand">
+                      <header class="card-pricing__head">
+                        <span class="card-pricing__icon"><span class="icon icon--award" aria-hidden="true"></span></span>
+                        <div>
+                          <h3 class="card-pricing__name">Enterprise Plan</h3>
+                          <p>Drive innovation &amp; long-term success</p>
+                        </div>
+                      </header>
+                      <p class="card-pricing__price"><span class="card-pricing__amount" data-price-monthly="$49.9" data-price-annual="$34.9">$49.9</span> <span>/ Month</span></p>
+                      <a href="#site-footer" class="btn btn--block btn--accent">
+                        Get Started<span class="visually-hidden"> with the Enterprise Plan</span>
+                        <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                      </a>
+                      <ul class="card-pricing__list">
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Customized Business Strategy</li>
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Advanced Market Research</li>
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Ongoing Performance Monitoring</li>
+                        <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Priority Support &amp; Advisory</li>
+                      </ul>
+                    </article>
+                    <article class="card-pricing">
+                      <header class="card-pricing__head">
+                        <span class="card-pricing__icon"><span class="icon icon--gem" aria-hidden="true"></span></span>
+                        <div>
+                          <h3 class="card-pricing__name">Premium Features</h3>
+                          <p>Unlock greater efficiency and growth</p>
+                        </div>
+                      </header>
+                      <p class="card-pricing__price"><span class="card-pricing__amount" data-price-monthly="$59.9" data-price-annual="$41.9">$59.9</span> <span>/ Month</span></p>
+                      <a href="#site-footer" class="btn btn--block">
+                        Get Started<span class="visually-hidden"> with Premium Features</span>
+                        <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                      </a>
+                      <ul class="card-pricing__list">
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Long-Term Success Planning</li>
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Actionable Growth Strategies</li>
+                        <li class="card-pricing__item"><span class="icon icon--circle-check" aria-hidden="true"></span> Industry Expert Guidance</li>
+                        <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Dedicated Business Support</li>
+                      </ul>
+                    </article>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-pricing-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-pricing-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Pricing">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.section-head--center</code></th><td>Eyebrow --center y h2 centrados</td></tr>
+                  <tr><th scope="row"><code>.pricing__billing + data-pricing</code></th><td>Fila del switch: «Monthly» (aria-hidden), el switch y su &lt;label&gt;; 18px en mobile y 24px desde lg</td></tr>
+                  <tr><th scope="row"><code>input.switch[role="switch"]#pricing-annual</code></th><td>Encendido = precios anuales; su nombre es «Annually Save 30%»</td></tr>
+                  <tr><th scope="row"><code>[data-pricing-status][role="status"]</code></th><td>Región oculta que anuncia el cambio (solo al mover el switch)</td></tr>
+                  <tr><th scope="row"><code>[data-price-monthly][data-price-annual]</code></th><td>Importe que main.js reemplaza; sin JS queda el mensual</td></tr>
+                  <tr><th scope="row"><code>.pricing__grid</code></th><td>Una columna de hasta 32rem; tres columnas desde xl</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h6 / -h4</code></li>
+              <li><code>--color-text-primary</code></li>
+              <li><code>--spacing-5 / -6 / -8 / -9 / -10</code></li>
+              <li><code>Eyebrow, Switch, Button (átomos)</code></li>
+              <li><code>Card Pricing (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El switch es un <code>&lt;input type="checkbox" role="switch"&gt;</code> nativo con <code>&lt;label for&gt;</code> («Annually Save 30%»): se opera con Espacio y el lector anuncia encendido o apagado. «Monthly» es un rótulo visual oculto al lector, para no duplicar el nombre. Al moverlo, la región <code>role="status"</code> anuncia «Showing annual prices, 30% off.» (o el mensual); al cargar no anuncia nada. Cada «Get Started» lleva el nombre del plan en texto oculto.</p>
         </section>
         <!-- kit:sections-end -->
       </section>

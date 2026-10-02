@@ -142,6 +142,10 @@ rebrand cambia el primitivo en un solo lugar sin tocar componentes.
   /* Desenfoque de texto en segundo plano (palabras inactivas del Word List): se lee la forma de la
      palabra pero no compite con la activa, que queda nítida. */
   --blur-text: 4px;
+
+  /* Desenfoque de una foto de fondo (bloque Finance): se reconoce la escena pero no compite con el
+     texto. Va en filter sobre la capa de la imagen, nunca en backdrop-filter. */
+  --blur-photo: 12px;
 }
 
 /* borders.css */
@@ -224,7 +228,7 @@ Breakpoints (referencia — no existen como custom property porque `@media` no p
 
 **Regla del grid:** las columnas usan las clases del grid de Bootstrap con sus propios breakpoints (sm 576, md 768, lg 992, xl 1200, xxl 1400); todo `@media` propio usa los de esta tabla; no se mezclan ambos en un mismo componente. Solo `md` coincide.
 
-**Excepción (Etapa 4):** las Sections arman sus columnas con CSS Grid y los breakpoints de esta tabla, no con las clases `col-*`: las proporciones del diseño (p. ej. 500 / 400 / 290 px en What We Do) no caen en 12 columnas con gutter, y el `lg` de Bootstrap (992px) no es el del theme (1024px). De Bootstrap se usan los contenedores: `.container` se amplía a 1320px de contenido desde su `xxl` y se suma `.container-wide` (1620px), ambos con gutter `--spacing-7` (bloque `sections:` de `main.css`).
+**Excepción (Etapa 4):** las Sections arman sus columnas con CSS Grid y los breakpoints de esta tabla, no con las clases `col-*`: las proporciones del diseño (p. ej. 500 / 400 / 290 px en What We Do) no caen en 12 columnas con gutter, y el `lg` de Bootstrap (992px) no es el del theme (1024px). De Bootstrap se usan los contenedores: `.container` se amplía a 1320px de contenido desde su `xxl` y se suma `.container-wide` (1620px), ambos con gutter `--spacing-7` (bloque `sections:` de `main.css`). Única mezcla permitida de breakpoints: las reglas que **replican el ancho del `.container`** (que es de Bootstrap) usan los breakpoints de Bootstrap, porque siguen a ese componente y no deciden layout; hoy, `--why-container` de Why Choose Us (Grupo B), con el que el texto se alinea con el resto de las secciones en todos los anchos.
 
 ## Reglas al personalizar
 

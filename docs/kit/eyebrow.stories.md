@@ -31,14 +31,14 @@ Rótulo corto sobre el título de sección, con cuadrito decorativo. `--center` 
 
 | Clase o atributo | Efecto |
 |---|---|
-| `.eyebrow` | Texto de 14px medium con un cuadrito antes |
+| `.eyebrow` | Texto de 16px medium con un cuadrito antes |
 | `.eyebrow--center` | Centra el bloque y repite el cuadrito después |
 | `.eyebrow--inverse` | Texto y cuadrito amarillos (solo sobre fondo oscuro) |
 
 ## Tokens que consume
 
 - `--color-text-primary / -highlight`
-- `--text-sm`
+- `--text-body`
 - `--weight-medium`
 - `--leading-snug`
 - `--spacing-1 / -2`
@@ -50,3 +50,4 @@ Rótulo corto sobre el título de sección, con cuadrito decorativo. `--center` 
 ## Decisiones y excepciones
 
 - El cuadrito mide 6px (1.5 × `--spacing-1`) porque así lo muestra el diseño; sale de la escala por cálculo.
+- Texto de 16px (`--text-body`): medido en los PNG a resolución real (Etapa 4, Grupo B), los cuatro eyebrows de la home miden 1,16 veces lo que medían con `--text-sm`, tanto en desktop como en mobile.

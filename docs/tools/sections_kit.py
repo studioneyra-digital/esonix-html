@@ -24,7 +24,7 @@ def for_kit(markup):
     out = markup.replace('src="assets/', 'src="../assets/')
     ids = re.findall(r'\bid="([^"]+)"', out)
     for i in ids:
-        out = re.sub(r'(\b(?:id|for|aria-labelledby|aria-controls|aria-describedby)=")%s"' % re.escape(i), r'\g<1>%s-section"' % i, out)
+        out = re.sub(r'(\b(?:id|for|aria-labelledby|aria-controls|aria-describedby|data-word-for)=")%s"' % re.escape(i), r'\g<1>%s-section"' % i, out)
         out = out.replace('href="#%s"' % i, 'href="#%s-section"' % i)
     return out
 
@@ -69,6 +69,77 @@ S.append(dict(id='what-we-do', title='What We Do',
              'El export mobile repite la primera barra («Operational assessment 90%»): no se replica.',
              'El h2 mide ≈50px en desktop (`--text-h1` da 48) y ≈32px en mobile (`--text-h1` da 36); se mantiene el token.',
              'El CTA lleva al footer (contacto): el diseño no dice adónde va.']))
+
+S.append(dict(id='services', title='Services',
+  desc='Section Head partido (título, texto y las flechas del carrusel en una fila desde xl; apilado antes) y, debajo, el <a href="#carousel">Carousel</a> de <a href="#card-service">Card Service</a> en el contenedor ancho: el slide activo va centrado y destacado (<code>data-carousel-highlight</code>), con los vecinos sangrando hasta el borde de la ventana. La sección los recorta con <code>overflow-x: clip</code>.',
+  desc_md='Section Head `--split` (desde xl) con las flechas + Carousel de Card Service en `.container-wide`: activo centrado y destacado, vecinos sangrando hasta el borde; la sección recorta con `overflow-x: clip`.',
+  mods='section',
+  rows=[('section.section.services', 'Recorta en horizontal los slides que sangran'),
+        ('.section-head', 'Encabezado de sección: __main (eyebrow + h2), __text y __actions, apilados'),
+        ('.section-head--split', 'Desde xl: título | texto | flechas en una fila; el texto y las flechas se alinean con la primera línea del h2'),
+        ('.section-head__title', 'h2 acotado a 38rem para cortar donde el diseño'),
+        ('.carousel__arrows.section-head__actions', 'Flechas del carrusel (aria-controls = id del carrusel)'),
+        ('data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1"', 'Destaca el slide activo; arranca en Marketing Guidance (1 o 2 por vista) y en Process Optimization (3 por vista)')],
+  tokens=['--text-h1 (section-title)', '--spacing-3 / -5 / -8 / -10', 'Eyebrow, Icon Button (átomos)', 'Card Service (molécula)', 'Carousel (organismo)'],
+  a11y='El carrusel es una región con nombre («Services») y cada slide un grupo «N of 5»; las copias que agrega <code>main.js</code> para el loop van con <code>aria-hidden</code> e <code>inert</code>. Las flechas están antes del carrusel en el orden de lectura y lo controlan por <code>aria-controls</code>. El destacado es solo visual: no cambia el contenido que se anuncia.',
+  a11y_md='Región «Services», slides «N of 5»; copias del loop con `aria-hidden` + `inert`. Flechas antes del carrusel, con `aria-controls`. El destacado es solo visual.',
+  decisions=['Se destaca el slide activo (decisión del usuario): en desktop la card oscura queda al centro, como el diseño; en mobile, es la única visible.',
+             'Section Head partido recién desde xl (1280px): a 1024px el título tenía 370px y cortaba en 4 líneas. Antes, apilado como en mobile.',
+             'Financial Planning y Brand Strategy son placeholder (el diseño los muestra cortados en los costados). Los íconos son Lucide equivalentes a los glifos propios del diseño.',
+             'Hueco entre secciones de 192px (96 + 96) contra ≈170px del diseño: se mantiene el ritmo del theme (`.section`).']))
+
+S.append(dict(id='why-choose-us', title='Why Choose Us',
+  desc='Texto a la izquierda, foto a la derecha y, montada sobre el borde inferior de la foto, la <strong>Feature Strip</strong>: un contenedor blanco que junta tres <a href="#card-feature">Card Feature</a> (la del medio, destacada con foto). Desde lg el texto arranca en el borde del <code>.container</code> y la foto llega al del <code>.container-wide</code>. En mobile: texto, foto y la franja apilada, montada 92px sobre la foto.',
+  desc_md='Texto + foto, con la Feature Strip (tres Card Feature en un contenedor blanco) montada sobre el borde inferior de la foto. Desde lg el texto se alinea con `.container` y la foto llega al borde de `.container-wide`. Mobile: apilado, la franja 92px sobre la foto.',
+  mods='section',
+  rows=[('.container-wide.why-choose__grid', 'Grilla: --why-indent | texto 54fr | foto 46fr | --why-indent (columna central única bajo lg)'),
+        ('--why-container / --why-indent', 'Ancho de contenido del .container en cada breakpoint y la sangría que resulta; alinea el texto con las otras secciones'),
+        ('.why-choose__intro / __title / __text', 'Eyebrow, h2 (corta en 36rem, como el diseño) y párrafo'),
+        ('.why-choose__media', 'Foto 1125:1095 que ocupa las dos filas; se estira si el texto es más alto'),
+        ('.feature-strip.why-choose__strip', 'Franja blanca con borde: en fila desde lg, apilada antes; montada sobre la foto'),
+        ('.feature-strip .card-feature', 'Cards normales sin fondo ni sombra; alto mínimo 18rem (20rem desde lg)')],
+  tokens=['--container-width', '--color-surface-default', '--color-border-subtle', '--radius-lg', '--shadow-sm', '--border-width-sm', '--spacing-3 / -4 / -5 / -9 / -10 / -11', 'Eyebrow (átomo)', 'Card Feature (molécula)'],
+  a11y='Orden del DOM = orden de lectura: texto, foto y las tres cards. La foto lleva <code>alt</code> descriptivo; el fondo de la card destacada es decorativo. El «Read More» de la card 02 tiene nombre completo («Read More about results-focused strategies») con texto oculto.',
+  a11y_md='Orden del DOM = lectura (texto, foto, cards). Foto con `alt`; fondo de la card destacada decorativo. «Read More» con nombre completo por texto oculto.',
+  decisions=['El «Read More» de la card 02 se mantiene también en mobile (decisión del usuario): el export mobile lo omite, se trata como omisión del export.',
+             'Las columnas de la sangría (`--why-container`) usan los breakpoints de Bootstrap porque replican el ancho de su `.container`; excepción escrita en `design-tokens.md`.',
+             'La Feature Strip vive en el bloque de Sections (no es una molécula del kit): solo la usa esta sección.',
+             'Excepción declarada a anti-patrones #4 (card dentro de card): la Card Feature destacada vive dentro del contenedor blanco de la franja, como el diseño; las otras dos pierden fondo y sombra y se leen como columnas de la franja.',
+             '«Read More» lleva a Services: el diseño no dice adónde va.']))
+
+S.append(dict(id='finance', title='Finance',
+  desc='El <a href="#word-list">Word List</a> como sección. Desde lg, un bloque a todo el ancho con radio de 40px, la foto desenfocada <strong>fija</strong> detrás (no se desplaza con la página) y el contenido centrado en vertical; la Card Project activa queda a la derecha con 524px. Bajo lg no hay bloque: «Works» tenue y las cards apiladas sobre el crema.',
+  desc_md='Word List como sección. Desde lg: bloque a todo el ancho (radio 40px) con foto desenfocada fija detrás, contenido centrado y la Card Project de 524px a la derecha. Bajo lg: «Works» tenue y cards apiladas.',
+  mods='section',
+  rows=[('section.section.finance + aria-labelledby="works-title"', 'Desde lg: bloque de 59rem de alto mínimo con clip-path redondeado'),
+        ('.finance__media', 'Capa position: fixed con la foto (filter: blur(--blur-photo)) y el velo; el clip-path de la sección la recorta'),
+        ('.finance .word-list__media', 'Columna de cards acotada a 524px, alineada a la derecha con 20px de margen'),
+        ('h2#works-title.visually-hidden', 'Nombre de la sección (el diseño no muestra título en desktop)')],
+  tokens=['--blur-photo (nuevo)', '--radius-xl', '--color-overlay', '--color-background-inverse', '--spacing-5', 'Word List (organismo)', 'Card Project (molécula)'],
+  a11y='La sección se nombra con el <code>&lt;h2&gt;</code> oculto «Works». La foto de fondo es decorativa (<code>alt=""</code>) y no se carga bajo lg (está en una capa con <code>display: none</code> y <code>loading="lazy"</code>). El velo mantiene el contraste de la palabra activa en blanco. Con «reducir movimiento» el Word List queda en su estado inicial (Growth activa).',
+  a11y_md='Nombrada por el `<h2>` oculto «Works». Foto decorativa que no se carga bajo lg. El velo da contraste a la palabra activa. Reduced motion: queda Growth activa.',
+  decisions=['Foto fija sin `background-attachment: fixed` (iOS lo ignora y un `filter` en el mismo elemento lo rompe): es una capa `position: fixed` dentro de la sección, recortada por su `clip-path` (que, a diferencia de `overflow`, sí recorta descendientes fijos). Se agranda el doble del desenfoque por lado para que el borde difuminado no se vea.',
+             'Token nuevo `--blur-photo` (12px) junto a `--blur-text` y `--blur-backdrop`; va en `filter` sobre la imagen, nunca en `backdrop-filter`.',
+             'Velo `--color-overlay` (65%), algo más denso que el diseño: la palabra activa en blanco pasa sobre la zona clara de la foto.',
+             'El bloque mide 1905px de ancho en el PNG (artefacto del export): se trata como 100%.']))
+
+S.append(dict(id='pricing', title='Pricing',
+  desc='Section Head centrado, el switch mensual / anual y las tres <a href="#card-pricing">Card Pricing</a> (en 3 columnas desde xl; antes, una columna centrada). <code>main.js</code> cambia los precios al mover el <a href="#switch">Switch</a> y lo anuncia en una región <code>role="status"</code>.',
+  desc_md='Section Head `--center`, Switch mensual/anual y tres Card Pricing (3 columnas desde xl, una centrada antes). `main.js` cambia los precios y lo anuncia en `role="status"`.',
+  mods='section',
+  rows=[('.section-head--center', 'Eyebrow --center y h2 centrados'),
+        ('.pricing__billing + data-pricing', 'Fila del switch: «Monthly» (aria-hidden), el switch y su &lt;label&gt;; 18px en mobile y 24px desde lg'),
+        ('input.switch[role="switch"]#pricing-annual', 'Encendido = precios anuales; su nombre es «Annually Save 30%»'),
+        ('[data-pricing-status][role="status"]', 'Región oculta que anuncia el cambio (solo al mover el switch)'),
+        ('[data-price-monthly][data-price-annual]', 'Importe que main.js reemplaza; sin JS queda el mensual'),
+        ('.pricing__grid', 'Una columna de hasta 32rem; tres columnas desde xl')],
+  tokens=['--text-h6 / -h4', '--color-text-primary', '--spacing-5 / -6 / -8 / -9 / -10', 'Eyebrow, Switch, Button (átomos)', 'Card Pricing (molécula)'],
+  a11y='El switch es un <code>&lt;input type="checkbox" role="switch"&gt;</code> nativo con <code>&lt;label for&gt;</code> («Annually Save 30%»): se opera con Espacio y el lector anuncia encendido o apagado. «Monthly» es un rótulo visual oculto al lector, para no duplicar el nombre. Al moverlo, la región <code>role="status"</code> anuncia «Showing annual prices, 30% off.» (o el mensual); al cargar no anuncia nada. Cada «Get Started» lleva el nombre del plan en texto oculto.',
+  a11y_md='Switch nativo (`role="switch"`) con `<label>` «Annually Save 30%»; «Monthly» con `aria-hidden`. `role="status"` anuncia el cambio solo al moverlo. «Get Started» con el nombre del plan oculto.',
+  decisions=['Precios anuales con el 30% de descuento redondeado como el diseño: 39.9 → 27.9, 49.9 → 34.9, 59.9 → 41.9. «/ Month» no cambia (precio mensual equivalente).',
+             'Tres columnas recién desde xl: a 1024px quedaban de 296px y cortaban nombres y beneficios en varias líneas.',
+             'El export mobile repite «Long-Term Success Planning» en Premium Features: no se replica.',
+             'Los «Get Started» llevan al footer (contacto): el diseño no dice adónde van.']))
 
 # ------------------------------------------------------------------ render (mismo formato que los otros niveles)
 def indent(txt, n):

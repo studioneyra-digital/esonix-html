@@ -411,7 +411,7 @@ html.lenis body {
   align-items: center;
   gap: var(--spacing-2);
   color: var(--color-text-primary);
-  font-size: var(--text-sm);
+  font-size: var(--text-body);
   font-weight: var(--weight-medium);
   line-height: var(--leading-snug);
 }
@@ -737,7 +737,10 @@ html.lenis body {
   object-fit: cover;
 }
 
-/* Card Service — foto, ícono y texto. data-surface="brand" la destaca (petróleo, ícono amarillo). */
+/* Card Service — foto, ícono y texto. data-surface="brand" la destaca (petróleo, ícono amarillo). El cambio
+   de destacado se anima: en el carrusel de Services la destacada es el slide activo y cambia con él. El
+   texto va sangrado bajo el título, no bajo el ícono, como el diseño: __head se disuelve en la grilla de
+   __body (ícono | título, y el párrafo en la segunda columna). */
 .card-service {
   display: flex;
   flex-direction: column;
@@ -748,6 +751,7 @@ html.lenis body {
   background-color: var(--color-surface-default);
   box-shadow: var(--shadow-sm);
   color: var(--color-text-secondary);
+  transition: background-color var(--ease-base), color var(--ease-base), box-shadow var(--ease-base);
 }
 .card-service__media {
   display: block;
@@ -758,21 +762,26 @@ html.lenis body {
 }
 .card-service__body {
   display: grid;
-  gap: var(--spacing-3);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-3) var(--spacing-5);
   padding: 0 var(--spacing-5) var(--spacing-5);
 }
 .card-service__head {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
+  display: contents;
+}
+.card-service__body > p {
+  grid-column: 2;
 }
 .card-service__icon {
-  font-size: var(--spacing-7);
+  font-size: var(--spacing-8);
   color: var(--color-text-primary);
+  transition: color var(--ease-base);
 }
 .card-service__title {
   font-size: var(--text-h4);
   font-weight: var(--weight-medium);
+  transition: color var(--ease-base);
 }
 .card-service[data-surface] {
   box-shadow: none;
@@ -2091,6 +2100,8 @@ html:has(.video-modal[open]) {
    gutter, y el lg de Bootstrap (992px) no es el del theme (1024px). */
 :root {
   --header-offset: 7rem; /* alto del header fijo: barra de ~87px + su margen superior de 20px, redondeado */
+  --container-width: 82.5rem; /* 1320px de contenido (.container desde xxl) */
+  --container-wide-width: 101.25rem; /* 1620px de contenido (.container-wide) */
 }
 html {
   scroll-padding-block-start: calc(var(--header-offset) + var(--spacing-5));
@@ -2101,13 +2112,13 @@ html {
 }
 .container-wide {
   inline-size: 100%;
-  max-inline-size: calc(101.25rem + var(--bs-gutter-x)); /* 1620px de contenido */
+  max-inline-size: calc(var(--container-wide-width) + var(--bs-gutter-x));
   margin-inline: auto;
   padding-inline: calc(var(--bs-gutter-x) * 0.5);
 }
 @media (min-width: 87.5rem) {
   .container {
-    max-inline-size: calc(82.5rem + var(--bs-gutter-x)); /* 1320px de contenido */
+    max-inline-size: calc(var(--container-width) + var(--bs-gutter-x));
   }
 }
 
@@ -2366,6 +2377,280 @@ html {
   }
   .what-we-do__img1 {
     align-self: end;
+  }
+}
+
+/* Section Head — encabezado de sección: __main (eyebrow + h2), __text y __actions (p. ej. las flechas de
+   un carrusel). Bajo xl, todo apilado. --split desde xl (Services): título | texto | flechas en una
+   fila (antes de 1280px el título no tiene lugar y corta en 4 líneas). __main se disuelve
+   (display: contents) y el eyebrow ocupa su propia fila: así el texto y las flechas se alinean con la
+   primera línea del h2 y no con el eyebrow. --center (Pricing): centrado. */
+.section-head {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-5);
+  margin-block-end: var(--spacing-8);
+}
+.section-head__main {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-3);
+}
+.section-head__title {
+  max-inline-size: 38rem; /* corta donde el diseño: «Innovative Solutions for / Business Success» */
+}
+.section-head__text {
+  max-inline-size: 25rem;
+}
+.section-head--center,
+.section-head--center .section-head__main {
+  justify-items: center;
+  text-align: center;
+}
+.section-head--center {
+  margin-block-end: var(--spacing-6);
+}
+@media (min-width: 64rem) {
+  .section-head {
+    margin-block-end: var(--spacing-10);
+  }
+  .section-head--center {
+    margin-block-end: var(--spacing-8);
+  }
+}
+@media (min-width: 80rem) {
+  /* Columnas medidas a 1920: h2 570px, texto 396px y flechas al final */
+  .section-head--split {
+    grid-template-columns: minmax(0, 36rem) minmax(0, 25rem) auto;
+    justify-content: space-between;
+    align-items: start;
+    gap: var(--spacing-3) var(--spacing-8);
+  }
+  .section-head--split .section-head__main {
+    display: contents;
+  }
+  .section-head--split .eyebrow {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Services — Section Head --split con las flechas del carrusel y, debajo, el Carousel en el contenedor
+   ancho (3 slides de 524px a 1920). Los slides de los costados sangran hasta el borde de la ventana: la
+   sección los recorta. El slide activo va centrado y destacado (data-carousel-highlight). */
+.services {
+  overflow-x: clip;
+}
+
+/* Why Choose Us — texto a la izquierda, foto a la derecha y, montada sobre el borde inferior de la foto,
+   la franja de tres Card Feature (.feature-strip). Desde lg el texto arranca en el borde del .container y
+   la foto llega al borde del .container-wide: la grilla vive en el contenedor ancho y la primera y la
+   última columna miden la diferencia entre los dos (--why-indent). Los porcentajes de
+   grid-template-columns se resuelven contra el ancho de la propia grilla. --why-container replica el
+   ancho de contenido del .container en cada breakpoint de Bootstrap (540 / 720 / 960 / 1140px con el
+   gutter adentro; desde xxl, el del theme): así el texto se alinea con las otras secciones en todos los
+   anchos. Bajo lg todo va en la columna central: texto, foto y la franja apilada, montada 92px sobre la
+   foto como el diseño. */
+.why-choose__grid {
+  --why-container: 100%;
+  --why-indent: calc((100% - min(100%, var(--why-container))) / 2);
+  display: grid;
+  grid-template-columns: var(--why-indent) minmax(0, 1fr) var(--why-indent);
+}
+.why-choose__grid > * {
+  grid-column: 2;
+}
+.why-choose__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-3);
+  margin-block-end: var(--spacing-9);
+}
+.why-choose__title {
+  max-inline-size: 36rem; /* corta donde el diseño: «Why Businesses Trust / Our Consulting» */
+}
+.why-choose__text {
+  max-inline-size: 31rem;
+  margin-block-start: var(--spacing-4);
+}
+.why-choose__media {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 1125 / 1095;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+}
+.why-choose__strip {
+  position: relative;
+  z-index: 1;
+  margin-block-start: calc(-1 * (var(--spacing-11) + var(--spacing-3)));
+}
+@media (min-width: 36rem) {
+  .why-choose__grid {
+    --why-container: calc(33.75rem - var(--bs-gutter-x));
+  }
+}
+@media (min-width: 48rem) {
+  .why-choose__grid {
+    --why-container: calc(45rem - var(--bs-gutter-x));
+  }
+}
+@media (min-width: 62rem) {
+  .why-choose__grid {
+    --why-container: calc(60rem - var(--bs-gutter-x));
+  }
+}
+@media (min-width: 64rem) {
+  .why-choose__grid {
+    grid-template-columns: var(--why-indent) minmax(0, 54fr) minmax(0, 46fr) var(--why-indent);
+    grid-template-rows: auto auto;
+  }
+  .why-choose__intro {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    margin-block-end: var(--spacing-10);
+    padding-block-start: var(--spacing-11); /* el eyebrow arranca ~85px debajo del borde de la foto */
+    padding-inline-end: var(--spacing-9);
+  }
+  .why-choose__text {
+    margin-block-start: var(--spacing-5);
+  }
+  /* Ocupa las dos filas: si el texto es más alto que el espacio libre sobre la franja (anchos chicos),
+     la foto se estira con la grilla en vez de quedar corta */
+  .why-choose__media {
+    grid-column: 3 / 5;
+    grid-row: 1 / 3;
+    block-size: 100%;
+  }
+  .why-choose__strip {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    align-self: end;
+    margin-block-start: 0;
+  }
+}
+@media (min-width: 75rem) {
+  .why-choose__grid {
+    --why-container: calc(71.25rem - var(--bs-gutter-x));
+  }
+}
+@media (min-width: 87.5rem) {
+  .why-choose__grid {
+    --why-container: var(--container-width);
+  }
+}
+
+/* Feature Strip — contenedor blanco con borde que junta tres Card Feature (Why Choose Us): las normales
+   pierden su propio fondo y sombra, y la destacada (data-surface, con foto) conserva los suyos. Excepción
+   declarada a anti-patrones #4 (card dentro de card): el diseño muestra la destacada dentro de la franja. Apiladas
+   en mobile, en fila desde lg. Alto mínimo medido en el diseño (≈ 290px en mobile y 322px a 1920). */
+.feature-strip {
+  display: grid;
+  border: var(--border-width-sm) solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}
+.feature-strip .card-feature {
+  min-block-size: 18rem;
+}
+.feature-strip .card-feature:not([data-surface]) {
+  background-color: transparent;
+  box-shadow: none;
+}
+@media (min-width: 64rem) {
+  .feature-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .feature-strip .card-feature {
+    min-block-size: 20rem;
+  }
+}
+
+/* Finance — el Word List. Bajo lg no hay bloque: «Works» tenue y las cards apiladas sobre el crema (lo
+   resuelve el organismo). Desde lg, un bloque a todo el ancho con radio grande, la foto desenfocada FIJA
+   detrás (no se desplaza con la página) y el contenido centrado en vertical. La foto fija es una capa
+   position: fixed que recorta el clip-path de la sección (overflow no recorta descendientes fijos); se
+   agranda el doble del desenfoque por lado para que el borde difuminado no se vea. La Card Project
+   activa queda a la derecha con 524px y 20px de margen, como el diseño. */
+.finance {
+  position: relative;
+  isolation: isolate;
+}
+.finance__media {
+  display: none;
+}
+@media (min-width: 64rem) {
+  .finance {
+    display: grid;
+    align-content: center;
+    min-block-size: 59rem; /* 945px medidos en el diseño a 1920 */
+    clip-path: inset(0 round var(--radius-xl));
+    background-color: var(--color-background-inverse); /* mientras carga la foto */
+  }
+  .finance__media {
+    display: block;
+    position: fixed;
+    inset: calc(-2 * var(--blur-photo));
+    z-index: -1;
+  }
+  .finance__media img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    max-inline-size: none;
+    object-fit: cover;
+    filter: blur(var(--blur-photo));
+  }
+  .finance__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-overlay);
+  }
+  .finance .word-list__media {
+    justify-self: end;
+    inline-size: min(100%, 32.75rem);
+    margin-inline-end: var(--spacing-5);
+  }
+}
+
+/* Pricing — Section Head --center, el switch mensual / anual y las tres Card Pricing: 3 columnas de 424px
+   desde xl; antes, una columna centrada de hasta 32rem (a 1024px tres columnas de 296px cortan nombres y
+   beneficios en varias líneas). «Monthly» es un rótulo visual (aria-hidden): el nombre accesible del
+   switch es su <label>, «Annually Save 30%» (encendido = precios anuales). main.js cambia los precios y
+   anuncia el cambio en la región role="status". */
+.pricing__billing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-5);
+  margin-block-end: var(--spacing-8);
+  color: var(--color-text-primary);
+  font-size: var(--text-h6);
+  line-height: var(--leading-snug);
+}
+.pricing__billing label {
+  cursor: pointer;
+}
+.pricing__grid {
+  display: grid;
+  gap: var(--spacing-9);
+  max-inline-size: 32rem;
+  margin-inline: auto;
+}
+@media (min-width: 64rem) {
+  .pricing__billing {
+    margin-block-end: var(--spacing-10);
+    font-size: var(--text-h4);
+  }
+}
+@media (min-width: 80rem) {
+  .pricing__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-6);
+    max-inline-size: none;
   }
 }
 /* sections:end */
