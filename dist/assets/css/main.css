@@ -2074,3 +2074,298 @@ html:has(.video-modal[open]) {
   }
 }
 /* organisms:end */
+
+/* sections:start */
+/* ===== Sections =====
+   Bloque escrito a mano (no hay generador de CSS para Sections). La fuente del markup es dist/index.html;
+   sus fichas del kit salen de ahí (docs/tools/sections_kit.py). */
+
+/* Layout de página — medido en el diseño a 1920px: el contenido de texto y grillas mide 1320px (300 → 1620)
+   y el del header, el hero, los carruseles y el blog, 1620px (150 → 1770). El .container xxl de Bootstrap
+   mide 1320 CON su gutter adentro (1296 de contenido): desde su breakpoint xxl (1400px = 87.5rem, el de
+   Bootstrap, porque este override pisa una regla suya) se le suma el gutter. .container-wide es el
+   contenedor ancho, con el mismo gutter. El gutter es --spacing-7 (16px por lado, el margen del diseño
+   mobile: 15px) en vez del 1.5rem de Bootstrap; no afecta a .row, que define el suyo.
+   Las columnas de las Sections usan CSS Grid con los breakpoints del theme, no las clases col-* de
+   Bootstrap: las proporciones del diseño (p. ej. 500 / 750 en What We Do) no caen en 12 columnas con
+   gutter, y el lg de Bootstrap (992px) no es el del theme (1024px). */
+:root {
+  --header-offset: 7rem; /* alto del header fijo: barra de ~87px + su margen superior de 20px, redondeado */
+}
+html {
+  scroll-padding-block-start: calc(var(--header-offset) + var(--spacing-5));
+}
+.container,
+.container-wide {
+  --bs-gutter-x: var(--spacing-7);
+}
+.container-wide {
+  inline-size: 100%;
+  max-inline-size: calc(101.25rem + var(--bs-gutter-x)); /* 1620px de contenido */
+  margin-inline: auto;
+  padding-inline: calc(var(--bs-gutter-x) * 0.5);
+}
+@media (min-width: 87.5rem) {
+  .container {
+    max-inline-size: calc(82.5rem + var(--bs-gutter-x)); /* 1320px de contenido */
+  }
+}
+
+/* Ritmo vertical: cada sección se separa con su propio padding (64px en mobile, 96px desde lg). */
+.section {
+  padding-block: var(--spacing-10);
+}
+@media (min-width: 64rem) {
+  .section {
+    padding-block: var(--spacing-12);
+  }
+}
+
+/* Título de sección — <h2> con el tamaño de --text-h1 (≈ 50px medidos en el diseño a 1920). */
+.section-title {
+  font-size: var(--text-h1);
+}
+
+/* Photo Frame — foto con marco blanco de 8px (What We Do). El radio interno es el externo menos el marco. */
+.photo-frame {
+  padding: var(--spacing-2);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}
+.photo-frame img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+/* Hero — foto a sangre con velo oscuro (más denso a la izquierda y abajo, donde va el texto). El header
+   fijo se superpone: el padding superior reserva su alto (--header-offset). Arriba, el texto con su filete
+   y «Get Started»; debajo y a la derecha, la Card Hero (escalonadas, como el diseño). Abajo, una franja
+   con filete a todo el ancho y el <h1>: «Expert Guidance for —» + «FutureGrowth» en --text-hero. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  color: var(--color-text-inverse);
+}
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.hero__media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 60% 20%;
+}
+.hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--color-overlay), transparent 60%),
+    linear-gradient(to right, var(--color-overlay), transparent 35%),
+    linear-gradient(to top, var(--color-overlay), transparent 45%);
+}
+.hero__top {
+  display: grid;
+  gap: var(--spacing-6);
+  padding-block: calc(var(--header-offset) + var(--spacing-7)) var(--spacing-5);
+}
+.hero__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-4);
+  max-inline-size: 20rem; /* el texto corta en ~320px en el diseño */
+}
+.hero__intro::before {
+  content: '';
+  inline-size: 17.25rem; /* filete de 276px medido en el diseño, más corto que el texto */
+  max-inline-size: 100%;
+  border-block-start: var(--border-width-sm) solid var(--color-text-inverse-secondary);
+}
+.hero__intro .btn {
+  margin-block-start: var(--spacing-4);
+}
+.hero__intro p {
+  margin: 0;
+  color: var(--color-text-inverse-secondary);
+}
+.hero__card {
+  justify-self: end;
+  inline-size: min(100%, 22.5rem);
+}
+.hero__card .card-hero__media {
+  inline-size: calc(var(--spacing-11) * 1.75); /* 140px en el diseño mobile */
+}
+.hero__card .card-hero__title {
+  font-size: var(--text-h6);
+}
+.hero__bottom {
+  border-block-start: var(--border-width-sm) solid var(--color-overlay-light);
+}
+.hero__title {
+  display: grid;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding-block: var(--spacing-6) var(--spacing-4);
+  color: var(--color-text-inverse);
+}
+.hero__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-5);
+  letter-spacing: normal; /* el h1 trae --tracking-tight, pensado para el titular gigante */
+  font-size: var(--text-h6);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+.hero__kicker::after {
+  content: '';
+  inline-size: var(--spacing-8);
+  border-block-start: var(--border-width-md) solid currentColor;
+}
+.hero__headline {
+  font-size: var(--text-hero);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+@media (min-width: 64rem) {
+  .hero__top {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0;
+    padding-block: calc(var(--header-offset) + var(--spacing-13) + var(--spacing-8)) var(--spacing-9);
+  }
+  .hero__intro {
+    grid-column: 1;
+  }
+  .hero__intro .btn {
+    margin-block-start: var(--spacing-6); /* 46px del texto al botón en el diseño */
+  }
+  .hero__card {
+    grid-column: 2;
+    grid-row: 2;
+    inline-size: 27.75rem; /* 445px en el diseño */
+  }
+  .hero__card .card-hero__media {
+    inline-size: calc(var(--spacing-11) * 2);
+  }
+  .hero__card .card-hero__title {
+    font-size: var(--text-h4);
+  }
+  /* Flex con wrap y no grid: si «FutureGrowth» no entra junto al kicker (una columna angosta), baja a la
+     línea siguiente alineado a la derecha en vez de recortarse */
+  .hero__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--spacing-8);
+    padding-block: var(--spacing-7) var(--spacing-2);
+  }
+  .hero__kicker {
+    font-size: var(--text-h4);
+  }
+  .hero__headline {
+    margin-inline-start: auto;
+  }
+}
+
+/* What We Do — eyebrow con filete y debajo una grilla de áreas: así el orden cambia entre desktop y mobile
+   sin duplicar contenido. Desktop (500 | 400 | 290 px en el diseño = 5fr 4fr 3fr con 64px de separación):
+     stat  title title
+     img1  text  text
+     img1  bars  img2
+   Mobile, como el diseño: título, texto, foto chica, barras + CTA, 3M+ y la foto grande. */
+.what-we-do__head {
+  display: grid;
+  gap: var(--spacing-6);
+  margin-block-end: var(--spacing-8);
+}
+.what-we-do__head .eyebrow {
+  margin: 0;
+}
+.what-we-do__grid {
+  display: grid;
+  grid-template-areas:
+    'title'
+    'text'
+    'img2'
+    'bars'
+    'stat'
+    'img1';
+  gap: var(--spacing-9);
+}
+.what-we-do__title {
+  grid-area: title;
+  margin: 0;
+}
+.what-we-do__text {
+  grid-area: text;
+  max-inline-size: 32rem;
+  margin: 0;
+}
+.what-we-do__bars {
+  grid-area: bars;
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--spacing-10);
+}
+.what-we-do__progress {
+  display: grid;
+  gap: var(--spacing-6);
+  inline-size: 100%;
+}
+.what-we-do__stat {
+  grid-area: stat;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-5);
+}
+.what-we-do__img1 {
+  grid-area: img1;
+}
+.what-we-do__img1 img {
+  aspect-ratio: 1;
+}
+.what-we-do__img2 {
+  grid-area: img2;
+  align-self: start; /* si la columna de barras es más alta, el marco no se estira */
+}
+.what-we-do__img2 img {
+  aspect-ratio: 7 / 8;
+}
+.what-we-do {
+  padding-block-start: var(--spacing-7); /* el diseño mobile arranca pegado al hero */
+}
+@media (min-width: 64rem) {
+  .what-we-do {
+    padding-block-start: var(--spacing-12);
+  }
+  .what-we-do__head {
+    margin-block-end: var(--spacing-9);
+  }
+  .what-we-do__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr);
+    grid-template-areas:
+      'stat title title'
+      'img1 text  text'
+      'img1 bars  img2';
+    gap: var(--spacing-9) var(--spacing-10);
+  }
+  .what-we-do__stat {
+    align-self: center;
+    padding-inline: var(--spacing-4);
+  }
+  .what-we-do__img1 {
+    align-self: end;
+  }
+}
+/* sections:end */

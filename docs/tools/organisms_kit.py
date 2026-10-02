@@ -287,9 +287,9 @@ def accordion():
 
 def video_modal():
     return '\n'.join([
-        '<dialog class="video-modal" id="video-modal" data-video-modal data-surface="inverse" aria-labelledby="video-modal-title">',
+        '<dialog class="video-modal" id="video-dialog" data-video-modal data-surface="inverse" aria-labelledby="video-dialog-title">',
         '  <div class="video-modal__head">',
-        '    <h2 class="video-modal__title" id="video-modal-title">Video</h2>',
+        '    <h2 class="video-modal__title" id="video-dialog-title">Video</h2>',
         '    <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" data-video-close aria-label="Close video">%s</button>' % ic('x'),
         '  </div>',
         '  <div class="video-modal__frame"></div>',
@@ -419,7 +419,7 @@ OFFICES = [
 ]
 
 def footer_list(title_id, title, items):
-    links = '\n'.join('    <li><a href="#site-footer">%s</a></li>' % i for i in items)
+    links = '\n'.join('    <li><a href="#">%s</a></li>' % i for i in items)
     return '\n'.join([
         '<nav aria-labelledby="%s">' % title_id,
         '  <h3 class="site-footer__title" id="%s">%s</h3>' % (title_id, title),
@@ -436,7 +436,7 @@ def site_footer():
         '          </div>'])
         for label, city in OFFICES)
     return '\n'.join([
-        '<footer class="site-footer" id="site-footer" data-surface="inverse">',
+        '<footer class="site-footer" data-surface="inverse">',
         '  <div class="container">',
         '    <div class="site-footer__top">',
         '      <form class="newsletter" action="#">',
@@ -460,9 +460,9 @@ def site_footer():
         '    <div class="container site-footer__legal-inner">',
         '      <p>Copyright &copy; 2026 Esonix. All Rights Reserved.</p>',
         '      <p>',
-        '        <a href="#site-footer">Terms &amp; Condition</a>',
+        '        <a href="#">Terms &amp; Condition</a>',
         '        <span aria-hidden="true">|</span>',
-        '        <a href="#site-footer">Privacy Policy</a>',
+        '        <a href="#">Privacy Policy</a>',
         '      </p>',
         '    </div>',
         '  </div>',
@@ -528,7 +528,7 @@ O.append(dict(id='site-footer', title='Site Footer',
              'Columnas desde lg: newsletter hasta 24rem y las otras tres a su ancho de contenido con `space-between`, que cae en las posiciones medidas del diseño (300 / 810 / 1093 / 1332 px a 1920).',
              'El footer trae sus `.container` (de Bootstrap) porque el filete legal debe cruzar todo el ancho y su texto alinearse con las columnas.',
              'Teléfono y redes en íconos no se repiten acá: el diseño no los muestra en el footer.',
-             'Enlaces de Utility Page, Follow Us y legales son placeholder (`href="#site-footer"`): no hay páginas reales todavía.']))
+             'Enlaces de Utility Page, Follow Us y legales son placeholder (`href="#"`): no hay páginas reales todavía.']))
 
 # ------------------------------------------------------------------ render
 def indent(txt, n):

@@ -749,4 +749,13 @@ pre {
   transform: none;
 }
 /* organisms-kit:end */
+
+/* sections-kit:start */
+/* Demos de Sections: sin relleno ni borde (la sección trae los suyos) y recortadas a la columna. */
+.kit-demo--section {
+  padding: 0;
+  overflow: clip;
+  background-color: var(--color-background-default);
+}
+/* sections-kit:end */
 /* kit:css-end */

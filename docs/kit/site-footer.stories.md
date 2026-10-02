@@ -12,7 +12,7 @@ Cierre del sitio: Newsletter, Utility Page, Follow Us, Our Offices y barra legal
 **Footer completo**
 
 ```html
-<footer class="site-footer" id="site-footer" data-surface="inverse">
+<footer class="site-footer" data-surface="inverse">
   <div class="container">
     <div class="site-footer__top">
       <form class="newsletter" action="#">
@@ -25,21 +25,21 @@ Cierre del sitio: Newsletter, Utility Page, Follow Us, Our Offices y barra legal
       <nav aria-labelledby="footer-utility-title">
         <h3 class="site-footer__title" id="footer-utility-title">Utility Page</h3>
         <ul class="site-footer__list">
-          <li><a href="#site-footer">License</a></li>
-          <li><a href="#site-footer">Style Guide</a></li>
-          <li><a href="#site-footer">Password Protected</a></li>
-          <li><a href="#site-footer">Error 404</a></li>
-          <li><a href="#site-footer">Changelog</a></li>
+          <li><a href="#">License</a></li>
+          <li><a href="#">Style Guide</a></li>
+          <li><a href="#">Password Protected</a></li>
+          <li><a href="#">Error 404</a></li>
+          <li><a href="#">Changelog</a></li>
         </ul>
       </nav>
       <nav aria-labelledby="footer-follow-title">
         <h3 class="site-footer__title" id="footer-follow-title">Follow Us</h3>
         <ul class="site-footer__list">
-          <li><a href="#site-footer">Facebook</a></li>
-          <li><a href="#site-footer">Twitter</a></li>
-          <li><a href="#site-footer">Instagram</a></li>
-          <li><a href="#site-footer">Linkedin</a></li>
-          <li><a href="#site-footer">Youtube</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Linkedin</a></li>
+          <li><a href="#">Youtube</a></li>
         </ul>
       </nav>
       <div class="site-footer__offices-col">
@@ -61,9 +61,9 @@ Cierre del sitio: Newsletter, Utility Page, Follow Us, Our Offices y barra legal
     <div class="container site-footer__legal-inner">
       <p>Copyright © 2026 Esonix. All Rights Reserved.</p>
       <p>
-        <a href="#site-footer">Terms & Condition</a>
+        <a href="#">Terms & Condition</a>
         <span aria-hidden="true">|</span>
-        <a href="#site-footer">Privacy Policy</a>
+        <a href="#">Privacy Policy</a>
       </p>
     </div>
   </div>
@@ -103,4 +103,4 @@ Landmark `contentinfo` nativo. Utility Page y Follow Us son `<nav aria-labelledb
 - Columnas desde lg: newsletter hasta 24rem y las otras tres a su ancho de contenido con `space-between`, que cae en las posiciones medidas del diseño (300 / 810 / 1093 / 1332 px a 1920).
 - El footer trae sus `.container` (de Bootstrap) porque el filete legal debe cruzar todo el ancho y su texto alinearse con las columnas.
 - Teléfono y redes en íconos no se repiten acá: el diseño no los muestra en el footer.
-- Enlaces de Utility Page, Follow Us y legales son placeholder (`href="#site-footer"`): no hay páginas reales todavía.
+- Enlaces de Utility Page, Follow Us y legales son placeholder (`href="#"`): no hay páginas reales todavía.

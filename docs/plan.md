@@ -10,7 +10,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ✅ Hecha (Grupos A, B y C) |
-| 4 · Sections + `index.html` | Las secciones de la home, responsive | ⏳ En curso (Grupo 0 hecho) |
+| 4 · Sections + `index.html` | Las secciones de la home, responsive | ⏳ En curso (Grupo 0 hecho, A en revisión) |
 
 ## Reglas de cada etapa
 
@@ -119,7 +119,7 @@ Se entrega en grupos, cada uno revisado antes del siguiente. Antes de construir 
 | Grupo | Contenido | Estado |
 |---|---|---|
 | 0 · Correcciones | Word List, Marquee, Footer y Progress contra el diseño a resolución real | ✅ Hecho |
-| A · Esqueleto + Hero + What We Do | `index.html` (`<head>` SEO, header fijo, `scroll-padding-top`, Scroll Top, scripts), sistema de layout (contenedor de 1320 y ancho de 1620, ritmo vertical, encabezado de sección), Hero, What We Do | ⬜ |
+| A · Esqueleto + Hero + What We Do | `index.html` (`<head>` SEO, header fijo, `scroll-padding-top`, Scroll Top, scripts), sistema de layout (contenedor de 1320 y ancho de 1620, ritmo vertical), Hero, What We Do | 🔍 En revisión |
 | B · Services, Why Choose Us, Finance, Pricing | Carrusel con slide activo destacado, franja Card Feature sobre la foto, bloque Finance con fondo fijo, switch mensual/anual | ⬜ |
 | C · Stats, Testimonials, Team, Logos, FAQ, Blog, Footer | Stats y Logos solo mobile; card de equipo elevada con espacio reservado | ⬜ |
 | D · Cierre | `sitemap.xml`, `robots.txt`, Lighthouse, comparación por breakpoint, reporte de diferencias | ⬜ |

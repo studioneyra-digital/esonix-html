@@ -10,6 +10,7 @@ Scripts de Python 3 (solo librería estándar) que generaron el CSS de los átom
 | `molecules_kit.py` | Nivel «Moléculas» del kit y `docs/kit/<molécula>.stories.md` |
 | `organisms_css.py` | Bloque `/* organisms:start … organisms:end */` de `main.css` |
 | `organisms_kit.py` | Nivel «Organismos» del kit y `docs/kit/<organismo>.stories.md` |
+| `sections_kit.py` | Nivel «Sections» del kit y `docs/kit/<sección>.stories.md`, **extrayendo el markup de `dist/index.html`** |
 
 ## Uso
 
@@ -43,6 +44,8 @@ Desde cualquier carpeta (la raíz del proyecto sale de la ubicación del script)
 - **El JS va en `main.js`, a mano** (un bloque comentado por organismo). Los scripts no lo tocan.
 - **Bloques especiales en la lista `O`:** `snippet=False` arma un bloque de prueba sin código (p. ej. el botón que abre el off-canvas), y el mod `source` oculta un demo cuyo organismo vive fuera de flujo: el snippet se lee igual de ese demo y `main.js` mueve el organismo a `<body>`. La vista estática del off-canvas la clona el JS inline del kit (`data-kit-clone`), que no se regenera.
 
-## Para las sections
+## Sections
 
-No existe `sections_*.py`. Si se quiere generar igual, copiar los de organismos y cambiar marcadores (`sections:`), el `id` de la sección del kit y el rótulo.
+- **La fuente es `dist/index.html`, no el script.** Cada sección va entre `<!-- section:<id> -->` y `<!-- /section:<id> -->`; `sections_kit.py` la extrae, cambia las rutas a `../assets/`, agrega el sufijo `-section` a sus ids (para no chocar con los demos del kit) y arma la ficha. El script solo guarda los metadatos (descripción, clases, tokens, accesibilidad, decisiones) en la lista `S`.
+- **El CSS se escribe a mano** en el bloque `/* sections:start … sections:end */` de `main.css`, que ningún script toca.
+- Para agregar una sección: marcarla en `index.html`, sumar su `dict` a `S` y ejecutar `python docs/tools/sections_kit.py`.

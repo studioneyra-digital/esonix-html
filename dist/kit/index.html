@@ -104,8 +104,11 @@
           </ul>
         </div>
         <div class="kit-nav__group">
-          <p class="kit-nav__group-label">Sections</p>
-          <p class="kit-nav__empty">Sin componentes aún</p>
+          <p class="kit-nav__group-label" id="nav-sections">Sections</p>
+          <ul class="kit-nav__list" aria-labelledby="nav-sections">
+            <li><a class="kit-nav__link" href="#hero"><span class="kit-nav__num">01</span> Hero</a></li>
+            <li><a class="kit-nav__link" href="#what-we-do"><span class="kit-nav__num">02</span> What We Do</a></li>
+          </ul>
         </div>
       </nav>
     </aside>
@@ -3260,9 +3263,9 @@
           <div class="kit-block">
             <span class="kit-block__label">Markup</span>
             <div class="kit-demo kit-demo--source" lang="en">
-              <dialog class="video-modal" id="video-modal" data-video-modal data-surface="inverse" aria-labelledby="video-modal-title">
+              <dialog class="video-modal" id="video-dialog" data-video-modal data-surface="inverse" aria-labelledby="video-dialog-title">
                 <div class="video-modal__head">
-                  <h2 class="video-modal__title" id="video-modal-title">Video</h2>
+                  <h2 class="video-modal__title" id="video-dialog-title">Video</h2>
                   <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" data-video-close aria-label="Close video"><span class="icon icon--x" aria-hidden="true"></span></button>
                 </div>
                 <div class="video-modal__frame"></div>
@@ -3489,7 +3492,7 @@
           <div class="kit-block">
             <span class="kit-block__label">Footer completo</span>
             <div class="kit-demo" data-surface="inverse" lang="en">
-              <footer class="site-footer" id="site-footer" data-surface="inverse">
+              <footer class="site-footer" data-surface="inverse">
                 <div class="container">
                   <div class="site-footer__top">
                     <form class="newsletter" action="#">
@@ -3502,21 +3505,21 @@
                     <nav aria-labelledby="footer-utility-title">
                       <h3 class="site-footer__title" id="footer-utility-title">Utility Page</h3>
                       <ul class="site-footer__list">
-                        <li><a href="#site-footer">License</a></li>
-                        <li><a href="#site-footer">Style Guide</a></li>
-                        <li><a href="#site-footer">Password Protected</a></li>
-                        <li><a href="#site-footer">Error 404</a></li>
-                        <li><a href="#site-footer">Changelog</a></li>
+                        <li><a href="#">License</a></li>
+                        <li><a href="#">Style Guide</a></li>
+                        <li><a href="#">Password Protected</a></li>
+                        <li><a href="#">Error 404</a></li>
+                        <li><a href="#">Changelog</a></li>
                       </ul>
                     </nav>
                     <nav aria-labelledby="footer-follow-title">
                       <h3 class="site-footer__title" id="footer-follow-title">Follow Us</h3>
                       <ul class="site-footer__list">
-                        <li><a href="#site-footer">Facebook</a></li>
-                        <li><a href="#site-footer">Twitter</a></li>
-                        <li><a href="#site-footer">Instagram</a></li>
-                        <li><a href="#site-footer">Linkedin</a></li>
-                        <li><a href="#site-footer">Youtube</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Linkedin</a></li>
+                        <li><a href="#">Youtube</a></li>
                       </ul>
                     </nav>
                     <div class="site-footer__offices-col">
@@ -3538,9 +3541,9 @@
                   <div class="container site-footer__legal-inner">
                     <p>Copyright &copy; 2026 Esonix. All Rights Reserved.</p>
                     <p>
-                      <a href="#site-footer">Terms &amp; Condition</a>
+                      <a href="#">Terms &amp; Condition</a>
                       <span aria-hidden="true">|</span>
-                      <a href="#site-footer">Privacy Policy</a>
+                      <a href="#">Privacy Policy</a>
                     </p>
                   </div>
                 </div>
@@ -3591,7 +3594,197 @@
 
       <section class="kit-level" id="sections" aria-labelledby="sections-title">
         <h2 id="sections-title">Sections</h2>
-        <p class="kit-empty">Sin componentes aún. Las secciones de la home se registran acá con las variantes de layout que el diseño pide.</p>
+        <p class="kit-level__intro">Bloques de página completa. A diferencia de los otros niveles, su fuente es <code>dist/index.html</code>: cada ficha se arma con lo que hay entre los marcadores <code>&lt;!-- section:id --&gt;</code> de la página, así el kit y la home no se desfasan. Los demos se ven con el ancho de esta columna; los breakpoints responden a la ventana.</p>
+        <section class="kit-card" id="hero" aria-labelledby="hero-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 01</p>
+            <h3 id="hero-title">Hero</h3>
+            <p class="kit-card__desc">Foto a sangre con velo oscuro. Arriba, el texto con su filete y «Get Started»; debajo y a la derecha, la <a href="#card-hero">Card Hero</a>. Abajo, una franja con filete a todo el ancho y el único <code>&lt;h1&gt;</code> de la página: «Expert Guidance for —» + «FutureGrowth» en <code>--text-hero</code>. El espacio superior reserva el alto del <a href="#site-header">header fijo</a>. Fuente: <code>dist/index.html</code> (<a href="../index.html#hero">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="hero" aria-labelledby="hero-title-section">
+                <div class="hero__media">
+                  <img src="../assets/img/h1-hero-img.webp" alt="" width="1920" height="1000" fetchpriority="high">
+                </div>
+                <div class="container-wide hero__top">
+                  <div class="hero__intro">
+                    <p>We work closely with businesses to identify opportunities, solve complex problems and develop strategies</p>
+                    <a href="#what-we-do" class="btn btn--light">
+                      Get Started
+                      <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                    </a>
+                  </div>
+                  <div class="card-hero hero__card">
+                    <img class="card-hero__media" src="../assets/img/h1-hero-thumb-img.webp" alt="" width="320" height="364">
+                    <div class="card-hero__body">
+                      <span class="card-hero__index">01</span>
+                      <p class="card-hero__title">Creative Business Insights</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero__bottom">
+                  <div class="container-wide">
+                    <h1 class="hero__title" id="hero-title-section">
+                      <span class="hero__kicker">Expert Guidance for</span>
+                      <span class="hero__headline">FutureGrowth</span>
+                    </h1>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-hero-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-hero-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Hero">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>section.hero + aria-labelledby</code></th><td>Sección con la foto de fondo; recorta lo que sangre</td></tr>
+                  <tr><th scope="row"><code>.hero__media</code></th><td>Capa de la foto (object-fit: cover) con el velo en ::after</td></tr>
+                  <tr><th scope="row"><code>.container-wide.hero__top</code></th><td>Contenedor ancho (1620px) con el texto y la card; desde lg, card en la segunda fila y segunda columna</td></tr>
+                  <tr><th scope="row"><code>.hero__intro</code></th><td>Filete corto (276px), texto y botón claro</td></tr>
+                  <tr><th scope="row"><code>.card-hero.hero__card</code></th><td>Card Hero: 360px en mobile, 445px desde lg</td></tr>
+                  <tr><th scope="row"><code>.hero__bottom</code></th><td>Franja con filete a todo el ancho</td></tr>
+                  <tr><th scope="row"><code>h1.hero__title / __kicker / __headline</code></th><td>El titular: kicker con raya y «FutureGrowth» a la derecha desde lg</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-hero</code></li>
+              <li><code>--text-h4 / -h6</code></li>
+              <li><code>--weight-semibold</code></li>
+              <li><code>--tracking-tight</code></li>
+              <li><code>--color-overlay / -overlay-light</code></li>
+              <li><code>--color-text-inverse / -inverse-secondary</code></li>
+              <li><code>--header-offset</code></li>
+              <li><code>--spacing-4 / -5 / -6 / -7 / -8 / -9 / -13</code></li>
+              <li><code>Button --light, Card Hero</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Único <code>&lt;h1&gt;</code> de la página, con las dos partes del titular en el mismo encabezado. La foto de fondo es decorativa (<code>alt=""</code>) y carga con prioridad alta (es el LCP); el velo asegura el contraste del texto blanco. «Get Started» es un enlace a la sección siguiente.</p>
+        </section>
+
+        <section class="kit-card" id="what-we-do" aria-labelledby="what-we-do-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 02</p>
+            <h3 id="what-we-do-title">What We Do</h3>
+            <p class="kit-card__desc">Eyebrow con filete y una grilla de áreas: en desktop, 3M+ con avatares y la foto grande a la izquierda; a la derecha, el título, el texto, las barras de <a href="#progress">Progress</a> con el CTA y la foto chica. En mobile el orden cambia como en el diseño (título, texto, foto chica, barras, 3M+, foto grande) sin duplicar contenido. Fuente: <code>dist/index.html</code> (<a href="../index.html#what-we-do">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section what-we-do" id="what-we-do-section" aria-labelledby="what-we-do-title-section">
+                <div class="container">
+                  <div class="what-we-do__head">
+                    <p class="eyebrow">What We Do</p>
+                    <hr class="divider">
+                  </div>
+                  <div class="what-we-do__grid">
+                    <h2 class="section-title what-we-do__title" id="what-we-do-title-section">Driving business growth through smart strategy and expert guidance</h2>
+                    <p class="what-we-do__text">We believe every business has the potential to grow with the right strategy and support. By understanding your goals, challenges, and vision, we create customized consulting solutions</p>
+                    <div class="what-we-do__bars">
+                      <div class="what-we-do__progress">
+                        <div class="progress" style="--progress: 90">
+                          <div class="progress__head">
+                            <label for="progress-operational-section">Operational assessment</label>
+                            <span aria-hidden="true">90%</span>
+                          </div>
+                          <progress class="progress__bar" id="progress-operational-section" value="90" max="100">90%</progress>
+                        </div>
+                        <div class="progress" style="--progress: 76">
+                          <div class="progress__head">
+                            <label for="progress-consultation-section">Consultation &amp; analysis</label>
+                            <span aria-hidden="true">76%</span>
+                          </div>
+                          <progress class="progress__bar" id="progress-consultation-section" value="76" max="100">76%</progress>
+                        </div>
+                        <div class="progress" style="--progress: 85">
+                          <div class="progress__head">
+                            <label for="progress-strategic-section">Strategic interpretation</label>
+                            <span aria-hidden="true">85%</span>
+                          </div>
+                          <progress class="progress__bar" id="progress-strategic-section" value="85" max="100">85%</progress>
+                        </div>
+                      </div>
+                      <a href="#site-footer" class="btn">
+                        Get Started
+                        <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                      </a>
+                    </div>
+                    <div class="what-we-do__stat">
+                      <div class="stat">
+                        <p class="stat__value">3M<span class="stat__suffix">+</span></p>
+                        <p>People Using Our Platform</p>
+                      </div>
+                      <div class="avatar-stack">
+                        <img class="avatar" src="../assets/img/h1-testimonial-thumb-img-1.webp" alt="" width="40" height="40" loading="lazy">
+                        <img class="avatar" src="../assets/img/h1-testimonial-thumb-img-2.webp" alt="" width="40" height="40" loading="lazy">
+                        <img class="avatar" src="../assets/img/h1-testimonial-thumb-img-3.webp" alt="" width="40" height="40" loading="lazy">
+                        <span class="avatar-stack__more"><span class="icon icon--plus" aria-hidden="true"></span></span>
+                      </div>
+                    </div>
+                    <div class="photo-frame what-we-do__img1">
+                      <img src="../assets/img/h1-about-img-1.webp" alt="Three consultants smiling while they review a plan together" width="735" height="720" loading="lazy">
+                    </div>
+                    <div class="photo-frame what-we-do__img2">
+                      <img src="../assets/img/h1-about-img-2.webp" alt="Two colleagues reviewing results on a tablet" width="420" height="480" loading="lazy">
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-what-we-do-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-what-we-do-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de What We Do">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>section.section.what-we-do</code></th><td>Sección con el padding vertical del theme (en mobile, 32px arriba, como el diseño)</td></tr>
+                  <tr><th scope="row"><code>.what-we-do__head</code></th><td>Eyebrow y filete (Divider)</td></tr>
+                  <tr><th scope="row"><code>.what-we-do__grid</code></th><td>Grilla de áreas: una columna en mobile; desde lg 5fr 4fr 3fr con 64px de separación</td></tr>
+                  <tr><th scope="row"><code>.section-title</code></th><td>h2 con el tamaño de --text-h1</td></tr>
+                  <tr><th scope="row"><code>.what-we-do__bars / __progress</code></th><td>Barras de Progress (con --progress) y el CTA</td></tr>
+                  <tr><th scope="row"><code>.what-we-do__stat</code></th><td>Stat 3M+ y Avatar Stack, repartidos a los extremos</td></tr>
+                  <tr><th scope="row"><code>.photo-frame</code></th><td>Foto con marco blanco de 8px; __img1 cuadrada, __img2 7:8</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h1</code></li>
+              <li><code>--color-surface-default</code></li>
+              <li><code>--radius-lg / -md</code></li>
+              <li><code>--shadow-sm</code></li>
+              <li><code>--spacing-2 / -4 / -6 / -7 / -8 / -9 / -10 / -12</code></li>
+              <li><code>Eyebrow, Divider, Progress, Button, Avatar Stack (átomos)</code></li>
+              <li><code>Stat (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El orden del DOM es el de lectura (título, texto, barras, cifra, fotos); la grilla solo reacomoda la vista, así el orden de tabulación no salta. Cada barra es un <code>&lt;progress&gt;</code> con <code>&lt;label for&gt;</code>. Las fotos llevan <code>alt</code> descriptivo; los avatares son decorativos.</p>
+        </section>
+        <!-- kit:sections-end -->
       </section>
     </main>
   </div>

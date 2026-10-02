@@ -12,9 +12,9 @@
 **Markup**
 
 ```html
-<dialog class="video-modal" id="video-modal" data-video-modal data-surface="inverse" aria-labelledby="video-modal-title">
+<dialog class="video-modal" id="video-dialog" data-video-modal data-surface="inverse" aria-labelledby="video-dialog-title">
   <div class="video-modal__head">
-    <h2 class="video-modal__title" id="video-modal-title">Video</h2>
+    <h2 class="video-modal__title" id="video-dialog-title">Video</h2>
     <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" data-video-close aria-label="Close video"><span class="icon icon--x" aria-hidden="true"></span></button>
   </div>
   <div class="video-modal__frame"></div>
