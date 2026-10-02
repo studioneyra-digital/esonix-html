@@ -82,6 +82,20 @@ dist/                          ← sitio real, sin build — se sirve tal cual
 - Para usarlo en un proyecto de cliente, importarlo con `git subtree` (conserva el historial); no copiar archivos sueltos.
 - Los fixes genéricos (no específicos del cliente) se devuelven al repo del theme, no se quedan solo en el fork.
 
+### Publicar el theme desde `studioneyra-sandbox`
+El theme vive en `experiments/design-to-web` dentro del repo `studioneyra-sandbox` y se publica en `https://github.com/studioneyra-digital/esonix-html.git` (rama `main`). Para subir cambios, sacar solo esa carpeta con su historial:
+
+```bash
+# Desde la raíz de studioneyra-sandbox, con los cambios ya commiteados
+git subtree split --prefix=experiments/design-to-web HEAD   # el último renglón es el hash resultante
+git push https://github.com/studioneyra-digital/esonix-html.git <hash>:refs/heads/main
+```
+
+- Los hashes del repo publicado difieren de los del sandbox (el split reescribe los commits); no usarlos para referenciar commits entre repos.
+- `git subtree split` imprime progreso en la salida: tomar solo el último renglón como hash, o redirigir el resto.
+- Commitear siempre con rutas explícitas (nunca `git add -A`): el sandbox tiene cambios de otros proyectos, y `.playwright-cli/` no se versiona.
+- Si el split crece o se repite seguido, agregar el repo como remoto (`git remote add esonix https://github.com/studioneyra-digital/esonix-html.git`) para acortar el push.
+
 ## 11. Qué NO hacer
 - No instalar librerías de terceros (shadcn, Radix, MUI).
 - No usar `!important`. Única excepción documentada: el `<select>` del componente Select (bloque `/* Select */` en `assets/css/main.css`), porque Chromium/Windows fuerza el color del placeholder cuando la opción seleccionada es `disabled` y ninguna otra técnica lo pisa. Ante un caso similar: probar alternativas primero y, si no hay ninguna, preguntar antes de usarlo; nunca en silencio.
