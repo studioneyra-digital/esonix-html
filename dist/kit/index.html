@@ -98,6 +98,9 @@
             <li><a class="kit-nav__link" href="#carousel"><span class="kit-nav__num">03</span> Carousel</a></li>
             <li><a class="kit-nav__link" href="#accordion"><span class="kit-nav__num">04</span> Accordion</a></li>
             <li><a class="kit-nav__link" href="#video-modal"><span class="kit-nav__num">05</span> Video Modal</a></li>
+            <li><a class="kit-nav__link" href="#word-list"><span class="kit-nav__num">06</span> Word List</a></li>
+            <li><a class="kit-nav__link" href="#marquee"><span class="kit-nav__num">07</span> Marquee</a></li>
+            <li><a class="kit-nav__link" href="#site-footer"><span class="kit-nav__num">08</span> Site Footer</a></li>
           </ul>
         </div>
         <div class="kit-nav__group">
@@ -3302,6 +3305,288 @@
             </ul>
           </div>
           <p class="kit-note"><strong>Accesibilidad:</strong> <code>showModal()</code> deja inert el resto de la página y lleva el foco a «Close»; Escape, «Close» o un click en el fondo cierran y el foco vuelve al botón que lo abrió (comportamiento nativo). El diálogo se nombra con su título visible y el iframe lleva <code>title</code>. Los botones que lo abren declaran <code>aria-haspopup="dialog"</code>. El fundido usa <code>--ease-base</code> (0 con «reducir movimiento»).</p>
+        </section>
+
+        <section class="kit-card" id="word-list" aria-labelledby="word-list-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 06</p>
+            <h3 id="word-list-title">Word List</h3>
+            <p class="kit-card__desc">Bloque Finance / Advisory / Growth / Strategy: desde <code>lg</code>, cuatro palabras grandes (contorno cuando están inactivas) con una <a href="#card-project">Card Project</a> por palabra superpuesta a la derecha; <code>main.js</code> activa la palabra y la card más cercanas al centro del viewport al cruzarlo. Bajo <code>lg</code> es el eyebrow «Works» y las cuatro cards apiladas, sin el efecto de scroll (el diseño mobile no lo muestra).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Growth activa (estado inicial, como el diseño)</span>
+            <div class="kit-demo kit-demo--narrow-wide" data-surface="inverse" lang="en">
+              <div class="word-list" data-word-list>
+                <p class="eyebrow word-list__eyebrow">Works</p>
+                <ul class="word-list__words" role="list">
+                  <li><span class="word-list__word" data-word-for="word-finance">Finance</span></li>
+                  <li><span class="word-list__word" data-word-for="word-advisory">Advisory</span></li>
+                  <li><span class="word-list__word is-active" data-word-for="word-growth">Growth</span></li>
+                  <li><span class="word-list__word" data-word-for="word-strategy">Strategy</span></li>
+                </ul>
+                <div class="word-list__media">
+                <article class="card-project word-list__card" id="word-finance">
+                  <img class="card-project__img" src="../assets/img/h1-portfolio-img-3.webp" alt="" width="1920" height="1084" loading="lazy">
+                  <div class="card-project__caption">
+                    <span class="card-project__index" aria-hidden="true">// 01</span>
+                    <h3 class="card-project__title">Corporate Finance Management</h3>
+                  </div>
+                </article>
+                <article class="card-project word-list__card" id="word-advisory">
+                  <img class="card-project__img" src="../assets/img/h1-portfolio-img-1.webp" alt="" width="1920" height="1076" loading="lazy">
+                  <div class="card-project__caption">
+                    <span class="card-project__index" aria-hidden="true">// 02</span>
+                    <h3 class="card-project__title">Advisory Services</h3>
+                  </div>
+                </article>
+                <article class="card-project word-list__card is-active" id="word-growth">
+                  <img class="card-project__img" src="../assets/img/h1-portfolio-img-2.webp" alt="" width="1920" height="765" loading="lazy">
+                  <div class="card-project__caption">
+                    <span class="card-project__index" aria-hidden="true">// 03</span>
+                    <h3 class="card-project__title">Growth Strategy Planning</h3>
+                  </div>
+                </article>
+                <article class="card-project word-list__card" id="word-strategy">
+                  <img class="card-project__img" src="../assets/img/h1-portfolio-img-4.webp" alt="" width="1920" height="1076" loading="lazy">
+                  <div class="card-project__caption">
+                    <span class="card-project__index" aria-hidden="true">// 04</span>
+                    <h3 class="card-project__title">Market Strategy Execution</h3>
+                  </div>
+                </article>
+                </div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-word-list-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-word-list-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Word List">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.word-list + data-word-list</code></th><td>Contenedor; main.js lo inicia al acercarse al viewport</td></tr>
+                  <tr><th scope="row"><code>.word-list__eyebrow</code></th><td>Eyebrow «Works» (bajo lg; oculto desde lg)</td></tr>
+                  <tr><th scope="row"><code>.word-list__words / __word</code></th><td>Columna de palabras (desde lg); contorno con color-mix, sólida con .is-active</td></tr>
+                  <tr><th scope="row"><code>data-word-for</code></th><td>En cada palabra: id de su Card Project</td></tr>
+                  <tr><th scope="row"><code>.word-list__media / __card</code></th><td>Pila de Card Project (desde lg, superpuestas con grid-area); bajo lg, lista normal</td></tr>
+                  <tr><th scope="row"><code>.is-active</code></th><td>Lo pone main.js en la palabra y la card activas (o el markup, como estado inicial)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-giant</code></li>
+              <li><code>--weight-bold</code></li>
+              <li><code>--leading-tight</code></li>
+              <li><code>--color-text-inverse</code></li>
+              <li><code>--border-width-sm</code></li>
+              <li><code>--spacing-2 / -5 / -9 / -12</code></li>
+              <li><code>--ease-slow</code></li>
+              <li><code>Eyebrow (átomo)</code></li>
+              <li><code>Card Project (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Las palabras son contenido real (no decorativo): quedan en el orden de lectura normal sin <code>aria-hidden</code>; el cambio de énfasis visual con el scroll no mueve el foco ni duplica contenido. Con <code>prefers-reduced-motion: reduce</code>, <code>main.js</code> no inicia el ScrollTrigger: queda el estado del markup (Growth activa). Sin JS, bajo lg se ven todas las cards apiladas igual que en mobile.</p>
+        </section>
+
+        <section class="kit-card" id="marquee" aria-labelledby="marquee-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 07</p>
+            <h3 id="marquee-title">Marquee</h3>
+            <p class="kit-card__desc">Franja del footer: «Connect With Us • Let's Grow» en bucle horizontal infinito, con el badge del logo centrado encima (estático; el diseño no lo muestra en movimiento). El texto que arma el bucle está duplicado y es <code>aria-hidden</code>, con una sola frase para lectores al lado.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Sobre fondo oscuro</span>
+            <div class="kit-demo kit-demo--bleed" data-surface="inverse" lang="en">
+              <div class="marquee" data-surface="inverse">
+                <div class="marquee__viewport" aria-hidden="true">
+                  <div class="marquee__track">
+                    <div class="marquee__group">
+                  <span class="marquee__text">Connect With Us</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Let's Grow</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Connect With Us</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Let's Grow</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Connect With Us</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Let's Grow</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                    </div>
+                    <div class="marquee__group">
+                  <span class="marquee__text">Connect With Us</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Let's Grow</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Connect With Us</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Let's Grow</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Connect With Us</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                  <span class="marquee__text">Let's Grow</span>
+                  <span class="marquee__dot" aria-hidden="true">&bull;</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="visually-hidden">Connect with us. Let's grow.</p>
+                <div class="marquee__badge" aria-hidden="true">
+                  <span class="icon icon--hexagon marquee__badge-icon" aria-hidden="true"></span>
+                  <span class="marquee__badge-text">Esonix</span>
+                </div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-marquee-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-marquee-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Marquee">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.marquee</code></th><td>Contenedor; recorta el texto que sangra a los costados</td></tr>
+                  <tr><th scope="row"><code>.marquee__viewport + aria-hidden</code></th><td>Capa visual del bucle, oculta para lectores</td></tr>
+                  <tr><th scope="row"><code>.marquee__track / __group</code></th><td>Dos grupos idénticos; la animación mueve -50% (el ancho de uno)</td></tr>
+                  <tr><th scope="row"><code>.marquee__text / __dot</code></th><td>Frase y separador del bucle</td></tr>
+                  <tr><th scope="row"><code>.visually-hidden</code></th><td>Frase única «Connect with us. Let's grow.» para lectores</td></tr>
+                  <tr><th scope="row"><code>.marquee__badge + aria-hidden</code></th><td>Badge circular estático (ícono + «Esonix»), decorativo</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-hero</code></li>
+              <li><code>--weight-bold</code></li>
+              <li><code>--leading-tight</code></li>
+              <li><code>--color-text-inverse / -highlight</code></li>
+              <li><code>--color-background-inverse</code></li>
+              <li><code>--text-h2 / -h3 / -sm</code></li>
+              <li><code>--tracking-wide</code></li>
+              <li><code>--spacing-1 / -4 / -9 / -10</code></li>
+              <li><code>--radius-full</code></li>
+              <li><code>--border-width-sm</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El texto animado y su duplicado quedan dentro de <code>aria-hidden="true"</code> (si no, un lector repetiría la frase varias veces); al lado hay una frase visualmente oculta con el mismo mensaje, una sola vez. El badge también es decorativo: el nombre «Esonix» ya está en el logo del header y del footer. La animación se detiene con <code>prefers-reduced-motion: reduce</code> (el texto queda quieto, en su primera posición).</p>
+        </section>
+
+        <section class="kit-card" id="site-footer" aria-labelledby="site-footer-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Organismo · 08</p>
+            <h3 id="site-footer-title">Site Footer</h3>
+            <p class="kit-card__desc">Cierre del sitio: <a href="#newsletter">Newsletter</a>, Utility Page, Follow Us, Our Offices y la barra legal. Siempre sobre fondo inverso. El export del diseño trae dos errores que no se replican (<code>plan.md</code>): «Pixenium» → <strong>Esonix</strong> y «404 Not Error» → <strong>Error 404</strong>.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Footer completo</span>
+            <div class="kit-demo" data-surface="inverse" lang="en">
+              <footer class="site-footer" id="site-footer" data-surface="inverse">
+                <div class="site-footer__top">
+                  <form class="newsletter" action="#">
+                    <label class="newsletter__title" for="footer-newsletter-email">Subscribe our newsletter to get latest updates</label>
+                    <div class="newsletter__field">
+                      <input class="input" type="email" id="footer-newsletter-email" name="email" placeholder="Enter your email" autocomplete="email" required>
+                      <button type="submit" class="newsletter__submit" aria-label="Subscribe"><span class="icon icon--send" aria-hidden="true"></span></button>
+                    </div>
+                  </form>
+                  <nav class="site-footer__col" aria-labelledby="footer-utility-title">
+                    <h3 class="site-footer__title" id="footer-utility-title">Utility Page</h3>
+                    <ul class="site-footer__list">
+                      <li><a href="#site-footer">License</a></li>
+                      <li><a href="#site-footer">Style Guide</a></li>
+                      <li><a href="#site-footer">Password Protected</a></li>
+                      <li><a href="#site-footer">Error 404</a></li>
+                      <li><a href="#site-footer">Changelog</a></li>
+                    </ul>
+                  </nav>
+                  <nav class="site-footer__col" aria-labelledby="footer-follow-title">
+                    <h3 class="site-footer__title" id="footer-follow-title">Follow Us</h3>
+                    <ul class="site-footer__list">
+                      <li><a href="#site-footer">Facebook</a></li>
+                      <li><a href="#site-footer">Twitter</a></li>
+                      <li><a href="#site-footer">Instagram</a></li>
+                      <li><a href="#site-footer">Linkedin</a></li>
+                      <li><a href="#site-footer">Youtube</a></li>
+                    </ul>
+                  </nav>
+                  <div class="site-footer__col">
+                    <h3 class="site-footer__title">Our Offices</h3>
+                    <div class="site-footer__offices">
+                    <div class="site-footer__office">
+                      <p class="site-footer__office-label">Operations &ndash; China</p>
+                      <p class="site-footer__office-city">Shanghai <span>(China's largest cities)</span></p>
+                    </div>
+                    <div class="site-footer__office">
+                      <p class="site-footer__office-label">Headquarters &ndash; USA</p>
+                      <p class="site-footer__office-city">Seattle <span>(major city in the state Washington)</span></p>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="site-footer__legal">
+                  <p>Copyright &copy; 2026 Esonix. All Rights Reserved.</p>
+                  <p>
+                    <a href="#site-footer">Terms &amp; Condition</a>
+                    <span aria-hidden="true">|</span>
+                    <a href="#site-footer">Privacy Policy</a>
+                  </p>
+                </div>
+              </footer>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-site-footer-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-site-footer-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Site Footer">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.site-footer + data-surface="inverse"</code></th><td>Landmark contentinfo; la Section le da el fondo oscuro</td></tr>
+                  <tr><th scope="row"><code>.site-footer__top</code></th><td>Grilla de 4 columnas desde lg: Newsletter, Utility Page, Follow Us, Our Offices</td></tr>
+                  <tr><th scope="row"><code>.site-footer__col + nav + aria-labelledby</code></th><td>Columna de enlaces con su título como nombre accesible</td></tr>
+                  <tr><th scope="row"><code>.site-footer__title</code></th><td>Título de columna (h3)</td></tr>
+                  <tr><th scope="row"><code>.site-footer__list</code></th><td>Lista de enlaces placeholder</td></tr>
+                  <tr><th scope="row"><code>.site-footer__offices / __office-label / __office-city</code></th><td>Par región/ciudad de cada oficina</td></tr>
+                  <tr><th scope="row"><code>.site-footer__legal</code></th><td>Barra inferior: copyright y enlaces legales, con filete superior</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h6 / -sm</code></li>
+              <li><code>--weight-semibold / -regular</code></li>
+              <li><code>--color-text-inverse / -inverse-secondary</code></li>
+              <li><code>--spacing-1 / -3 / -5 / -6 / -9</code></li>
+              <li><code>--ease-fast</code></li>
+              <li><code>Newsletter (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Es el landmark <code>contentinfo</code> nativo del <code>&lt;footer&gt;</code> de página. Utility Page y Follow Us son <code>&lt;nav aria-labelledby&gt;</code>, nombradas por su propio <code>&lt;h3&gt;</code>, así un lector puede saltar entre ellas sin confundirlas con el menú principal. El newsletter reutiliza la molécula (label real, botón con <code>aria-label</code>).</p>
         </section>
         <!-- kit:organisms-end -->
       </section>

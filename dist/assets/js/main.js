@@ -346,4 +346,40 @@
     });
   }
   initVideoModal();
+
+  /* ===== Word List: bloque Finance / Advisory / Growth / Strategy ===== */
+  /* Sin pin: cada palabra dispara un ScrollTrigger propio cuando su centro cruza el centro del viewport
+     (una franja angosta, 60%–40% de alto) y marca como activos a ella y a su Card Project (data-word-for
+     = id de la card). onEnter cubre bajar, onEnterBack cubre subir; nunca hay dos activas a la vez porque
+     setActive() desactiva el resto. Sin «reducir movimiento» (o sin GSAP/ScrollTrigger) queda el estado
+     del markup, que ya trae Growth activa como el diseño. */
+  function initWordList() {
+    var lists = document.querySelectorAll('[data-word-list]');
+    if (!lists.length || reducedMotion.matches || !window.gsap || !window.ScrollTrigger) { return; }
+
+    function initOne(list) {
+      var words = Array.prototype.slice.call(list.querySelectorAll('.word-list__word'));
+      if (words.length < 2) { return; }
+
+      function setActive(word) {
+        words.forEach(function (w) {
+          var active = w === word;
+          w.classList.toggle('is-active', active);
+          var card = document.getElementById(w.getAttribute('data-word-for'));
+          if (card) { card.classList.toggle('is-active', active); }
+        });
+      }
+      words.forEach(function (word) {
+        window.ScrollTrigger.create({
+          trigger: word,
+          start: 'center 60%',
+          end: 'center 40%',
+          onEnter: function () { setActive(word); },
+          onEnterBack: function () { setActive(word); }
+        });
+      });
+    }
+    lists.forEach(function (list) { whenVisible(list, initOne); });
+  }
+  initWordList();
 })();

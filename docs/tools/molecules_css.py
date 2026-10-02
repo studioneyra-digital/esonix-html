@@ -376,6 +376,13 @@ CSS = r'''/* molecules:start */
   font-size: var(--text-h4);
   font-weight: var(--weight-medium);
 }
+/* La card es siempre blanca (como el resto), incluso dentro de un data-surface="inverse" (el Word List
+   de Etapa 3 la usa sobre fondo oscuro): sin esto, la regla de foundations que pone los títulos en
+   blanco dentro de una superficie inversa gana por orden de cascada y el título queda invisible. El
+   prefijo html iguala la técnica de especificidad que ya usan las superficies (ver color.css). */
+html .card-project :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-text-primary);
+}
 
 /* Card CTA — foto con ícono arriba y, abajo, título, texto y enlace amarillo. */
 .card-cta {

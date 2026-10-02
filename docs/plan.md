@@ -9,7 +9,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 0 · Cimientos | Tokens, Mona Sans, `main.css`/`main.js` base, kit con Foundations | ✅ Hecha |
 | 1 · Átomos | 12 átomos con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
-| 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ⏳ En curso (Grupo A hecho, B en revisión) |
+| 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ✅ Hecha (Grupos A, B y C) |
 | 4 · Sections + `index.html` | Las secciones de la home, responsive | ⬜ |
 
 ## Reglas de cada etapa
@@ -82,12 +82,15 @@ Se entrega en tres grupos, cada uno revisado antes del siguiente:
 | Grupo | Organismos | Estado |
 |---|---|---|
 | A · Navegación | Site Header (con submenús) y Off-canvas | ✅ Hecho |
-| B · Contenido interactivo | Carrusel (Swiper), Acordeón FAQ, Modal de video | 🔍 En revisión |
-| C · Scroll y cierre | Lista de palabras con ScrollTrigger, Marquee, Footer | ⬜ |
+| B · Contenido interactivo | Carrusel (Swiper), Acordeón FAQ, Modal de video | ✅ Hecho |
+| C · Scroll y cierre | Lista de palabras con ScrollTrigger, Marquee, Footer | ✅ Hecho |
 
 **Grupo A, resuelto:** el header responde al ancho de su contenedor con container queries (48/64/80rem sobre el ancho del header), porque la barra completa necesita ~1150px y con el container de Bootstrap ya se desbordaba a 1280px; los submenús son botones de divulgación con hover, Escape y cierre al salir el foco; el off-canvas deja `inert` el resto de `<body>`, detiene Lenis y desenfoca la página con el nuevo token `--blur-backdrop`. CSS y fichas salen de `docs/tools/organisms_*.py`; el JS está en `main.js`.
 
-**Grupo B, resuelto:** carrusel sobre Swiper 11 (loop con un vecino asomando a cada lado desde la carga, 1/2/3 slides según el ancho del carrusel, igual que el header, a11y de Swiper, flechas vinculadas por `aria-controls` y dots generados por `main.js`); acordeón como grupo de `<details name>` con altura animada por `::details-content`; modal de video con `<dialog>` nativo y el iframe de youtube-nocookie creado recién en el click. El kit carga `swiper-bundle.min.css/js`; la Section que use el carrusel recorta con `overflow-x: clip`.
+**Grupo B, resuelto y aprobado (commit `82899e5`):** carrusel sobre Swiper 11 (loop con un vecino asomando a cada lado desde la carga, 1/2/3 slides según el ancho del carrusel, igual que el header, a11y de Swiper, flechas vinculadas por `aria-controls` y dots generados por `main.js`); acordeón como grupo de `<details name>` con altura animada por `::details-content`; modal de video con `<dialog>` nativo y el iframe de youtube-nocookie creado recién en el click. El kit carga `swiper-bundle.min.css/js`; la Section que use el carrusel recorta con `overflow-x: clip`.
+
+**Grupo C, resuelto:** Word List del bloque Finance/Advisory/Growth/Strategy sin `pin` (a diferencia del patrón habitual de este efecto): cada palabra dispara un `ScrollTrigger.create` propio con `start`/`end` en una franja angosta alrededor del centro del viewport, y `onEnter`/`onEnterBack` activan a la palabra y a su Card Project (`data-word-for` → id de la card); el alto de scroll lo dan las propias palabras en `--text-giant`, no un pin artificial. Bajo `lg` es el eyebrow «Works» (átomo Eyebrow) y las cuatro cards apiladas, sin el efecto. Marquee en CSS puro (`@keyframes` con dos `.marquee__group` idénticos, `translateX(-50%)`), con el badge del logo centrado y **estático** (el diseño no muestra el badge en movimiento, así que no se animó); se detiene con `prefers-reduced-motion`. Site Footer con la molécula Newsletter, Utility Page, Follow Us, Our Offices y la barra legal; corrige los dos errores del export del diseño (`Pixenium` → Esonix, `404 Not Error` → Error 404).
+Encontrado en QA: la Card Project (siempre blanca) pierde su título cuando vive dentro de `data-surface="inverse"` (el Word List es el primer caso real) porque la regla de foundations pone todos los `h1`–`h6` en blanco dentro de una superficie inversa — se corrigió con una excepción de alta especificidad (`html .card-project :is(h1...h6)`) en `molecules_css.py`, mismo truco que ya usan las superficies. Aparte, un rato largo de QA se fue detrás de un "bug" de ensanchamiento del Marquee que en realidad era **caché del navegador** sirviendo un `kit.css` viejo pese a `reload()`: con `python -m http.server` sin cabeceras de caché, Chrome puede reusar el CSS cacheado de la sesión anterior; hace falta un servidor con `Cache-Control: no-store` (y `ThreadingHTTPServer`, el servidor simple de un solo hilo rechaza conexiones concurrentes) para confiar en un QA local — ver `playwright-cli-qa-recipes` en memoria.
 
 **Plan original de la etapa:**
 
@@ -126,6 +129,9 @@ Se entrega en tres grupos, cada uno revisado antes del siguiente:
 - **Card Pricing:** el último beneficio atenuado es solo énfasis visual; no se marcó como «no incluido» porque el diseño no lo aclara.
 - **Radios:** las cards del diseño miden ~20px de esquina; se usa `--radius-lg` (24px) en cards y `--radius-md` (16px) en sus fotos.
 - **Iconos de servicios, planes y FAQ:** Lucide equivalentes a los glifos del diseño, hasta tener los del cliente.
+- **Word List:** sin `pin` de ScrollTrigger (ver decisión en Grupo C); contraste AA no aplica a las palabras inactivas (contorno, relleno transparente) por ser el mismo efecto «fantasma» del diseño — excepción declarada en `word-list.stories.md`. Advisory, Growth y Strategy son cards placeholder; solo Finance sale del diseño.
+- **Marquee:** badge del logo estático (el diseño no lo muestra en movimiento); duración del bucle (30s) no sale del diseño, se deriva para lectura cómoda.
+- **Footer:** «Pixenium» y «404 Not Error» (errores del export) se corrigen a «Esonix» y «Error 404»; enlaces de Utility Page, Follow Us y legales son placeholder.
 
 ## Deuda y puntos abiertos
 

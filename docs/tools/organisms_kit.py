@@ -352,6 +352,174 @@ O.append(dict(id='video-modal', title='Video Modal',
              'El iframe no se carga hasta el click (`youtube-nocookie.com`, autoplay): la página no descarga YouTube al abrirse. Lleva `referrerpolicy="strict-origin-when-cross-origin"`, porque YouTube rechaza el embed sin referrer.',
              'Ancho máximo 64rem y nunca más alto que la ventana: el ancho se limita a `(100dvh - 8rem) × 16/9`.']))
 
+# ------------------------------------------------------------------ Grupo C: Word List, Marquee, Footer
+WORDS = [
+    ('word-finance', 'Finance', '01', 'Corporate Finance Management', 'h1-portfolio-img-3.webp', 1920, 1084, False),
+    ('word-advisory', 'Advisory', '02', 'Advisory Services', 'h1-portfolio-img-1.webp', 1920, 1076, False),
+    ('word-growth', 'Growth', '03', 'Growth Strategy Planning', 'h1-portfolio-img-2.webp', 1920, 765, True),
+    ('word-strategy', 'Strategy', '04', 'Market Strategy Execution', 'h1-portfolio-img-4.webp', 1920, 1076, False),
+]
+
+def word_list():
+    words = '\n'.join(
+        '    <li><span class="word-list__word%s" data-word-for="%s">%s</span></li>' % (' is-active' if active else '', wid, word)
+        for wid, word, _, _, _, _, _, active in WORDS)
+    cards = '\n'.join('\n'.join([
+        '  <article class="card-project word-list__card%s" id="%s">' % (' is-active' if active else '', wid),
+        '    <img class="card-project__img" src="%s%s" alt="" width="%d" height="%d" loading="lazy">' % (IMG, img, w, h),
+        '    <div class="card-project__caption">',
+        '      <span class="card-project__index" aria-hidden="true">// %s</span>' % idx,
+        '      <h3 class="card-project__title">%s</h3>' % title,
+        '    </div>',
+        '  </article>'])
+        for wid, _, idx, title, img, w, h, active in WORDS)
+    return '\n'.join([
+        '<div class="word-list" data-word-list>',
+        '  <p class="eyebrow word-list__eyebrow">Works</p>',
+        '  <ul class="word-list__words" role="list">',
+        words,
+        '  </ul>',
+        '  <div class="word-list__media">',
+        cards,
+        '  </div>',
+        '</div>'])
+
+def marquee():
+    def group():
+        parts = []
+        for _ in range(3):
+            parts.append('    <span class="marquee__text">Connect With Us</span>')
+            parts.append('    <span class="marquee__dot" aria-hidden="true">&bull;</span>')
+            parts.append("    <span class=\"marquee__text\">Let's Grow</span>")
+            parts.append('    <span class="marquee__dot" aria-hidden="true">&bull;</span>')
+        return '\n'.join(parts)
+    g = group()
+    return '\n'.join([
+        '<div class="marquee" data-surface="inverse">',
+        '  <div class="marquee__viewport" aria-hidden="true">',
+        '    <div class="marquee__track">',
+        '      <div class="marquee__group">',
+        g,
+        '      </div>',
+        '      <div class="marquee__group">',
+        g,
+        '      </div>',
+        '    </div>',
+        '  </div>',
+        "  <p class=\"visually-hidden\">Connect with us. Let's grow.</p>",
+        '  <div class="marquee__badge" aria-hidden="true">',
+        '    %s' % ic('hexagon', ' marquee__badge-icon'),
+        '    <span class="marquee__badge-text">Esonix</span>',
+        '  </div>',
+        '</div>'])
+
+UTILITY_LINKS = ['License', 'Style Guide', 'Password Protected', 'Error 404', 'Changelog']
+FOLLOW_LINKS = ['Facebook', 'Twitter', 'Instagram', 'Linkedin', 'Youtube']
+OFFICES = [
+    ('Operations &ndash; China', 'Shanghai', "(China's largest cities)"),
+    ('Headquarters &ndash; USA', 'Seattle', '(major city in the state Washington)'),
+]
+
+def footer_list(title_id, title, items):
+    links = '\n'.join('    <li><a href="#site-footer">%s</a></li>' % i for i in items)
+    return '\n'.join([
+        '<nav class="site-footer__col" aria-labelledby="%s">' % title_id,
+        '  <h3 class="site-footer__title" id="%s">%s</h3>' % (title_id, title),
+        '  <ul class="site-footer__list">',
+        links,
+        '  </ul>',
+        '</nav>'])
+
+def site_footer():
+    offices = '\n'.join('\n'.join([
+        '      <div class="site-footer__office">',
+        '        <p class="site-footer__office-label">%s</p>' % label,
+        '        <p class="site-footer__office-city">%s <span>%s</span></p>' % (city, note),
+        '      </div>'])
+        for label, city, note in OFFICES)
+    return '\n'.join([
+        '<footer class="site-footer" id="site-footer" data-surface="inverse">',
+        '  <div class="site-footer__top">',
+        '    <form class="newsletter" action="#">',
+        '      <label class="newsletter__title" for="footer-newsletter-email">Subscribe our newsletter to get latest updates</label>',
+        '      <div class="newsletter__field">',
+        '        <input class="input" type="email" id="footer-newsletter-email" name="email" placeholder="Enter your email" autocomplete="email" required>',
+        '        <button type="submit" class="newsletter__submit" aria-label="Subscribe">%s</button>' % ic('send'),
+        '      </div>',
+        '    </form>',
+        textwrap.indent(footer_list('footer-utility-title', 'Utility Page', UTILITY_LINKS), '    '),
+        textwrap.indent(footer_list('footer-follow-title', 'Follow Us', FOLLOW_LINKS), '    '),
+        '    <div class="site-footer__col">',
+        '      <h3 class="site-footer__title">Our Offices</h3>',
+        '      <div class="site-footer__offices">',
+        offices,
+        '      </div>',
+        '    </div>',
+        '  </div>',
+        '  <div class="site-footer__legal">',
+        '    <p>Copyright &copy; 2026 Esonix. All Rights Reserved.</p>',
+        '    <p>',
+        '      <a href="#site-footer">Terms &amp; Condition</a>',
+        '      <span aria-hidden="true">|</span>',
+        '      <a href="#site-footer">Privacy Policy</a>',
+        '    </p>',
+        '  </div>',
+        '</footer>'])
+
+O.append(dict(id='word-list', title='Word List',
+  desc='Bloque Finance / Advisory / Growth / Strategy: desde <code>lg</code>, cuatro palabras grandes (contorno cuando están inactivas) con una <a href="#card-project">Card Project</a> por palabra superpuesta a la derecha; <code>main.js</code> activa la palabra y la card más cercanas al centro del viewport al cruzarlo. Bajo <code>lg</code> es el eyebrow «Works» y las cuatro cards apiladas, sin el efecto de scroll (el diseño mobile no lo muestra).',
+  desc_md='Bloque Finance/Advisory/Growth/Strategy: desde `lg`, palabras grandes (contorno si inactivas) + una Card Project por palabra superpuesta; `main.js` activa la más cercana al centro del viewport al cruzarlo (ScrollTrigger, sin pin). Bajo `lg`: eyebrow «Works» + cards apiladas, sin efecto.',
+  blocks=[dict(label='Growth activa (estado inicial, como el diseño)', mods='narrow-wide', surface='inverse', html=word_list())],
+  rows=[('.word-list + data-word-list', 'Contenedor; main.js lo inicia al acercarse al viewport'),
+        ('.word-list__eyebrow', 'Eyebrow «Works» (bajo lg; oculto desde lg)'),
+        ('.word-list__words / __word', 'Columna de palabras (desde lg); contorno con color-mix, sólida con .is-active'),
+        ('data-word-for', 'En cada palabra: id de su Card Project'),
+        ('.word-list__media / __card', 'Pila de Card Project (desde lg, superpuestas con grid-area); bajo lg, lista normal'),
+        ('.is-active', 'Lo pone main.js en la palabra y la card activas (o el markup, como estado inicial)')],
+  tokens=['--text-giant', '--weight-bold', '--leading-tight', '--color-text-inverse', '--border-width-sm', '--spacing-2 / -5 / -9 / -12', '--ease-slow', 'Eyebrow (átomo)', 'Card Project (molécula)'],
+  a11y='Las palabras son contenido real (no decorativo): quedan en el orden de lectura normal sin <code>aria-hidden</code>; el cambio de énfasis visual con el scroll no mueve el foco ni duplica contenido. Con <code>prefers-reduced-motion: reduce</code>, <code>main.js</code> no inicia el ScrollTrigger: queda el estado del markup (Growth activa). Sin JS, bajo lg se ven todas las cards apiladas igual que en mobile.',
+  a11y_md='Palabras como contenido real, sin `aria-hidden`; el énfasis visual no mueve el foco. Con reduced motion, `main.js` no inicia el ScrollTrigger (queda el estado del markup). Sin JS, se ven todas las cards apiladas.',
+  decisions=['Sin `pin`: a diferencia de otros sitios con este patrón, las palabras no fijan la sección ni estiran el alto artificialmente (evita los bugs de ScrollTrigger + Lenis con pin que advierte `CLAUDE.md`); el alto de scroll lo dan las propias palabras en tipografía `--text-giant`.',
+             'Activación por proximidad al centro del viewport (`ScrollTrigger.create` por palabra, `onEnter`/`onEnterBack`), no por click: el diseño muestra el cambio ligado al scroll, no una interacción.',
+             'Solo Finance (Corporate Finance Management) sale del diseño; Advisory, Growth y Strategy son placeholder, con las 3 imágenes de portfolio restantes.',
+             'Estado inicial Growth activa, igual que el diseño (el PNG es una sola captura de una posición de scroll).',
+             'Excepción declarada a contraste AA en las palabras inactivas (solo contorno, relleno transparente): es el mismo efecto «fantasma» del diseño, pensado como fondo/anticipo, no como el texto a leer en ese instante — la palabra activa (la que importa en cada posición de scroll) tiene contraste completo, y en mobile las cuatro cards muestran sus títulos con contraste completo siempre.']))
+
+O.append(dict(id='marquee', title='Marquee',
+  desc='Franja del footer: «Connect With Us • Let\'s Grow» en bucle horizontal infinito, con el badge del logo centrado encima (estático; el diseño no lo muestra en movimiento). El texto que arma el bucle está duplicado y es <code>aria-hidden</code>, con una sola frase para lectores al lado.',
+  desc_md='Franja del footer: «Connect With Us • Let\'s Grow» en bucle horizontal infinito (CSS puro), con el badge del logo centrado y estático encima. El texto duplicado del bucle es `aria-hidden`, con una frase para lectores al lado.',
+  blocks=[dict(label='Sobre fondo oscuro', surface='inverse', mods='bleed', html=marquee())],
+  rows=[('.marquee', 'Contenedor; recorta el texto que sangra a los costados'),
+        ('.marquee__viewport + aria-hidden', 'Capa visual del bucle, oculta para lectores'),
+        ('.marquee__track / __group', 'Dos grupos idénticos; la animación mueve -50% (el ancho de uno)'),
+        ('.marquee__text / __dot', 'Frase y separador del bucle'),
+        ('.visually-hidden', 'Frase única «Connect with us. Let\'s grow.» para lectores'),
+        ('.marquee__badge + aria-hidden', 'Badge circular estático (ícono + «Esonix»), decorativo')],
+  tokens=['--text-hero', '--weight-bold', '--leading-tight', '--color-text-inverse / -highlight', '--color-background-inverse', '--text-h2 / -h3 / -sm', '--tracking-wide', '--spacing-1 / -4 / -9 / -10', '--radius-full', '--border-width-sm'],
+  a11y='El texto animado y su duplicado quedan dentro de <code>aria-hidden="true"</code> (si no, un lector repetiría la frase varias veces); al lado hay una frase visualmente oculta con el mismo mensaje, una sola vez. El badge también es decorativo: el nombre «Esonix» ya está en el logo del header y del footer. La animación se detiene con <code>prefers-reduced-motion: reduce</code> (el texto queda quieto, en su primera posición).',
+  a11y_md='Texto animado + duplicado en `aria-hidden`, con una frase visualmente oculta equivalente al lado. Badge decorativo (el nombre ya está en el logo). Animación detenida con `prefers-reduced-motion: reduce`.',
+  decisions=['El diseño no muestra el badge en movimiento: se deja estático (solo el texto de fondo gira); animarlo también habría sido una invención no declarada.',
+             'Duración del bucle (30s) no sale del diseño (es una franja estática): se deriva para que se lea cómodo, no para que compita por atención.',
+             'Separador «•» en vez del espacio del diseño: distingue las dos frases sin depender solo del salto de línea.']))
+
+O.append(dict(id='site-footer', title='Site Footer',
+  desc='Cierre del sitio: <a href="#newsletter">Newsletter</a>, Utility Page, Follow Us, Our Offices y la barra legal. Siempre sobre fondo inverso. El export del diseño trae dos errores que no se replican (<code>plan.md</code>): «Pixenium» → <strong>Esonix</strong> y «404 Not Error» → <strong>Error 404</strong>.',
+  desc_md='Cierre del sitio: Newsletter, Utility Page, Follow Us, Our Offices y barra legal, sobre fondo inverso. Corrige dos errores del export del diseño: «Pixenium» → Esonix, «404 Not Error» → Error 404.',
+  blocks=[dict(label='Footer completo', surface='inverse', html=site_footer())],
+  rows=[('.site-footer + data-surface="inverse"', 'Landmark contentinfo; la Section le da el fondo oscuro'),
+        ('.site-footer__top', 'Grilla de 4 columnas desde lg: Newsletter, Utility Page, Follow Us, Our Offices'),
+        ('.site-footer__col + nav + aria-labelledby', 'Columna de enlaces con su título como nombre accesible'),
+        ('.site-footer__title', 'Título de columna (h3)'),
+        ('.site-footer__list', 'Lista de enlaces placeholder'),
+        ('.site-footer__offices / __office-label / __office-city', 'Par región/ciudad de cada oficina'),
+        ('.site-footer__legal', 'Barra inferior: copyright y enlaces legales, con filete superior')],
+  tokens=['--text-h6 / -sm', '--weight-semibold / -regular', '--color-text-inverse / -inverse-secondary', '--spacing-1 / -3 / -5 / -6 / -9', '--ease-fast', 'Newsletter (molécula)'],
+  a11y='Es el landmark <code>contentinfo</code> nativo del <code>&lt;footer&gt;</code> de página. Utility Page y Follow Us son <code>&lt;nav aria-labelledby&gt;</code>, nombradas por su propio <code>&lt;h3&gt;</code>, así un lector puede saltar entre ellas sin confundirlas con el menú principal. El newsletter reutiliza la molécula (label real, botón con <code>aria-label</code>).',
+  a11y_md='Landmark `contentinfo` nativo. Utility Page y Follow Us son `<nav aria-labelledby>` nombradas por su `<h3>`. El newsletter reutiliza la molécula (label real, botón con `aria-label`).',
+  decisions=['«Pixenium» (nombre de otra marca filtrado en el export) se corrige a «Esonix»; «404 Not Error» se corrige a «Error 404» (ya usado en el submenú de Pages del header), según `plan.md`.',
+             'Teléfono y redes no se repiten en el footer: ya están en el header y el off-canvas; el diseño tampoco los muestra acá.',
+             'Enlaces de Utility Page, Follow Us y legales son placeholder (<code>href="#site-footer"</code>): no hay páginas reales todavía.']))
+
 # ------------------------------------------------------------------ render
 def indent(txt, n):
     pad = ' ' * n
