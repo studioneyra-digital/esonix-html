@@ -24,8 +24,8 @@ página están en `docs/plan-etapa-5.md`; se actualiza al cerrar cada página y 
   primer nivel del header `--inner` quedaba petróleo sobre la píldora oscura (corregido en `organisms_css.py`, ámbar
   como los subenlaces); la tarjeta no puede llevar `data-surface="inverse"` (pinta fondo opaco) y redefine solo el
   token de foco; textarea de `--plain` a `--spacing-13`; mapa con `hl=en`. **Tarea 4 (QA) hecha:** reporte
-  completo en `plan-etapa-5.md` §Contact «Estado». **Falta solo la aprobación del usuario → commit de la página
-  (rutas explícitas) y publicación en `esonix-html` (CLAUDE.md §10).** `docs/plan-etapa-5-service-details.md`
+  completo en `plan-etapa-5.md` §Contact «Estado». **Aprobada, commiteada (`e17980d`) y publicada en `esonix-html`
+  (`main` en `bf5732a`, 2026-10-03).** `docs/plan-etapa-5-service-details.md`
   ya está borrado (`git rm`, entra en ese commit).
 
 ## Decisiones tomadas el 2026-10-03
