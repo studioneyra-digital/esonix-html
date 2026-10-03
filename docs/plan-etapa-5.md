@@ -79,8 +79,8 @@ Contenido: copy del PNG. El mobile repite «12K+»: es un error de captura, se u
 
 Plan de implementación detallado: `docs/plan-etapa-5-about-us.md`.
 
-### Estado: hecha, en revisión
-Infraestructura commiteada (`1b517dd`); la página, construida y verificada, espera aprobación para su commit.
+### Estado: hecha y aprobada
+Infraestructura commiteada (`1b517dd`); la página, en `52ab257`.
 
 **Cambios respecto de esta spec** (decididos al planificar o al construir):
 - El slider de citas es la variante `carousel--fade` del Carousel (no un organismo nuevo).
@@ -103,5 +103,107 @@ Infraestructura commiteada (`1b517dd`); la página, construida y verificada, esp
 - El Hero de la Home no lleva `data-surface="inverse"`: su anillo de foco por defecto es oscuro sobre la foto (el Page Hero ya lo corrige). Fuera del alcance de esta página.
 - axe marca en el kit las citas ocultas (opacidad 0) del carrusel con fundido: falso positivo, en la página no aparece. En la Home quedan los avisos ya conocidos de textos decorativos («01/03» de Card Feature y la marca de agua «Works»).
 
+## Service Details (`dist/service-details.html`)
+
+Referencias: `docs/design/Service-Details-Desktop.png` (1920×3091) y `Service-Details-Mobile.png` (480×4552). Ninguno muestra el footer: se usa el de la Home. Se construye antes que Services (el listado), que todavía no tiene PNG. El archivo conserva el nombre del enlace del menú («Service Details») y funciona como plantilla de servicio: el contenido es el de **Business Optimization**, el servicio activo del diseño.
+
+El mobile tiene un error de captura (el ítem 1 del FAQ aparece dos veces, cerca de y≈2680): se ignora.
+
+### Secciones
+
+| # | Section | Desktop | Mobile | Origen |
+|---|---|---|---|---|
+| 1 | Header | Logo al `.container`, píldora oscura, «Schedule a call ↗» | Logo + «Menu» | **Existe**: `site-header--inner` |
+| 2 | `page-hero` | Foto a sangre con velo; breadcrumb «Home - Services - Business Optimization»; `h1` «Business Optimization» | Igual, más bajo | **Existe** (fuente `about-us.html`): cambian foto, breadcrumb y `h1` |
+| 3 | `service-details` | Artículo (870) y aside (420) con 30 px de separación: proporción `29fr 14fr`, gap `--spacing-7`, desde `lg` | Apilado: artículo → Divider → aside | **Nueva** |
+
+**Artículo**, en orden:
+1. `h2` «Explore our Service Lists» y un párrafo.
+2. `photo-frame` con la foto del apretón de manos (420×262) junto a un `h3` «Mistakes to avoid to the dummy» y un Check List de 4 ítems. En mobile, apilados.
+3. `h3` «Document Required» y una grilla 2×2 (1 columna en mobile): ícono `badge-check` ámbar, `h4` con el título del documento y descripción. Es propia de la Section (`service-details__docs`): no hay un segundo caso de uso que justifique un componente.
+4. `h3` «Key Features» y un Check List de 4 ítems.
+5. Video: `photo-frame` (870×400) con un Icon Button `--glass --lg` centrado que abre el Video Modal existente (`data-video-id="RqueNBILfVU"`).
+6. Párrafo.
+7. FAQ con `accordion--framed`, 4 ítems numerados, el primero abierto.
+
+**Aside** (`<aside aria-label="Service sidebar">`): Service Nav («Exclusive Services») y Quote Form `--outline` («Get a Quote»), separados por `--spacing-7`. No es sticky: el diseño no lo muestra y el aside es más alto que el viewport.
+
+### Contenido
+- Copy del PNG, literal, incluido el relleno de la plantilla («Mistakes to avoid to the dummy», los documentos de licencia de conducir, los párrafos que terminan en «..»). Se corrige «residen- tial» → «residential».
+- Fotos (decisión del usuario: sustitutas de la biblioteca, se cambian editando el `src`): hero `h1-process-img-2.webp` (1000 px de ancho: a 1920 se ve algo blanda bajo el velo), apretón de manos `h1-process-img-3.webp`, video `download.webp`.
+- FAQ (decisión del usuario: adaptar de la Home):
+  1. «What industries do you specialize in ?» → respuesta de la Home sobre industrias.
+  2. «How long does a consulting project typically last ?» → texto del PNG (habla de duración, por eso va acá).
+  3. «What does a business consultant do ?» → adaptada de «What services do business consultants provide?» de la Home.
+  4. «Will consulting disrupt my daily operations ?» → respuesta corta nueva en la línea de la de productividad.
+  
+  Las preguntas van sin el espacio antes de «?» del diseño, igual que en el FAQ de la Home (tipografía inglesa).
+- Service Nav: Strategic Planning, **Business Optimization** (activo, `aria-current="page"`, enlaza a esta página), IT Consulting, Change Management, Leadership. Los demás van a `#` hasta que existan sus páginas.
+
+### Componentes nuevos y variantes
+
+**Check List (átomo `.check-list`).** `<ul role="list">` con `icon--circle-check` (relleno, `--color-text-primary`) y texto `--color-text-secondary`. Lo usan «Mistakes…» y Key Features, y probablemente Case Study. La lista de About (`about-intro__list`, ícono outline) no se toca.
+
+**Input `--filled` y Field `--filled` (variantes de átomo).**
+- Los campos del diseño son cajas grises (`--color-background-subtle`, radio `--radius-sm`), no el filete de About.
+- El borde del diseño (≈ 1.2:1) no cumple el 3:1 de los controles (WCAG 1.4.11). Decisión del usuario: borde `--color-border-subtle` en tres lados y **filete inferior en `--color-border-strong`**, que conserva el hover y el color de error del Input.
+- `.field--filled` mueve el label en reposo dentro de la caja (al padding del campo) y, al subir, lo alinea con el borde.
+
+**Select (átomo, variante del Input).**
+- La clase `.input` sobre `<select>` con `appearance: none`. El chevron es una máscara de `icon--chevron-down` en `.field--select::after`, con `pointer-events: none`.
+- Label flotante sin JS: el `<select required>` arranca en `<option value="" hidden selected></option>`, vacía. Con valor vacío el select es `:invalid` y el label queda en reposo; con foco o con valor, sube. Como la opción vacía no lleva `disabled`, no aparece el bug de Chromium que motivó la excepción de `!important` de `CLAUDE.md` §11: **no se usa `!important`**.
+- Hereda el filete, el hover, `aria-invalid` y las superficies oscuras del Input. El mensaje de error del Quote Form cubre el caso «valor vacío» (`valueMissing`).
+
+**Service Nav (molécula `.service-nav`).**
+- `<nav aria-labelledby>` dentro de una card con borde sutil y radio, con un `h2` «Exclusive Services» en `--text-h4` (medido: 24.5/22.5 px) y un `<ul>` de enlaces.
+- Cada enlace: píldora con fondo `--color-background-subtle` y borde sutil, texto y un cuadrado blanco con `icon--arrow-right`.
+- Activo (`aria-current="page"`): superficie de marca (petróleo), texto inverso y cuadrado con `--color-action-secondary` (ámbar).
+- Hover: el cuadrado pasa a ámbar sin cambiar el fondo (el PNG no muestra hover: es el mismo acento que el activo). Foco visible del theme.
+
+**Quote Form `--outline` (variante).**
+- Borde sutil, sin fondo blanco ni sombra, con el mismo padding interno que el Service Nav.
+- Mismo JS y mismos cuatro estados.
+- Campos: Name, Email, Phone, **Service** (Select con los 5 servicios del Service Nav, obligatorio, `name="service"`) y Message.
+- Título «Get a Quote» (`h2`), botón «Submit Now».
+- Labels sin los puntos suspensivos del diseño y con el asterisco de obligatorio, como en About.
+
+**Accordion `--framed` (variante del organismo).**
+- El grupo va en una caja con borde sutil y radio.
+- El ítem abierto lleva fondo `--color-background-subtle`, radio y padding propio. Los cerrados, solo un filete inferior entre ellos (el último, sin filete).
+- Sin el «?»: la numeración va en el texto de la pregunta.
+- Toggle: un único `icon--arrow-right` que rota −45° al abrir (→ pasa a ↗) con `--ease-base`, en lugar del par +/−.
+- Reutiliza `<details name>` y la animación de altura de `.accordion`.
+
+**Ícono `badge-check`** (Lucide) en el set de íconos del átomo Icons.
+
+**Video Modal en todas las páginas (corrección).** Ninguna página tiene hoy el `<dialog data-video-modal>`: el play de los testimonios de la Home no hace nada (`initVideoModal()` sale sin modal). Se agrega el `<dialog>` al bloque `shared:footer` de `index.html` y `sync_shared.py` lo copia a todas las páginas; así funciona el play de la Home y el video de Service Details.
+
+### `<head>`, SEO y navegación
+- `title` y `description` del servicio; canonical `https://esonix.example/service-details.html`; OG y Twitter con `og-image.jpg`.
+- JSON-LD: `WebPage` + `Service` (`serviceType` «Business Optimization», `provider` → `#organization`) + `BreadcrumbList` con Home y Business Optimization. Google exige URL en los niveles intermedios y Services todavía no existe: se agrega el nivel del medio cuando exista.
+- Breadcrumb visible: Home (enlace) › Services (texto, sin enlace) › Business Optimization (`aria-current="page"`).
+- `index.html`: el enlace «Service Details» del submenú Services pasa a `service-details.html`, y se corre `sync_shared.py`. La página se suma a `sitemap.xml`.
+
+### Kit y documentación
+- Fichas nuevas: Check List (átomo), Select (átomo, con fila en Field), Service Nav (molécula), Section `service-details` (fuente `service-details.html`).
+- Filas nuevas: `--outline` en Quote Form, `--framed` en Accordion, `badge-check` en Icons. El Page Hero no lleva marcadores en la página nueva.
+- `.stories.md` de cada pieza nueva.
+
+### Verificación
+- Recortes del PNG medidos antes de construir cada parte. Comparar a 1920 y 480 px; revisar a 1440, 1280, 1024, 768 y 390 px sin desborde horizontal.
+- Teclado: Service Nav, Select (abrir, elegir y volver), FAQ (Enter/Espacio, un solo ítem abierto), botón de video → modal → foco de vuelta.
+- Formulario: los cuatro estados con FormSubmit interceptado (predicado sobre `hostname`); el Select vacío muestra su error.
+- axe sin violaciones nuevas, consola limpia, `prefers-reduced-motion` (la flecha no rota con transición).
+- `sync_shared.py --check` y sus pruebas; About y Home sin regresiones (Accordion, Quote Form, Input).
+
+### Orden de construcción
+1. Átomos: `badge-check`, Check List, Select (Sonnet, esfuerzo medio).
+2. Moléculas: Service Nav y Quote Form `--outline` con el campo Service (Sonnet, esfuerzo medio).
+3. Organismo: Accordion `--framed` (Opus, esfuerzo alto).
+4. `service-details.html` con su Section, `<head>`, sitemap y enlace del menú (Opus, esfuerzo alto).
+5. Kit, `.stories.md`, QA y reporte de desvíos. Commit de la página tras la aprobación.
+
+Plan de implementación detallado: `docs/plan-etapa-5-service-details.md`.
+
 ## Páginas siguientes
-Services, Service Details, Portfolios, Case Study, Testimonials y Contact: se describen y planifican cuando lleguen sus PNG (ya están Service Details y Contact Us en `docs/design/`).
+Services, Portfolios, Case Study, Testimonials y Contact: se describen y planifican cuando lleguen sus PNG (Contact Us ya está en `docs/design/`).
