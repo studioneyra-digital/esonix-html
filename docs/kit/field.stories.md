@@ -34,6 +34,37 @@ Label flotante sobre un Input/textarea: en reposo hace de placeholder; con foco 
 </div>
 ```
 
+**--filled y --select: vacío, con valor y con error**
+
+```html
+<div class="field field--filled">
+  <label class="field__label" for="field-demo-filled-name">Name<span aria-hidden="true">*</span></label>
+  <input class="input input--filled field__control" type="text" id="field-demo-filled-name" name="name" placeholder=" " autocomplete="name" required aria-describedby="field-demo-filled-name-error">
+  <p class="field__error" id="field-demo-filled-name-error"></p>
+</div>
+<div class="field field--filled field--select">
+  <label class="field__label" for="field-demo-filled-service">Service<span aria-hidden="true">*</span></label>
+  <select class="input input--filled field__control" id="field-demo-filled-service" name="service" required aria-describedby="field-demo-filled-service-error">
+    <option value="" hidden selected></option>
+    <option>Strategic Planning</option>
+    <option>Business Optimization</option>
+    <option>IT Consulting</option>
+    <option>Change Management</option>
+    <option>Leadership</option>
+  </select>
+  <p class="field__error" id="field-demo-filled-service-error"></p>
+</div>
+<div class="field field--filled field--select">
+  <label class="field__label" for="field-demo-filled-service-2">Service<span aria-hidden="true">*</span></label>
+  <select class="input input--filled field__control" id="field-demo-filled-service-2" name="service" required aria-invalid="true" aria-describedby="field-demo-filled-service-2-error">
+    <option value="" hidden selected></option>
+    <option>Strategic Planning</option>
+    <option>Business Optimization</option>
+  </select>
+  <p class="field__error" id="field-demo-filled-service-2-error">Choose an option.</p>
+</div>
+```
+
 ## Clases y atributos
 
 | Clase o atributo | Efecto |
@@ -43,6 +74,8 @@ Label flotante sobre un Input/textarea: en reposo hace de placeholder; con foco 
 | `.input.field__control + placeholder=" "` | El campo; el placeholder de un espacio habilita :placeholder-shown (es invisible) |
 | `<span aria-hidden="true">*</span> + required` | Asterisco visual; lo obligatorio lo anuncia required |
 | `p.field__error#<id>-error + aria-describedby` | Mensaje de error enlazado; vacío no ocupa lugar |
+| `.field--filled` | Con Input --filled: el label descansa dentro de la caja y sube alineado con su borde |
+| `.field--select + option[value=""][hidden][selected]` | Select con chevron; la opción vacía deja el label en reposo |
 | `aria-invalid="true"` | Filete en color de error (lo pone main.js al validar) |
 
 ## Tokens que consume
@@ -51,6 +84,7 @@ Label flotante sobre un Input/textarea: en reposo hace de placeholder; con foco 
 - `--color-feedback-error-text`
 - `--text-sm`
 - `--spacing-1 / -3 / -5`
+- `--spacing-4 / -6 (--filled)`
 - `--ease-fast`
 - `Input (átomo)`
 
@@ -62,4 +96,4 @@ Label flotante sobre un Input/textarea: en reposo hace de placeholder; con foco 
 
 - Label flotante (decisión del usuario) en vez del placeholder del diseño: se ve igual en reposo y no desaparece al escribir.
 - Usa `:has()` para saber si el campo tiene texto; el label puede ir antes del campo en el DOM.
-- Solo sobre fondo claro: es el único caso del diseño (la card blanca del Quote Form).
+- Solo sobre fondo claro: son los casos del diseño (Quote Form de About Us y de Service Details).

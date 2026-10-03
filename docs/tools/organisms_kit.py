@@ -213,6 +213,15 @@ FAQ = [
     (False, 'Can you help improve team productivity?', 'Yes. We review how work moves between people and tools, then set up routines and metrics that remove bottlenecks.'),
 ]
 
+# FAQ de Service Details: preguntas numeradas en el texto (el diseño no usa el «?» del Accordion Item).
+# La 1 y la 3 adaptan las respuestas de la Home; la 2 es la del diseño; la 4 es nueva (decisión del usuario).
+FAQ_FRAMED = [
+    (True, '1. What industries do you specialize in?', 'Our consulting expertise spans multiple industries including finance, technology, healthcare, retail, and professional services. We have successfully partnered with organizations of all sizes from startups.'),
+    (False, '2. How long does a consulting project typically last?', 'Project duration varies depending on the scope and objectives. Some projects may take a few weeks, while others—such as long-term strategic transformation—can extend over several months.'),
+    (False, '3. What does a business consultant do?', 'A business consultant reviews how your company works, finds what holds it back and builds a plan with you: strategy, process optimization, sales improvement and financial advisory.'),
+    (False, '4. Will consulting disrupt my daily operations?', 'No. We plan each phase around your schedule and work alongside your team, so changes roll out step by step while the business keeps running.'),
+]
+
 def service_card(title, icon, img, text, brand):
     return '\n'.join([
         '<article class="card-service"%s>' % (' data-surface="brand"' if brand else ''),
@@ -293,6 +302,21 @@ def accordion():
             '</details>']))
     return '<div class="accordion">\n%s\n</div>' % textwrap.indent('\n'.join(items), '  ')
 
+def accordion_framed(name='faq-framed'):
+    items = []
+    for open_, q, a in FAQ_FRAMED:
+        items.append('\n'.join([
+            '<details class="accordion-item" name="%s"%s>' % (name, ' open' if open_ else ''),
+            '  <summary class="accordion-item__summary">',
+            '    <span class="accordion-item__question">%s</span>' % q,
+            '    <span class="accordion-item__toggle" aria-hidden="true">%s</span>' % ic('arrow-right'),
+            '  </summary>',
+            '  <div class="accordion-item__panel">',
+            '    <p>%s</p>' % a,
+            '  </div>',
+            '</details>']))
+    return '<div class="accordion accordion--framed">\n%s\n</div>' % textwrap.indent('\n'.join(items), '  ')
+
 def video_modal():
     return '\n'.join([
         '<dialog class="video-modal" id="video-dialog" data-video-modal data-surface="inverse" aria-labelledby="video-dialog-title">',
@@ -350,17 +374,21 @@ O.append(dict(id='accordion', title='Accordion',
   desc='Grupo de <a href="#accordion-item">Accordion Items</a> para el FAQ. Que quede un solo ítem abierto lo da el mismo <code>name</code> en todos los <code>&lt;details&gt;</code>, sin JS; el grupo suma la animación de altura con <code>::details-content</code>.',
   desc_md='Grupo de Accordion Items (FAQ): un solo ítem abierto por el `name` compartido (sin JS) y animación de altura con `::details-content`.',
   blocks=[dict(label='FAQ con un ítem abierto', mods='narrow-wide', html=accordion()),
-          dict(label='--boxed (FAQ de About Us)', mods='narrow-wide', html=accordion().replace('class="accordion"', 'class="accordion accordion--boxed"').replace('name="faq"', 'name="faq-boxed"'))],
+          dict(label='--boxed (FAQ de About Us)', mods='narrow-wide', html=accordion().replace('class="accordion"', 'class="accordion accordion--boxed"').replace('name="faq"', 'name="faq-boxed"')),
+          dict(label='--framed (FAQ de Service Details)', mods='narrow-wide', html=accordion_framed())],
   rows=[('.accordion', 'Grupo; activa interpolate-size para animar hasta height: auto'),
         ('.accordion--boxed', 'Ítems en caja con borde y 32px de separación; el abierto en blanco'),
+        ('.accordion--framed', 'Caja con borde; el abierto en caja gris; filetes entre cerrados; flecha que gira → ↗ (Service Details)'),
+        ('.accordion-item__toggle &gt; .icon--arrow-right', 'En --framed, una sola flecha en lugar del par +/−'),
         ('.accordion-item + name="faq"', 'Cada pregunta (molécula); el mismo name deja una sola abierta'),
         ('open', 'Ítem abierto al cargar (el diseño abre el segundo)')],
-  tokens=['--ease-base', 'Accordion Item (molécula)'],
+  tokens=['--ease-base', '--color-border-default / -subtle', '--color-background-subtle', '--radius-sm', '--spacing-4 / -5 / -6', 'Accordion Item (molécula)'],
   a11y='Cada pregunta es un <code>&lt;summary&gt;</code> nativo: se abre con Enter o Espacio y el lector anuncia expandido o contraído. La animación usa <code>--ease-base</code>, que vale 0 con «reducir movimiento»; donde el navegador no soporta <code>::details-content</code> o <code>interpolate-size</code>, abre sin animar.',
   a11y_md='`<summary>` nativo (Enter/Espacio, estado anunciado). Animación con `--ease-base` (0 con reduced motion); sin soporte, abre sin animar.',
   decisions=['Es un organismo mínimo (el comportamiento lo da HTML nativo): existe para fijar el `name` del grupo y la animación en un solo lugar.',
              'La cuarta respuesta («Can you help improve team productivity?») es placeholder: el diseño solo muestra abierta la segunda.',
-             'Las preguntas van sin el espacio antes de «?» del diseño (tipografía inglesa).']))
+             'Las preguntas van sin el espacio antes de «?» del diseño (tipografía inglesa).',
+             '--framed: sin el «?» del Accordion Item (el diseño numera las preguntas en el texto); la flecha gira con --ease-base, así con «reducir movimiento» cambia sin animar.']))
 
 O.append(dict(id='video-modal', title='Video Modal',
   desc='<code>&lt;dialog&gt;</code> nativo que reproduce un video de YouTube. Lo abre cualquier botón con <code>data-video-id</code> (el play de los testimonios en video); el iframe de <code>youtube-nocookie.com</code> se crea recién en ese click y se quita al cerrar. El diseño no lo muestra: está armado con los tokens del theme.',
@@ -382,7 +410,9 @@ O.append(dict(id='video-modal', title='Video Modal',
   a11y_md='`showModal()`: resto inert, foco en «Close»; Escape/«Close»/fondo cierran y el foco vuelve al botón. Nombre = título visible; iframe con `title`; openers con `aria-haspopup="dialog"`. Fundido con `--ease-base`.',
   decisions=['El diseño no muestra el modal: fondo inverso, velo `--color-overlay` y entrada con fundido y desplazamiento corto.',
              'El iframe no se carga hasta el click (`youtube-nocookie.com`, autoplay): la página no descarga YouTube al abrirse. Lleva `referrerpolicy="strict-origin-when-cross-origin"`, porque YouTube rechaza el embed sin referrer.',
-             'Ancho máximo 64rem y nunca más alto que la ventana: el ancho se limita a `(100dvh - 8rem) × 16/9`.']))
+             'Ancho máximo 64rem y nunca más alto que la ventana: el ancho se limita a `(100dvh - 8rem) × 16/9`.',
+             'En las páginas, el `<dialog>` vive en el bloque `shared:footer` de `index.html`: `sync_shared.py` lo copia a todas, y cualquier botón con `data-video-id` lo abre.',
+             'Al cerrar, `main.js` devuelve el foco al botón que lo abrió: abierto con el ratón, ese botón nunca tuvo el foco y la restauración nativa lo dejaba en `<body>`.']))
 
 # ------------------------------------------------------------------ Grupo C: Word List, Marquee, Footer
 WORDS = [

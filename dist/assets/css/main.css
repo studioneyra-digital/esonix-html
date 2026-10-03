@@ -211,6 +211,7 @@ html.lenis body {
 .icon--check { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
 .icon--circle-check { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cmask id='m'%3E%3Crect width='24' height='24' fill='%23fff' stroke='none'/%3E%3Cpath d='m8 12.5 2.8 2.8L16 9.5' stroke='%23000'/%3E%3C/mask%3E%3Ccircle cx='12' cy='12' r='10' fill='%23000' stroke='none' mask='url(%23m)'/%3E%3C/svg%3E"); }
 .icon--circle-check-outline { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E"); }
+.icon--badge-check { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E"); }
 .icon--chevron-down { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
 .icon--x { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E"); }
 .icon--send { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z'/%3E%3Cpath d='m21.854 2.147-10.94 10.939'/%3E%3C/svg%3E"); }
@@ -618,6 +619,17 @@ html.lenis body {
   --input-placeholder: var(--color-text-inverse-secondary);
 }
 
+/* Input --filled — caja gris (Quote Form de Service Details). El borde del diseño (≈ 1.2:1) no alcanza el
+   3:1 de los controles (WCAG 1.4.11): tres lados en --color-border-subtle, como el diseño, y el filete
+   inferior en --input-border (border-strong), que conserva el hover y el color de error del Input. */
+.input--filled {
+  padding: var(--spacing-4) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-subtle);
+  border-block-end-color: var(--input-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-background-subtle);
+}
+
 /* Textarea — el mismo .input sobre <textarea>: varias líneas, alto mínimo de 96px y solo redimensionable en
    vertical (el diseño muestra el tirador). */
 textarea.input {
@@ -627,12 +639,15 @@ textarea.input {
 }
 
 /* Field — campo con label flotante (Quote Form). En reposo el <label> ocupa el lugar del placeholder, como el
-   diseño; con foco o con texto sube y se achica sobre el filete, así el nombre del campo nunca desaparece
+   diseño; con foco o con texto sube y se achica sobre el campo, así el nombre del campo nunca desaparece
    (accessibility.md: label asociado, no solo placeholder). El campo lleva placeholder=" " para que
    :placeholder-shown distinga vacío de lleno. Debajo, el mensaje de error: vacío (y sin caja) si no hay.
-   --field-rise es el lugar que se reserva arriba para el label subido (22px de alto + el anillo de foco). */
+   --field-rise es el lugar que se reserva arriba para el label subido (22px de alto + el anillo de foco);
+   --field-pad-block / --field-pad-inline, el padding del campo (dónde descansa el label). */
 .field {
   --field-rise: var(--spacing-7);
+  --field-pad-block: var(--spacing-3);
+  --field-pad-inline: 0rem;
   position: relative;
   display: grid;
   gap: var(--spacing-1);
@@ -640,8 +655,8 @@ textarea.input {
 }
 .field__label {
   position: absolute;
-  inset-block-start: calc(var(--field-rise) + var(--spacing-3));
-  inset-inline-start: 0;
+  inset-block-start: calc(var(--field-rise) + var(--field-pad-block));
+  inset-inline-start: var(--field-pad-inline);
   color: var(--color-text-secondary);
   line-height: var(--leading-normal);
   pointer-events: none;
@@ -650,7 +665,7 @@ textarea.input {
 }
 .field:focus-within .field__label,
 .field:has(.field__control:not(:placeholder-shown)) .field__label {
-  transform: translateY(calc(-1 * (var(--field-rise) + var(--spacing-3)))) scale(0.875);
+  transform: translate(calc(-1 * var(--field-pad-inline)), calc(-1 * (var(--field-rise) + var(--field-pad-block)))) scale(0.875);
 }
 .field__control::placeholder {
   color: transparent;
@@ -661,6 +676,42 @@ textarea.input {
 }
 .field__error:empty {
   display: none;
+}
+/* --filled — con Input --filled: el label descansa dentro de la caja y, al subir, se alinea con su borde.
+   Reserva menos arriba (24px) para que los campos queden cerca de los 72px del diseño. */
+.field--filled {
+  --field-rise: var(--spacing-6);
+  --field-pad-block: var(--spacing-4);
+  --field-pad-inline: var(--spacing-5);
+}
+
+/* Select — el mismo .input sobre <select>, sin la flecha nativa: el chevron es una máscara en ::after,
+   en la misma celda que el campo. Label flotante sin JS: el select arranca en una opción vacía
+   (value="", hidden, sin disabled) y, mientras esa opción está elegida y no hay foco, el label queda en
+   reposo. Sin disabled no aparece el bug de Chromium que fuerza el color del placeholder: no hace falta
+   !important. :placeholder-shown no aplica a <select>, por eso la regla propia. */
+select.input {
+  appearance: none;
+  padding-inline-end: calc(var(--field-pad-inline, 0rem) + var(--spacing-7));
+  cursor: pointer;
+}
+.field--select > .field__control {
+  grid-area: 1 / 1;
+}
+.field--select::after {
+  content: '';
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: end;
+  inline-size: var(--spacing-5);
+  block-size: var(--spacing-5);
+  margin-inline-end: var(--field-pad-inline);
+  background-color: var(--color-text-primary);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  pointer-events: none;
+}
+.field--select:not(:focus-within):has(option[value='']:checked) .field__label {
+  transform: none;
 }
 
 /* Divider — <hr> de un filete. --inverse sobre fondos oscuros. */
@@ -673,6 +724,27 @@ textarea.input {
 }
 .divider--inverse {
   border-block-start-color: var(--color-overlay-light);
+}
+
+/* Check List — lista con el check relleno (Service Details: «Mistakes to avoid…» y Key Features). El ícono
+   va en el color del texto fuerte y el texto en secundario; se centra en la primera línea con 1lh, así
+   los ítems de dos líneas (mobile) no lo desalinean. */
+.check-list {
+  display: grid;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-secondary);
+  list-style: none;
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+}
+.check-list .icon {
+  margin-block-start: calc((1lh - 1em) / 2);
+  color: var(--color-text-primary);
 }
 
 /* Pagination Dots — cada punto es un botón de 24×24 (WCAG 2.5.8) con el punto dibujado en ::before.
@@ -1426,6 +1498,74 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
   color: var(--color-text-highlight);
 }
 
+/* Service Nav — «Exclusive Services» de Service Details: card con borde y la lista de servicios en píldoras
+   grises con un cuadrado de flecha. La página actual va con aria-current="page": petróleo, texto blanco y el
+   cuadrado ámbar. El diseño no muestra el hover: el cuadrado toma el ámbar del activo. */
+.service-nav {
+  display: grid;
+  gap: var(--spacing-6);
+  padding: var(--spacing-6) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+}
+.service-nav__title {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+.service-nav__list {
+  display: grid;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.service-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-background-subtle);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition: background-color var(--ease-fast), color var(--ease-fast);
+}
+.service-nav__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: var(--spacing-8);
+  block-size: var(--spacing-8);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-lg);
+  transition: background-color var(--ease-fast), color var(--ease-fast);
+}
+.service-nav__link:hover {
+  color: var(--color-text-primary);
+}
+.service-nav__link:hover .service-nav__icon,
+.service-nav__link[aria-current='page'] .service-nav__icon {
+  background-color: var(--color-action-secondary);
+  color: var(--color-action-on-secondary);
+}
+.service-nav__link[aria-current='page'],
+.service-nav__link[aria-current='page']:hover {
+  border-color: var(--color-action-primary);
+  background-color: var(--color-action-primary);
+  color: var(--color-action-on-primary);
+}
+@media (min-width: 48rem) {
+  .service-nav {
+    padding: var(--spacing-8);
+  }
+}
+
 /* Quote Form — card blanca con el título, cuatro Field y el botón (About Us, «Get a free Quote»). Debajo,
    las regiones de estado: enviado (role="status") y error de envío (role="alert"), vacías hasta que
    main.js las llena; vacías no ocupan lugar pero siguen en el árbol de accesibilidad (así se anuncian).
@@ -1478,6 +1618,17 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
   .quote-form {
     padding: var(--spacing-8);
   }
+}
+/* --outline — card con borde, sin fondo ni sombra (aside de Service Details, «Get a Quote»), con el título
+   a 24px y los campos --filled. Misma lógica y estados que el Quote Form base. */
+.quote-form--outline {
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  box-shadow: none;
+}
+.quote-form--outline .quote-form__title {
+  font-size: var(--text-h4);
 }
 /* molecules:end */
 
@@ -2106,6 +2257,46 @@ html.has-offcanvas {
 /* Sobre el fondo --color-background-subtle de la sección, el «?» cerrado necesita un tono más */
 .accordion--boxed .accordion-item__mark {
   background-color: var(--color-background-muted);
+}
+
+/* --framed — FAQ de Service Details: el grupo en una caja con borde; el ítem abierto en una caja gris; los
+   cerrados separados por un filete que respeta el padding del ítem (lo lleva el <summary> del segundo de
+   cada par de cerrados, así nunca hay filete junto a la caja abierta). Sin el «?»: la numeración va en el
+   texto. El toggle es una sola flecha que gira de → a ↗ al abrir. */
+.accordion--framed {
+  padding: var(--spacing-4);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+}
+.accordion--framed .accordion-item {
+  padding-inline: var(--spacing-5);
+  border: var(--border-width-sm) solid transparent;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--ease-base), border-color var(--ease-base);
+}
+.accordion--framed .accordion-item[open] {
+  border-color: var(--color-border-subtle);
+  background-color: var(--color-background-subtle);
+}
+.accordion--framed .accordion-item:not([open]) + .accordion-item:not([open]) > .accordion-item__summary {
+  border-block-start: var(--border-width-sm) solid var(--color-border-default);
+}
+.accordion--framed .accordion-item__panel {
+  padding-inline-start: 0;
+}
+.accordion--framed .accordion-item__toggle .icon {
+  transition: rotate var(--ease-base);
+}
+.accordion--framed .accordion-item[open] .accordion-item__toggle .icon {
+  rotate: -45deg;
+}
+@media (min-width: 64rem) {
+  .accordion--framed {
+    padding: var(--spacing-6);
+  }
+  .accordion--framed .accordion-item {
+    padding-inline: var(--spacing-6);
+  }
 }
 
 /* Video Modal — <dialog> nativo: showModal() deja inert el resto de la página, Escape lo cierra y el
@@ -3565,6 +3756,116 @@ html {
   }
   .why-trust__intro {
     grid-area: 1 / 1;
+  }
+}
+/* Service Details — plantilla de servicio. Artículo y aside medidos en el diseño (870 | 420 con 30px de
+   separación = 29fr 14fr) desde lg; antes, apilados con un Divider entre los dos (solo mobile). Los
+   bloques del artículo van a 32px (el diseño varía entre 31 y 44). */
+.service-details__grid {
+  display: grid;
+  gap: var(--spacing-9);
+}
+.service-details__article,
+.service-details__aside {
+  display: grid;
+  align-content: start;
+  gap: var(--spacing-7);
+  min-inline-size: 0;
+}
+.service-details__intro,
+.service-details__block {
+  display: grid;
+  gap: var(--spacing-5);
+}
+.service-details__intro p,
+.service-details__article > p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+.service-details__title {
+  font-size: var(--text-h2);
+}
+.service-details__subtitle {
+  font-size: var(--text-h3);
+}
+.service-details__subtitle--sm {
+  font-size: var(--text-h6);
+}
+/* Foto del apretón de manos (420×262) junto a «Mistakes…», mitad y mitad desde md */
+.service-details__media {
+  display: grid;
+  gap: var(--spacing-5);
+  align-items: center;
+}
+.service-details__photo,
+.service-details__video img {
+  inline-size: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.service-details__photo {
+  aspect-ratio: 420 / 262;
+}
+/* Document Required: ícono ámbar a la izquierda; título y descripción en la segunda columna */
+.service-details__docs {
+  display: grid;
+  gap: var(--spacing-5) var(--spacing-7);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.service-details__doc {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  /* align-content: start — los dos documentos de una fila quedan igual de altos y, sin esto, el más corto
+     reparte el sobrante entre sus filas y su descripción baja respecto de la del vecino. */
+  align-content: start;
+  gap: var(--spacing-1) var(--spacing-5);
+}
+.service-details__doc .icon {
+  grid-row: span 2;
+  font-size: var(--spacing-6);
+  color: var(--color-text-highlight);
+}
+.service-details__doc-title {
+  font-size: var(--text-body-lg);
+  font-weight: var(--weight-medium);
+}
+.service-details__doc p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+/* Video: foto 870×400 con el play centrado (abre el Video Modal) */
+.service-details__video {
+  position: relative;
+}
+.service-details__video img {
+  aspect-ratio: 87 / 40;
+}
+.service-details__play {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+}
+@media (min-width: 48rem) {
+  .service-details__media,
+  .service-details__docs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--spacing-7);
+  }
+}
+@media (min-width: 64rem) {
+  .service-details__grid {
+    grid-template-columns: minmax(0, 29fr) minmax(0, 14fr);
+    gap: var(--spacing-7);
+    align-items: start;
+  }
+  .service-details__divider {
+    display: none;
+  }
+  .service-details__subtitle--sm {
+    font-size: var(--text-h4);
   }
 }
 /* sections:end */

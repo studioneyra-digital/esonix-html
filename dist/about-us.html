@@ -94,7 +94,7 @@
               <li><a class="site-nav__sublink" href="#">Marketing Guidance</a></li>
               <li><a class="site-nav__sublink" href="#">Process Optimization</a></li>
               <li><a class="site-nav__sublink" href="#">Sales Improvement</a></li>
-              <li><a class="site-nav__sublink" href="#">Service Details</a></li>
+              <li><a class="site-nav__sublink" href="service-details.html">Service Details</a></li>
             </ul>
           </li>
           <li class="site-nav__item">
@@ -600,7 +600,7 @@
                 <li><a class="offcanvas__sublink" href="#">Marketing Guidance</a></li>
                 <li><a class="offcanvas__sublink" href="#">Process Optimization</a></li>
                 <li><a class="offcanvas__sublink" href="#">Sales Improvement</a></li>
-                <li><a class="offcanvas__sublink" href="#">Service Details</a></li>
+                <li><a class="offcanvas__sublink" href="service-details.html">Service Details</a></li>
               </ul>
             </details>
           </li>
@@ -657,6 +657,14 @@
   <button type="button" class="scroll-top" aria-label="Back to top">
     <span class="icon icon--arrow-up" aria-hidden="true"></span>
   </button>
+
+  <dialog class="video-modal" id="video-dialog" data-video-modal data-surface="inverse" aria-labelledby="video-dialog-title">
+    <div class="video-modal__head">
+      <h2 class="video-modal__title" id="video-dialog-title">Video</h2>
+      <button type="button" class="icon-btn icon-btn--glass icon-btn--sm" data-video-close aria-label="Close video"><span class="icon icon--x" aria-hidden="true"></span></button>
+    </div>
+    <div class="video-modal__frame"></div>
+  </dialog>
 
   <script src="assets/js/lenis.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>

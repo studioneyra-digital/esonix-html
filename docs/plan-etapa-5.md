@@ -205,5 +205,31 @@ El mobile tiene un error de captura (el ítem 1 del FAQ aparece dos veces, cerca
 
 Plan de implementación detallado: `docs/plan-etapa-5-service-details.md`.
 
+### Estado: hecha, a la espera de aprobación
+
+**Cambios respecto de esta spec** (decididos al planificar o al construir):
+- **Input `--filled` y Field `--filled`:** los campos del diseño son cajas grises, no el filete de About. Tres lados en `--color-border-subtle` (como el diseño) y filete inferior en `--color-border-strong`: el borde del diseño queda en ≈ 1.2:1 y no llega al 3:1 que piden los controles (decisión del usuario).
+- **Select sin `!important`:** la opción vacía va `hidden selected` pero **sin `disabled`**, y así no aparece el bug de Chromium que fuerza el color del placeholder. `main.css` no tiene ningún `!important` real (la única coincidencia del `grep` está dentro del comentario que explica por qué no hizo falta). La excepción documentada en `CLAUDE.md` §11 quedó sin caso: conviene borrarla.
+- **Bug corregido, fuera del alcance de la página:** ninguna página tenía el `<dialog data-video-modal>`, así que los tres botones de play de la Home no hacían nada. El `<dialog>` se agregó al bloque `shared:footer` de `index.html` y `sync_shared.py` lo propagó. Además, al cerrar el modal el foco vuelve al botón que lo abrió (abierto con el ratón, ese botón nunca lo tuvo y la restauración nativa dejaba el foco en `<body>`).
+- **El aside es un `<div>`, no un `<aside>`:** dentro de `<main>` y de la region de la Section, un landmark `complementary` queda anidado (axe: `landmark-complementary-is-top-level`, también sin `aria-label`). La `<nav>` «Exclusive Services» y el `<form>` «Get a Quote» que contiene ya son landmarks con nombre propio, así que no se pierde nada.
+- **Los ids del Quote Form llevan prefijo `service-quote-`:** con `quote-` chocaban en el kit con los del formulario de About Us, que salen del mismo helper (en cada página por separado no hay colisión, pero el kit junta las dos Sections).
+- `align-content: start` en cada documento de «Document Required»: los dos de una fila quedan igual de altos y, sin eso, el más corto repartía el sobrante entre sus filas y su descripción bajaba respecto de la del vecino.
+
+**Desvíos frente al diseño:**
+- Padding superior de la Section: 96px (`.section`, el componente compartido) contra ≈ 120 del diseño. Todo el contenido queda 24px más arriba; el alto total de la Section da 2345px contra 2341, así que el ritmo interno coincide. No se toca `.section`: lo usan todas las páginas.
+- `h2` «Explore our Service Lists» a 36px contra 32: con `--text-h3` quedaba igual que los h3 de 28 y se perdía la jerarquía.
+- Preguntas del FAQ en mobile a 18px contra 20.5 (se mantiene el componente Accordion Item).
+- Page Hero mobile de 420px de alto contra ≈ 320 (se mantiene el componente de About).
+- Campos del formulario de 59.6px contra 56, con ~84px entre cajas contra 73: ajustarlo pediría valores fuera de la escala de tokens.
+- Fotos sustitutas de la biblioteca (decisión del usuario). La del hero (`h1-process-img-2.webp`) mide 1000px de ancho y a 1920 se ve algo blanda; la del video (`download.webp`, 735×720) recortada a 87:40 corta las cabezas.
+- Párrafos anchos del artículo con ~88 caracteres por línea (anti-patrones #13, excepción declarada como en About: así lo muestra el diseño).
+
+**Verificado:** 1920, 1440, 1280, 1024, 768, 480 y 390px sin desborde; axe sin violaciones en la página (1440 y 390); consola limpia; sin ids duplicados; teclado (orden artículo → FAQ → nav → formulario, foco visible en la píldora activa, en el Select y en el play); play → modal → Escape → foco de vuelta al botón; formulario vacío con los 5 errores («Choose an option.» en el Select) y foco en Name; envío completo con la red interceptada (estado enviado, formulario limpio y el label del Select de vuelta en reposo) y con error (`role="alert"`); nunca se envió nada a FormSubmit; `prefers-reduced-motion`; `sync_shared.py --check`; Home y About sin regresiones (el enlace del menú lleva a la página y el play de la Home abre el modal).
+
+**Pendiente del usuario / observaciones:**
+- El nivel «Services» del breadcrumb es texto sin enlace y el `BreadcrumbList` del JSON-LD lo omite (Google exige URL en los niveles intermedios): sumarlo en los dos lugares cuando exista la página Services.
+- En el kit, la ficha de la Section suma un aviso `landmark-unique`: la `<nav>` «Exclusive Services» aparece también en la ficha de la molécula Service Nav. Es el mismo artefacto que ya tienen los carruseles (`#carousel-services` y `#carousel-services-section`) y no existe en la página real.
+- `CLAUDE.md` §11 documenta una excepción de `!important` para el Select que no llegó a existir.
+
 ## Páginas siguientes
 Services, Portfolios, Case Study, Testimonials y Contact: se describen y planifican cuando lleguen sus PNG (Contact Us ya está en `docs/design/`).

@@ -632,6 +632,46 @@ html.has-offcanvas {
   background-color: var(--color-background-muted);
 }
 
+/* --framed — FAQ de Service Details: el grupo en una caja con borde; el ítem abierto en una caja gris; los
+   cerrados separados por un filete que respeta el padding del ítem (lo lleva el <summary> del segundo de
+   cada par de cerrados, así nunca hay filete junto a la caja abierta). Sin el «?»: la numeración va en el
+   texto. El toggle es una sola flecha que gira de → a ↗ al abrir. */
+.accordion--framed {
+  padding: var(--spacing-4);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+}
+.accordion--framed .accordion-item {
+  padding-inline: var(--spacing-5);
+  border: var(--border-width-sm) solid transparent;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--ease-base), border-color var(--ease-base);
+}
+.accordion--framed .accordion-item[open] {
+  border-color: var(--color-border-subtle);
+  background-color: var(--color-background-subtle);
+}
+.accordion--framed .accordion-item:not([open]) + .accordion-item:not([open]) > .accordion-item__summary {
+  border-block-start: var(--border-width-sm) solid var(--color-border-default);
+}
+.accordion--framed .accordion-item__panel {
+  padding-inline-start: 0;
+}
+.accordion--framed .accordion-item__toggle .icon {
+  transition: rotate var(--ease-base);
+}
+.accordion--framed .accordion-item[open] .accordion-item__toggle .icon {
+  rotate: -45deg;
+}
+@media (min-width: 64rem) {
+  .accordion--framed {
+    padding: var(--spacing-6);
+  }
+  .accordion--framed .accordion-item {
+    padding-inline: var(--spacing-6);
+  }
+}
+
 /* Video Modal — <dialog> nativo: showModal() deja inert el resto de la página, Escape lo cierra y el
    foco vuelve al botón que lo abrió. main.js crea el iframe de youtube-nocookie recién al hacer click
    en un [data-video-id] y lo quita al cerrar (corta la reproducción). Se cierra también con «Close» o

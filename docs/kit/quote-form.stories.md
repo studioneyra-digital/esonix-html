@@ -199,12 +199,64 @@ Card con 4 Field y botón. Sin JS envía normal a FormSubmit; con JS valida, env
 </form>
 ```
 
+**--outline con campos --filled y Select (Service Details)**
+
+```html
+<form class="quote-form quote-form--outline" id="quote-outline-form" action="#" method="post" novalidate aria-label="Get a Quote, validation error example">
+  <h3 class="quote-form__title" id="quote-outline-title">Get a Quote</h3>
+  <input type="hidden" name="_subject" value="New quote request from esonix.example">
+  <div hidden><label for="quote-outline-honey">Leave this field empty</label><input type="text" id="quote-outline-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+  <div class="field field--filled">
+    <label class="field__label" for="quote-outline-name">Name<span aria-hidden="true">*</span></label>
+    <input class="input input--filled field__control" type="text" id="quote-outline-name" name="name" placeholder=" " required aria-describedby="quote-outline-name-error" aria-invalid="true" autocomplete="name">
+    <p class="field__error" id="quote-outline-name-error">This field is required.</p>
+  </div>
+  <div class="field field--filled">
+    <label class="field__label" for="quote-outline-email">Email<span aria-hidden="true">*</span></label>
+    <input class="input input--filled field__control" type="email" id="quote-outline-email" name="email" placeholder=" " required aria-describedby="quote-outline-email-error" aria-invalid="true" autocomplete="email" value="emma@">
+    <p class="field__error" id="quote-outline-email-error">Enter a valid email address.</p>
+  </div>
+  <div class="field field--filled">
+    <label class="field__label" for="quote-outline-phone">Phone<span aria-hidden="true">*</span></label>
+    <input class="input input--filled field__control" type="tel" id="quote-outline-phone" name="phone" placeholder=" " required aria-describedby="quote-outline-phone-error" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}">
+    <p class="field__error" id="quote-outline-phone-error"></p>
+  </div>
+  <div class="field field--filled field--select">
+    <label class="field__label" for="quote-outline-service">Service<span aria-hidden="true">*</span></label>
+    <select class="input input--filled field__control" id="quote-outline-service" name="service" required aria-describedby="quote-outline-service-error" aria-invalid="true">
+      <option value="" hidden selected></option>
+      <option>Strategic Planning</option>
+      <option>Business Optimization</option>
+      <option>IT Consulting</option>
+      <option>Change Management</option>
+      <option>Leadership</option>
+    </select>
+    <p class="field__error" id="quote-outline-service-error">Choose an option.</p>
+  </div>
+  <div class="field field--filled">
+    <label class="field__label" for="quote-outline-message">Message<span aria-hidden="true">*</span></label>
+    <textarea class="input input--filled field__control" id="quote-outline-message" name="message" placeholder=" " required aria-describedby="quote-outline-message-error"></textarea>
+    <p class="field__error" id="quote-outline-message-error"></p>
+  </div>
+  <button type="submit" class="btn quote-form__submit">
+    <span data-submit-label>Submit Now</span>
+    <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+  </button>
+  <div class="quote-form__messages">
+    <p class="quote-form__status" role="status" data-form-status></p>
+    <p class="quote-form__alert" role="alert" data-form-alert></p>
+  </div>
+</form>
+```
+
 ## Clases y atributos
 
 | Clase o atributo | Efecto |
 |---|---|
 | `form.quote-form[data-quote-form]` | Activa el envío por fetch y la validación de main.js |
 | `action="https://formsubmit.co/<destino>" method="post" novalidate` | Destino (sin JS, envío normal); novalidate deja la validación a main.js |
+| `.quote-form--outline` | Card con borde, sin fondo ni sombra; título de 24px (aside de Service Details) |
+| `.field--filled / .field--select` | Campos en caja gris y el Select «Service» (ver Field y Select) |
 | `input[name="_subject"] / div[hidden] > input[name="_honey"]` | Asunto del correo y trampa antibots de FormSubmit |
 | `button[aria-disabled="true"] > [data-submit-label]` | Enviando: el botón no responde y su texto pasa a «Sending…» |
 | `p[role="status"][data-form-status]` | Mensaje de enviado |
@@ -229,3 +281,4 @@ Error por campo con `aria-describedby`, foco al primero inválido; `role="status
 - El correo de destino queda visible en el HTML; FormSubmit permite reemplazarlo por un alias aleatorio después de activar.
 - Solo el demo «En vivo» lleva `data-quote-form`; su `action` es la propia página del kit (`#kit-demo`), así nunca envía correos: el servidor estático rechaza el POST y se ve el estado de error. Los demás muestran estados estáticos con `action="#"`.
 - El teléfono acepta dígitos, espacios, `+`, paréntesis y guiones (mínimo 6).
+- --outline usa campos --filled: el diseño de Service Details los muestra en caja gris, con el filete inferior fuerte por contraste (decisión del usuario).

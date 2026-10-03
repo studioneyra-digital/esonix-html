@@ -31,7 +31,8 @@ A.append(dict(id='icons', title='Icons', raw_icons=True,
   a11y_md='Un ícono nunca es el único portador de significado: el contenedor lleva texto o `aria-label`. En colores forzados pasa a `CanvasText`.',
   decisions=['Lucide es la única librería de iconos permitida; los glifos de redes (facebook, linkedin, instagram, x-twitter) son propios porque Lucide no incluye logos de marca.',
              '`circle-check` es un círculo relleno con la marca recortada (máscara interna), como el check de las listas de pricing; Lucide solo trae la versión de contorno.',
-             '`play` va relleno (el diseño lo muestra sólido).']))
+             '`play` va relleno (el diseño lo muestra sólido).',
+             '`badge-check` (Document Required de Service Details) es el sello con la marca; `circle-check-outline`, el círculo con la marca en contorno.']))
 
 A.append(dict(id='button', title='Button',
   desc='Píldora de texto con un círculo de ícono a la derecha. Por defecto va en petróleo sobre fondo claro; <code>--light</code> es la versión para fondos oscuros; <code>--block</code> ocupa el ancho de su card (pricing) y <code>--accent</code> es su relleno amarillo. Funciona como <code>&lt;button&gt;</code> o como <code>&lt;a&gt;</code>.',
@@ -278,6 +279,28 @@ A.append(dict(id='divider', title='Divider',
   a11y_md='`<hr>` expone un separador; si es puramente decorativo, usar `border` del componente.',
   decisions=['El filete del hero (parcial, blanco al 30%) es propio del Hero y no pasa por este átomo.']))
 
+A.append(dict(id='check-list', title='Check List',
+  desc='Lista con el check relleno (<code>icon--circle-check</code>): el ícono en el color del texto fuerte y el texto en secundario. La usan «Mistakes to avoid…» y Key Features en Service Details.',
+  desc_md='Lista con `icon--circle-check` relleno: ícono en texto fuerte, texto en secundario (Service Details).',
+  blocks=[
+    dict(label='Cuatro ítems', mods='medium', html=d('''
+      <ul class="check-list" role="list">
+        <li><span class="icon icon--circle-check" aria-hidden="true"></span>Market research and competitive analysis</li>
+        <li><span class="icon icon--circle-check" aria-hidden="true"></span>Operational efficiency and process optimization</li>
+        <li><span class="icon icon--circle-check" aria-hidden="true"></span>Risk assessment and decision-making support</li>
+        <li><span class="icon icon--circle-check" aria-hidden="true"></span>Strategic business planning and roadmap</li>
+      </ul>''')),
+  ],
+  rows=[('ul.check-list + role="list"', 'La lista; role="list" porque list-style: none la oculta como lista en Safari'),
+        ('span.icon.icon--circle-check + aria-hidden="true"', 'Check decorativo, centrado en la primera línea')],
+  tokens=['--color-text-primary (ícono)', '--color-text-secondary (texto)', '--spacing-3 / -4'],
+  a11y='Es una lista real (<code>role="list"</code> la devuelve a VoiceOver, que la pierde con <code>list-style: none</code>). El check es <code>aria-hidden</code>: no aporta información que no esté en el texto.',
+  a11y_md='Lista real con `role="list"` (VoiceOver); check `aria-hidden`.',
+  decisions=['La lista de About Us (`about-intro__list`, check en contorno) queda como está: es otro ícono y vive en su Section.',
+             'El ícono se centra en la primera línea con `1lh`: los ítems que en mobile ocupan dos líneas no lo desalinean.']))
+_i = [a['id'] for a in A].index('divider')
+A.insert(_i + 1, A.pop())
+
 A.append(dict(id='dots', title='Pagination Dots',
   desc='Puntos de paginación para carruseles (testimonios, stats en mobile). Cada punto es un botón de 24×24px con el punto dibujado en <code>::before</code>. El inactivo usa <code>border-strong</code> y el activo lleva un halo.',
   desc_md='Puntos de paginación. Cada punto es un botón de 24×24px; el activo lleva halo.',
@@ -341,8 +364,12 @@ A.append(dict(id='input', title='Input',
     dict(label='Textarea (misma clase)', mods='narrow', html=d('''
       <label for="input-demo-textarea" class="visually-hidden">Message</label>
       <textarea class="input" id="input-demo-textarea" name="message" placeholder="Write your message"></textarea>''')),
+    dict(label='--filled (caja gris)', mods='narrow', html=d('''
+      <label for="input-demo-filled" class="visually-hidden">Your name</label>
+      <input class="input input--filled" type="text" id="input-demo-filled" name="name" placeholder="Name">''')),
   ],
   rows=[('.input', 'Campo sin caja: solo el filete inferior; ocupa el ancho de su contenedor'),
+        ('.input--filled', 'Caja gris con filete inferior fuerte (Quote Form de Service Details)'),
         ('textarea.input', 'Varias líneas: alto mínimo de 96px y redimensionable solo en vertical'),
         ('aria-invalid="true"', 'Estado de error: el filete pasa a color de error (acompañar con un mensaje de texto)'),
         ('&lt;label for&gt;', 'Obligatorio, aunque esté visualmente oculto (<code>visually-hidden</code>): el placeholder no es un nombre accesible'),
@@ -350,7 +377,8 @@ A.append(dict(id='input', title='Input',
   tokens=['--color-text-primary / -inverse', '--color-border-strong / --color-text-inverse-secondary (filete)', '--color-text-tertiary (placeholder)', '--color-border-error', '--spacing-3', '--text-body', '--ease-fast'],
   a11y='Lleva <code>&lt;label&gt;</code> asociado y el placeholder solo ilustra el formato. El foco usa el anillo global (amarillo sobre superficies oscuras). El filete da ≥3:1 sobre claro y oscuro, como exige WCAG 1.4.11 para el borde de un control.',
   a11y_md='`<label>` asociado (puede ser `visually-hidden`); foco con anillo global; filete ≥3:1.',
-  decisions=['Solo existe el estilo de filete: es el de los dos formularios del diseño (newsletter y Quote Form de About Us).',
+  decisions=['Dos estilos: filete (newsletter y Quote Form de About Us) y --filled (Quote Form de Service Details).',
+             '--filled: el borde del diseño (≈ 1.2:1) no llega al 3:1 de un control; se mantiene en tres lados y el filete inferior va en `--color-border-strong` (decisión del usuario).',
              'El filete del diseño es translúcido y tenue; aquí es blanco al 78% para cumplir 3:1 como borde de control.']))
 
 _i = [a['id'] for a in A].index('switch')
@@ -381,20 +409,87 @@ A.append(dict(id='field', title='Field',
         <textarea class="input field__control" id="field-demo-message" name="message" placeholder=" " required aria-describedby="field-demo-message-error"></textarea>
         <p class="field__error" id="field-demo-message-error"></p>
       </div>''')),
+    dict(label='--filled y --select: vacío, con valor y con error', mods='narrow stack', html=d('''
+      <div class="field field--filled">
+        <label class="field__label" for="field-demo-filled-name">Name<span aria-hidden="true">*</span></label>
+        <input class="input input--filled field__control" type="text" id="field-demo-filled-name" name="name" placeholder=" " autocomplete="name" required aria-describedby="field-demo-filled-name-error">
+        <p class="field__error" id="field-demo-filled-name-error"></p>
+      </div>
+      <div class="field field--filled field--select">
+        <label class="field__label" for="field-demo-filled-service">Service<span aria-hidden="true">*</span></label>
+        <select class="input input--filled field__control" id="field-demo-filled-service" name="service" required aria-describedby="field-demo-filled-service-error">
+          <option value="" hidden selected></option>
+          <option>Strategic Planning</option>
+          <option>Business Optimization</option>
+          <option>IT Consulting</option>
+          <option>Change Management</option>
+          <option>Leadership</option>
+        </select>
+        <p class="field__error" id="field-demo-filled-service-error"></p>
+      </div>
+      <div class="field field--filled field--select">
+        <label class="field__label" for="field-demo-filled-service-2">Service<span aria-hidden="true">*</span></label>
+        <select class="input input--filled field__control" id="field-demo-filled-service-2" name="service" required aria-invalid="true" aria-describedby="field-demo-filled-service-2-error">
+          <option value="" hidden selected></option>
+          <option>Strategic Planning</option>
+          <option>Business Optimization</option>
+        </select>
+        <p class="field__error" id="field-demo-filled-service-2-error">Choose an option.</p>
+      </div>''')),
   ],
   rows=[('.field', 'Envoltura: reserva arriba el lugar del label subido'),
         ('label.field__label + for', 'Nombre visible del campo; flota sobre el filete con foco o con texto'),
         ('.input.field__control + placeholder=" "', 'El campo; el placeholder de un espacio habilita :placeholder-shown (es invisible)'),
         ('&lt;span aria-hidden="true"&gt;*&lt;/span&gt; + required', 'Asterisco visual; lo obligatorio lo anuncia required'),
         ('p.field__error#&lt;id&gt;-error + aria-describedby', 'Mensaje de error enlazado; vacío no ocupa lugar'),
+        ('.field--filled', 'Con Input --filled: el label descansa dentro de la caja y sube alineado con su borde'),
+        ('.field--select + option[value=""][hidden][selected]', 'Select con chevron; la opción vacía deja el label en reposo'),
         ('aria-invalid="true"', 'Filete en color de error (lo pone main.js al validar)')],
-  tokens=['--color-text-secondary (label)', '--color-feedback-error-text', '--text-sm', '--spacing-1 / -3 / -5', '--ease-fast', 'Input (átomo)'],
+  tokens=['--color-text-secondary (label)', '--color-feedback-error-text', '--text-sm', '--spacing-1 / -3 / -5', '--spacing-4 / -6 (--filled)', '--ease-fast', 'Input (átomo)'],
   a11y='El nombre del campo es un <code>&lt;label&gt;</code> real y visible en los dos estados (cumple «label asociado, no solo placeholder» de <code>accessibility.md</code>). El error se enlaza con <code>aria-describedby</code> y el campo lleva <code>aria-invalid</code>: el lector lee nombre, estado y mensaje. El asterisco es <code>aria-hidden</code> porque <code>required</code> ya anuncia que es obligatorio. Con «reducir movimiento» el label cambia de lugar sin animar.',
   a11y_md='`<label>` real y visible en reposo y con texto; error con `aria-describedby` + `aria-invalid`; asterisco `aria-hidden` (lo anuncia `required`).',
   decisions=['Label flotante (decisión del usuario) en vez del placeholder del diseño: se ve igual en reposo y no desaparece al escribir.',
              'Usa `:has()` para saber si el campo tiene texto; el label puede ir antes del campo en el DOM.',
-             'Solo sobre fondo claro: es el único caso del diseño (la card blanca del Quote Form).']))
+             'Solo sobre fondo claro: son los casos del diseño (Quote Form de About Us y de Service Details).']))
 _i = [a['id'] for a in A].index('input')
+A.insert(_i + 1, A.pop())
+
+A.append(dict(id='select', title='Select',
+  desc='El <a href="#input">Input</a> sobre un <code>&lt;select&gt;</code> nativo, sin la flecha del sistema: el chevron lo dibuja <a href="#field">Field</a> <code>--select</code>. Va siempre dentro de un Field, que le da el label flotante y el mensaje de error.',
+  desc_md='`.input` sobre `<select>` nativo sin flecha del sistema; el chevron y el label flotante los pone Field `--select`.',
+  blocks=[
+    dict(label='Vacío y con una opción elegida (--filled)', mods='narrow stack', html=d('''
+      <div class="field field--filled field--select">
+        <label class="field__label" for="select-demo-empty">Service<span aria-hidden="true">*</span></label>
+        <select class="input input--filled field__control" id="select-demo-empty" name="service" required>
+          <option value="" hidden selected></option>
+          <option>Strategic Planning</option>
+          <option>Business Optimization</option>
+          <option>IT Consulting</option>
+        </select>
+      </div>
+      <div class="field field--filled field--select">
+        <label class="field__label" for="select-demo-chosen">Service<span aria-hidden="true">*</span></label>
+        <select class="input input--filled field__control" id="select-demo-chosen" name="service" required>
+          <option value="" hidden></option>
+          <option>Strategic Planning</option>
+          <option selected>Business Optimization</option>
+          <option>IT Consulting</option>
+        </select>
+      </div>''')),
+  ],
+  rows=[('select.input', 'Sin apariencia nativa; deja lugar al chevron a la derecha'),
+        ('option[value=""][hidden][selected]', 'Opción vacía inicial: deja el label en reposo y hace fallar required hasta elegir'),
+        ('.field--select', 'Dibuja el chevron y maneja el label (ver Field)'),
+        ('required', 'Obligatorio: main.js muestra «Choose an option.» si queda vacío')],
+  tokens=['Input (átomo)', 'Field (átomo)', '--color-text-primary (chevron)', '--spacing-5 / -7'],
+  a11y='Es un <code>&lt;select&gt;</code> nativo: teclado, lectores y el selector del sistema (móvil) funcionan sin JS. El nombre lo da el <code>&lt;label&gt;</code> del Field; el chevron es decorativo (pseudo-elemento sin texto). La opción vacía está oculta en la lista (<code>hidden</code>), así nadie la vuelve a elegir por error.',
+  a11y_md='`<select>` nativo (teclado, lector, selector del sistema); nombre del `<label>`; chevron decorativo; opción vacía `hidden`.',
+  decisions=['Nativo antes que un select a medida: el diseño no pide nada que el nativo no haga, y uno a medida necesita JS y ARIA de listbox.',
+             'La opción vacía no lleva `disabled`: con `disabled`, Chromium/Windows fuerza el color del texto y obligaría a usar `!important` (excepción de CLAUDE.md §11, que acá no hace falta).',
+             'El chevron repite el data URI de `icon--chevron-down` (un pseudo-elemento no puede usar `.icon`): si cambia uno, cambiar el otro.',
+             'Safari no oculta opciones con `hidden`: ahí la lista muestra una fila vacía al principio. Elegirla deja el campo vacío y la validación lo marca.']))
+_i = [a['id'] for a in A].index('field')
 A.insert(_i + 1, A.pop())
 
 # ---------------------------------------------------------------- render HTML

@@ -1,6 +1,6 @@
 # Divider
 
-**Nivel:** Átomo · 12  
+**Nivel:** Átomo · 13  
 **Dónde:** `dist/assets/css/main.css` (bloque `/* Divider */`) · showcase en `dist/kit/index.html#divider`
 
 ## Descripción

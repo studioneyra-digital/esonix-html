@@ -665,6 +665,74 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
   color: var(--color-text-highlight);
 }
 
+/* Service Nav — «Exclusive Services» de Service Details: card con borde y la lista de servicios en píldoras
+   grises con un cuadrado de flecha. La página actual va con aria-current="page": petróleo, texto blanco y el
+   cuadrado ámbar. El diseño no muestra el hover: el cuadrado toma el ámbar del activo. */
+.service-nav {
+  display: grid;
+  gap: var(--spacing-6);
+  padding: var(--spacing-6) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+}
+.service-nav__title {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+.service-nav__list {
+  display: grid;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.service-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-background-subtle);
+  color: var(--color-text-primary);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition: background-color var(--ease-fast), color var(--ease-fast);
+}
+.service-nav__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: var(--spacing-8);
+  block-size: var(--spacing-8);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface-default);
+  color: var(--color-text-primary);
+  font-size: var(--text-body-lg);
+  transition: background-color var(--ease-fast), color var(--ease-fast);
+}
+.service-nav__link:hover {
+  color: var(--color-text-primary);
+}
+.service-nav__link:hover .service-nav__icon,
+.service-nav__link[aria-current='page'] .service-nav__icon {
+  background-color: var(--color-action-secondary);
+  color: var(--color-action-on-secondary);
+}
+.service-nav__link[aria-current='page'],
+.service-nav__link[aria-current='page']:hover {
+  border-color: var(--color-action-primary);
+  background-color: var(--color-action-primary);
+  color: var(--color-action-on-primary);
+}
+@media (min-width: 48rem) {
+  .service-nav {
+    padding: var(--spacing-8);
+  }
+}
+
 /* Quote Form — card blanca con el título, cuatro Field y el botón (About Us, «Get a free Quote»). Debajo,
    las regiones de estado: enviado (role="status") y error de envío (role="alert"), vacías hasta que
    main.js las llena; vacías no ocupan lugar pero siguen en el árbol de accesibilidad (así se anuncian).
@@ -717,6 +785,17 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
   .quote-form {
     padding: var(--spacing-8);
   }
+}
+/* --outline — card con borde, sin fondo ni sombra (aside de Service Details, «Get a Quote»), con el título
+   a 24px y los campos --filled. Misma lógica y estados que el Quote Form base. */
+.quote-form--outline {
+  border: var(--border-width-sm) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  box-shadow: none;
+}
+.quote-form--outline .quote-form__title {
+  font-size: var(--text-h4);
 }
 /* molecules:end */
 '''

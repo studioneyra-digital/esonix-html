@@ -52,3 +52,5 @@
 - El diseño no muestra el modal: fondo inverso, velo `--color-overlay` y entrada con fundido y desplazamiento corto.
 - El iframe no se carga hasta el click (`youtube-nocookie.com`, autoplay): la página no descarga YouTube al abrirse. Lleva `referrerpolicy="strict-origin-when-cross-origin"`, porque YouTube rechaza el embed sin referrer.
 - Ancho máximo 64rem y nunca más alto que la ventana: el ancho se limita a `(100dvh - 8rem) × 16/9`.
+- En las páginas, el `<dialog>` vive en el bloque `shared:footer` de `index.html`: `sync_shared.py` lo copia a todas, y cualquier botón con `data-video-id` lo abre.
+- Al cerrar, `main.js` devuelve el foco al botón que lo abrió: abierto con el ratón, ese botón nunca tuvo el foco y la restauración nativa lo dejaba en `<body>`.

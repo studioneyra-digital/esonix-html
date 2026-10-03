@@ -69,9 +69,11 @@
             <li><a class="kit-nav__link" href="#switch"><span class="kit-nav__num">09</span> Switch</a></li>
             <li><a class="kit-nav__link" href="#input"><span class="kit-nav__num">10</span> Input</a></li>
             <li><a class="kit-nav__link" href="#field"><span class="kit-nav__num">11</span> Field</a></li>
-            <li><a class="kit-nav__link" href="#divider"><span class="kit-nav__num">12</span> Divider</a></li>
-            <li><a class="kit-nav__link" href="#dots"><span class="kit-nav__num">13</span> Pagination Dots</a></li>
-            <li><a class="kit-nav__link" href="#scroll-top"><span class="kit-nav__num">14</span> Scroll Top</a></li>
+            <li><a class="kit-nav__link" href="#select"><span class="kit-nav__num">12</span> Select</a></li>
+            <li><a class="kit-nav__link" href="#divider"><span class="kit-nav__num">13</span> Divider</a></li>
+            <li><a class="kit-nav__link" href="#check-list"><span class="kit-nav__num">14</span> Check List</a></li>
+            <li><a class="kit-nav__link" href="#dots"><span class="kit-nav__num">15</span> Pagination Dots</a></li>
+            <li><a class="kit-nav__link" href="#scroll-top"><span class="kit-nav__num">16</span> Scroll Top</a></li>
           </ul>
         </div>
         <div class="kit-nav__group">
@@ -90,6 +92,7 @@
             <li><a class="kit-nav__link" href="#accordion-item"><span class="kit-nav__num">11</span> Accordion Item</a></li>
             <li><a class="kit-nav__link" href="#newsletter"><span class="kit-nav__num">12</span> Newsletter</a></li>
             <li><a class="kit-nav__link" href="#quote-form"><span class="kit-nav__num">13</span> Quote Form</a></li>
+            <li><a class="kit-nav__link" href="#service-nav"><span class="kit-nav__num">14</span> Service Nav</a></li>
           </ul>
         </div>
         <div class="kit-nav__group">
@@ -125,7 +128,8 @@
             <li><a class="kit-nav__link" href="#team-profiles"><span class="kit-nav__num">15</span> Team Profiles</a></li>
             <li><a class="kit-nav__link" href="#feedback"><span class="kit-nav__num">16</span> Feedback</a></li>
             <li><a class="kit-nav__link" href="#why-trust"><span class="kit-nav__num">17</span> Why Trust</a></li>
-            <li><a class="kit-nav__link" href="#footer"><span class="kit-nav__num">18</span> Footer</a></li>
+            <li><a class="kit-nav__link" href="#service-details"><span class="kit-nav__num">18</span> Service Details</a></li>
+            <li><a class="kit-nav__link" href="#footer"><span class="kit-nav__num">19</span> Footer</a></li>
           </ul>
         </div>
       </nav>
@@ -1462,12 +1466,27 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--filled (caja gris)</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <label for="input-demo-filled" class="visually-hidden">Your name</label>
+              <input class="input input--filled" type="text" id="input-demo-filled" name="name" placeholder="Name">
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-input-4">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-input-4" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Input">
               <table class="kit-table">
                 <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
                 <tbody>
                   <tr><th scope="row"><code>.input</code></th><td>Campo sin caja: solo el filete inferior; ocupa el ancho de su contenedor</td></tr>
+                  <tr><th scope="row"><code>.input--filled</code></th><td>Caja gris con filete inferior fuerte (Quote Form de Service Details)</td></tr>
                   <tr><th scope="row"><code>textarea.input</code></th><td>Varias líneas: alto mínimo de 96px y redimensionable solo en vertical</td></tr>
                   <tr><th scope="row"><code>aria-invalid="true"</code></th><td>Estado de error: el filete pasa a color de error (acompañar con un mensaje de texto)</td></tr>
                   <tr><th scope="row"><code>&lt;label for&gt;</code></th><td>Obligatorio, aunque esté visualmente oculto (<code>visually-hidden</code>): el placeholder no es un nombre accesible</td></tr>
@@ -1530,6 +1549,44 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--filled y --select: vacío, con valor y con error</span>
+            <div class="kit-demo kit-demo--narrow kit-demo--stack" lang="en">
+              <div class="field field--filled">
+                <label class="field__label" for="field-demo-filled-name">Name<span aria-hidden="true">*</span></label>
+                <input class="input input--filled field__control" type="text" id="field-demo-filled-name" name="name" placeholder=" " autocomplete="name" required aria-describedby="field-demo-filled-name-error">
+                <p class="field__error" id="field-demo-filled-name-error"></p>
+              </div>
+              <div class="field field--filled field--select">
+                <label class="field__label" for="field-demo-filled-service">Service<span aria-hidden="true">*</span></label>
+                <select class="input input--filled field__control" id="field-demo-filled-service" name="service" required aria-describedby="field-demo-filled-service-error">
+                  <option value="" hidden selected></option>
+                  <option>Strategic Planning</option>
+                  <option>Business Optimization</option>
+                  <option>IT Consulting</option>
+                  <option>Change Management</option>
+                  <option>Leadership</option>
+                </select>
+                <p class="field__error" id="field-demo-filled-service-error"></p>
+              </div>
+              <div class="field field--filled field--select">
+                <label class="field__label" for="field-demo-filled-service-2">Service<span aria-hidden="true">*</span></label>
+                <select class="input input--filled field__control" id="field-demo-filled-service-2" name="service" required aria-invalid="true" aria-describedby="field-demo-filled-service-2-error">
+                  <option value="" hidden selected></option>
+                  <option>Strategic Planning</option>
+                  <option>Business Optimization</option>
+                </select>
+                <p class="field__error" id="field-demo-filled-service-2-error">Choose an option.</p>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-field-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-field-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Field">
               <table class="kit-table">
@@ -1540,6 +1597,8 @@
                   <tr><th scope="row"><code>.input.field__control + placeholder=" "</code></th><td>El campo; el placeholder de un espacio habilita :placeholder-shown (es invisible)</td></tr>
                   <tr><th scope="row"><code>&lt;span aria-hidden="true"&gt;*&lt;/span&gt; + required</code></th><td>Asterisco visual; lo obligatorio lo anuncia required</td></tr>
                   <tr><th scope="row"><code>p.field__error#&lt;id&gt;-error + aria-describedby</code></th><td>Mensaje de error enlazado; vacío no ocupa lugar</td></tr>
+                  <tr><th scope="row"><code>.field--filled</code></th><td>Con Input --filled: el label descansa dentro de la caja y sube alineado con su borde</td></tr>
+                  <tr><th scope="row"><code>.field--select + option[value=""][hidden][selected]</code></th><td>Select con chevron; la opción vacía deja el label en reposo</td></tr>
                   <tr><th scope="row"><code>aria-invalid="true"</code></th><td>Filete en color de error (lo pone main.js al validar)</td></tr>
                 </tbody>
               </table>
@@ -1552,6 +1611,7 @@
               <li><code>--color-feedback-error-text</code></li>
               <li><code>--text-sm</code></li>
               <li><code>--spacing-1 / -3 / -5</code></li>
+              <li><code>--spacing-4 / -6 (--filled)</code></li>
               <li><code>--ease-fast</code></li>
               <li><code>Input (átomo)</code></li>
             </ul>
@@ -1559,9 +1619,71 @@
           <p class="kit-note"><strong>Accesibilidad:</strong> El nombre del campo es un <code>&lt;label&gt;</code> real y visible en los dos estados (cumple «label asociado, no solo placeholder» de <code>accessibility.md</code>). El error se enlaza con <code>aria-describedby</code> y el campo lleva <code>aria-invalid</code>: el lector lee nombre, estado y mensaje. El asterisco es <code>aria-hidden</code> porque <code>required</code> ya anuncia que es obligatorio. Con «reducir movimiento» el label cambia de lugar sin animar.</p>
         </section>
 
-        <section class="kit-card" id="divider" aria-labelledby="divider-title">
+        <section class="kit-card" id="select" aria-labelledby="select-title">
           <header class="kit-card__header">
             <p class="kit-card__tag">Átomo · 12</p>
+            <h3 id="select-title">Select</h3>
+            <p class="kit-card__desc">El <a href="#input">Input</a> sobre un <code>&lt;select&gt;</code> nativo, sin la flecha del sistema: el chevron lo dibuja <a href="#field">Field</a> <code>--select</code>. Va siempre dentro de un Field, que le da el label flotante y el mensaje de error.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Vacío y con una opción elegida (--filled)</span>
+            <div class="kit-demo kit-demo--narrow kit-demo--stack" lang="en">
+              <div class="field field--filled field--select">
+                <label class="field__label" for="select-demo-empty">Service<span aria-hidden="true">*</span></label>
+                <select class="input input--filled field__control" id="select-demo-empty" name="service" required>
+                  <option value="" hidden selected></option>
+                  <option>Strategic Planning</option>
+                  <option>Business Optimization</option>
+                  <option>IT Consulting</option>
+                </select>
+              </div>
+              <div class="field field--filled field--select">
+                <label class="field__label" for="select-demo-chosen">Service<span aria-hidden="true">*</span></label>
+                <select class="input input--filled field__control" id="select-demo-chosen" name="service" required>
+                  <option value="" hidden></option>
+                  <option>Strategic Planning</option>
+                  <option selected>Business Optimization</option>
+                  <option>IT Consulting</option>
+                </select>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-select-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-select-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Select">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>select.input</code></th><td>Sin apariencia nativa; deja lugar al chevron a la derecha</td></tr>
+                  <tr><th scope="row"><code>option[value=""][hidden][selected]</code></th><td>Opción vacía inicial: deja el label en reposo y hace fallar required hasta elegir</td></tr>
+                  <tr><th scope="row"><code>.field--select</code></th><td>Dibuja el chevron y maneja el label (ver Field)</td></tr>
+                  <tr><th scope="row"><code>required</code></th><td>Obligatorio: main.js muestra «Choose an option.» si queda vacío</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>Input (átomo)</code></li>
+              <li><code>Field (átomo)</code></li>
+              <li><code>--color-text-primary (chevron)</code></li>
+              <li><code>--spacing-5 / -7</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Es un <code>&lt;select&gt;</code> nativo: teclado, lectores y el selector del sistema (móvil) funcionan sin JS. El nombre lo da el <code>&lt;label&gt;</code> del Field; el chevron es decorativo (pseudo-elemento sin texto). La opción vacía está oculta en la lista (<code>hidden</code>), así nadie la vuelve a elegir por error.</p>
+        </section>
+
+        <section class="kit-card" id="divider" aria-labelledby="divider-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 13</p>
             <h3 id="divider-title">Divider</h3>
             <p class="kit-card__desc">Filete horizontal de 1px sobre un <code>&lt;hr&gt;</code>. <code>--inverse</code> lo adapta a fondos oscuros (divisor de las cards de testimonio y del footer).</p>
           </header>
@@ -1614,9 +1736,56 @@
           <p class="kit-note"><strong>Accesibilidad:</strong> <code>&lt;hr&gt;</code> expone un separador; si el filete es solo decorativo se puede dibujar con <code>border</code> en el componente en vez de usar el átomo.</p>
         </section>
 
+        <section class="kit-card" id="check-list" aria-labelledby="check-list-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 14</p>
+            <h3 id="check-list-title">Check List</h3>
+            <p class="kit-card__desc">Lista con el check relleno (<code>icon--circle-check</code>): el ícono en el color del texto fuerte y el texto en secundario. La usan «Mistakes to avoid…» y Key Features en Service Details.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Cuatro ítems</span>
+            <div class="kit-demo kit-demo--medium" lang="en">
+              <ul class="check-list" role="list">
+                <li><span class="icon icon--circle-check" aria-hidden="true"></span>Market research and competitive analysis</li>
+                <li><span class="icon icon--circle-check" aria-hidden="true"></span>Operational efficiency and process optimization</li>
+                <li><span class="icon icon--circle-check" aria-hidden="true"></span>Risk assessment and decision-making support</li>
+                <li><span class="icon icon--circle-check" aria-hidden="true"></span>Strategic business planning and roadmap</li>
+              </ul>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-check-list-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-check-list-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Check List">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>ul.check-list + role="list"</code></th><td>La lista; role="list" porque list-style: none la oculta como lista en Safari</td></tr>
+                  <tr><th scope="row"><code>span.icon.icon--circle-check + aria-hidden="true"</code></th><td>Check decorativo, centrado en la primera línea</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-text-primary (ícono)</code></li>
+              <li><code>--color-text-secondary (texto)</code></li>
+              <li><code>--spacing-3 / -4</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Es una lista real (<code>role="list"</code> la devuelve a VoiceOver, que la pierde con <code>list-style: none</code>). El check es <code>aria-hidden</code>: no aporta información que no esté en el texto.</p>
+        </section>
+
         <section class="kit-card" id="dots" aria-labelledby="dots-title">
           <header class="kit-card__header">
-            <p class="kit-card__tag">Átomo · 13</p>
+            <p class="kit-card__tag">Átomo · 15</p>
             <h3 id="dots-title">Pagination Dots</h3>
             <p class="kit-card__desc">Puntos de paginación para carruseles (testimonios, stats en mobile). Cada punto es un botón de 24×24px con el punto dibujado en <code>::before</code>. El inactivo usa <code>border-strong</code> y el activo lleva un halo.</p>
           </header>
@@ -1689,7 +1858,7 @@
 
         <section class="kit-card" id="scroll-top" aria-labelledby="scroll-top-title">
           <header class="kit-card__header">
-            <p class="kit-card__tag">Átomo · 14</p>
+            <p class="kit-card__tag">Átomo · 16</p>
             <h3 id="scroll-top-title">Scroll Top</h3>
             <p class="kit-card__desc">Botón fijo abajo a la derecha que vuelve al inicio. Aparece al pasar media pantalla y el anillo dibuja el avance del scroll. <strong>Está activo en este mismo kit: baja por la página y míralo.</strong></p>
           </header>
@@ -2913,6 +3082,63 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--outline con campos --filled y Select (Service Details)</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <form class="quote-form quote-form--outline" id="quote-outline-form" action="#" method="post" novalidate aria-label="Get a Quote, validation error example">
+                <h3 class="quote-form__title" id="quote-outline-title">Get a Quote</h3>
+                <input type="hidden" name="_subject" value="New quote request from esonix.example">
+                <div hidden><label for="quote-outline-honey">Leave this field empty</label><input type="text" id="quote-outline-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+                <div class="field field--filled">
+                  <label class="field__label" for="quote-outline-name">Name<span aria-hidden="true">*</span></label>
+                  <input class="input input--filled field__control" type="text" id="quote-outline-name" name="name" placeholder=" " required aria-describedby="quote-outline-name-error" aria-invalid="true" autocomplete="name">
+                  <p class="field__error" id="quote-outline-name-error">This field is required.</p>
+                </div>
+                <div class="field field--filled">
+                  <label class="field__label" for="quote-outline-email">Email<span aria-hidden="true">*</span></label>
+                  <input class="input input--filled field__control" type="email" id="quote-outline-email" name="email" placeholder=" " required aria-describedby="quote-outline-email-error" aria-invalid="true" autocomplete="email" value="emma@">
+                  <p class="field__error" id="quote-outline-email-error">Enter a valid email address.</p>
+                </div>
+                <div class="field field--filled">
+                  <label class="field__label" for="quote-outline-phone">Phone<span aria-hidden="true">*</span></label>
+                  <input class="input input--filled field__control" type="tel" id="quote-outline-phone" name="phone" placeholder=" " required aria-describedby="quote-outline-phone-error" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}">
+                  <p class="field__error" id="quote-outline-phone-error"></p>
+                </div>
+                <div class="field field--filled field--select">
+                  <label class="field__label" for="quote-outline-service">Service<span aria-hidden="true">*</span></label>
+                  <select class="input input--filled field__control" id="quote-outline-service" name="service" required aria-describedby="quote-outline-service-error" aria-invalid="true">
+                    <option value="" hidden selected></option>
+                    <option>Strategic Planning</option>
+                    <option>Business Optimization</option>
+                    <option>IT Consulting</option>
+                    <option>Change Management</option>
+                    <option>Leadership</option>
+                  </select>
+                  <p class="field__error" id="quote-outline-service-error">Choose an option.</p>
+                </div>
+                <div class="field field--filled">
+                  <label class="field__label" for="quote-outline-message">Message<span aria-hidden="true">*</span></label>
+                  <textarea class="input input--filled field__control" id="quote-outline-message" name="message" placeholder=" " required aria-describedby="quote-outline-message-error"></textarea>
+                  <p class="field__error" id="quote-outline-message-error"></p>
+                </div>
+                <button type="submit" class="btn quote-form__submit">
+                  <span data-submit-label>Submit Now</span>
+                  <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                </button>
+                <div class="quote-form__messages">
+                  <p class="quote-form__status" role="status" data-form-status></p>
+                  <p class="quote-form__alert" role="alert" data-form-alert></p>
+                </div>
+              </form>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-quote-form-6">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-quote-form-6" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Quote Form">
               <table class="kit-table">
@@ -2920,6 +3146,8 @@
                 <tbody>
                   <tr><th scope="row"><code>form.quote-form[data-quote-form]</code></th><td>Activa el envío por fetch y la validación de main.js</td></tr>
                   <tr><th scope="row"><code>action="https://formsubmit.co/&lt;destino&gt;" method="post" novalidate</code></th><td>Destino (sin JS, envío normal); novalidate deja la validación a main.js</td></tr>
+                  <tr><th scope="row"><code>.quote-form--outline</code></th><td>Card con borde, sin fondo ni sombra; título de 24px (aside de Service Details)</td></tr>
+                  <tr><th scope="row"><code>.field--filled / .field--select</code></th><td>Campos en caja gris y el Select «Service» (ver Field y Select)</td></tr>
                   <tr><th scope="row"><code>input[name="_subject"] / div[hidden] &gt; input[name="_honey"]</code></th><td>Asunto del correo y trampa antibots de FormSubmit</td></tr>
                   <tr><th scope="row"><code>button[aria-disabled="true"] &gt; [data-submit-label]</code></th><td>Enviando: el botón no responde y su texto pasa a «Sending…»</td></tr>
                   <tr><th scope="row"><code>p[role="status"][data-form-status]</code></th><td>Mensaje de enviado</td></tr>
@@ -2940,6 +3168,68 @@
             </ul>
           </div>
           <p class="kit-note"><strong>Accesibilidad:</strong> Los errores se escriben en el mensaje de cada campo (enlazado con <code>aria-describedby</code>) y el foco va al primer campo inválido. Enviado y error de envío se anuncian en regiones vivas que existen desde el inicio (vacías): <code>role="status"</code> (cortés) y <code>role="alert"</code> (inmediato). Mientras envía, el botón usa <code>aria-disabled</code> en lugar de <code>disabled</code> para no perder el foco.</p>
+        </section>
+
+        <section class="kit-card" id="service-nav" aria-labelledby="service-nav-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 14</p>
+            <h3 id="service-nav-title">Service Nav</h3>
+            <p class="kit-card__desc">«Exclusive Services» de Service Details: card con borde, título y la lista de servicios en píldoras con un cuadrado de flecha. La página actual va marcada con <code>aria-current="page"</code> (petróleo con el cuadrado ámbar).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Con el servicio actual marcado</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <nav class="service-nav" aria-labelledby="service-nav-demo-title">
+                <h3 class="service-nav__title" id="service-nav-demo-title">Exclusive Services</h3>
+                <ul class="service-nav__list" role="list">
+                  <li><a class="service-nav__link" href="#">Strategic Planning<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                  <li><a class="service-nav__link" href="#" aria-current="page">Business Optimization<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                  <li><a class="service-nav__link" href="#">IT Consulting<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                  <li><a class="service-nav__link" href="#">Change Management<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                  <li><a class="service-nav__link" href="#">Leadership<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                </ul>
+              </nav>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-service-nav-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-service-nav-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Service Nav">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>nav.service-nav + aria-labelledby</code></th><td>Landmark de navegación nombrado por su título</td></tr>
+                  <tr><th scope="row"><code>.service-nav__title</code></th><td>Título de 24px; h2 en la página (aside), h3 en el kit</td></tr>
+                  <tr><th scope="row"><code>ul.service-nav__list + role="list"</code></th><td>La lista de servicios</td></tr>
+                  <tr><th scope="row"><code>a.service-nav__link</code></th><td>Píldora gris con el texto y el cuadrado de flecha</td></tr>
+                  <tr><th scope="row"><code>aria-current="page"</code></th><td>Servicio de la página actual: petróleo y cuadrado ámbar</td></tr>
+                  <tr><th scope="row"><code>.service-nav__icon</code></th><td>Cuadrado blanco con icon--arrow-right; ámbar en hover y en el actual</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-border-default / -subtle</code></li>
+              <li><code>--color-background-subtle</code></li>
+              <li><code>--color-action-primary / -on-primary</code></li>
+              <li><code>--color-action-secondary / -on-secondary</code></li>
+              <li><code>--color-surface-default</code></li>
+              <li><code>--radius-md / -sm / -xs</code></li>
+              <li><code>--text-h4</code></li>
+              <li><code>--weight-medium / -semibold</code></li>
+              <li><code>--spacing-2 / -4 / -5 / -6 / -8</code></li>
+              <li><code>--ease-fast</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Es un <code>&lt;nav&gt;</code> nombrado por su título, distinto del menú principal. El servicio actual se anuncia con <code>aria-current="page"</code>, no solo por color. Las flechas son decorativas. El texto blanco sobre petróleo pasa AA; el foco usa el anillo del theme por fuera de la píldora (visible también sobre la activa).</p>
         </section>
         <!-- kit:molecules-end -->
       </section>
@@ -3885,6 +4175,56 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--framed (FAQ de Service Details)</span>
+            <div class="kit-demo kit-demo--narrow-wide" lang="en">
+              <div class="accordion accordion--framed">
+                <details class="accordion-item" name="faq-framed" open>
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__question">1. What industries do you specialize in?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Our consulting expertise spans multiple industries including finance, technology, healthcare, retail, and professional services. We have successfully partnered with organizations of all sizes from startups.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq-framed">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__question">2. How long does a consulting project typically last?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Project duration varies depending on the scope and objectives. Some projects may take a few weeks, while others—such as long-term strategic transformation—can extend over several months.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq-framed">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__question">3. What does a business consultant do?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>A business consultant reviews how your company works, finds what holds it back and builds a plan with you: strategy, process optimization, sales improvement and financial advisory.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq-framed">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__question">4. Will consulting disrupt my daily operations?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>No. We plan each phase around your schedule and work alongside your team, so changes roll out step by step while the business keeps running.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-accordion-3">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-accordion-3" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Accordion">
               <table class="kit-table">
@@ -3892,6 +4232,8 @@
                 <tbody>
                   <tr><th scope="row"><code>.accordion</code></th><td>Grupo; activa interpolate-size para animar hasta height: auto</td></tr>
                   <tr><th scope="row"><code>.accordion--boxed</code></th><td>Ítems en caja con borde y 32px de separación; el abierto en blanco</td></tr>
+                  <tr><th scope="row"><code>.accordion--framed</code></th><td>Caja con borde; el abierto en caja gris; filetes entre cerrados; flecha que gira → ↗ (Service Details)</td></tr>
+                  <tr><th scope="row"><code>.accordion-item__toggle &gt; .icon--arrow-right</code></th><td>En --framed, una sola flecha en lugar del par +/−</td></tr>
                   <tr><th scope="row"><code>.accordion-item + name="faq"</code></th><td>Cada pregunta (molécula); el mismo name deja una sola abierta</td></tr>
                   <tr><th scope="row"><code>open</code></th><td>Ítem abierto al cargar (el diseño abre el segundo)</td></tr>
                 </tbody>
@@ -3902,6 +4244,10 @@
             <span class="kit-block__label">Tokens que consume</span>
             <ul class="kit-spec">
               <li><code>--ease-base</code></li>
+              <li><code>--color-border-default / -subtle</code></li>
+              <li><code>--color-background-subtle</code></li>
+              <li><code>--radius-sm</code></li>
+              <li><code>--spacing-4 / -5 / -6</code></li>
               <li><code>Accordion Item (molécula)</code></li>
             </ul>
           </div>
@@ -5918,9 +6264,229 @@
           <p class="kit-note"><strong>Accesibilidad:</strong> El formulario va antes en el DOM: en mobile es lo que se ve primero y en desktop queda a la derecha, así el orden de Tab es formulario → texto. Cada barra es un <code>&lt;progress&gt;</code> con <code>&lt;label for&gt;</code>. En el kit, el formulario se muestra sin <code>data-quote-form</code> y con <code>action="#"</code>: no envía nada.</p>
         </section>
 
-        <section class="kit-card" id="footer" aria-labelledby="footer-title">
+        <section class="kit-card" id="service-details" aria-labelledby="service-details-title">
           <header class="kit-card__header">
             <p class="kit-card__tag">Section · 18</p>
+            <h3 id="service-details-title">Service Details</h3>
+            <p class="kit-card__desc">Plantilla de servicio: a la izquierda el artículo (intro, foto con <a href="#check-list">Check List</a>, Document Required, Key Features, video, párrafo y FAQ <code>accordion--framed</code>); a la derecha el aside con <a href="#service-nav">Service Nav</a> y el <a href="#quote-form">Quote Form</a> <code>--outline</code>. Desde lg, 29fr | 14fr (870 y 420 px a 1920); en mobile, apilado con un Divider entre artículo y aside. Fuente: <code>dist/service-details.html</code> (<a href="../service-details.html#service-details">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section service-details" aria-labelledby="service-details-title-section">
+                <div class="container service-details__grid">
+                  <article class="service-details__article">
+                    <div class="service-details__intro">
+                      <h2 class="service-details__title" id="service-details-title-section">Explore our Service Lists</h2>
+                      <p>We provide comprehensive business consulting services designed to help organizations overcome challenges, unlock growth opportunities, and achieve long-term success. Our expert consultants analyze your current operations, identify gaps, and develop tailored strategies that align with your vision and market demands. From planning to execution, we ensure measurable results that drive sustainable growth. Our consulting services focus on improving operational efficiency, strengthening..</p>
+                    </div>
+
+                    <div class="service-details__media">
+                      <img class="service-details__photo" src="../assets/img/h1-process-img-3.webp" alt="Consultants shaking hands with a client across a meeting table" width="1000" height="580" loading="lazy">
+                      <div class="service-details__block">
+                        <h3 class="service-details__subtitle service-details__subtitle--sm">Mistakes to avoid to the dummy</h3>
+                        <ul class="check-list" role="list">
+                          <li><span class="icon icon--circle-check" aria-hidden="true"></span>Market research and competitive analysis</li>
+                          <li><span class="icon icon--circle-check" aria-hidden="true"></span>Operational efficiency and process optimization</li>
+                          <li><span class="icon icon--circle-check" aria-hidden="true"></span>Risk assessment and decision-making support</li>
+                          <li><span class="icon icon--circle-check" aria-hidden="true"></span>Strategic business planning and roadmap</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="service-details__block">
+                      <h3 class="service-details__subtitle">Document Required</h3>
+                      <ul class="service-details__docs" role="list">
+                        <li class="service-details__doc">
+                          <span class="icon icon--badge-check" aria-hidden="true"></span>
+                          <h4 class="service-details__doc-title">Learner's License</h4>
+                          <p>It is a temporary driving permit issued to individuals who are learning to drive a motor vehicle.</p>
+                        </li>
+                        <li class="service-details__doc">
+                          <span class="icon icon--badge-check" aria-hidden="true"></span>
+                          <h4 class="service-details__doc-title">Application Form</h4>
+                          <p>An Application Form is an official document used to collect necessary information from an individual for a specific purpose.</p>
+                        </li>
+                        <li class="service-details__doc">
+                          <span class="icon icon--badge-check" aria-hidden="true"></span>
+                          <h4 class="service-details__doc-title">Proof of Address</h4>
+                          <p>Proof of Address is an official document used to verify an individual's current residential address.</p>
+                        </li>
+                        <li class="service-details__doc">
+                          <span class="icon icon--badge-check" aria-hidden="true"></span>
+                          <h4 class="service-details__doc-title">Passport Size Photo</h4>
+                          <p>A Passport Size Photo is a small, standardized photograph used for official identification &amp; documentation purposes.</p>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="service-details__block">
+                      <h3 class="service-details__subtitle">Key Features</h3>
+                      <ul class="check-list" role="list">
+                        <li><span class="icon icon--circle-check" aria-hidden="true"></span>Our business consulting services are built to help organizations adapt, grow</li>
+                        <li><span class="icon icon--circle-check" aria-hidden="true"></span>We combine strategic insight with deep industry expertise to deliver solutions</li>
+                        <li><span class="icon icon--circle-check" aria-hidden="true"></span>From identifying growth opportunities to optimizing operations and guiding execution</li>
+                        <li><span class="icon icon--circle-check" aria-hidden="true"></span>Our approach emphasizes clarity, collaboration, &amp; measurable impact—ensuring strategies</li>
+                      </ul>
+                    </div>
+
+                    <div class="service-details__video">
+                      <img src="../assets/img/download.webp" alt="" width="735" height="720" loading="lazy">
+                      <button type="button" class="icon-btn icon-btn--glass icon-btn--lg service-details__play" aria-label="Play video: Business Optimization overview" aria-haspopup="dialog" data-video-id="RqueNBILfVU-section" data-video-title="Business Optimization overview"><span class="icon icon--play" aria-hidden="true"></span></button>
+                    </div>
+
+                    <p>Our financial and operational consulting services empower businesses to optimize resources, manage risks, and improve cash flow. We provide detailed market analysis, budgeting frameworks, and performance tracking systems that support informed decision-making &amp; long-term stability. We guide companies through digital transformation by integrating modern technologies, automation tools,</p>
+
+                    <div class="accordion accordion--framed">
+                      <details class="accordion-item" name="service-faq" open>
+                        <summary class="accordion-item__summary">
+                          <span class="accordion-item__question">1. What industries do you specialize in?</span>
+                          <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                        </summary>
+                        <div class="accordion-item__panel">
+                          <p>Our consulting expertise spans multiple industries including finance, technology, healthcare, retail, and professional services. We have successfully partnered with organizations of all sizes from startups.</p>
+                        </div>
+                      </details>
+                      <details class="accordion-item" name="service-faq">
+                        <summary class="accordion-item__summary">
+                          <span class="accordion-item__question">2. How long does a consulting project typically last?</span>
+                          <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                        </summary>
+                        <div class="accordion-item__panel">
+                          <p>Project duration varies depending on the scope and objectives. Some projects may take a few weeks, while others—such as long-term strategic transformation—can extend over several months.</p>
+                        </div>
+                      </details>
+                      <details class="accordion-item" name="service-faq">
+                        <summary class="accordion-item__summary">
+                          <span class="accordion-item__question">3. What does a business consultant do?</span>
+                          <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                        </summary>
+                        <div class="accordion-item__panel">
+                          <p>A business consultant reviews how your company works, finds what holds it back and builds a plan with you: strategy, process optimization, sales improvement and financial advisory.</p>
+                        </div>
+                      </details>
+                      <details class="accordion-item" name="service-faq">
+                        <summary class="accordion-item__summary">
+                          <span class="accordion-item__question">4. Will consulting disrupt my daily operations?</span>
+                          <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--arrow-right" aria-hidden="true"></span></span>
+                        </summary>
+                        <div class="accordion-item__panel">
+                          <p>No. We plan each phase around your schedule and work alongside your team, so changes roll out step by step while the business keeps running.</p>
+                        </div>
+                      </details>
+                    </div>
+                  </article>
+
+                  <hr class="divider service-details__divider">
+
+                  <!-- Envoltorio sin semántica: un <aside> acá sería un landmark complementary dentro de main y de la
+                       region de la Section (axe: landmark-complementary-is-top-level). Lo que importa ya son landmarks
+                       con nombre propio: la <nav> «Exclusive Services» y el <form> «Get a Quote». -->
+                  <div class="service-details__aside">
+                    <nav class="service-nav" aria-labelledby="service-nav-title-section">
+                      <h2 class="service-nav__title" id="service-nav-title-section">Exclusive Services</h2>
+                      <ul class="service-nav__list" role="list">
+                        <li><a class="service-nav__link" href="#">Strategic Planning<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                        <li><a class="service-nav__link" href="service-details.html" aria-current="page">Business Optimization<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                        <li><a class="service-nav__link" href="#">IT Consulting<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                        <li><a class="service-nav__link" href="#">Change Management<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                        <li><a class="service-nav__link" href="#">Leadership<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
+                      </ul>
+                    </nav>
+
+                    <form class="quote-form quote-form--outline" id="service-quote-form-section" action="#" method="post" novalidate aria-labelledby="service-quote-title-section">
+                      <h2 class="quote-form__title" id="service-quote-title-section">Get a Quote</h2>
+                      <input type="hidden" name="_subject" value="New quote request (Business Optimization) from esonix.example">
+                      <div hidden><label for="service-quote-honey-section">Leave this field empty</label><input type="text" id="service-quote-honey-section" name="_honey" tabindex="-1" autocomplete="off"></div>
+                      <div class="field field--filled">
+                        <label class="field__label" for="service-quote-name-section">Name<span aria-hidden="true">*</span></label>
+                        <input class="input input--filled field__control" type="text" id="service-quote-name-section" name="name" placeholder=" " required aria-describedby="service-quote-name-error-section" autocomplete="name">
+                        <p class="field__error" id="service-quote-name-error-section"></p>
+                      </div>
+                      <div class="field field--filled">
+                        <label class="field__label" for="service-quote-email-section">Email<span aria-hidden="true">*</span></label>
+                        <input class="input input--filled field__control" type="email" id="service-quote-email-section" name="email" placeholder=" " required aria-describedby="service-quote-email-error-section" autocomplete="email">
+                        <p class="field__error" id="service-quote-email-error-section"></p>
+                      </div>
+                      <div class="field field--filled">
+                        <label class="field__label" for="service-quote-phone-section">Phone<span aria-hidden="true">*</span></label>
+                        <input class="input input--filled field__control" type="tel" id="service-quote-phone-section" name="phone" placeholder=" " required aria-describedby="service-quote-phone-error-section" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}">
+                        <p class="field__error" id="service-quote-phone-error-section"></p>
+                      </div>
+                      <div class="field field--filled field--select">
+                        <label class="field__label" for="service-quote-service-section">Service<span aria-hidden="true">*</span></label>
+                        <select class="input input--filled field__control" id="service-quote-service-section" name="service" required aria-describedby="service-quote-service-error-section">
+                          <option value="" hidden selected></option>
+                          <option>Strategic Planning</option>
+                          <option>Business Optimization</option>
+                          <option>IT Consulting</option>
+                          <option>Change Management</option>
+                          <option>Leadership</option>
+                        </select>
+                        <p class="field__error" id="service-quote-service-error-section"></p>
+                      </div>
+                      <div class="field field--filled">
+                        <label class="field__label" for="service-quote-message-section">Message<span aria-hidden="true">*</span></label>
+                        <textarea class="input input--filled field__control" id="service-quote-message-section" name="message" placeholder=" " required aria-describedby="service-quote-message-error-section"></textarea>
+                        <p class="field__error" id="service-quote-message-error-section"></p>
+                      </div>
+                      <button type="submit" class="btn quote-form__submit">
+                        <span data-submit-label>Submit Now</span>
+                        <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                      </button>
+                      <div class="quote-form__messages">
+                        <p class="quote-form__status" role="status" data-form-status></p>
+                        <p class="quote-form__alert" role="alert" data-form-alert></p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-service-details-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-service-details-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Service Details">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.service-details__grid</code></th><td>Una columna en mobile; desde lg 29fr | 14fr con 32px de separación</td></tr>
+                  <tr><th scope="row"><code>.service-details__article / __aside</code></th><td>Columnas con bloques a 32px</td></tr>
+                  <tr><th scope="row"><code>.service-details__media</code></th><td>Foto (420×262) y «Mistakes…» mitad y mitad desde md</td></tr>
+                  <tr><th scope="row"><code>.service-details__docs / __doc</code></th><td>Document Required: grilla 2×2 desde md, ícono badge-check ámbar; <code>align-content: start</code> alinea las descripciones de una misma fila</td></tr>
+                  <tr><th scope="row"><code>.service-details__video + .service-details__play</code></th><td>Foto 87:40 con el play que abre el Video Modal</td></tr>
+                  <tr><th scope="row"><code>.service-details__subtitle(--sm)</code></th><td>h3 de 28px; --sm de 18 a 24px («Mistakes…»)</td></tr>
+                  <tr><th scope="row"><code>hr.service-details__divider</code></th><td>Separador entre artículo y aside, solo por debajo de lg</td></tr>
+                  <tr><th scope="row"><code>div.service-details__aside</code></th><td>Envoltorio del Service Nav y el Quote Form --outline (sin semántica: ver decisiones)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h2 / -h3 / -h4 / -h6 / -body-lg</code></li>
+              <li><code>--color-text-secondary / -highlight</code></li>
+              <li><code>--radius-md</code></li>
+              <li><code>--spacing-1 / -5 / -7 / -9</code></li>
+              <li><code>Check List, Divider, Icon Button, Field, Select (átomos)</code></li>
+              <li><code>Service Nav, Quote Form (moléculas)</code></li>
+              <li><code>Accordion, Video Modal (organismos)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Jerarquía h1 (Page Hero) → h2 del artículo → h3 por bloque → h4 por documento; el aside tiene sus propios h2 (navegación y formulario), que son los nombres de sus landmarks. El Service Nav marca el servicio actual con <code>aria-current</code>. El play tiene nombre propio y <code>aria-haspopup="dialog"</code>. La foto del video es decorativa (el botón la nombra); la del apretón de manos lleva <code>alt</code>.</p>
+        </section>
+
+        <section class="kit-card" id="footer" aria-labelledby="footer-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 19</p>
             <h3 id="footer-title">Footer</h3>
             <p class="kit-card__desc">El <a href="#site-footer">Site Footer</a> con el <a href="#marquee">Marquee</a> arriba y la foto <code>h1-footer-bg</code> muy desenfocada bajo un velo denso detrás de los dos. Está fuera de <code>&lt;main&gt;</code>. Fuente: <code>dist/index.html</code> (<a href="../index.html#footer">ver en la página</a>).</p>
           </header>

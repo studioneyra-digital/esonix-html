@@ -18,6 +18,7 @@ ICONS = {
     'check': "<path d='M20 6 9 17l-5-5'/>",
     'circle-check': "<mask id='m'><rect width='24' height='24' fill='%23fff' stroke='none'/><path d='m8 12.5 2.8 2.8L16 9.5' stroke='%23000'/></mask><circle cx='12' cy='12' r='10' fill='%23000' stroke='none' mask='url(%23m)'/>",
     'circle-check-outline': "<circle cx='12' cy='12' r='10'/><path d='m9 12 2 2 4-4'/>",  # About Us (lista de What We Do)
+    'badge-check': "<path d='M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z'/><path d='m9 12 2 2 4-4'/>",  # Service Details (Document Required)
     'chevron-down': "<path d='m6 9 6 6 6-6'/>",
     'x': "<path d='M18 6 6 18'/><path d='m6 6 12 12'/>",
     'send': "<path d='M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z'/><path d='m21.854 2.147-10.94 10.939'/>",
@@ -456,6 +457,17 @@ __ICON_RULES__
   --input-placeholder: var(--color-text-inverse-secondary);
 }
 
+/* Input --filled — caja gris (Quote Form de Service Details). El borde del diseño (≈ 1.2:1) no alcanza el
+   3:1 de los controles (WCAG 1.4.11): tres lados en --color-border-subtle, como el diseño, y el filete
+   inferior en --input-border (border-strong), que conserva el hover y el color de error del Input. */
+.input--filled {
+  padding: var(--spacing-4) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-subtle);
+  border-block-end-color: var(--input-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-background-subtle);
+}
+
 /* Textarea — el mismo .input sobre <textarea>: varias líneas, alto mínimo de 96px y solo redimensionable en
    vertical (el diseño muestra el tirador). */
 textarea.input {
@@ -465,12 +477,15 @@ textarea.input {
 }
 
 /* Field — campo con label flotante (Quote Form). En reposo el <label> ocupa el lugar del placeholder, como el
-   diseño; con foco o con texto sube y se achica sobre el filete, así el nombre del campo nunca desaparece
+   diseño; con foco o con texto sube y se achica sobre el campo, así el nombre del campo nunca desaparece
    (accessibility.md: label asociado, no solo placeholder). El campo lleva placeholder=" " para que
    :placeholder-shown distinga vacío de lleno. Debajo, el mensaje de error: vacío (y sin caja) si no hay.
-   --field-rise es el lugar que se reserva arriba para el label subido (22px de alto + el anillo de foco). */
+   --field-rise es el lugar que se reserva arriba para el label subido (22px de alto + el anillo de foco);
+   --field-pad-block / --field-pad-inline, el padding del campo (dónde descansa el label). */
 .field {
   --field-rise: var(--spacing-7);
+  --field-pad-block: var(--spacing-3);
+  --field-pad-inline: 0rem;
   position: relative;
   display: grid;
   gap: var(--spacing-1);
@@ -478,8 +493,8 @@ textarea.input {
 }
 .field__label {
   position: absolute;
-  inset-block-start: calc(var(--field-rise) + var(--spacing-3));
-  inset-inline-start: 0;
+  inset-block-start: calc(var(--field-rise) + var(--field-pad-block));
+  inset-inline-start: var(--field-pad-inline);
   color: var(--color-text-secondary);
   line-height: var(--leading-normal);
   pointer-events: none;
@@ -488,7 +503,7 @@ textarea.input {
 }
 .field:focus-within .field__label,
 .field:has(.field__control:not(:placeholder-shown)) .field__label {
-  transform: translateY(calc(-1 * (var(--field-rise) + var(--spacing-3)))) scale(0.875);
+  transform: translate(calc(-1 * var(--field-pad-inline)), calc(-1 * (var(--field-rise) + var(--field-pad-block)))) scale(0.875);
 }
 .field__control::placeholder {
   color: transparent;
@@ -499,6 +514,42 @@ textarea.input {
 }
 .field__error:empty {
   display: none;
+}
+/* --filled — con Input --filled: el label descansa dentro de la caja y, al subir, se alinea con su borde.
+   Reserva menos arriba (24px) para que los campos queden cerca de los 72px del diseño. */
+.field--filled {
+  --field-rise: var(--spacing-6);
+  --field-pad-block: var(--spacing-4);
+  --field-pad-inline: var(--spacing-5);
+}
+
+/* Select — el mismo .input sobre <select>, sin la flecha nativa: el chevron es una máscara en ::after,
+   en la misma celda que el campo. Label flotante sin JS: el select arranca en una opción vacía
+   (value="", hidden, sin disabled) y, mientras esa opción está elegida y no hay foco, el label queda en
+   reposo. Sin disabled no aparece el bug de Chromium que fuerza el color del placeholder: no hace falta
+   !important. :placeholder-shown no aplica a <select>, por eso la regla propia. */
+select.input {
+  appearance: none;
+  padding-inline-end: calc(var(--field-pad-inline, 0rem) + var(--spacing-7));
+  cursor: pointer;
+}
+.field--select > .field__control {
+  grid-area: 1 / 1;
+}
+.field--select::after {
+  content: '';
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: end;
+  inline-size: var(--spacing-5);
+  block-size: var(--spacing-5);
+  margin-inline-end: var(--field-pad-inline);
+  background-color: var(--color-text-primary);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  pointer-events: none;
+}
+.field--select:not(:focus-within):has(option[value='']:checked) .field__label {
+  transform: none;
 }
 
 /* Divider — <hr> de un filete. --inverse sobre fondos oscuros. */
@@ -511,6 +562,27 @@ textarea.input {
 }
 .divider--inverse {
   border-block-start-color: var(--color-overlay-light);
+}
+
+/* Check List — lista con el check relleno (Service Details: «Mistakes to avoid…» y Key Features). El ícono
+   va en el color del texto fuerte y el texto en secundario; se centra en la primera línea con 1lh, así
+   los ítems de dos líneas (mobile) no lo desalinean. */
+.check-list {
+  display: grid;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-secondary);
+  list-style: none;
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+}
+.check-list .icon {
+  margin-block-start: calc((1lh - 1em) / 2);
+  color: var(--color-text-primary);
 }
 
 /* Pagination Dots — cada punto es un botón de 24×24 (WCAG 2.5.8) con el punto dibujado en ::before.

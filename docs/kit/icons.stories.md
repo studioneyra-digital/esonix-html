@@ -37,3 +37,4 @@ Un ícono nunca es el único portador de significado: el contenedor lleva texto 
 - Lucide es la única librería de iconos permitida; los glifos de redes (facebook, linkedin, instagram, x-twitter) son propios porque Lucide no incluye logos de marca.
 - `circle-check` es un círculo relleno con la marca recortada (máscara interna), como el check de las listas de pricing; Lucide solo trae la versión de contorno.
 - `play` va relleno (el diseño lo muestra sólido).
+- `badge-check` (Document Required de Service Details) es el sello con la marca; `circle-check-outline`, el círculo con la marca en contorno.

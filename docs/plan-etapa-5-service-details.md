@@ -83,8 +83,8 @@ Geometría:
 
 ## Preparación (antes de la Tarea 1)
 
-- [ ] Levantar los servidores de QA (si no corren): `serve.py` del scratchpad, receta en la memoria `playwright-cli-qa-recipes`. Puerto 8765 sobre la raíz del proyecto y 8766 sobre `docs/design`, con `run_in_background` y `timeout` de 7 200 000 ms.
-- [ ] Verificar que los generadores están al día:
+- [x] Levantar los servidores de QA (si no corren): `serve.py` del scratchpad, receta en la memoria `playwright-cli-qa-recipes`. Puerto 8765 sobre la raíz del proyecto y 8766 sobre `docs/design`, con `run_in_background` y `timeout` de 7 200 000 ms.
+- [x] Verificar que los generadores están al día:
 
 Run: `cd experiments/design-to-web && for s in atoms_css molecules_css organisms_css atoms_kit molecules_kit organisms_kit sections_kit; do python docs/tools/$s.py; done && python docs/tools/sync_shared.py --check && git diff --stat -- dist docs/kit`
 Esperado: `sync_shared.py --check` sale con 0 y `git diff` no muestra cambios en `dist/` ni en `docs/kit/`.
@@ -108,13 +108,13 @@ Esperado: `sync_shared.py --check` sale con 0 y `git diff` no muestra cambios en
   - `.field.field--select > label.field__label + select.input.field__control[required] > option[value=""][hidden][selected]` + opciones + `p.field__error`.
   - Las dos variantes de Field se combinan: `.field.field--filled.field--select`.
 
-- [ ] **Paso 1: ícono en `ICONS`** (después de `'circle-check-outline'`):
+- [x] **Paso 1: ícono en `ICONS`** (después de `'circle-check-outline'`):
 
 ```python
     'badge-check': "<path d='M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z'/><path d='m9 12 2 2 4-4'/>",  # Service Details (Document Required)
 ```
 
-- [ ] **Paso 2: CSS de Input `--filled`.** En `atoms_css.py`, después de la regla `:where([data-surface='inverse'], [data-surface='brand']) .input { … }`:
+- [x] **Paso 2: CSS de Input `--filled`.** En `atoms_css.py`, después de la regla `:where([data-surface='inverse'], [data-surface='brand']) .input { … }`:
 
 ```css
 /* Input --filled — caja gris (Quote Form de Service Details). El borde del diseño (≈ 1.2:1) no alcanza el
@@ -129,7 +129,7 @@ Esperado: `sync_shared.py --check` sale con 0 y `git diff` no muestra cambios en
 }
 ```
 
-- [ ] **Paso 3: Field con variables de posición, `--filled` y `--select`.** Reemplazar el bloque Field completo (desde el comentario `/* Field — …` hasta `.field__error:empty { … }`) por:
+- [x] **Paso 3: Field con variables de posición, `--filled` y `--select`.** Reemplazar el bloque Field completo (desde el comentario `/* Field — …` hasta `.field__error:empty { … }`) por:
 
 ```css
 /* Field — campo con label flotante (Quote Form). En reposo el <label> ocupa el lugar del placeholder, como el
@@ -211,7 +211,7 @@ select.input {
 
 Nota para quien ejecute: el chevron repite el data URI de `icon--chevron-down` porque un pseudo-elemento no puede usar la clase `.icon`. Si `ICONS['chevron-down']` cambia, actualizar ambos (dejarlo dicho en `decisions` de la ficha Select).
 
-- [ ] **Paso 4: CSS de Check List.** Bloque nuevo, después del bloque Divider:
+- [x] **Paso 4: CSS de Check List.** Bloque nuevo, después del bloque Divider:
 
 ```css
 /* Check List — lista con el check relleno (Service Details: «Mistakes to avoid…» y Key Features). El ícono
@@ -236,7 +236,7 @@ Nota para quien ejecute: el chevron repite el data URI de `icon--chevron-down` p
 }
 ```
 
-- [ ] **Paso 5: fichas en `atoms_kit.py`.**
+- [x] **Paso 5: fichas en `atoms_kit.py`.**
 
 En la ficha `input`, sumar este bloque y la fila `('.input--filled', 'Caja gris con filete inferior fuerte (Quote Form de Service Details)')`:
 
@@ -355,12 +355,12 @@ _i = [a['id'] for a in A].index('divider')
 A.insert(_i + 1, A.pop())
 ```
 
-- [ ] **Paso 6: regenerar y revisar el diff**
+- [x] **Paso 6: regenerar y revisar el diff**
 
 Run: `python docs/tools/atoms_css.py && python docs/tools/atoms_kit.py && git diff --stat -- dist docs/kit`
 Esperado: cambian `main.css` (solo entre `atoms:start` y `atoms:end`), `kit/index.html`, `icons`, `input` y `field.stories.md`; aparecen `check-list` y `select.stories.md`.
 
-- [ ] **Paso 7: verificar en el navegador** (`playwright-cli -s=sd`, script en el scratchpad y `run-code --filename`). Sobre `http://127.0.0.1:8765/dist/kit/index.html?v=<Date.now()>`:
+- [x] **Paso 7: verificar en el navegador** (`playwright-cli -s=sd`, script en el scratchpad y `run-code --filename`). Sobre `http://127.0.0.1:8765/dist/kit/index.html?v=<Date.now()>`:
   - `#field`, bloque `--filled`: el label del campo vacío queda dentro de la caja (`label.top > input.top` y `label.left > input.left`). Con `focus()`, después de 400 ms, el label queda por encima del campo (`label.bottom <= input.top + 2`) y alineado con su borde (`|label.left - input.left| <= 1`).
   - Select vacío: label en reposo. Con `selectOption('Business Optimization')` y `blur()`, label arriba. El chevron (`getComputedStyle(field, '::after').maskImage`) no es `none`.
   - Alto de la caja `--filled`: 56–58 px.
@@ -386,7 +386,7 @@ Esperado: cambian `main.css` (solo entre `atoms:start` y `atoms:end`), `kit/inde
   - `form.quote-form.quote-form--outline` con los Field `--filled`.
   - `FORM_MESSAGES.selectMissing = 'Choose an option.'`.
 
-- [ ] **Paso 1: CSS de Service Nav** (en `molecules_css.py`, antes del comentario `/* Quote Form — …`):
+- [x] **Paso 1: CSS de Service Nav** (en `molecules_css.py`, antes del comentario `/* Quote Form — …`):
 
 ```css
 /* Service Nav — «Exclusive Services» de Service Details: card con borde y la lista de servicios en píldoras
@@ -459,7 +459,7 @@ Esperado: cambian `main.css` (solo entre `atoms:start` y `atoms:end`), `kit/inde
 
 (La regla `.service-nav__link:hover { color }` evita que el hover global de enlaces pinte el texto; si foundations no cambia el color de los enlaces en hover, quitarla al verificar.)
 
-- [ ] **Paso 2: Quote Form `--outline`** (en `molecules_css.py`, después de la `@media (min-width: 48rem) { .quote-form { … } }`):
+- [x] **Paso 2: Quote Form `--outline`** (en `molecules_css.py`, después de la `@media (min-width: 48rem) { .quote-form { … } }`):
 
 ```css
 /* --outline — card con borde, sin fondo ni sombra (aside de Service Details, «Get a Quote»), con el título
@@ -475,7 +475,7 @@ Esperado: cambian `main.css` (solo entre `atoms:start` y `atoms:end`), `kit/inde
 }
 ```
 
-- [ ] **Paso 3: mensaje del Select en `main.js`.** En `FORM_MESSAGES`, después de `valueMissing`, agregar:
+- [x] **Paso 3: mensaje del Select en `main.js`.** En `FORM_MESSAGES`, después de `valueMissing`, agregar:
 
 ```js
     selectMissing: 'Choose an option.',
@@ -500,7 +500,7 @@ Y sumar el evento `change` (los `<select>` disparan `input` en los navegadores a
       });
 ```
 
-- [ ] **Paso 4: helper `quote_form` en `molecules_kit.py`.**
+- [x] **Paso 4: helper `quote_form` en `molecules_kit.py`.**
   - Sumar el parámetro `outline=False`: `def quote_form(fid, action, live=False, state='', outline=False):`.
   - Con `outline=True`:
     - el `<form>` lleva la clase `quote-form quote-form--outline`;
@@ -543,7 +543,7 @@ con `SERVICES = ['Strategic Planning', 'Business Optimization', 'IT Consulting',
 - Texto del botón cuando no envía: `'Submit Now' if outline else 'Get Started'`.
 - `aria-label` de los demos de estado: `'Get a Quote' if outline else 'Get a free Quote'`.
 
-- [ ] **Paso 5: fichas.** En la ficha `quote-form`:
+- [x] **Paso 5: fichas.** En la ficha `quote-form`:
   - Sumar al final de `blocks`:
 
 ```python
@@ -587,14 +587,14 @@ M.append(dict(id='service-nav', title='Service Nav',
              'En la página, los servicios que todavía no tienen página enlazan a `#`; Business Optimization enlaza a `service-details.html`.']))
 ```
 
-- [ ] **Paso 6: regenerar y revisar**
+- [x] **Paso 6: regenerar y revisar**
 
 Run: `python docs/tools/molecules_css.py && python docs/tools/molecules_kit.py && git diff --stat -- dist docs/kit`
 Esperado:
 - cambian `main.css` (solo `molecules:`), `kit/index.html`, `quote-form.stories.md` y el nuevo `service-nav.stories.md`;
 - en `git diff dist/kit/index.html`, los cinco demos existentes del Quote Form no cambian.
 
-- [ ] **Paso 7: verificar en el navegador** (kit):
+- [x] **Paso 7: verificar en el navegador** (kit):
   - `#service-nav`:
     - píldora de 56–58 px de alto y cuadrado de 40 px;
     - la activa tiene `background-color` = `--color-action-primary`;
@@ -623,7 +623,7 @@ Esperado:
   - `.accordion.accordion--framed > details.accordion-item[name] > summary.accordion-item__summary > span.accordion-item__question + span.accordion-item__toggle[aria-hidden] > span.icon.icon--arrow-right`, sin `accordion-item__mark`.
   - `<dialog class="video-modal" id="video-dialog" data-video-modal …>` en todas las páginas.
 
-- [ ] **Paso 1: CSS `--framed`** (en `organisms_css.py`, después de `.accordion--boxed .accordion-item__mark { … }`):
+- [x] **Paso 1: CSS `--framed`** (en `organisms_css.py`, después de `.accordion--boxed .accordion-item__mark { … }`):
 
 ```css
 /* --framed — FAQ de Service Details: el grupo en una caja con borde; el ítem abierto en una caja gris; los
@@ -669,7 +669,7 @@ Esperado:
 
 Nota: el ítem base tiene `border-block-end` (filete del FAQ de la Home); `--framed` lo reemplaza con el `border` transparente de 1 px en los cuatro lados, así el ítem no cambia de tamaño al abrirse.
 
-- [ ] **Paso 2: ficha `accordion`.** Agregar un helper al lado de `accordion()`:
+- [x] **Paso 2: ficha `accordion`.** Agregar un helper al lado de `accordion()`:
 
 ```python
 FAQ_FRAMED = [
@@ -701,7 +701,7 @@ En `blocks` de la ficha, sumar `dict(label='--framed (FAQ de Service Details)', 
 
 Sumar la decisión: `'--framed: sin el «?» del Accordion Item (el diseño numera las preguntas en el texto); la flecha gira con --ease-base, así con «reducir movimiento» cambia sin animar.'`. En `tokens`, sumar `'--color-border-default / -subtle', '--color-background-subtle', '--radius-sm', '--spacing-4 / -5 / -6'`.
 
-- [ ] **Paso 3: `<dialog>` en `index.html`.** Dentro de `<!-- shared:footer -->`, inmediatamente antes de `<!-- /shared:footer -->` y después del último elemento del bloque (verificar dónde están el off-canvas y el Scroll Top para no partir otro elemento), agregar el mismo markup que el demo del kit (`video_modal()` de `organisms_kit.py`):
+- [x] **Paso 3: `<dialog>` en `index.html`.** Dentro de `<!-- shared:footer -->`, inmediatamente antes de `<!-- /shared:footer -->` y después del último elemento del bloque (verificar dónde están el off-canvas y el Scroll Top para no partir otro elemento), agregar el mismo markup que el demo del kit (`video_modal()` de `organisms_kit.py`):
 
 ```html
   <dialog class="video-modal" id="video-dialog" data-video-modal data-surface="inverse" aria-labelledby="video-dialog-title">
@@ -715,14 +715,14 @@ Sumar la decisión: `'--framed: sin el «?» del Accordion Item (el diseño nume
 
 En la ficha `video-modal`, sumar la decisión: `'En las páginas, el <dialog> vive en el bloque shared:footer de index.html: sync_shared.py lo copia a todas, y cualquier botón con data-video-id lo abre.'`
 
-- [ ] **Paso 4: regenerar y sincronizar**
+- [x] **Paso 4: regenerar y sincronizar**
 
 Run: `python docs/tools/organisms_css.py && python docs/tools/organisms_kit.py && python docs/tools/sync_shared.py && python docs/tools/sync_shared.py --check && python docs/tools/test_sync_shared.py`
 Esperado:
 - `--check` sale con 0 y las pruebas pasan;
 - `git diff --stat` muestra `main.css` (solo `organisms:`), el kit, los dos `.stories.md`, `index.html` y `about-us.html` (solo el `<dialog>`).
 
-- [ ] **Paso 5: verificar en el navegador**
+- [x] **Paso 5: verificar en el navegador**
   - Kit `#accordion`, demo `--framed`:
     - el abierto tiene fondo gris y flecha rotada −45° (`getComputedStyle(icon).rotate === '-45deg'`);
     - abrir el ítem 3 → se cierra el 1 (mismo `name`);
@@ -750,7 +750,7 @@ Esperado:
 - Consume: todo lo anterior.
 - Produce: `<!-- section:service-details -->` … `<!-- /section:service-details -->` en `service-details.html` (lo lee la Tarea 5).
 
-- [ ] **Paso 1: esqueleto y `<head>`.** Crear `dist/service-details.html` copiando de `about-us.html` el `<!doctype>`, el `<html lang="en">` y el `<head>` hasta `<!-- shared:assets -->` inclusive, con estos cambios:
+- [x] **Paso 1: esqueleto y `<head>`.** Crear `dist/service-details.html` copiando de `about-us.html` el `<!doctype>`, el `<html lang="en">` y el `<head>` hasta `<!-- shared:assets -->` inclusive, con estos cambios:
   - `title`: `Business Optimization — Consulting Services | Esonix`.
   - `description` (meta, OG, Twitter): `Business optimization consulting from Esonix: market research, process optimization, risk assessment and strategic planning that drive measurable, sustainable growth.`
   - canonical y `og:url`: `https://esonix.example/service-details.html`.
@@ -793,7 +793,7 @@ Esperado:
 
   Después, `<!-- /shared:assets -->`, `</head>`, `<body>`, `<!-- shared:header site-header--inner -->` + `<!-- /shared:header -->`, `<main id="main">` … `</main>`, `<!-- shared:footer -->` + `<!-- /shared:footer -->`, `</body></html>`. Los bloques `shared:` van vacíos: los llena `sync_shared.py`.
 
-- [ ] **Paso 2: Page Hero** (primer hijo de `<main>`, sin marcadores de Section: es la de About reutilizada):
+- [x] **Paso 2: Page Hero** (primer hijo de `<main>`, sin marcadores de Section: es la de About reutilizada):
 
 ```html
     <section class="page-hero" aria-labelledby="page-title" data-surface="inverse">
@@ -813,7 +813,7 @@ Esperado:
     </section>
 ```
 
-- [ ] **Paso 3: Section `service-details`** (después del Page Hero):
+- [x] **Paso 3: Section `service-details`** (después del Page Hero):
 
 ```html
     <!-- section:service-details -->
@@ -914,7 +914,7 @@ Esperado:
   - Fields `--filled`: Name, Email, Phone, el Select Service (los 5 servicios, opción vacía `hidden selected`) y Message;
   - el botón «Submit Now».
 
-- [ ] **Paso 4: CSS de la Section** (bloque `sections:`, al final de «Sections de las páginas interiores», antes de `/* sections:end */`):
+- [x] **Paso 4: CSS de la Section** (bloque `sections:`, al final de «Sections de las páginas interiores», antes de `/* sections:end */`):
 
 ```css
 /* Service Details — plantilla de servicio. Artículo y aside medidos en el diseño (870 | 420 con 30px de
@@ -1030,7 +1030,7 @@ Comprobar al verificar:
 - que `.section` da el padding vertical del diseño (≈ 120 px arriba en desktop);
 - que el ícono ámbar (`--color-text-highlight`) es el que usa el resto del theme para acentos sobre claro. Si no pasa 3:1 como gráfico sobre crema, usar `--color-action-secondary` y reportar: los íconos decorativos con `aria-hidden` no están obligados, pero se registra.
 
-- [ ] **Paso 5: sincronizar, menú y sitemap.**
+- [x] **Paso 5: sincronizar, menú y sitemap.**
   - En `index.html`, cambiar `href="#"` por `href="service-details.html"` en los dos enlaces «Service Details»: el submenú del header (`site-nav__sublink`, línea ≈ 103) y el off-canvas (`offcanvas__sublink`, línea ≈ 984). Usar Edit: el archivo está en CRLF.
   - En `dist/sitemap.xml`, sumar:
 
@@ -1046,7 +1046,7 @@ Comprobar al verificar:
 Run: `python docs/tools/sync_shared.py && python docs/tools/sync_shared.py --check`
 Esperado: `service-details.html` con el header `--inner`, el footer y el `<dialog>`, y `aria-current="page"` en «Service Details» del submenú y del off-canvas; `about-us.html` solo cambia en los dos enlaces.
 
-- [ ] **Paso 6: verificar la página** (servidor 8765, `/dist/service-details.html?v=<Date.now()>`):
+- [x] **Paso 6: verificar la página** (servidor 8765, `/dist/service-details.html?v=<Date.now()>`):
   - Capturas a 1920 y 480 px por tramos, comparadas con los recortes del PNG:
     - posiciones de h2, h3, foto, aside y FAQ (±8 px salvo los desvíos declarados);
     - aside de 420 px a 1920 y gap de 30–32 px;
@@ -1075,7 +1075,7 @@ Esperado: `service-details.html` con el header `--inner`, el footer y el `<dialo
 - Modificar: `docs/tools/sections_kit.py` (dict `service-details`), `docs/plan-etapa-5.md` (estado y desvíos de Service Details), `docs/traspaso-etapa-5.md` (siguiente página), `docs/plan.md` (si lleva estado por página)
 - Regenerados: `dist/kit/index.html`, `docs/kit/service-details.stories.md`
 
-- [ ] **Paso 1: ficha de la Section** (después del último `S.append` de About Us):
+- [x] **Paso 1: ficha de la Section** (después del último `S.append` de About Us):
 
 ```python
 S.append(dict(id='service-details', title='Service Details', page='service-details.html',
@@ -1103,19 +1103,19 @@ S.append(dict(id='service-details', title='Service Details', page='service-detai
 Run: `python docs/tools/sections_kit.py && git diff --stat -- dist/kit docs/kit`
 Esperado: ficha nueva en el kit y en `service-details.stories.md`; las demás fichas, sin cambios.
 
-- [ ] **Paso 2: verificar el kit:**
+- [x] **Paso 2: verificar el kit:**
   - `#service-details`: la Section se ve completa, el formulario neutralizado (sin `data-quote-form`, `action="#"`) y los ids con sufijo `-section`;
   - IDs duplicados en todo el kit: ninguno;
   - axe del kit sin violaciones nuevas (falsos positivos conocidos: slides con opacidad 0 del fade).
 
-- [ ] **Paso 3: auditoría contra `docs/anti-patrones.md`.** Repasar uno por uno sobre lo construido:
+- [x] **Paso 3: auditoría contra `docs/anti-patrones.md`.** Repasar uno por uno sobre lo construido:
   - tokens semánticos en todo el CSS nuevo (`grep -n "brand-\|neutral-"` en los bloques nuevos: sin resultados);
   - sin `!important` nuevo (`grep -c "!important" dist/assets/css/main.css` igual que antes);
   - sin px sueltos (solo `0rem` y los tokens);
   - contraste AA (texto secundario sobre `--color-background-subtle`, label en reposo dentro de la caja, texto blanco sobre `--color-action-primary`);
   - longitud de línea de los párrafos: la columna de 870 px da ~110 caracteres. Excepción declarada como en About, porque así lo muestra el diseño.
 
-- [ ] **Paso 4: documentación**
+- [x] **Paso 4: documentación**
   - `docs/plan-etapa-5.md`: «Estado» de Service Details con lo construido, cambios respecto de la spec, desvíos medidos y lo verificado. Seguir el formato de About Us: estado, cambios, desvíos, verificado y pendientes.
   - `docs/traspaso-etapa-5.md`:
     - §1: Service Details ✅ y siguiente página (Contact, si no hay PNG de Services);
@@ -1123,7 +1123,7 @@ Esperado: ficha nueva en el kit y en `service-details.stories.md`; las demás fi
     - §8: el nivel «Services» del breadcrumb y del JSON-LD cuando exista la página.
   - `docs/plan.md`: estado de la Etapa 5 (si lleva una línea por página).
 
-- [ ] **Paso 5: checkpoint con el usuario.** Reporte con:
+- [x] **Paso 5: checkpoint con el usuario.** Reporte con:
   - capturas a 1920 y 390;
   - desvíos (h2 +4 px, preguntas del FAQ mobile −2.5 px, hero mobile 420 contra 320, campos a ≈ 80 px entre sí contra 72, foto del hero blanda);
   - el bug del Video Modal corregido;
@@ -1131,7 +1131,7 @@ Esperado: ficha nueva en el kit y en `service-details.stories.md`; las demás fi
 
 Esperar la aprobación.
 
-- [ ] **Paso 6: commit de la página** (tras la aprobación):
+- [x] **Paso 6: commit de la página** (tras la aprobación):
 
 ```bash
 git add docs/tools/atoms_css.py docs/tools/atoms_kit.py docs/tools/molecules_css.py docs/tools/molecules_kit.py \

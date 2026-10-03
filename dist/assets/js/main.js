@@ -463,11 +463,13 @@
     if (modal.parentElement !== document.body) { document.body.appendChild(modal); }
     var frame = modal.querySelector('.video-modal__frame');
     var title = modal.querySelector('.video-modal__title');
+    var lastOpener = null; // para devolver el foco al cerrar
 
     document.addEventListener('click', function (event) {
       var opener = event.target.closest('[data-video-id]');
       if (!opener) { return; }
       event.preventDefault();
+      lastOpener = opener;
       var name = opener.getAttribute('data-video-title') || 'Video';
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(opener.getAttribute('data-video-id')) + '?autoplay=1&rel=0';
@@ -487,6 +489,12 @@
     modal.addEventListener('close', function () {
       frame.replaceChildren();
       if (window.Esonix.lenis) { window.Esonix.lenis.start(); }
+      // Con teclado, <dialog> devuelve el foco solo; abierto con el ratón el botón nunca lo tuvo y el
+      // foco cae en <body>. Lo devolvemos siempre al botón (en el caso del teclado es donde ya estaba),
+      // después de que el navegador termine su propia restauración.
+      if (lastOpener && lastOpener.isConnected) {
+        requestAnimationFrame(function () { lastOpener.focus(); });
+      }
     });
   }
   initVideoModal();
@@ -567,6 +575,7 @@
      Mientras envía, el botón queda con aria-disabled (no disabled: así no pierde el foco). */
   var FORM_MESSAGES = {
     valueMissing: 'This field is required.',
+    selectMissing: 'Choose an option.',
     typeMismatch: 'Enter a valid email address.',
     patternMismatch: 'Enter a valid phone number.',
     sending: 'Sending…',
@@ -575,7 +584,7 @@
   };
 
   function fieldError(control) {
-    if (control.validity.valueMissing) { return FORM_MESSAGES.valueMissing; }
+    if (control.validity.valueMissing) { return control.tagName === 'SELECT' ? FORM_MESSAGES.selectMissing : FORM_MESSAGES.valueMissing; }
     if (control.validity.typeMismatch) { return FORM_MESSAGES.typeMismatch; }
     if (control.validity.patternMismatch) { return FORM_MESSAGES.patternMismatch; }
     return '';
@@ -611,8 +620,10 @@
 
       // El error se revisa mientras se corrige, no antes del primer envío
       controls.forEach(function (control) {
-        control.addEventListener('input', function () {
-          if (control.getAttribute('aria-invalid') === 'true') { validate(control); }
+        ['input', 'change'].forEach(function (type) {
+          control.addEventListener(type, function () {
+            if (control.getAttribute('aria-invalid') === 'true') { validate(control); }
+          });
         });
       });
 
