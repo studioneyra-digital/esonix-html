@@ -11,6 +11,7 @@ Home de **Esonix** (consultora) construida desde los diseños de `docs/design/` 
 | 2 · Moléculas | 12 moléculas + átomo Input, con ficha en el kit y `.stories.md` | ✅ Hecha |
 | 3 · Organismos | Header, menú mobile, carrusel, lista con scroll, marquee, footer, modal | ✅ Hecha (Grupos A, B y C) |
 | 4 · Sections + `index.html` | Las secciones de la home, responsive | ✅ Hecha (Grupos 0, A, B, C y D) |
+| 5 · Páginas interiores | About Us, Services, Service Details, Portfolios, Case Study, Testimonials, Contact — una por entrega (`plan-etapa-5.md`) | ⏳ En curso (About Us: diseño aprobado) |
 
 ## Reglas de cada etapa
 
