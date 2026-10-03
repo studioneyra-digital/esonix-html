@@ -98,7 +98,7 @@ git push https://github.com/studioneyra-digital/esonix-html.git <hash>:refs/head
 
 ## 11. Qué NO hacer
 - No instalar librerías de terceros (shadcn, Radix, MUI).
-- No usar `!important`. Única excepción documentada: el `<select>` del componente Select (bloque `/* Select */` en `assets/css/main.css`), porque Chromium/Windows fuerza el color del placeholder cuando la opción seleccionada es `disabled` y ninguna otra técnica lo pisa. Ante un caso similar: probar alternativas primero y, si no hay ninguna, preguntar antes de usarlo; nunca en silencio.
+- No usar `!important`. Ante un caso que parezca exigirlo: probar alternativas primero y, si no hay ninguna, preguntar antes de usarlo; nunca en silencio.
 - No crear variantes sin caso de uso citado.
 - No usar tokens primitivos (`--color-brand-*`, `--color-neutral-*`) en componentes; pasar siempre por un token semántico (ver `docs/design-tokens.md`).
 - No mezclar px con rem/em sin justificación.

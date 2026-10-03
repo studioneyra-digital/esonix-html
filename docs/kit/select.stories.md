@@ -55,6 +55,6 @@
 ## Decisiones y excepciones
 
 - Nativo antes que un select a medida: el diseño no pide nada que el nativo no haga, y uno a medida necesita JS y ARIA de listbox.
-- La opción vacía no lleva `disabled`: con `disabled`, Chromium/Windows fuerza el color del texto y obligaría a usar `!important` (excepción de CLAUDE.md §11, que acá no hace falta).
+- La opción vacía no lleva `disabled`: con `disabled`, Chromium/Windows fuerza el color del texto y obligaría a usar `!important`, que el theme no admite (CLAUDE.md §11).
 - El chevron repite el data URI de `icon--chevron-down` (un pseudo-elemento no puede usar `.icon`): si cambia uno, cambiar el otro.
 - Safari no oculta opciones con `hidden`: ahí la lista muestra una fila vacía al principio. Elegirla deja el campo vacío y la validación lo marca.

@@ -14,16 +14,15 @@ página están en `docs/plan-etapa-5.md`; se actualiza al cerrar cada página y 
 - `docs/plan-etapa-5-service-details.md` (plan ya ejecutado) se puede borrar.
 - Orden de páginas: About Us ✅ → Service Details ✅ → **Contact (sigue)**. Portfolios, Case Study, Testimonials y
   Services no tienen PNG; Contact sí: `Contact-Us-Desktop.png` (1920×1692) y `Contact-Us-Mobile.png` (480×1788).
-- **Primer paso de Contact:** recortar los PNG por tramos, escribir su spec en `plan-etapa-5.md` y su plan de
-  implementación (`docs/plan-etapa-5-contact.md`), como con las dos páginas anteriores, y esperar visto bueno antes
-  de construir. Usar el skill `frontend-design` y auditar contra `docs/anti-patrones.md`.
-- Al construir Contact, enlazar «Schedule a call» y los «Contact» del menú (hoy van a `#site-footer`) y revisar
-  ids duplicados en el kit.
+- **Contact:** spec escrita en `plan-etapa-5.md` §«Contact» y plan en `docs/plan-etapa-5-contact.md` (4 tareas),
+  sin commit, esperando el visto bueno del usuario. Decisiones del usuario: datos de contacto del sitio (no los del
+  PNG), mapa de Google Maps embebido, desplegable «Service». Al aprobar: commitear spec + plan y seguir la Tarea 1.
+  Usar el skill `frontend-design` y auditar contra `docs/anti-patrones.md`.
 
-## Decisiones pendientes del usuario
+## Decisiones tomadas el 2026-10-03
 
-- ¿Borrar de `CLAUDE.md` §11 la excepción de `!important` del Select? (nunca llegó a existir).
-- Padding superior de las Sections: 96 px contra ~120 del diseño; se dejó el valor del componente compartido.
+- `CLAUDE.md` §11: se borró la excepción de `!important` del Select (nunca llegó a usarse). Sin excepciones.
+- Padding superior de las Sections: queda en 96 px (`.section`) aunque el diseño muestre ~120.
 
 ## 2. Qué quedó construido en Service Details
 
@@ -121,10 +120,6 @@ cuando el diseño use fotos que no están en `dist/assets/img`.
 
 ## 6. Pendientes abiertos
 
-- **`CLAUDE.md` §11 quedó desactualizada:** documenta una excepción de `!important` para «el `<select>` del
-  componente Select», que no existe. Hoy `main.css` tiene cero `!important` reales (la única coincidencia del
-  `grep` está dentro del comentario que explica por qué no hizo falta). Conviene que el usuario decida si se
-  borra esa excepción.
 - El nivel «Services» del breadcrumb de Service Details es texto sin enlace y el `BreadcrumbList` del JSON-LD
   lo omite (Google exige URL en los niveles intermedios): agregarlo en los dos lugares cuando exista la página.
 - «Schedule a call» y los «Contact» llevan a `#site-footer` hasta que exista Contact.

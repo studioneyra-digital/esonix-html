@@ -205,18 +205,19 @@ El mobile tiene un error de captura (el ítem 1 del FAQ aparece dos veces, cerca
 
 Plan de implementación detallado: `docs/plan-etapa-5-service-details.md`.
 
-### Estado: hecha, a la espera de aprobación
+### Estado: hecha y aprobada
+Commiteada en `91edb15` y publicada en `esonix-html`.
 
 **Cambios respecto de esta spec** (decididos al planificar o al construir):
 - **Input `--filled` y Field `--filled`:** los campos del diseño son cajas grises, no el filete de About. Tres lados en `--color-border-subtle` (como el diseño) y filete inferior en `--color-border-strong`: el borde del diseño queda en ≈ 1.2:1 y no llega al 3:1 que piden los controles (decisión del usuario).
-- **Select sin `!important`:** la opción vacía va `hidden selected` pero **sin `disabled`**, y así no aparece el bug de Chromium que fuerza el color del placeholder. `main.css` no tiene ningún `!important` real (la única coincidencia del `grep` está dentro del comentario que explica por qué no hizo falta). La excepción documentada en `CLAUDE.md` §11 quedó sin caso: conviene borrarla.
+- **Select sin `!important`:** la opción vacía va `hidden selected` pero **sin `disabled`**, y así no aparece el bug de Chromium que fuerza el color del placeholder. `main.css` no tiene ningún `!important` real (la única coincidencia del `grep` está dentro del comentario que explica por qué no hizo falta). La excepción documentada en `CLAUDE.md` §11 quedó sin caso y se borró (decisión del usuario, 2026-10-03).
 - **Bug corregido, fuera del alcance de la página:** ninguna página tenía el `<dialog data-video-modal>`, así que los tres botones de play de la Home no hacían nada. El `<dialog>` se agregó al bloque `shared:footer` de `index.html` y `sync_shared.py` lo propagó. Además, al cerrar el modal el foco vuelve al botón que lo abrió (abierto con el ratón, ese botón nunca lo tuvo y la restauración nativa dejaba el foco en `<body>`).
 - **El aside es un `<div>`, no un `<aside>`:** dentro de `<main>` y de la region de la Section, un landmark `complementary` queda anidado (axe: `landmark-complementary-is-top-level`, también sin `aria-label`). La `<nav>` «Exclusive Services» y el `<form>` «Get a Quote» que contiene ya son landmarks con nombre propio, así que no se pierde nada.
 - **Los ids del Quote Form llevan prefijo `service-quote-`:** con `quote-` chocaban en el kit con los del formulario de About Us, que salen del mismo helper (en cada página por separado no hay colisión, pero el kit junta las dos Sections).
 - `align-content: start` en cada documento de «Document Required»: los dos de una fila quedan igual de altos y, sin eso, el más corto repartía el sobrante entre sus filas y su descripción bajaba respecto de la del vecino.
 
 **Desvíos frente al diseño:**
-- Padding superior de la Section: 96px (`.section`, el componente compartido) contra ≈ 120 del diseño. Todo el contenido queda 24px más arriba; el alto total de la Section da 2345px contra 2341, así que el ritmo interno coincide. No se toca `.section`: lo usan todas las páginas.
+- Padding superior de la Section: 96px (`.section`, el componente compartido) contra ≈ 120 del diseño. Todo el contenido queda 24px más arriba; el alto total de la Section da 2345px contra 2341, así que el ritmo interno coincide. No se toca `.section`: lo usan todas las páginas (decisión del usuario, 2026-10-03: se quedan los 96px).
 - `h2` «Explore our Service Lists» a 36px contra 32: con `--text-h3` quedaba igual que los h3 de 28 y se perdía la jerarquía.
 - Preguntas del FAQ en mobile a 18px contra 20.5 (se mantiene el componente Accordion Item).
 - Page Hero mobile de 420px de alto contra ≈ 320 (se mantiene el componente de About).
@@ -229,7 +230,100 @@ Plan de implementación detallado: `docs/plan-etapa-5-service-details.md`.
 **Pendiente del usuario / observaciones:**
 - El nivel «Services» del breadcrumb es texto sin enlace y el `BreadcrumbList` del JSON-LD lo omite (Google exige URL en los niveles intermedios): sumarlo en los dos lugares cuando exista la página Services.
 - En el kit, la ficha de la Section suma un aviso `landmark-unique`: la `<nav>` «Exclusive Services» aparece también en la ficha de la molécula Service Nav. Es el mismo artefacto que ya tienen los carruseles (`#carousel-services` y `#carousel-services-section`) y no existe en la página real.
-- `CLAUDE.md` §11 documenta una excepción de `!important` para el Select que no llegó a existir.
+
+## Contact (`dist/contact.html`)
+
+Referencias: `docs/design/Contact-Us-Desktop.png` (1920×1692) y `Contact-Us-Mobile.png` (480×1788). Ninguno muestra el footer: se usa el de la Home. Al pie del desktop asoma una caja gris de 1320 px de ancho, cortada por el borde del PNG (el mobile no la tiene): es el mapa.
+
+### Secciones
+
+| # | Section | Desktop | Mobile | Origen |
+|---|---|---|---|---|
+| 1 | Header | Logo al `.container`, píldora oscura, «Schedule a call ↗» | Logo + «Menu» | **Existe**: `site-header--inner` |
+| 2 | `page-hero` | Foto a sangre con velo; breadcrumb «Home - Contact Us»; `h1` «Contact Us» | Igual, más bajo | **Existe** (fuente `about-us.html`): cambian foto, breadcrumb y `h1` |
+| 3 | `contact` | Izquierda: eyebrow «Get In Touch», `h2` «Let’s Build Something / Great Together», formulario en dos columnas (Name · Email / Phone · Service / Message) y «Submit Now». Derecha: foto 600×650 con una tarjeta translúcida de contacto abajo a la izquierda. Debajo, a todo el contenedor: mapa | Apilado: título → formulario → foto con tarjeta → mapa | **Nueva** |
+
+**Geometría medida** (desktop 1920 / mobile 480):
+- Columnas 645 + 75 + 600 en el contenedor de 1320 → `minmax(0, 43fr) minmax(0, 40fr)` con gap `--spacing-11` (643 / 597 px). Las dos columnas arrancan arriba (eyebrow en y=874, foto en 865).
+- Campos: dos columnas de 311 px con 24 de separación (`--spacing-6`); 90 px entre filetes de una fila a la siguiente (el Field mide ≈ 83: `row-gap: --spacing-2`). En mobile, una columna con el mismo paso.
+- Del filete del mensaje al botón, 41 px (`--spacing-8` en total). Botón 182×52: el Button existente.
+- Foto: 600×650 (12:13) y 451×489 en mobile (misma proporción), radio ≈ 17 → `--radius-md`. Mobile: 51 px entre el botón y la foto (`--spacing-9`).
+- Tarjeta de contacto: 350×160 en desktop y 300×150 en mobile, a 20 px del borde izquierdo e inferior de la foto (`--spacing-5`); texto a 30 px del borde; tres líneas con 24 px entre sí; radio ≈ 8 (`--radius-sm`). Velo oscuro, desenfoque de la foto detrás y borde blanco translúcido: la misma receta que Card Hero (`--color-overlay`, `--color-overlay-light`) más `backdrop-filter: blur(--blur-backdrop)`.
+- Mapa: arranca 120 px debajo de la foto (`--spacing-13`, 128), a todo el contenedor, radio ≈ 14 (`--radius-md`). El PNG no muestra su alto: proporción `11 / 4` desde `lg` (1320×480) y `4 / 3` por debajo.
+- Padding superior de la Section ≈ 120 (desktop) / 80 (mobile): se usa `.section` (96 / 64), igual que en Service Details (decisión del usuario: el padding de las Sections queda en 96px).
+
+**Tipografía medida** (ancho del texto en Mona Sans):
+
+| Texto | Desktop | Mobile | Token | Desvío |
+|---|---|---|---|---|
+| `h1` «Contact Us» | 61 | 40.5 | `--text-h1` (48/36) | decisión vigente del `h1` interior |
+| `h2` «Let’s Build Something…» | 51 | 32.7 | `.section-title` (`--text-h1`, 48/36) | −3 / +3 px |
+| Eyebrow, labels, tarjeta de contacto | 16–16.5 | 16 | Eyebrow, Field y `--text-body` con `--weight-medium` en la tarjeta | — |
+
+El `h2` lleva `max-inline-size` para cortar después de «Something», como el diseño: a 48 px, «Great» entra en la primera línea de una columna de 643.
+
+### Contenido
+- Copy del PNG: eyebrow «Get In Touch», `h2` «Let’s Build Something Great Together», botón «Submit Now».
+- **Labels:** Name, Email, Phone, **Service** y Message, con el asterisco de obligatorio y sin los puntos suspensivos del diseño. El desplegable (en el diseño «Select Option») es el Select de Service Details con los 5 servicios, `name="service"` (decisión del usuario: «Select Option» no dice qué se elige y como nombre accesible es pobre).
+- **Datos de contacto** (decisión del usuario: los del sitio, no los del PNG): `+880 (123) 456 789` (`tel:+880123456789`), `support@esonix.com` (`mailto:`) y «Seattle, WA, USA». El sitio no tiene calle: no se inventa una (el off-canvas dice «Seattle (major city in the state Washington).»).
+- **Mapa** (decisión del usuario): Google Maps embebido sobre «Seattle, WA».
+- Fotos sustitutas de la biblioteca (decisión vigente): hero `h1-blog-img-3.webp` (la misma escena del diseño, la pelirroja con lentes y su compañera; 1308 px de ancho, a 1920 se verá algo blanda bajo el velo, como en Service Details) y foto lateral `h1-about-img-1.webp` (equipo sonriendo, 735×720; ya la usa la Home). Ninguna otra foto de la biblioteca se parece a las del diseño.
+
+### Componentes nuevos y variantes
+
+**Button `--accent` con círculo petróleo (corrección del átomo).** Hoy `.btn--accent` deja el círculo en `--color-action-secondary`: ámbar sobre ámbar (ya anotado como trampa). El diseño de Contact lo muestra petróleo con la flecha blanca. `.btn--accent` pasa a `--btn-icon-bg: --color-action-primary` / `--btn-icon-fg: --color-action-on-primary`. No cambia nada visible en el sitio: el `--accent` del header redefine su círculo (blanco) y el del Pricing es `--block`, sin círculo.
+
+**Quote Form `--plain` (variante de molécula).**
+- Sin card: sin fondo, sin sombra, sin borde ni padding. El título no va dentro del formulario: el eyebrow y el `h2` son el encabezado de la Section y el `<form>` lo toma con `aria-labelledby`.
+- Campos Field de filete (los de About, no `--filled`) y el Select sobre el mismo filete (`.field--select` sin `--filled`: el chevron se alinea al final del filete).
+- Desde `md`, grilla de dos columnas: Name · Email, Phone · Service; Message, el botón y los mensajes de estado ocupan las dos. `row-gap: --spacing-2` y `column-gap: --spacing-6`.
+- Botón `btn--accent` «Submit Now».
+- Mismo JS (`data-quote-form`), mismos cuatro estados y el mismo destino FormSubmit. `_subject` «New contact message from esonix.example». Ids con prefijo `contact-` (el kit junta las Sections de todas las páginas).
+
+**Section `contact`** (bloque `sections:` a mano, subsección de páginas interiores):
+- `.contact__grid`: una columna en mobile (gap `--spacing-9`); desde `lg`, `43fr | 40fr` con gap `--spacing-11`.
+- `.contact__intro`: eyebrow + `h2.section-title` (gap `--spacing-3`) y el formulario debajo.
+- `.contact__media`: `<img>` 12:13 con `--radius-md` y la tarjeta encima (posición absoluta abajo a la izquierda).
+- `.contact__card`: `<address>` con la lista de los tres datos (teléfono y email como enlaces; la ciudad, texto). `data-surface="inverse"` para el foco claro sobre fondo oscuro. Ancho `22rem` desde `lg` y `19rem` debajo, sin pasar el ancho de la foto menos los márgenes.
+- `.contact__map`: `<iframe>` de Google Maps, `title="Esonix office location on Google Maps"`, `loading="lazy"`, `referrerpolicy="no-referrer-when-downgrade"`, sin borde, con `--radius-md` y la proporción de arriba.
+
+No es una molécula aparte: la tarjeta de contacto tiene un solo caso de uso (como «Document Required» en Service Details).
+
+### Riesgos del mapa
+- **Tercero:** el embed carga Google Maps (peticiones y cookies de Google) cuando el mapa se acerca al viewport. Si el sitio tuviera que cumplir GDPR haría falta consentimiento previo; queda anotado, no se resuelve en esta página.
+- **Scroll con Lenis:** la rueda sobre un `<iframe>` de otro origen no llega a la página; verificar en el QA que el scroll no se trabe sobre el mapa, y si se traba, decidir con el usuario.
+- **Teclado:** el mapa suma varios controles enfocables de Google. No es una trampa (el Tab sale), pero se verifica.
+- **Kit:** la ficha de la Section incluye el mapa en vivo (también con `loading="lazy"`).
+
+### `<head>`, SEO y navegación
+- `title` «Contact Us — Get in Touch | Esonix» y `description` propia; canonical `https://esonix.example/contact.html`; OG y Twitter con `og-image.jpg`.
+- JSON-LD: `ContactPage` (`about` → `#organization`) + `BreadcrumbList` (Home, Contact Us). Los datos de contacto ya están en la Organization de la Home.
+- Breadcrumb visible: Home (enlace) › Contact Us (`aria-current="page"`).
+- Enlaces que hoy van a `#site-footer` y pasan a `contact.html`:
+  - Piezas compartidas (en `index.html` y después `sync_shared.py`): «Contact» del menú, «Schedule a call» del header y «Contact» del off-canvas.
+  - Cuerpo de la Home: «Get Started» del hero, los tres «Get Started» de Pricing, «Join with Us» de Logos y «Contact Us» de la Card CTA del FAQ. Todos son llamados a contactar; el footer no tiene formulario de contacto (solo el newsletter).
+- La página se suma a `sitemap.xml`.
+
+### Kit y documentación
+- Ficha nueva: Section `contact` (fuente `contact.html`).
+- Filas y demos nuevos: `--plain` en Quote Form (demo con el Select de filete); `--accent` en Button (con círculo petróleo). El Page Hero no lleva marcadores en la página nueva.
+- `.stories.md` actualizados (Button, Quote Form) y el de la Section nueva.
+
+### Verificación
+- Recortes del PNG medidos antes de construir. Comparar a 1920 y 480 px; revisar a 1440, 1280, 1024, 768 y 390 px sin desborde horizontal.
+- Teclado: formulario (orden Name → Email → Phone → Service → Message → botón), enlaces de la tarjeta con foco visible sobre la foto, salida del mapa con Tab.
+- Formulario: los cuatro estados con FormSubmit interceptado (predicado sobre `hostname`); el Select vacío muestra su error.
+- Scroll con la rueda sobre el mapa (Lenis). Contraste del texto de la tarjeta sobre la parte más clara de la foto (≥ 4.5:1).
+- axe sin violaciones nuevas, consola limpia, `prefers-reduced-motion`.
+- `sync_shared.py --check` y sus pruebas; Home, About y Service Details sin regresiones (header, Button `--accent`, Quote Form, Select `--filled`); ids sin duplicar en el kit.
+
+### Orden de construcción
+1. Átomo: círculo petróleo en `.btn--accent` (Sonnet, esfuerzo medio).
+2. Molécula: Quote Form `--plain` con el Select de filete (Sonnet, esfuerzo medio).
+3. `contact.html` con su Section, mapa, `<head>`, sitemap y los enlaces a Contact (Opus, esfuerzo alto).
+4. Kit, `.stories.md`, QA y reporte de desvíos. Commit de la página tras la aprobación.
+
+Plan de implementación detallado: `docs/plan-etapa-5-contact.md`.
 
 ## Páginas siguientes
-Services, Portfolios, Case Study, Testimonials y Contact: se describen y planifican cuando lleguen sus PNG (Contact Us ya está en `docs/design/`).
+Services, Portfolios, Case Study y Testimonials: se describen y planifican cuando lleguen sus PNG.
