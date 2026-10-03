@@ -237,7 +237,8 @@ CSS = r'''/* organisms:start */
 .site-header--inner .site-nav__link[aria-expanded='true'] {
   color: var(--color-text-highlight);
 }
-/* El círculo del botón ámbar va en blanco (en el botón --accent sería ámbar sobre ámbar) */
+/* El círculo del botón amarillo va en blanco: --accent lo trae petróleo, pero el diseño del header lo
+   muestra blanco. */
 .site-header--inner .site-header__cta {
   --btn-icon-bg: var(--color-surface-default);
   --btn-icon-fg: var(--color-text-primary);

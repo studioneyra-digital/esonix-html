@@ -44,6 +44,15 @@ Píldora de texto con círculo de ícono. Petróleo sobre fondo claro; `--light`
 </button>
 ```
 
+**Relleno amarillo con círculo (`btn--accent`, Contact)**
+
+```html
+<button type="button" class="btn btn--accent">
+  Submit Now
+  <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+</button>
+```
+
 **Deshabilitado**
 
 ```html
@@ -65,7 +74,7 @@ Píldora de texto con círculo de ícono. Petróleo sobre fondo claro; `--light`
 | `.btn__icon` | Círculo de 40px que envuelve el ícono (solo en el botón con círculo) |
 | `.btn--light` | Para fondos oscuros: píldora blanca, círculo petróleo |
 | `.btn--block` | Ocupa todo el ancho, texto centrado y flecha en línea, sin círculo |
-| `.btn--accent` | Relleno amarillo con texto oscuro; se usa con --block (plan destacado) |
+| `.btn--accent` | Relleno amarillo con texto oscuro y círculo petróleo (Contact); con --block, sin círculo (plan destacado) |
 | `disabled / aria-disabled="true"` | Estado deshabilitado; en un <a> usar aria-disabled y quitar el href |
 
 ## Tokens que consume
@@ -91,3 +100,4 @@ Texto descriptivo; ícono `aria-hidden`; foco con el anillo global; altura 48px.
 - Altura 48px (círculo de 40px + 4px de aire): el diseño mide ~52px, pero sale de la escala de espaciado y no de estimar la imagen.
 - Los estados hover, active y disabled no están en el diseño: se derivan de los tokens `action-primary-hover/-active/-disabled` ya definidos.
 - No hay variante `--light` + `--block`: el diseño solo usa `--block` sobre cards claras y la destacada oscura usa `--accent`.
+- El círculo de `--accent` es petróleo: con el ámbar por defecto del botón quedaría ámbar sobre ámbar. El «Schedule a call» del header (`--accent` sin `--block`) redefine su propio círculo en blanco (`.site-header--inner .site-header__cta`) y no cambia con este ajuste.

@@ -430,17 +430,23 @@ M.append(dict(id='newsletter', title='Newsletter',
 
 SERVICES = ['Strategic Planning', 'Business Optimization', 'IT Consulting', 'Change Management', 'Leadership']
 
-def quote_form(fid, action, live=False, state='', outline=False):
+def quote_form(fid, action, live=False, state='', variant='', labelledby=None, subject=None):
     # state: '' | 'error' | 'sending' | 'sent' | 'failed' — solo para mostrar estados estáticos en el kit
-    # outline: variante de Service Details (campos --filled, campo Service, textos del aside)
+    # variant: '' (card blanca, About) | 'outline' (card con borde, campos --filled, Service Details) |
+    #          'plain' (sin card, título externo, campos de filete con el Select en el mismo filete, Contact)
+    # labelledby: id del título externo (solo 'plain'; obligatorio, el formulario no trae su propio <h3>)
+    assert variant != 'plain' or labelledby, "quote_form: variant='plain' necesita labelledby (no trae su propio título)"
     err = state == 'error'
     filled = state in ('sending', 'failed')
+    use_filled_fields = variant == 'outline'  # 'plain' usa el filete de About, no la caja gris de --filled
+    has_service = variant in ('outline', 'plain')
+    short_labels = variant != ''  # outline y plain: «Name», no «Your name»
 
     def field(name, label, kind, auto, value='', error=''):
         inv = ' aria-invalid="true"' if error else ''
         attrs = 'id="%s-%s" name="%s" placeholder=" " required aria-describedby="%s-%s-error"%s' % (fid, name, name, fid, name, inv)
-        wrap = 'field field--filled' if outline else 'field'
-        cls = 'input input--filled field__control' if outline else 'input field__control'
+        wrap = 'field field--filled' if use_filled_fields else 'field'
+        cls = 'input input--filled field__control' if use_filled_fields else 'input field__control'
         if kind == 'textarea':
             control = '<textarea class="%s" %s>%s</textarea>' % (cls, attrs, value)
         else:
@@ -456,9 +462,11 @@ def quote_form(fid, action, live=False, state='', outline=False):
     def service_field():
         options = '\n'.join('      <option%s>%s</option>' % (' selected' if filled and s == 'Business Optimization' else '', s) for s in SERVICES)
         inv = ' aria-invalid="true"' if err else ''
-        return '\n'.join(['  <div class="field field--filled field--select">',
+        wrap = 'field field--filled field--select' if use_filled_fields else 'field field--select'
+        cls = 'input input--filled field__control' if use_filled_fields else 'input field__control'
+        return '\n'.join(['  <div class="%s">' % wrap,
                           '    <label class="field__label" for="%s-service">Service<span aria-hidden="true">*</span></label>' % fid,
-                          '    <select class="input input--filled field__control" id="%s-service" name="service" required aria-describedby="%s-service-error"%s>' % (fid, fid, inv),
+                          '    <select class="%s" id="%s-service" name="service" required aria-describedby="%s-service-error"%s>' % (cls, fid, fid, inv),
                           '      <option value="" hidden%s></option>' % ('' if filled else ' selected'),
                           options,
                           '    </select>',
@@ -466,27 +474,35 @@ def quote_form(fid, action, live=False, state='', outline=False):
                           '  </div>'])
 
     busy = ' aria-disabled="true"' if state == 'sending' else ''
-    title = 'Get a Quote' if outline else 'Get a free Quote'
-    label = 'Sending…' if state == 'sending' else ('Submit Now' if outline else 'Get Started')
+    title = {'': 'Get a free Quote', 'outline': 'Get a Quote', 'plain': 'Get in touch'}[variant]
+    btn_label = 'Sending…' if state == 'sending' else ('Submit Now' if variant in ('outline', 'plain') else 'Get Started')
+    btn_cls = 'btn btn--accent quote-form__submit' if variant == 'plain' else 'btn quote-form__submit'
+    subject = subject or ('New contact message from esonix.example' if variant == 'plain' else 'New quote request from esonix.example')
+    form_cls = {'': '', 'outline': ' quote-form--outline', 'plain': ' quote-form--plain'}[variant]
     # Cada formulario con nombre es un landmark: en el kit, los demos de estado llevan un nombre propio
-    # para no repetir el del demo en vivo (axe: landmark-unique). En la página va aria-labelledby al título.
+    # para no repetir el del demo en vivo (axe: landmark-unique). En la página va aria-labelledby al título
+    # (propio en '' / outline; externo, pasado por quien llama, en 'plain').
     examples = {'error': 'validation error', 'sending': 'sending', 'sent': 'sent', 'failed': 'send error'}
-    name = ' aria-label="%s, %s example"' % (title, examples[state]) if state else ' aria-labelledby="%s-title"' % fid
-    lines = [
-        '<form class="quote-form%s" id="%s-form"%s action="%s" method="post" novalidate%s>' % (' quote-form--outline' if outline else '', fid, ' data-quote-form' if live else '', action, name),
-        '  <h3 class="quote-form__title" id="%s-title">%s</h3>' % (fid, title),
-        '  <input type="hidden" name="_subject" value="New quote request from esonix.example">',
+    if state:
+        name_attr = ' aria-label="%s, %s example"' % (title, examples[state])
+    else:
+        name_attr = ' aria-labelledby="%s"' % (labelledby or '%s-title' % fid)
+    lines = ['<form class="quote-form%s" id="%s-form"%s action="%s" method="post" novalidate%s>' % (form_cls, fid, ' data-quote-form' if live else '', action, name_attr)]
+    if variant != 'plain':
+        lines.append('  <h3 class="quote-form__title" id="%s-title">%s</h3>' % (fid, title))
+    lines += [
+        '  <input type="hidden" name="_subject" value="%s">' % subject,
         '  <div hidden><label for="%s-honey">Leave this field empty</label><input type="text" id="%s-honey" name="_honey" tabindex="-1" autocomplete="off"></div>' % (fid, fid),
-        field('name', 'Name' if outline else 'Your name', 'text', 'name', 'Emma Wilson' if filled else '', 'This field is required.' if err else ''),
-        field('email', 'Email' if outline else 'Your email', 'email', 'email', 'emma@company.com' if filled else ('emma@' if err else ''), 'Enter a valid email address.' if err else ''),
-        field('phone', 'Phone' if outline else 'Phone number', 'tel', 'tel', '+1 (555) 123 4567' if filled else ''),
+        field('name', 'Name' if short_labels else 'Your name', 'text', 'name', 'Emma Wilson' if filled else '', 'This field is required.' if err else ''),
+        field('email', 'Email' if short_labels else 'Your email', 'email', 'email', 'emma@company.com' if filled else ('emma@' if err else ''), 'Enter a valid email address.' if err else ''),
+        field('phone', 'Phone' if short_labels else 'Phone number', 'tel', 'tel', '+1 (555) 123 4567' if filled else ''),
     ]
-    if outline:
+    if has_service:
         lines.append(service_field())
     lines += [
         field('message', 'Message', 'textarea', '', 'We need help with our pricing strategy.' if filled else ''),
-        '  <button type="submit" class="btn quote-form__submit"%s>' % busy,
-        '    <span data-submit-label>%s</span>' % label,
+        '  <button type="submit" class="%s"%s>' % (btn_cls, busy),
+        '    <span data-submit-label>%s</span>' % btn_label,
         '    <span class="btn__icon">%s</span>' % ic('arrow-up-right'),
         '  </button>',
         '  <div class="quote-form__messages">',
@@ -505,24 +521,29 @@ M.append(dict(id='quote-form', title='Quote Form',
     dict(label='Enviando', mods='narrow', html=quote_form('quote-sending', '#', state='sending')),
     dict(label='Enviado', mods='narrow', html=quote_form('quote-sent', '#', state='sent')),
     dict(label='Error de envío', mods='narrow', html=quote_form('quote-failed', '#', state='failed')),
-    dict(label='--outline con campos --filled y Select (Service Details)', mods='narrow', html=quote_form('quote-outline', '#', state='error', outline=True)),
+    dict(label='--outline con campos --filled y Select (Service Details)', mods='narrow', html=quote_form('quote-outline', '#', state='error', variant='outline')),
+    dict(label='--plain en dos columnas con el Select de filete (Contact): el título externo es el h2 de la Section, no parte del formulario', html=d('''
+      <h2 class="section-title" id="quote-plain-title">Let’s Build Something Great Together</h2>
+    ''') + '\n' + quote_form('quote-plain', '#', state='error', variant='plain', labelledby='quote-plain-title')),
   ],
   rows=[('form.quote-form[data-quote-form]', 'Activa el envío por fetch y la validación de main.js'),
         ('action="https://formsubmit.co/&lt;destino&gt;" method="post" novalidate', 'Destino (sin JS, envío normal); novalidate deja la validación a main.js'),
         ('.quote-form--outline', 'Card con borde, sin fondo ni sombra; título de 24px (aside de Service Details)'),
-        ('.field--filled / .field--select', 'Campos en caja gris y el Select «Service» (ver Field y Select)'),
+        ('.quote-form--plain', 'Sin card: sin fondo, sombra, borde ni padding; el título es el h2 de la Section (<code>aria-labelledby</code>, el formulario no trae <code>&lt;h3&gt;</code>); dos columnas desde md; botón <code>btn--accent</code> (Contact)'),
+        ('.field--filled / .field--select', 'Campos en caja gris (--outline) o de filete (--plain) y el Select «Service» (ver Field y Select)'),
         ('input[name="_subject"] / div[hidden] &gt; input[name="_honey"]', 'Asunto del correo y trampa antibots de FormSubmit'),
         ('button[aria-disabled="true"] &gt; [data-submit-label]', 'Enviando: el botón no responde y su texto pasa a «Sending…»'),
         ('p[role="status"][data-form-status]', 'Mensaje de enviado'),
         ('p[role="alert"][data-form-alert]', 'Mensaje de error de envío; los datos se conservan')],
-  tokens=['--color-surface-default', '--radius-lg / -sm', '--shadow-md', '--color-feedback-success-* / -error-*', '--spacing-3 / -4 / -5 / -6 / -8', 'Field, Input, Button (átomos)'],
+  tokens=['--color-surface-default', '--radius-lg / -sm', '--shadow-md', '--color-feedback-success-* / -error-*', '--spacing-2 / -3 / -4 / -5 / -6 / -7 / -8', 'Field, Input, Select, Button (átomos)'],
   a11y='Los errores se escriben en el mensaje de cada campo (enlazado con <code>aria-describedby</code>) y el foco va al primer campo inválido. Enviado y error de envío se anuncian en regiones vivas que existen desde el inicio (vacías): <code>role="status"</code> (cortés) y <code>role="alert"</code> (inmediato). Mientras envía, el botón usa <code>aria-disabled</code> en lugar de <code>disabled</code> para no perder el foco.',
   a11y_md='Error por campo con `aria-describedby`, foco al primero inválido; `role="status"` / `role="alert"` presentes desde el inicio; `aria-disabled` mientras envía.',
   decisions=['FormSubmit (decisión del usuario): sin cuenta ni clave. El primer envío real manda a studioneyra@gmail.com un correo de activación que hay que confirmar una vez.',
              'El correo de destino queda visible en el HTML; FormSubmit permite reemplazarlo por un alias aleatorio después de activar.',
              'Solo el demo «En vivo» lleva `data-quote-form`; su `action` es la propia página del kit (`#kit-demo`), así nunca envía correos: el servidor estático rechaza el POST y se ve el estado de error. Los demás muestran estados estáticos con `action="#"`.',
              'El teléfono acepta dígitos, espacios, `+`, paréntesis y guiones (mínimo 6).',
-             '--outline usa campos --filled: el diseño de Service Details los muestra en caja gris, con el filete inferior fuerte por contraste (decisión del usuario).']))
+             '--outline usa campos --filled: el diseño de Service Details los muestra en caja gris, con el filete inferior fuerte por contraste (decisión del usuario).',
+             '--plain (Contact) usa los campos de filete de About, no la caja gris de --outline: el diseño de Contact los muestra así. El título vive fuera del formulario (el h2 de la Section) y el botón usa `btn--accent` con su círculo petróleo.']))
 
 M.append(dict(id='service-nav', title='Service Nav',
   desc='«Exclusive Services» de Service Details: card con borde, título y la lista de servicios en píldoras con un cuadrado de flecha. La página actual va marcada con <code>aria-current="page"</code> (petróleo con el cuadrado ámbar).',

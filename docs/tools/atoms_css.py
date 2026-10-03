@@ -70,7 +70,9 @@ CSS = r'''/* atoms:start */
 __ICON_RULES__
 
 /* Button — píldora con círculo de ícono. Por defecto petróleo sobre fondo claro (.btn);
-   --light sobre fondo oscuro; --block ocupa el ancho de su card (pricing); --accent es el relleno amarillo. */
+   --light sobre fondo oscuro; --block ocupa el ancho de su card (pricing); --accent es el relleno amarillo,
+   con el círculo petróleo (Contact, «Submit Now»): con el círculo ámbar por defecto del botón quedaría
+   ámbar sobre ámbar. */
 .btn {
   --btn-bg: var(--color-action-primary);
   --btn-bg-hover: var(--color-action-primary-hover);
@@ -139,6 +141,8 @@ __ICON_RULES__
   --btn-bg-hover: var(--color-action-secondary-hover);
   --btn-bg-active: var(--color-action-secondary-hover);
   --btn-fg: var(--color-action-on-secondary);
+  --btn-icon-bg: var(--color-action-primary);
+  --btn-icon-fg: var(--color-action-on-primary);
 }
 .btn:disabled,
 .btn[aria-disabled='true'] {

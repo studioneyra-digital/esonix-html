@@ -232,7 +232,9 @@ html.lenis body {
 .icon--x-twitter { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4l11.733 16h4.267L8.267 4z'/%3E%3Cpath d='M4 20l6.768-6.768m2.46-2.46L20 4'/%3E%3C/svg%3E"); }
 
 /* Button — píldora con círculo de ícono. Por defecto petróleo sobre fondo claro (.btn);
-   --light sobre fondo oscuro; --block ocupa el ancho de su card (pricing); --accent es el relleno amarillo. */
+   --light sobre fondo oscuro; --block ocupa el ancho de su card (pricing); --accent es el relleno amarillo,
+   con el círculo petróleo (Contact, «Submit Now»): con el círculo ámbar por defecto del botón quedaría
+   ámbar sobre ámbar. */
 .btn {
   --btn-bg: var(--color-action-primary);
   --btn-bg-hover: var(--color-action-primary-hover);
@@ -301,6 +303,8 @@ html.lenis body {
   --btn-bg-hover: var(--color-action-secondary-hover);
   --btn-bg-active: var(--color-action-secondary-hover);
   --btn-fg: var(--color-action-on-secondary);
+  --btn-icon-bg: var(--color-action-primary);
+  --btn-icon-fg: var(--color-action-on-primary);
 }
 .btn:disabled,
 .btn[aria-disabled='true'] {
@@ -1630,6 +1634,32 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .quote-form--outline .quote-form__title {
   font-size: var(--text-h4);
 }
+/* --plain — sin card (Contact): sin fondo, sombra, borde ni padding; el título es el h2 de la Section,
+   fuera del formulario (aria-labelledby). Campos de filete (como About) y el Select sobre el mismo filete.
+   row-gap: el diseño deja 90px entre filetes y el Field ya mide ≈ 83. Desde md, dos columnas (Name · Email,
+   Phone · Service); el mensaje, el botón y los avisos ocupan las dos (grid-column: 1 / -1). Los campos
+   ocultos (_subject, honeypot) no son items de grilla: el input[type=hidden] y el div[hidden] no generan
+   caja. */
+.quote-form--plain {
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  row-gap: var(--spacing-2);
+}
+.quote-form--plain .quote-form__submit {
+  margin-block-start: var(--spacing-7); /* + row-gap = 40px del filete al botón, como el diseño */
+}
+@media (min-width: 48rem) {
+  .quote-form--plain {
+    padding: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--spacing-6);
+  }
+  .quote-form--plain > :is(.field:has(textarea), .quote-form__submit, .quote-form__messages) {
+    grid-column: 1 / -1;
+  }
+}
 /* molecules:end */
 
 /* organisms:start */
@@ -1864,7 +1894,8 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .site-header--inner .site-nav__link[aria-expanded='true'] {
   color: var(--color-text-highlight);
 }
-/* El círculo del botón ámbar va en blanco (en el botón --accent sería ámbar sobre ámbar) */
+/* El círculo del botón amarillo va en blanco: --accent lo trae petróleo, pero el diseño del header lo
+   muestra blanco. */
 .site-header--inner .site-header__cta {
   --btn-icon-bg: var(--color-surface-default);
   --btn-icon-fg: var(--color-text-primary);

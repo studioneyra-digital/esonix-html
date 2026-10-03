@@ -797,6 +797,32 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .quote-form--outline .quote-form__title {
   font-size: var(--text-h4);
 }
+/* --plain — sin card (Contact): sin fondo, sombra, borde ni padding; el título es el h2 de la Section,
+   fuera del formulario (aria-labelledby). Campos de filete (como About) y el Select sobre el mismo filete.
+   row-gap: el diseño deja 90px entre filetes y el Field ya mide ≈ 83. Desde md, dos columnas (Name · Email,
+   Phone · Service); el mensaje, el botón y los avisos ocupan las dos (grid-column: 1 / -1). Los campos
+   ocultos (_subject, honeypot) no son items de grilla: el input[type=hidden] y el div[hidden] no generan
+   caja. */
+.quote-form--plain {
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  row-gap: var(--spacing-2);
+}
+.quote-form--plain .quote-form__submit {
+  margin-block-start: var(--spacing-7); /* + row-gap = 40px del filete al botón, como el diseño */
+}
+@media (min-width: 48rem) {
+  .quote-form--plain {
+    padding: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--spacing-6);
+  }
+  .quote-form--plain > :is(.field:has(textarea), .quote-form__submit, .quote-form__messages) {
+    grid-column: 1 / -1;
+  }
+}
 /* molecules:end */
 '''
 s = open(MAIN, encoding='utf-8').read()

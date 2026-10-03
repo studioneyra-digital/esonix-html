@@ -61,6 +61,11 @@ A.append(dict(id='button', title='Button',
         Get Started
         %s
       </button>''' % (ic('arrow-up-right'), ic('arrow-up-right')))),
+    dict(label='Relleno amarillo con círculo (<code>btn--accent</code>, Contact)', mods='row', html=d('''
+      <button type="button" class="btn btn--accent">
+        Submit Now
+        <span class="btn__icon">%s</span>
+      </button>''' % ic('arrow-up-right'))),
     dict(label='Deshabilitado', mods='row', html=d('''
       <button type="button" class="btn" disabled>
         Get Started
@@ -75,14 +80,15 @@ A.append(dict(id='button', title='Button',
         ('.btn__icon', 'Círculo de 40px que envuelve el ícono (solo en el botón con círculo)'),
         ('.btn--light', 'Para fondos oscuros: píldora blanca, círculo petróleo'),
         ('.btn--block', 'Ocupa todo el ancho, texto centrado y flecha en línea, sin círculo'),
-        ('.btn--accent', 'Relleno amarillo con texto oscuro; se usa con --block (plan destacado)'),
+        ('.btn--accent', 'Relleno amarillo con texto oscuro y círculo petróleo (Contact); con --block, sin círculo (plan destacado)'),
         ('disabled / aria-disabled="true"', 'Estado deshabilitado; en un &lt;a&gt; usar aria-disabled y quitar el href')],
   tokens=['--color-action-primary(-hover/-active/-disabled)', '--color-action-secondary(-hover)', '--color-action-on-primary', '--color-action-on-secondary', '--color-surface-default', '--color-background-subtle', '--spacing-1 / -5 / -6 / -8', '--radius-full', '--text-body', '--weight-medium', '--ease-fast'],
   a11y='El texto del botón dice qué pasa al activarlo («Get Started», no «Click here»). El ícono es <code>aria-hidden</code>. El foco usa el anillo global (amarillo sobre fondos oscuros). La altura mínima es 48px, muy por encima de los 24px exigidos.',
   a11y_md='Texto descriptivo; ícono `aria-hidden`; foco con el anillo global; altura 48px.',
   decisions=['Altura 48px (círculo de 40px + 4px de aire): el diseño mide ~52px, pero sale de la escala de espaciado y no de estimar la imagen.',
              'Los estados hover, active y disabled no están en el diseño: se derivan de los tokens `action-primary-hover/-active/-disabled` ya definidos.',
-             'No hay variante `--light` + `--block`: el diseño solo usa `--block` sobre cards claras y la destacada oscura usa `--accent`.']))
+             'No hay variante `--light` + `--block`: el diseño solo usa `--block` sobre cards claras y la destacada oscura usa `--accent`.',
+             'El círculo de `--accent` es petróleo: con el ámbar por defecto del botón quedaría ámbar sobre ámbar. El «Schedule a call» del header (`--accent` sin `--block`) redefine su propio círculo en blanco (`.site-header--inner .site-header__cta`) y no cambia con este ajuste.']))
 
 A.append(dict(id='icon-button', title='Icon Button',
   desc='Círculo con un solo ícono. Por defecto de contorno sobre fondo claro (flechas del carrusel); <code>--glass</code> va sobre fotos y el amarillo marca hover y estado activo; <code>--sm</code> y <code>--lg</code> cubren el «+» del equipo y el play del video. También es el <strong>Social Icon</strong>: un <code>.icon-btn --sm</code> con el glifo de la red.',
