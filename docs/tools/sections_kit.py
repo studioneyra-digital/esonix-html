@@ -1,22 +1,30 @@
 # Genera las fichas de las Sections: dist/kit/index.html (nivel «Sections») + docs/kit/<id>.stories.md
-# A diferencia de los otros niveles, el markup NO vive en este script: se extrae de dist/index.html, la única
-# fuente, entre los marcadores <!-- section:<id> --> y <!-- /section:<id> -->. Acá solo van los metadatos de
-# cada ficha (descripción, clases, tokens, accesibilidad, decisiones). El CSS es el bloque sections: de
-# main.css, escrito a mano.
+# A diferencia de los otros niveles, el markup NO vive en este script: se extrae de la página que declara
+# cada sección (clave page, por defecto dist/index.html), entre los marcadores <!-- section:<id> --> y
+# <!-- /section:<id> -->. Una sección reutilizada en otra página (con un modificador) no repite la ficha:
+# solo la página fuente lleva marcadores. Acá solo van los metadatos de cada ficha (descripción, clases,
+# tokens, accesibilidad, decisiones). El CSS es el bloque sections: de main.css, escrito a mano.
 import re, os, textwrap, html as H
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]  # raíz del proyecto (docs/tools/ → design-to-web/)
-PAGE = ROOT / 'dist' / 'index.html'
-KIT = ROOT / 'dist' / 'kit' / 'index.html'
-KITCSS = ROOT / 'dist' / 'assets' / 'css' / 'kit.css'
+DIST = ROOT / 'dist'
+KIT = DIST / 'kit' / 'index.html'
+KITCSS = DIST / 'assets' / 'css' / 'kit.css'
 STORIES = ROOT / 'docs' / 'kit'
 
-page_html = PAGE.read_text(encoding='utf-8')
+_pages = {}
+def page_html(name):
+    if name not in _pages:
+        _pages[name] = (DIST / name).read_text(encoding='utf-8')
+    return _pages[name]
 
-def extract(sid):
-    m = re.search(r'<!-- section:%s -->\n(.*?)\n[ \t]*<!-- /section:%s -->' % (sid, sid), page_html, re.S)
-    assert m, 'falta el marcador de la sección %s en dist/index.html' % sid
+def page_of(a):
+    return a.get('page', 'index.html')
+
+def extract(sid, page):
+    m = re.search(r'<!-- section:%s -->\n(.*?)\n[ \t]*<!-- /section:%s -->' % (sid, sid), page_html(page), re.S)
+    assert m, 'falta el marcador de la sección %s en dist/%s' % (sid, page)
     return textwrap.dedent(m.group(1)).strip('\n')
 
 def for_kit(markup):
@@ -260,7 +268,7 @@ def card(a, n, markup):
     mods = ''.join(' kit-demo--' + m for m in a.get('mods', '').split())
     p = ['        <section class="kit-card" id="%s" aria-labelledby="%s-title">' % (a['id'], a['id']), '          <header class="kit-card__header">',
          '            <p class="kit-card__tag">Section · %02d</p>' % n, '            <h3 id="%s-title">%s</h3>' % (a['id'], a['title']),
-         '            <p class="kit-card__desc">%s Fuente: <code>dist/index.html</code> (<a href="../index.html#%s">ver en la página</a>).</p>' % (a['desc'], a['id']), '          </header>',
+         '            <p class="kit-card__desc">%s Fuente: <code>dist/%s</code> (<a href="../%s#%s">ver en la página</a>).</p>' % (a['desc'], page_of(a), page_of(a), a['id']), '          </header>',
          '          <div class="kit-block">', '            <span class="kit-block__label">Tal como está en la página</span>',
          '            <div class="kit-demo%s" lang="en">' % mods, indent(for_kit(markup), 14), '            </div>',
          indent(snippet('snippet-%s-1' % a['id']), 12), '          </div>']
@@ -281,10 +289,10 @@ def card(a, n, markup):
     p.append('        </section>')
     return '\n'.join(p)
 
-markups = {a['id']: extract(a['id']) for a in S}
+markups = {a['id']: extract(a['id'], page_of(a)) for a in S}
 cards = '\n\n'.join(card(a, i, markups[a['id']]) for i, a in enumerate(S, 1))
 level = ('      <section class="kit-level" id="sections" aria-labelledby="sections-title">\n        <h2 id="sections-title">Sections</h2>\n'
-         '        <p class="kit-level__intro">Bloques de página completa. A diferencia de los otros niveles, su fuente es <code>dist/index.html</code>: cada ficha se arma con lo que hay entre los marcadores <code>&lt;!-- section:id --&gt;</code> de la página, así el kit y la home no se desfasan. Los demos se ven con el ancho de esta columna; los breakpoints responden a la ventana.</p>\n'
+         '        <p class="kit-level__intro">Bloques de página completa. A diferencia de los otros niveles, su fuente es la página donde vive cada sección (<code>dist/*.html</code>): cada ficha se arma con lo que hay entre los marcadores <code>&lt;!-- section:id --&gt;</code> de esa página, así el kit y el sitio no se desfasan. Los demos se ven con el ancho de esta columna; los breakpoints responden a la ventana.</p>\n'
          + cards + '\n        <!-- kit:sections-end -->\n      </section>')
 nav_items = '\n'.join('            <li><a class="kit-nav__link" href="#%s"><span class="kit-nav__num">%02d</span> %s</a></li>' % (a['id'], i, a['title']) for i, a in enumerate(S, 1))
 nav = ('        <div class="kit-nav__group">\n          <p class="kit-nav__group-label" id="nav-sections">Sections</p>\n'
@@ -323,7 +331,7 @@ def unesc(s): return H.unescape(re.sub(r'</?(code|strong|em)>', lambda m: '`' if
 os.makedirs(STORIES, exist_ok=True)
 for n, a in enumerate(S, 1):
     md = ['# %s' % a['title'], '', '**Nivel:** Section · %02d  ' % n,
-          '**Dónde:** markup en `dist/index.html` (entre `<!-- section:%s -->`), CSS en `dist/assets/css/main.css` (bloque `sections:`) · showcase en `dist/kit/index.html#%s`' % (a['id'], a['id']), '',
+          '**Dónde:** markup en `dist/%s` (entre `<!-- section:%s -->`), CSS en `dist/assets/css/main.css` (bloque `sections:`) · showcase en `dist/kit/index.html#%s`' % (page_of(a), a['id'], a['id']), '',
           '## Descripción', '', unesc(a['desc_md']), '', '## Snippet', '', '```html', markups[a['id']], '```', '',
           '## Clases y atributos', '', '| Clase o atributo | Efecto |', '|---|---|'] + ['| `%s` | %s |' % (H.unescape(s), unesc(t)) for s, t in a['rows']]
     md += ['', '## Tokens que consume', ''] + ['- `%s`' % t for t in a['tokens']]

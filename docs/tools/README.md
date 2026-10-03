@@ -11,6 +11,7 @@ Scripts de Python 3 (solo librería estándar) que generaron el CSS de los átom
 | `organisms_css.py` | Bloque `/* organisms:start … organisms:end */` de `main.css` |
 | `organisms_kit.py` | Nivel «Organismos» del kit y `docs/kit/<organismo>.stories.md` |
 | `sections_kit.py` | Nivel «Sections» del kit y `docs/kit/<sección>.stories.md`, **extrayendo el markup de `dist/index.html`** |
+| `sync_shared.py` | Las piezas comunes (hojas de estilo, header, footer + off-canvas + Scroll Top + scripts) de cada página de `dist/`, copiadas de `dist/index.html` |
 
 ## Uso
 
@@ -46,6 +47,13 @@ Desde cualquier carpeta (la raíz del proyecto sale de la ubicación del script)
 
 ## Sections
 
-- **La fuente es `dist/index.html`, no el script.** Cada sección va entre `<!-- section:<id> -->` y `<!-- /section:<id> -->`; `sections_kit.py` la extrae, cambia las rutas a `../assets/`, agrega el sufijo `-section` a sus ids (para no chocar con los demos del kit) y arma la ficha. El script solo guarda los metadatos (descripción, clases, tokens, accesibilidad, decisiones) en la lista `S`.
+- **La fuente es la página que declara cada sección (`page` en su `dict`, por defecto `index.html`), no el script.** Cada sección va entre `<!-- section:<id> -->` y `<!-- /section:<id> -->`; `sections_kit.py` la extrae, cambia las rutas a `../assets/`, agrega el sufijo `-section` a sus ids (para no chocar con los demos del kit) y arma la ficha. El script solo guarda los metadatos (descripción, clases, tokens, accesibilidad, decisiones) en la lista `S`.
 - **El CSS se escribe a mano** en el bloque `/* sections:start … sections:end */` de `main.css`, que ningún script toca.
 - Para agregar una sección: marcarla en `index.html`, sumar su `dict` a `S` y ejecutar `python docs/tools/sections_kit.py`.
+- Una sección reutilizada en otra página con un modificador no lleva marcadores allí: la ficha existente documenta el modificador en sus filas.
+
+## Piezas compartidas entre páginas
+
+- `dist/index.html` es la fuente del header, el footer (con off-canvas, Scroll Top y scripts) y las hojas de estilo, entre `<!-- shared:x -->` y `<!-- /shared:x -->`. Cada página nueva trae los tres pares de marcadores (pueden ir vacíos).
+- `python docs/tools/sync_shared.py` los copia a las demás páginas y marca con `aria-current="page"` el enlace del menú que apunta a cada una. `--check` solo verifica (sale con 1 si hay páginas desfasadas). Pruebas: `python docs/tools/test_sync_shared.py`.
+- Nunca editar esas piezas en otra página que no sea `index.html`: se pierden en la siguiente sincronización.
