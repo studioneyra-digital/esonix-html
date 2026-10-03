@@ -1,6 +1,6 @@
-# Traspaso — Etapa 5: Service Details publicada, sigue Contact
+# Traspaso — Etapa 5: Contact publicada, sin más páginas con diseño
 
-Estado al 2026-10-03. Este archivo alcanza para arrancar la sesión siguiente. La spec y el estado de cada
+Estado al 2026-10-03. Resumen de la última sesión: `docs/informe-sesion-contact.md`. Este archivo alcanza para arrancar la sesión siguiente. La spec y el estado de cada
 página están en `docs/plan-etapa-5.md`; se actualiza al cerrar cada página y se borra al cerrar la Etapa 5.
 
 ## 1. Dónde estamos
