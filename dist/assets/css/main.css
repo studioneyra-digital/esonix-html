@@ -1650,6 +1650,9 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .quote-form--plain .quote-form__submit {
   margin-block-start: var(--spacing-7); /* + row-gap = 40px del filete al botón, como el diseño */
 }
+.quote-form--plain textarea.input {
+  min-block-size: var(--spacing-13); /* el mensaje del diseño mide ≈ 123px (96 en el Textarea base) */
+}
 @media (min-width: 48rem) {
   .quote-form--plain {
     padding: 0;
@@ -1890,8 +1893,11 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .site-header--inner .site-nav__link {
   color: var(--color-text-inverse);
 }
+/* La página actual también en ámbar, como los subenlaces: sin esta regla, el petróleo de
+   .site-nav__link[aria-current] (misma especificidad, va después) quedaba oscuro sobre la píldora oscura. */
 .site-header--inner .site-nav__link:hover,
-.site-header--inner .site-nav__link[aria-expanded='true'] {
+.site-header--inner .site-nav__link[aria-expanded='true'],
+.site-header--inner .site-nav__link[aria-current='page'] {
   color: var(--color-text-highlight);
 }
 /* El círculo del botón amarillo va en blanco: --accent lo trae petróleo, pero el diseño del header lo
@@ -3897,6 +3903,99 @@ html {
   }
   .service-details__subtitle--sm {
     font-size: var(--text-h4);
+  }
+}
+
+/* Contact — título y formulario (Quote Form --plain) a la izquierda, foto con la tarjeta de contacto a la
+   derecha y el mapa debajo, a todo el contenedor. Desde lg, 43fr | 40fr (645 y 600 px a 1920); en mobile,
+   apilado: título → formulario → foto → mapa. */
+.contact__grid {
+  display: grid;
+  gap: var(--spacing-9);
+}
+.contact__intro,
+.contact__head {
+  display: grid;
+  align-content: start;
+}
+.contact__head {
+  justify-items: start;
+  gap: var(--spacing-3);
+}
+.contact__head .eyebrow {
+  margin: 0;
+}
+.contact__title {
+  max-inline-size: 32rem; /* corta después de «Something», como el diseño */
+}
+.contact__media {
+  position: relative;
+  align-self: start;
+}
+.contact__media img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 12 / 13; /* 600×650 a 1920 y 451×489 a 480 */
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+/* Tarjeta translúcida: la receta de Card Hero (velo y borde del theme) más el desenfoque de la foto.
+   <address> por semántica (datos de contacto de la organización); sin cursiva. Sin data-surface: la
+   superficie inverse pinta su fondo opaco y taparía el velo; como la píldora del header, solo redefine el
+   token de foco (anillo claro sobre fondo oscuro). */
+.contact__card {
+  --color-border-focus: var(--color-border-focus-inverse);
+  position: absolute;
+  inset-inline-start: var(--spacing-5);
+  inset-block-end: var(--spacing-5);
+  inline-size: min(19rem, 100% - 2 * var(--spacing-5));
+  padding: var(--spacing-5) var(--spacing-7);
+  border: var(--border-width-sm) solid var(--color-overlay-light);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-overlay);
+  backdrop-filter: blur(var(--blur-backdrop));
+  color: var(--color-text-inverse);
+  font-style: normal;
+  font-weight: var(--weight-medium);
+}
+.contact__list {
+  display: grid;
+  gap: var(--spacing-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.contact__list a {
+  color: inherit;
+  text-decoration: none;
+}
+.contact__list a:hover {
+  text-decoration: underline;
+}
+/* Mapa: el PNG lo corta y no muestra su alto (11:4 = 1320×480 desde lg; 4:3 en mobile). El fondo es el
+   de la caja del diseño mientras el iframe carga. */
+.contact__map {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 4 / 3;
+  margin-block-start: var(--spacing-10);
+  border: 0;
+  border-radius: var(--radius-md);
+  background-color: var(--color-background-subtle);
+}
+@media (min-width: 64rem) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 43fr) minmax(0, 40fr);
+    gap: var(--spacing-11);
+  }
+  .contact__card {
+    inline-size: min(22rem, 100% - 2 * var(--spacing-5));
+  }
+  .contact__map {
+    aspect-ratio: 11 / 4;
+    margin-block-start: var(--spacing-13);
   }
 }
 /* sections:end */

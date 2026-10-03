@@ -325,5 +325,41 @@ No es una molécula aparte: la tarjeta de contacto tiene un solo caso de uso (co
 
 Plan de implementación detallado: `docs/plan-etapa-5-contact.md`.
 
+### Estado: hecha, a la espera de aprobación
+Spec y plan en `2dbc8bb`; átomo y molécula (Tareas 1–2) en `f03e555`. La página (Tareas 3–4), sin commit.
+
+**Cambios respecto de esta spec** (decididos al construir):
+- **La tarjeta de contacto no lleva `data-surface="inverse"`:** `html [data-surface='inverse']` pinta el fondo oscuro opaco con especificidad (0,1,1) y tapaba el velo translúcido. Como la píldora del header `--inner`, la tarjeta solo redefine `--color-border-focus` (anillo claro). Padding vertical `--spacing-5` (no `-6`): así mide 167px contra 160 del diseño.
+- **Enlace activo de primer nivel del header `--inner`:** Contact es la primera página cuyo enlace actual es de primer nivel (en About y Service Details es un subenlace). La regla base `.site-nav__link[aria-current]` (petróleo) tiene la misma especificidad que el blanco del `--inner` y va después: quedaba petróleo sobre la píldora oscura, casi invisible. Corregido en `organisms_css.py`: ámbar (`--color-text-highlight`), como los subenlaces activos.
+- **Mensaje de `--plain` a `--spacing-13` (128px):** el del diseño mide ≈ 123 y el Textarea base, 96. Solo en `--plain`, desde `molecules_css.py`.
+- **Mapa con `hl=en`:** sin el parámetro, Google muestra la interfaz en el idioma del navegador.
+
+**Desvíos frente al diseño:**
+- Padding superior de la Section: 96px contra ≈ 120 (decisión del usuario); todo el contenido queda 24px más arriba.
+- `h1` del Page Hero a 48/36px contra ≈ 61/40.5 (decisión vigente del `h1` interior); Page Hero mobile de 420px contra ≈ 321 (componente compartido, igual que en Service Details).
+- `h2` a 48/36px (`.section-title`) contra ≈ 51/33.
+- Enlace «Contact» del header en ámbar (página actual) contra blanco en el diseño.
+- Mobile: 56px del botón a la foto contra 51 (el `row-gap` del formulario se suma al contenedor vacío de los avisos).
+- Mapa: alto propio (1320×480 desde lg, 4:3 en mobile) porque el PNG lo corta; en mobile el diseño no lo muestra (decisión del usuario: embebido en los dos).
+- Datos de contacto del sitio en lugar de los del PNG, y label «Service» en lugar de «Select Option» (decisiones del usuario).
+- Fotos sustitutas: `h1-blog-img-3.webp` (1308px, a 1920 algo blanda bajo el velo; las caras salen más grandes que en el diseño) y `h1-about-img-1.webp` (la misma de la Home).
+
+**Verificado:**
+- 1920, 1440, 1280, 1024, 768, 480 y 390px sin desborde; formulario en dos columnas desde 768; tarjeta siempre dentro de la foto.
+- Medidas a 1920 contra el PNG: columnas 642/598 (645/600), filetes cada 91px (90), mensaje 128 (≈ 123), 40px del filete al botón (41), foto 598×647 (600×650), tarjeta 352×167 (350×160), mapa a 128px de la foto (≈ 120).
+- Teclado: Name → Email → Phone → Service → Message → botón → teléfono → email; foco petróleo en el formulario y ámbar en la tarjeta; el Tab entra al mapa (9 paradas de los controles de Google) y sale al newsletter del footer.
+- Formulario con FormSubmit interceptado (nunca se envió nada real): vacío → 5 errores con «Choose an option.» en el Select y foco en Name; envío correcto → `role="status"`, formulario limpio y label del Select de vuelta en reposo; falla de red → `role="alert"`, datos conservados y botón habilitado.
+- Rueda del mouse sobre el mapa con Lenis activo: la página sigue scrolleando, no se traba.
+- Contraste del texto de la tarjeta contra el píxel más claro del fondo: 7.77:1 a 1920/1440, 7.52 a 480 y 5.78 a 390.
+- axe sin violaciones en la página (1440 y 390, sin el iframe de Google) y en las fichas Contact, Quote Form y Button del kit; kit sin ids duplicados; consola limpia; enlaces internos sin 404.
+- `prefers-reduced-motion`: sin Lenis y sin transición del label.
+- `sync_shared.py --check` y sus 6 pruebas. Home, About y Service Details sin regresiones: axe igual que antes (en la Home, solo el falso positivo conocido de «01»/«03»), círculo blanco del «Schedule a call», subenlaces activos en ámbar, ningún `#site-footer` restante.
+- `anti-patrones.md`: sin hallazgos (tokens semánticos, sin valores sueltos, sin `!important`, jerarquía h1 → h2).
+
+**Pendiente del usuario / observaciones:**
+- El mapa carga Google (peticiones y cookies) al acercarse al viewport: si el sitio tiene que cumplir GDPR, hace falta consentimiento previo.
+- En las capturas `fullPage` el iframe del mapa sale gris (Chromium solo lo pinta dentro del viewport): no es un bug de la página.
+- Siguen los de las páginas anteriores: activación de FormSubmit en el primer envío real, lector de pantalla real, Rich Results Test, Lighthouse en el hosting final.
+
 ## Páginas siguientes
 Services, Portfolios, Case Study y Testimonials: se describen y planifican cuando lleguen sus PNG.

@@ -14,4 +14,8 @@
     <loc>https://esonix.example/service-details.html</loc>
     <lastmod>2026-10-03</lastmod>
   </url>
+  <url>
+    <loc>https://esonix.example/contact.html</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
 </urlset>

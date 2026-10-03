@@ -233,8 +233,11 @@ CSS = r'''/* organisms:start */
 .site-header--inner .site-nav__link {
   color: var(--color-text-inverse);
 }
+/* La página actual también en ámbar, como los subenlaces: sin esta regla, el petróleo de
+   .site-nav__link[aria-current] (misma especificidad, va después) quedaba oscuro sobre la píldora oscura. */
 .site-header--inner .site-nav__link:hover,
-.site-header--inner .site-nav__link[aria-expanded='true'] {
+.site-header--inner .site-nav__link[aria-expanded='true'],
+.site-header--inner .site-nav__link[aria-current='page'] {
   color: var(--color-text-highlight);
 }
 /* El círculo del botón amarillo va en blanco: --accent lo trae petróleo, pero el diseño del header lo

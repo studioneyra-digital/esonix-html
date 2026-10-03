@@ -22,7 +22,7 @@ Solo mobile. Grilla 2 × 4 con filetes: 7 logos (4 imágenes repetidas) y «Join
       <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
       <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
       <li class="logo-grid__cell">
-        <a href="#site-footer" class="link-arrow">
+        <a href="contact.html" class="link-arrow">
           Join with Us
           <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
         </a>

@@ -26,7 +26,7 @@ Encabezado + Card CTA a la izquierda (columnas de 525 y 720px a 1920) y Accordio
           <div class="card-cta__text">
             <h3 class="card-cta__title">Still have questions?</h3>
             <p>Our results-focused strategies are designed to deliver measurable business growth</p>
-            <a href="#site-footer" class="link-arrow link-arrow--highlight">
+            <a href="contact.html" class="link-arrow link-arrow--highlight">
               Contact Us
               <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
             </a>

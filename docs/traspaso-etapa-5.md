@@ -14,10 +14,19 @@ página están en `docs/plan-etapa-5.md`; se actualiza al cerrar cada página y 
 - `docs/plan-etapa-5-service-details.md` (plan ya ejecutado) se puede borrar.
 - Orden de páginas: About Us ✅ → Service Details ✅ → **Contact (sigue)**. Portfolios, Case Study, Testimonials y
   Services no tienen PNG; Contact sí: `Contact-Us-Desktop.png` (1920×1692) y `Contact-Us-Mobile.png` (480×1788).
-- **Contact:** spec escrita en `plan-etapa-5.md` §«Contact» y plan en `docs/plan-etapa-5-contact.md` (4 tareas),
-  sin commit, esperando el visto bueno del usuario. Decisiones del usuario: datos de contacto del sitio (no los del
-  PNG), mapa de Google Maps embebido, desplegable «Service». Al aprobar: commitear spec + plan y seguir la Tarea 1.
-  Usar el skill `frontend-design` y auditar contra `docs/anti-patrones.md`.
+- **Contact:** spec en `plan-etapa-5.md` §«Contact», plan en `docs/plan-etapa-5-contact.md` (4 tareas), ambos
+  aprobados y commiteados (`2dbc8bb`). **Tareas 1 y 2 hechas y commiteadas (`f03e555`):** `.btn--accent` con
+  círculo petróleo (átomo) y Quote Form `--plain` (molécula, dos columnas desde `md`, título externo vía
+  `aria-labelledby`, Select de filete). Verificado en el kit a 1440/390, sin regresión en `--outline`/About/
+  Service Details/header; `test_sync_shared.py` OK. **Tarea 3 hecha, SIN COMMIT:** `dist/contact.html`, CSS
+  `contact__*` en `sections:`, los 9 `#site-footer` de `index.html` → `contact.html` (propagados con
+  `sync_shared`), sitemap y ficha `contact` en `sections_kit.py`. Ajustes encontrados al construir: enlace activo de
+  primer nivel del header `--inner` quedaba petróleo sobre la píldora oscura (corregido en `organisms_css.py`, ámbar
+  como los subenlaces); la tarjeta no puede llevar `data-surface="inverse"` (pinta fondo opaco) y redefine solo el
+  token de foco; textarea de `--plain` a `--spacing-13`; mapa con `hl=en`. **Tarea 4 (QA) hecha:** reporte
+  completo en `plan-etapa-5.md` §Contact «Estado». **Falta solo la aprobación del usuario → commit de la página
+  (rutas explícitas) y publicación en `esonix-html` (CLAUDE.md §10).** `docs/plan-etapa-5-service-details.md`
+  ya está borrado (`git rm`, entra en ese commit).
 
 ## Decisiones tomadas el 2026-10-03
 
@@ -99,6 +108,11 @@ enlaces «Service Details» del menú en `index.html`.
   heredoc.
 - **Hijos de una grilla que se estiran:** si dos ítems de la misma fila tienen distinto contenido, el más corto
   reparte el sobrante entre sus propias filas y su texto se desalinea del vecino. `align-content: start`.
+- **El sandbox de `run-code` no tiene el global `URL`:** un predicado de `page.route` con `new URL(u)` tira
+  `ReferenceError` en cada petición, y la ruta rota queda registrada en la sesión y rompe todo lo que sigue
+  (cerrar la sesión). El predicado ya recibe un objeto URL: `u => u.hostname === 'formsubmit.co'`. Para
+  FormSubmit también sirve el glob `'https://formsubmit.co/**'` (no lleva `?v=`). Un iframe de Google Maps sale
+  gris en capturas `fullPage`: capturarlo con `locator.screenshot()`.
 - **`page.accessibility` no existe en playwright-cli:** para roles y landmarks, usar axe (`axe.run`) y comparar
   A/B quitando el nodo del DOM, en vez de `accessibility.snapshot`.
 - Playwright trata `aria-disabled` como deshabilitado (usar `{ force: true }`); `page.route` con glob no

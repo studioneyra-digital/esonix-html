@@ -34,7 +34,7 @@ Section Head `--center`, Switch mensual/anual y tres Card Pricing (3 columnas de
           </div>
         </header>
         <p class="card-pricing__price"><span class="card-pricing__amount" data-price-monthly="$39.9" data-price-annual="$27.9">$39.9</span> <span>/ Month</span></p>
-        <a href="#site-footer" class="btn btn--block">
+        <a href="contact.html" class="btn btn--block">
           Get Started<span class="visually-hidden"> with the Starter Plan</span>
           <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
         </a>
@@ -54,7 +54,7 @@ Section Head `--center`, Switch mensual/anual y tres Card Pricing (3 columnas de
           </div>
         </header>
         <p class="card-pricing__price"><span class="card-pricing__amount" data-price-monthly="$49.9" data-price-annual="$34.9">$49.9</span> <span>/ Month</span></p>
-        <a href="#site-footer" class="btn btn--block btn--accent">
+        <a href="contact.html" class="btn btn--block btn--accent">
           Get Started<span class="visually-hidden"> with the Enterprise Plan</span>
           <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
         </a>
@@ -74,7 +74,7 @@ Section Head `--center`, Switch mensual/anual y tres Card Pricing (3 columnas de
           </div>
         </header>
         <p class="card-pricing__price"><span class="card-pricing__amount" data-price-monthly="$59.9" data-price-annual="$41.9">$59.9</span> <span>/ Month</span></p>
-        <a href="#site-footer" class="btn btn--block">
+        <a href="contact.html" class="btn btn--block">
           Get Started<span class="visually-hidden"> with Premium Features</span>
           <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
         </a>

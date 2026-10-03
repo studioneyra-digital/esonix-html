@@ -813,6 +813,9 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .quote-form--plain .quote-form__submit {
   margin-block-start: var(--spacing-7); /* + row-gap = 40px del filete al botón, como el diseño */
 }
+.quote-form--plain textarea.input {
+  min-block-size: var(--spacing-13); /* el mensaje del diseño mide ≈ 123px (96 en el Textarea base) */
+}
 @media (min-width: 48rem) {
   .quote-form--plain {
     padding: 0;

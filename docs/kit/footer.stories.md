@@ -1,6 +1,6 @@
 # Footer
 
-**Nivel:** Section · 19  
+**Nivel:** Section · 20  
 **Dónde:** markup en `dist/index.html` (entre `<!-- section:footer -->`), CSS en `dist/assets/css/main.css` (bloque `sections:`) · showcase en `dist/kit/index.html#footer`
 
 ## Descripción

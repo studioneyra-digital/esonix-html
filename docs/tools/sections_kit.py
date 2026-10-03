@@ -257,7 +257,8 @@ S.append(dict(id='page-hero', title='Page Hero', page='about-us.html',
   a11y_md='Único `<h1>`. Breadcrumb: `<nav aria-label="Breadcrumb">` + `<ol>`, actual con `aria-current="page"`, separador sin texto. Foto decorativa precargada (LCP). `data-surface="inverse"`: foco claro.',
   decisions=['`--text-h1` (48/36px) en lugar de los ≈ 62/41px que mide el diseño: decisión del usuario, sin token nuevo.',
              'Reutilizable en las 7 páginas interiores: cambia la foto, el último ítem del breadcrumb y el h1.',
-             'La foto es `about-page-header-bg.webp` (1920×750, el recorte exacto del diseño); en mobile se encuadra con `object-position`.']))
+             'La foto es `about-page-header-bg.webp` (1920×750, el recorte exacto del diseño); en mobile se encuadra con `object-position`.',
+             'Service Details usa `h1-process-img-2.webp` y Contact `h1-blog-img-3.webp` (fotos sustitutas de la biblioteca, 1000 y 1308px de ancho: a 1920 se ven algo blandas bajo el velo).']))
 
 S.append(dict(id='about-intro', title='About Intro', page='about-us.html',
   desc='«What We Do» de About Us. Desde lg, dos columnas medidas en el diseño: a la izquierda eyebrow, h2, una lista con checks y «More about us»; a la derecha la historia: foto con marco (<code>photo-frame</code>, 5:4), «Who we are» con dos párrafos, un filete y la cita con comillas y firma. En mobile, apilado en el mismo orden.',
@@ -343,6 +344,26 @@ S.append(dict(id='service-details', title='Service Details', page='service-detai
              'El h2 del artículo usa --text-h2 (36px) contra 32 del diseño: con --text-h3 quedaba igual que los h3 de 28.',
              'El aside es un `<div>`, no un `<aside>`: dentro de `<main>` y de la region de la Section, un landmark complementary queda anidado (axe: landmark-complementary-is-top-level). La `<nav>` y el `<form>` que contiene ya son landmarks con nombre propio.',
              'El aside no es sticky: el diseño no lo muestra y es más alto que el viewport.']))
+
+S.append(dict(id='contact', title='Contact', page='contact.html',
+  desc='Página de contacto: a la izquierda el encabezado (Eyebrow + <code>h2.section-title</code>) y el <a href="#quote-form">Quote Form</a> <code>--plain</code>; a la derecha una foto con la tarjeta translúcida de contacto (teléfono, email y ciudad); debajo, a todo el contenedor, el mapa de Google Maps. Desde lg, 43fr | 40fr (645 y 600 px a 1920); en mobile, apilado.',
+  desc_md='Contacto: encabezado + Quote Form --plain | foto con tarjeta translúcida de contacto; mapa de Google Maps debajo. 43fr | 40fr desde lg; mobile apilado.',
+  mods='section',
+  rows=[('.contact__grid', 'Una columna en mobile (gap 48px); desde lg 43fr | 40fr con 80px de separación'),
+        ('.contact__intro / __head', 'Columna del formulario; __head apila el Eyebrow y el h2'),
+        ('h2.section-title.contact__title', 'Título de la Section y nombre del formulario (<code>aria-labelledby</code>); corta en 32rem'),
+        ('.contact__media', 'Foto 12:13 con radio --radius-md; contiene la tarjeta'),
+        ('address.contact__card', 'Tarjeta translúcida abajo a la izquierda: velo y borde de Card Hero + <code>backdrop-filter</code>; 22rem desde lg, 19rem debajo'),
+        ('ul.contact__list[role="list"]', 'Teléfono (<code>tel:</code>), email (<code>mailto:</code>) y ciudad (texto)'),
+        ('iframe.contact__map', 'Google Maps embebido, <code>loading="lazy"</code>, 11:4 desde lg y 4:3 debajo; fondo gris mientras carga')],
+  tokens=['--text-h1 (section-title)', '--color-overlay / -overlay-light', '--color-text-inverse', '--color-border-focus-inverse', '--color-background-subtle', '--blur-backdrop', '--radius-sm / -md', '--spacing-3 / -5 / -6 / -7 / -9 / -10 / -11 / -13', 'Eyebrow, Field, Select, Button (átomos)', 'Quote Form (molécula)'],
+  a11y='El h2 nombra la región de la Section y el formulario. La tarjeta es un <code>&lt;address&gt;</code> con una lista; sus enlaces tienen el anillo de foco claro (la tarjeta redefine <code>--color-border-focus</code>, sin <code>data-surface</code>). El mapa es un <code>&lt;iframe&gt;</code> con <code>title</code>; sus controles son de Google y el Tab entra y sale. La foto lleva <code>alt</code>.',
+  a11y_md='h2 nombra región y formulario; `<address>` con lista y foco claro; iframe del mapa con `title`; foto con `alt`.',
+  decisions=['Datos de contacto del sitio (+880 (123) 456 789, support@esonix.com, Seattle, WA, USA), no los del PNG: decisión del usuario, coherente con header, footer y JSON-LD. Sin calle: el sitio no tiene una.',
+             'Mapa de Google Maps embebido (decisión del usuario): el PNG lo deja asomar sin mostrar su alto. Carga Google (peticiones y cookies) al acercarse al viewport; con GDPR haría falta consentimiento previo.',
+             'La tarjeta no lleva `data-surface="inverse"`: la superficie pinta su fondo opaco con más especificidad y taparía el velo. Solo redefine el token de foco, como la píldora del header `--inner`.',
+             'La tarjeta es parte de la Section, no una molécula: tiene un solo caso de uso.',
+             'Foto lateral `h1-about-img-1.webp` (sustituta de la biblioteca; también la usa la Home).']))
 
 S.append(dict(id='footer', title='Footer',
   desc='El <a href="#site-footer">Site Footer</a> con el <a href="#marquee">Marquee</a> arriba y la foto <code>h1-footer-bg</code> muy desenfocada bajo un velo denso detrás de los dos. Está fuera de <code>&lt;main&gt;</code>.',

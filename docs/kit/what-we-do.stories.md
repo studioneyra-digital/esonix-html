@@ -43,7 +43,7 @@ Eyebrow + filete; grilla de áreas. Desktop: 3M+ y foto grande a la izquierda; t
             <progress class="progress__bar" id="progress-strategic" value="85" max="100">85%</progress>
           </div>
         </div>
-        <a href="#site-footer" class="btn">
+        <a href="contact.html" class="btn">
           Get Started
           <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
         </a>

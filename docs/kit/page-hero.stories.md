@@ -55,3 +55,4 @@ Cabecera de páginas interiores: foto con velo, breadcrumb en píldora y `<h1>` 
 - `--text-h1` (48/36px) en lugar de los ≈ 62/41px que mide el diseño: decisión del usuario, sin token nuevo.
 - Reutilizable en las 7 páginas interiores: cambia la foto, el último ítem del breadcrumb y el h1.
 - La foto es `about-page-header-bg.webp` (1920×750, el recorte exacto del diseño); en mobile se encuadra con `object-position`.
+- Service Details usa `h1-process-img-2.webp` y Contact `h1-blog-img-3.webp` (fotos sustitutas de la biblioteca, 1000 y 1308px de ancho: a 1920 se ven algo blandas bajo el velo).
