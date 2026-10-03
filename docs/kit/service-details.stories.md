@@ -13,14 +13,14 @@ Plantilla de servicio: artículo (intro, foto + Check List, Document Required, K
 <section class="section service-details" aria-labelledby="service-details-title">
   <div class="container service-details__grid">
     <article class="service-details__article">
-      <div class="service-details__intro">
+      <div class="service-details__intro" data-reveal>
         <h2 class="service-details__title" id="service-details-title">Explore our Service Lists</h2>
         <p>We provide comprehensive business consulting services designed to help organizations overcome challenges, unlock growth opportunities, and achieve long-term success. Our expert consultants analyze your current operations, identify gaps, and develop tailored strategies that align with your vision and market demands. From planning to execution, we ensure measurable results that drive sustainable growth. Our consulting services focus on improving operational efficiency, strengthening..</p>
       </div>
 
       <div class="service-details__media">
-        <img class="service-details__photo" src="assets/img/h1-process-img-3.webp" alt="Consultants shaking hands with a client across a meeting table" width="1000" height="580" loading="lazy">
-        <div class="service-details__block">
+        <img class="service-details__photo" src="assets/img/h1-process-img-3.webp" alt="Consultants shaking hands with a client across a meeting table" width="1000" height="580" loading="lazy" data-reveal="mask">
+        <div class="service-details__block" data-reveal>
           <h3 class="service-details__subtitle service-details__subtitle--sm">Mistakes to avoid to the dummy</h3>
           <ul class="check-list" role="list">
             <li><span class="icon icon--circle-check" aria-hidden="true"></span>Market research and competitive analysis</li>
@@ -31,7 +31,7 @@ Plantilla de servicio: artículo (intro, foto + Check List, Document Required, K
         </div>
       </div>
 
-      <div class="service-details__block">
+      <div class="service-details__block" data-reveal>
         <h3 class="service-details__subtitle">Document Required</h3>
         <ul class="service-details__docs" role="list">
           <li class="service-details__doc">
@@ -57,7 +57,7 @@ Plantilla de servicio: artículo (intro, foto + Check List, Document Required, K
         </ul>
       </div>
 
-      <div class="service-details__block">
+      <div class="service-details__block" data-reveal>
         <h3 class="service-details__subtitle">Key Features</h3>
         <ul class="check-list" role="list">
           <li><span class="icon icon--circle-check" aria-hidden="true"></span>Our business consulting services are built to help organizations adapt, grow</li>
@@ -67,14 +67,14 @@ Plantilla de servicio: artículo (intro, foto + Check List, Document Required, K
         </ul>
       </div>
 
-      <div class="service-details__video">
+      <div class="service-details__video" data-reveal="mask">
         <img src="assets/img/download.webp" alt="" width="735" height="720" loading="lazy">
         <button type="button" class="icon-btn icon-btn--glass icon-btn--lg service-details__play" aria-label="Play video: Business Optimization overview" aria-haspopup="dialog" data-video-id="RqueNBILfVU" data-video-title="Business Optimization overview"><span class="icon icon--play" aria-hidden="true"></span></button>
       </div>
 
-      <p>Our financial and operational consulting services empower businesses to optimize resources, manage risks, and improve cash flow. We provide detailed market analysis, budgeting frameworks, and performance tracking systems that support informed decision-making &amp; long-term stability. We guide companies through digital transformation by integrating modern technologies, automation tools,</p>
+      <p data-reveal>Our financial and operational consulting services empower businesses to optimize resources, manage risks, and improve cash flow. We provide detailed market analysis, budgeting frameworks, and performance tracking systems that support informed decision-making &amp; long-term stability. We guide companies through digital transformation by integrating modern technologies, automation tools,</p>
 
-      <div class="accordion accordion--framed">
+      <div class="accordion accordion--framed" data-reveal>
         <details class="accordion-item" name="service-faq" open>
           <summary class="accordion-item__summary">
             <span class="accordion-item__question">1. What industries do you specialize in?</span>
@@ -120,7 +120,7 @@ Plantilla de servicio: artículo (intro, foto + Check List, Document Required, K
          region de la Section (axe: landmark-complementary-is-top-level). Lo que importa ya son landmarks
          con nombre propio: la <nav> «Exclusive Services» y el <form> «Get a Quote». -->
     <div class="service-details__aside">
-      <nav class="service-nav" aria-labelledby="service-nav-title">
+      <nav class="service-nav" aria-labelledby="service-nav-title" data-reveal>
         <h2 class="service-nav__title" id="service-nav-title">Exclusive Services</h2>
         <ul class="service-nav__list" role="list">
           <li><a class="service-nav__link" href="#">Strategic Planning<span class="service-nav__icon"><span class="icon icon--arrow-right" aria-hidden="true"></span></span></a></li>
@@ -131,7 +131,7 @@ Plantilla de servicio: artículo (intro, foto + Check List, Document Required, K
         </ul>
       </nav>
 
-      <form class="quote-form quote-form--outline" id="service-quote-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="service-quote-title">
+      <form class="quote-form quote-form--outline" id="service-quote-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="service-quote-title" data-reveal>
         <h2 class="quote-form__title" id="service-quote-title">Get a Quote</h2>
         <input type="hidden" name="_subject" value="New quote request (Business Optimization) from esonix.example">
         <div hidden><label for="service-quote-honey">Leave this field empty</label><input type="text" id="service-quote-honey" name="_honey" tabindex="-1" autocomplete="off"></div>

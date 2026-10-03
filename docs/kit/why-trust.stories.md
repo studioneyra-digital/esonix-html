@@ -12,7 +12,7 @@ Quote Form montado sobre Feedback + eyebrow, h2, dos Progress (una `--accent`) y
 ```html
 <section class="section why-trust" aria-labelledby="why-trust-title">
   <div class="container why-trust__grid">
-    <form class="quote-form why-trust__form" id="quote-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="quote-form-title">
+    <form class="quote-form why-trust__form" id="quote-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="quote-form-title" data-reveal>
       <h2 class="quote-form__title" id="quote-form-title">Get a free Quote</h2>
       <input type="hidden" name="_subject" value="New quote request from esonix.example">
       <div hidden><label for="quote-honey">Leave this field empty</label><input type="text" id="quote-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
@@ -45,18 +45,18 @@ Quote Form montado sobre Feedback + eyebrow, h2, dos Progress (una `--accent`) y
         <p class="quote-form__alert" role="alert" data-form-alert></p>
       </div>
     </form>
-    <div class="why-trust__intro">
+    <div class="why-trust__intro" data-reveal>
       <p class="eyebrow">Why Choose Us</p>
       <h2 class="section-title" id="why-trust-title">Why Businesses Trust Our Consulting</h2>
       <div class="why-trust__bars">
-        <div class="progress progress--accent" style="--progress: 88">
+        <div class="progress progress--accent" style="--progress: 88" data-count>
           <div class="progress__head">
             <label for="progress-consulting">Consulting</label>
             <span aria-hidden="true">88%</span>
           </div>
           <progress class="progress__bar" id="progress-consulting" value="88" max="100">88%</progress>
         </div>
-        <div class="progress" style="--progress: 75">
+        <div class="progress" style="--progress: 75" data-count>
           <div class="progress__head">
             <label for="progress-marketing">Marketing</label>
             <span aria-hidden="true">75%</span>

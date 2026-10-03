@@ -608,6 +608,24 @@ pre {
 .kit-motion.is-active .kit-motion__box {
   transform: translateX(var(--kit-motion-travel));
 }
+/* Demo de data-reveal: foto enmarcada + columna de texto, contador y barra */
+.kit-reveal {
+  display: grid;
+  gap: var(--spacing-7);
+  align-items: center;
+}
+@media (min-width: 48rem) {
+  .kit-reveal {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  }
+}
+.kit-reveal .photo-frame img {
+  aspect-ratio: 4 / 3;
+}
+.kit-reveal__stack {
+  display: grid;
+  gap: var(--spacing-5);
+}
 .kit-indicator {
   display: inline-flex;
   padding: var(--spacing-2) var(--spacing-4);

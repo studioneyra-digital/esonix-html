@@ -13,14 +13,14 @@ Section Head `--split` sin acciones (texto contra el borde derecho) y tres Card 
 <section class="section team" id="team" aria-labelledby="team-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div class="section-head__main">
+      <div class="section-head__main" data-reveal>
         <p class="eyebrow">Consulting Experts</p>
         <h2 class="section-title section-head__title" id="team-title">Meet Our Expert Team</h2>
       </div>
-      <p class="section-head__text">We are passionate about supporting businesses with expert advice, smart strategies.</p>
+      <p class="section-head__text" data-reveal>We are passionate about supporting businesses with expert advice, smart strategies.</p>
     </div>
     <div class="team__grid">
-      <article class="card-photo card-team" data-surface="inverse">
+      <article class="card-photo card-team" data-surface="inverse" data-reveal>
         <img class="card-photo__img" src="assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
         <div class="card-team__body">
           <div class="card-team__top">
@@ -30,7 +30,7 @@ Section Head `--split` sin acciones (texto contra el borde derecho) y tres Card 
           <h3 class="card-team__name">Olivia Bennet</h3>
         </div>
       </article>
-      <article class="card-photo card-team card-team--elevated" data-surface="inverse">
+      <article class="card-photo card-team card-team--elevated" data-surface="inverse" data-reveal>
         <img class="card-photo__img" src="assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
         <div class="card-team__body">
           <div class="card-team__top">
@@ -40,7 +40,7 @@ Section Head `--split` sin acciones (texto contra el borde derecho) y tres Card 
           <h3 class="card-team__name">Emma Wilson</h3>
         </div>
       </article>
-      <article class="card-photo card-team" data-surface="inverse">
+      <article class="card-photo card-team" data-surface="inverse" data-reveal>
         <img class="card-photo__img" src="assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
         <div class="card-team__body">
           <div class="card-team__top">

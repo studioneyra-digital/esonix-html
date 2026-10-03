@@ -16,12 +16,12 @@ Bloque oscuro con `.section-bg`, encabezado centrado y Carousel `--fade` de 3 ci
   </div>
   <div class="container">
     <div class="section-head section-head--center">
-      <div class="section-head__main">
+      <div class="section-head__main" data-reveal>
         <p class="eyebrow eyebrow--center eyebrow--inverse">Client Feedback</p>
         <h2 class="section-title section-head__title" id="feedback-title">Client Stories That Speak for Themselves</h2>
       </div>
     </div>
-    <div class="carousel carousel--fade" id="carousel-quotes" data-carousel data-carousel-fade role="region" aria-roledescription="carousel" aria-label="Client quotes">
+    <div class="carousel carousel--fade" id="carousel-quotes" data-carousel data-carousel-fade role="region" aria-roledescription="carousel" aria-label="Client quotes" data-reveal>
       <div class="swiper carousel__viewport">
         <div class="swiper-wrapper">
           <div class="swiper-slide carousel__slide">

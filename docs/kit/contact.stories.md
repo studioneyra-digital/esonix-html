@@ -14,11 +14,11 @@ Contacto: encabezado + Quote Form --plain | foto con tarjeta translúcida de con
   <div class="container">
     <div class="contact__grid">
       <div class="contact__intro">
-        <div class="contact__head">
+        <div class="contact__head" data-reveal>
           <p class="eyebrow">Get In Touch</p>
           <h2 class="section-title contact__title" id="contact-title">Let’s Build Something Great Together</h2>
         </div>
-        <form class="quote-form quote-form--plain" id="contact-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="contact-title">
+        <form class="quote-form quote-form--plain" id="contact-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="contact-title" data-reveal>
           <input type="hidden" name="_subject" value="New contact message from esonix.example">
           <div hidden><label for="contact-honey">Leave this field empty</label><input type="text" id="contact-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
           <div class="field">
@@ -63,7 +63,7 @@ Contacto: encabezado + Quote Form --plain | foto con tarjeta translúcida de con
           </div>
         </form>
       </div>
-      <div class="contact__media">
+      <div class="contact__media" data-reveal="mask">
         <img src="assets/img/h1-about-img-1.webp" alt="Smiling Esonix consultants talking in the office" width="735" height="720" loading="lazy">
         <address class="contact__card">
           <ul class="contact__list" role="list">
@@ -74,7 +74,7 @@ Contacto: encabezado + Quote Form --plain | foto con tarjeta translúcida de con
         </address>
       </div>
     </div>
-    <iframe class="contact__map" src="https://maps.google.com/maps?q=Seattle%2C%20WA&amp;z=12&amp;hl=en&amp;output=embed" title="Esonix office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe class="contact__map" src="https://maps.google.com/maps?q=Seattle%2C%20WA&amp;z=12&amp;hl=en&amp;output=embed" title="Esonix office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-reveal></iframe>
   </div>
 </section>
 ```

@@ -12,30 +12,30 @@ Eyebrow + filete; grilla de áreas. Desktop: 3M+ y foto grande a la izquierda; t
 ```html
 <section class="section what-we-do" id="what-we-do" aria-labelledby="what-we-do-title">
   <div class="container">
-    <div class="what-we-do__head">
+    <div class="what-we-do__head" data-reveal>
       <p class="eyebrow">What We Do</p>
       <hr class="divider">
     </div>
     <div class="what-we-do__grid">
-      <h2 class="section-title what-we-do__title" id="what-we-do-title">Driving business growth through smart strategy and expert guidance</h2>
-      <p class="what-we-do__text">We believe every business has the potential to grow with the right strategy and support. By understanding your goals, challenges, and vision, we create customized consulting solutions</p>
-      <div class="what-we-do__bars">
+      <h2 class="section-title what-we-do__title" id="what-we-do-title" data-reveal>Driving business growth through smart strategy and expert guidance</h2>
+      <p class="what-we-do__text" data-reveal>We believe every business has the potential to grow with the right strategy and support. By understanding your goals, challenges, and vision, we create customized consulting solutions</p>
+      <div class="what-we-do__bars" data-reveal>
         <div class="what-we-do__progress">
-          <div class="progress" style="--progress: 90">
+          <div class="progress" style="--progress: 90" data-count>
             <div class="progress__head">
               <label for="progress-operational">Operational assessment</label>
               <span aria-hidden="true">90%</span>
             </div>
             <progress class="progress__bar" id="progress-operational" value="90" max="100">90%</progress>
           </div>
-          <div class="progress" style="--progress: 76">
+          <div class="progress" style="--progress: 76" data-count>
             <div class="progress__head">
               <label for="progress-consultation">Consultation &amp; analysis</label>
               <span aria-hidden="true">76%</span>
             </div>
             <progress class="progress__bar" id="progress-consultation" value="76" max="100">76%</progress>
           </div>
-          <div class="progress" style="--progress: 85">
+          <div class="progress" style="--progress: 85" data-count>
             <div class="progress__head">
               <label for="progress-strategic">Strategic interpretation</label>
               <span aria-hidden="true">85%</span>
@@ -48,9 +48,9 @@ Eyebrow + filete; grilla de áreas. Desktop: 3M+ y foto grande a la izquierda; t
           <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
         </a>
       </div>
-      <div class="what-we-do__stat">
+      <div class="what-we-do__stat" data-reveal>
         <div class="stat">
-          <p class="stat__value">3M<span class="stat__suffix">+</span></p>
+          <p class="stat__value" data-count>3M<span class="stat__suffix">+</span></p>
           <p>People Using Our Platform</p>
         </div>
         <div class="avatar-stack">
@@ -60,10 +60,10 @@ Eyebrow + filete; grilla de áreas. Desktop: 3M+ y foto grande a la izquierda; t
           <span class="avatar-stack__more"><span class="icon icon--plus" aria-hidden="true"></span></span>
         </div>
       </div>
-      <div class="photo-frame what-we-do__img1">
+      <div class="photo-frame what-we-do__img1" data-reveal="mask">
         <img src="assets/img/h1-about-img-1.webp" alt="Three consultants smiling while they review a plan together" width="735" height="720" loading="lazy">
       </div>
-      <div class="photo-frame what-we-do__img2">
+      <div class="photo-frame what-we-do__img2" data-reveal="mask">
         <img src="assets/img/h1-about-img-2.webp" alt="Two colleagues reviewing results on a tablet" width="420" height="480" loading="lazy">
       </div>
     </div>

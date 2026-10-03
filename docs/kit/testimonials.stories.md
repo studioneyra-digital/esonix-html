@@ -16,14 +16,14 @@ Bloque oscuro (foto desenfocada + velo), encabezado centrado y Carousel con dots
   </div>
   <div class="container">
     <div class="section-head section-head--center">
-      <div class="section-head__main">
+      <div class="section-head__main" data-reveal>
         <p class="eyebrow eyebrow--center eyebrow--inverse">Client Feedback</p>
         <h2 class="section-title section-head__title" id="testimonials-title">Client Stories That Speak for Themselves</h2>
       </div>
     </div>
   </div>
   <div class="container-wide">
-    <div class="carousel" id="carousel-testimonials" data-carousel data-carousel-start="2" role="region" aria-roledescription="carousel" aria-label="Client stories">
+    <div class="carousel" id="carousel-testimonials" data-carousel data-carousel-start="2" role="region" aria-roledescription="carousel" aria-label="Client stories" data-reveal>
       <div class="swiper carousel__viewport">
         <div class="swiper-wrapper">
           <div class="swiper-slide carousel__slide">

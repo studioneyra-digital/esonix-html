@@ -15,13 +15,13 @@ Cabecera de páginas interiores: foto con velo, breadcrumb en píldora y `<h1>` 
     <img src="assets/img/about-page-header-bg.webp" alt="" width="1920" height="750" fetchpriority="high">
   </div>
   <div class="container page-hero__content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
+    <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
       <ol class="breadcrumb__list">
         <li><a href="./">Home</a></li>
         <li><span aria-current="page">About Us</span></li>
       </ol>
     </nav>
-    <h1 class="page-hero__title" id="page-title">Consulting That Delivers Measurable Results</h1>
+    <h1 class="page-hero__title" id="page-title" data-reveal>Consulting That Delivers Measurable Results</h1>
   </div>
 </section>
 ```

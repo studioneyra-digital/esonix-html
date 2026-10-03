@@ -13,19 +13,19 @@ Section Head `--split` (desde xl) con las flechas + Carousel de Card Service en 
 <section class="section services" id="services" aria-labelledby="services-title">
   <div class="container">
     <div class="section-head section-head--split">
-      <div class="section-head__main">
+      <div class="section-head__main" data-reveal>
         <p class="eyebrow">Exclusive Services</p>
         <h2 class="section-title section-head__title" id="services-title">Innovative Solutions for Business Success</h2>
       </div>
-      <p class="section-head__text">We believe successful businesses are built through strong planning, efficient management, &amp; innovative decision-making.</p>
-      <div class="carousel__arrows section-head__actions">
+      <p class="section-head__text" data-reveal>We believe successful businesses are built through strong planning, efficient management, &amp; innovative decision-making.</p>
+      <div class="carousel__arrows section-head__actions" data-reveal>
         <button type="button" class="icon-btn" data-carousel-prev aria-controls="carousel-services" aria-label="Previous service"><span class="icon icon--arrow-left" aria-hidden="true"></span></button>
         <button type="button" class="icon-btn" data-carousel-next aria-controls="carousel-services" aria-label="Next service"><span class="icon icon--arrow-right" aria-hidden="true"></span></button>
       </div>
     </div>
   </div>
   <div class="container-wide">
-    <div class="carousel" id="carousel-services" data-carousel data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1" role="region" aria-roledescription="carousel" aria-label="Services">
+    <div class="carousel" id="carousel-services" data-carousel data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1" role="region" aria-roledescription="carousel" aria-label="Services" data-reveal>
       <div class="swiper carousel__viewport">
         <div class="swiper-wrapper">
           <div class="swiper-slide carousel__slide">

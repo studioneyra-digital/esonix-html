@@ -5,6 +5,17 @@
   --ease-base: 250ms ease; /* transición de componente */
   --ease-slow: 420ms cubic-bezier(0.16, 1, 0.3, 1); /* reveal grande */
   --duration-spin: 900ms; /* solo duración: animaciones infinitas/lineales (spinners) */
+
+  /* Revelado al entrar en el viewport (data-reveal) */
+  --ease-reveal: 800ms cubic-bezier(0.16, 1, 0.3, 1); /* entrada de contenido: sube y aparece */
+  --ease-reveal-mask: 1100ms cubic-bezier(0.25, 1, 0.5, 1); /* máscara que descubre una foto */
+  --reveal-distance: var(--spacing-7); /* recorrido vertical de la entrada */
+  --reveal-stagger: 90ms; /* desfase entre elementos que entran juntos */
+  --duration-count: 1600ms; /* solo duración: contadores (data-count), la curva va en main.js */
+
+  /* Transición entre páginas (@view-transition) */
+  --ease-page-out: 200ms cubic-bezier(0.4, 0, 1, 1); /* sale la página actual */
+  --ease-page-in: 450ms cubic-bezier(0.16, 1, 0.3, 1); /* llega la nueva */
 }
 
 /* prefers-reduced-motion resuelto a nivel token: toda animación que use estos tokens
@@ -15,5 +26,12 @@
     --ease-base: 0ms ease;
     --ease-slow: 0ms ease;
     --duration-spin: 0ms;
+    --ease-reveal: 0ms ease;
+    --ease-reveal-mask: 0ms ease;
+    --reveal-distance: 0;
+    --reveal-stagger: 0ms;
+    --duration-count: 0ms;
+    --ease-page-out: 0ms ease;
+    --ease-page-in: 0ms ease;
   }
 }

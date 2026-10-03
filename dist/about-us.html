@@ -50,6 +50,8 @@
   <link rel="preload" href="assets/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/about-page-header-bg.webp" as="image" fetchpriority="high">
   <!-- shared:assets -->
+  <!-- Motion (docs/interaction-motion.md): has-reveal antes del primer pintado; si main.js no cargó, se quita y todo queda visible -->
+  <script>document.documentElement.classList.add('has-reveal');window.addEventListener('load',function(){if(!window.Esonix){document.documentElement.classList.remove('has-reveal');}});</script>
   <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="assets/css/tokens/color.css">
@@ -156,38 +158,38 @@
         <img src="assets/img/about-page-header-bg.webp" alt="" width="1920" height="750" fetchpriority="high">
       </div>
       <div class="container page-hero__content">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
+        <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal>
           <ol class="breadcrumb__list">
             <li><a href="./">Home</a></li>
             <li><span aria-current="page">About Us</span></li>
           </ol>
         </nav>
-        <h1 class="page-hero__title" id="page-title">Consulting That Delivers Measurable Results</h1>
+        <h1 class="page-hero__title" id="page-title" data-reveal>Consulting That Delivers Measurable Results</h1>
       </div>
     </section>
     <!-- /section:page-hero -->
 
     <section class="section stats stats--strip" aria-labelledby="facts-title">
       <div class="container stats__grid">
-        <h2 class="stats__title" id="facts-title">Facts prove the outcome</h2>
+        <h2 class="stats__title" id="facts-title" data-reveal>Facts prove the outcome</h2>
         <ul class="stats__list" role="list">
-          <li class="stats__item">
+          <li class="stats__item" data-reveal>
             <div class="stat stat--center">
-              <p class="stat__value">98%</p>
+              <p class="stat__value" data-count>98%</p>
               <p>Excellence in Customer Satisfaction</p>
             </div>
             <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span></span><span></span></span>
           </li>
-          <li class="stats__item">
+          <li class="stats__item" data-reveal>
             <div class="stat stat--center">
-              <p class="stat__value">12K<span class="stat__suffix">+</span></p>
+              <p class="stat__value" data-count>12K<span class="stat__suffix">+</span></p>
               <p>Projects Successfully Finished</p>
             </div>
             <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span class="is-on"></span><span></span></span>
           </li>
-          <li class="stats__item">
+          <li class="stats__item" data-reveal>
             <div class="stat stat--center">
-              <p class="stat__value">30<span class="stat__suffix">+</span></p>
+              <p class="stat__value" data-count>30<span class="stat__suffix">+</span></p>
               <p>Professional Experience &amp; Growth</p>
             </div>
             <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span class="is-on"></span><span class="is-on"></span></span>
@@ -199,7 +201,7 @@
     <!-- section:about-intro -->
     <section class="section about-intro" aria-labelledby="about-intro-title">
       <div class="container about-intro__grid">
-        <div class="about-intro__lead">
+        <div class="about-intro__lead" data-reveal>
           <p class="eyebrow">What We Do</p>
           <h2 class="section-title" id="about-intro-title">Unlocking Business Potential with Tailored Solutions</h2>
           <ul class="about-intro__list" role="list">
@@ -213,16 +215,16 @@
           </a>
         </div>
         <div class="about-intro__story">
-          <div class="photo-frame about-intro__photo">
+          <div class="photo-frame about-intro__photo" data-reveal="mask">
             <img src="assets/img/h3-about-img.webp" alt="A consultant smiling as she shakes hands with a client" width="1200" height="1200" loading="lazy">
           </div>
-          <div class="about-intro__text">
+          <div class="about-intro__text" data-reveal>
             <h3 class="about-intro__subtitle">Who we are</h3>
             <p>Our mission is to help businesses make smarter decisions &amp; achieve lasting success. By combining industry expertise, strategic insight</p>
             <p>With years of industry experience, we empower businesses to overcome challenges and unlock new opportunities. From business strategy and market analysis to operational improvement</p>
           </div>
           <hr class="divider">
-          <figure class="about-intro__quote">
+          <figure class="about-intro__quote" data-reveal>
             <blockquote>
               <p><strong>From Vision to Success</strong> — Providing Expert Business Consulting that Delivers Real Impact. By combining industry expertise, data-driven insights, &amp; a client-focused approach</p>
             </blockquote>
@@ -237,13 +239,13 @@
     <section class="section team-profiles" id="team-profiles" aria-labelledby="team-profiles-title">
       <div class="container">
         <div class="section-head section-head--center">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow eyebrow--center">Consulting Experts</p>
             <h2 class="section-title section-head__title" id="team-profiles-title">Meet Our Expert Team</h2>
           </div>
         </div>
         <div class="team-profiles__grid">
-          <article class="card-team card-team--profile">
+          <article class="card-team card-team--profile" data-reveal>
             <img class="card-team__photo" src="assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
             <div class="card-team__info">
               <h3 class="card-team__name">Olivia Bennet</h3>
@@ -256,7 +258,7 @@
               </ul>
             </div>
           </article>
-          <article class="card-team card-team--profile card-team--reverse">
+          <article class="card-team card-team--profile card-team--reverse" data-reveal>
             <img class="card-team__photo" src="assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
             <div class="card-team__info">
               <h3 class="card-team__name">Emma Wilson</h3>
@@ -269,7 +271,7 @@
               </ul>
             </div>
           </article>
-          <article class="card-team card-team--profile">
+          <article class="card-team card-team--profile" data-reveal>
             <img class="card-team__photo" src="assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
             <div class="card-team__info">
               <h3 class="card-team__name">Michael Turner</h3>
@@ -294,12 +296,12 @@
       </div>
       <div class="container">
         <div class="section-head section-head--center">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow eyebrow--center eyebrow--inverse">Client Feedback</p>
             <h2 class="section-title section-head__title" id="feedback-title">Client Stories That Speak for Themselves</h2>
           </div>
         </div>
-        <div class="carousel carousel--fade" id="carousel-quotes" data-carousel data-carousel-fade role="region" aria-roledescription="carousel" aria-label="Client quotes">
+        <div class="carousel carousel--fade" id="carousel-quotes" data-carousel data-carousel-fade role="region" aria-roledescription="carousel" aria-label="Client quotes" data-reveal>
           <div class="swiper carousel__viewport">
             <div class="swiper-wrapper">
               <div class="swiper-slide carousel__slide">
@@ -331,7 +333,7 @@
     <!-- section:why-trust -->
     <section class="section why-trust" aria-labelledby="why-trust-title">
       <div class="container why-trust__grid">
-        <form class="quote-form why-trust__form" id="quote-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="quote-form-title">
+        <form class="quote-form why-trust__form" id="quote-form" data-quote-form action="https://formsubmit.co/studioneyra@gmail.com" method="post" novalidate aria-labelledby="quote-form-title" data-reveal>
           <h2 class="quote-form__title" id="quote-form-title">Get a free Quote</h2>
           <input type="hidden" name="_subject" value="New quote request from esonix.example">
           <div hidden><label for="quote-honey">Leave this field empty</label><input type="text" id="quote-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
@@ -364,18 +366,18 @@
             <p class="quote-form__alert" role="alert" data-form-alert></p>
           </div>
         </form>
-        <div class="why-trust__intro">
+        <div class="why-trust__intro" data-reveal>
           <p class="eyebrow">Why Choose Us</p>
           <h2 class="section-title" id="why-trust-title">Why Businesses Trust Our Consulting</h2>
           <div class="why-trust__bars">
-            <div class="progress progress--accent" style="--progress: 88">
+            <div class="progress progress--accent" style="--progress: 88" data-count>
               <div class="progress__head">
                 <label for="progress-consulting">Consulting</label>
                 <span aria-hidden="true">88%</span>
               </div>
               <progress class="progress__bar" id="progress-consulting" value="88" max="100">88%</progress>
             </div>
-            <div class="progress" style="--progress: 75">
+            <div class="progress" style="--progress: 75" data-count>
               <div class="progress__head">
                 <label for="progress-marketing">Marketing</label>
                 <span aria-hidden="true">75%</span>
@@ -396,14 +398,14 @@
       <div class="container">
         <h2 class="visually-hidden" id="logos-title">Our partners</h2>
         <ul class="logo-grid" role="list">
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-4.png" alt="Logoipsum" width="155" height="31" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
-          <li class="logo-grid__cell">
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-4.png" alt="Logoipsum" width="155" height="31" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal>
             <a href="#quote-form" class="link-arrow">
               Join with Us
               <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
@@ -416,13 +418,13 @@
     <section class="section faq faq--centered" id="faq" aria-labelledby="faq-title">
       <div class="container">
         <div class="section-head section-head--center">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow eyebrow--center">Questions &amp; Answers</p>
             <h2 class="section-title section-head__title" id="faq-title">Your Business Consulting Questions Answered</h2>
           </div>
         </div>
         <div class="faq__grid">
-          <div class="accordion accordion--boxed">
+          <div class="accordion accordion--boxed" data-reveal>
             <details class="accordion-item" name="faq">
               <summary class="accordion-item__summary">
                 <span class="accordion-item__mark" aria-hidden="true">?</span>
@@ -464,7 +466,7 @@
               </div>
             </details>
           </div>
-          <article class="card-cta card-cta--stacked faq__cta">
+          <article class="card-cta card-cta--stacked faq__cta" data-reveal>
             <img class="card-cta__photo" src="assets/img/h2-cta-img.webp" alt="" width="848" height="740" loading="lazy">
             <div class="card-cta__text">
               <h3 class="card-cta__title">Still have questions?</h3>

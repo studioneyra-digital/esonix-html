@@ -13,13 +13,13 @@ Section Head centrado + tres Card Team `--profile`, 3 columnas desde lg; la cent
 <section class="section team-profiles" id="team-profiles" aria-labelledby="team-profiles-title">
   <div class="container">
     <div class="section-head section-head--center">
-      <div class="section-head__main">
+      <div class="section-head__main" data-reveal>
         <p class="eyebrow eyebrow--center">Consulting Experts</p>
         <h2 class="section-title section-head__title" id="team-profiles-title">Meet Our Expert Team</h2>
       </div>
     </div>
     <div class="team-profiles__grid">
-      <article class="card-team card-team--profile">
+      <article class="card-team card-team--profile" data-reveal>
         <img class="card-team__photo" src="assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
         <div class="card-team__info">
           <h3 class="card-team__name">Olivia Bennet</h3>
@@ -32,7 +32,7 @@ Section Head centrado + tres Card Team `--profile`, 3 columnas desde lg; la cent
           </ul>
         </div>
       </article>
-      <article class="card-team card-team--profile card-team--reverse">
+      <article class="card-team card-team--profile card-team--reverse" data-reveal>
         <img class="card-team__photo" src="assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
         <div class="card-team__info">
           <h3 class="card-team__name">Emma Wilson</h3>
@@ -45,7 +45,7 @@ Section Head centrado + tres Card Team `--profile`, 3 columnas desde lg; la cent
           </ul>
         </div>
       </article>
-      <article class="card-team card-team--profile">
+      <article class="card-team card-team--profile" data-reveal>
         <img class="card-team__photo" src="assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
         <div class="card-team__info">
           <h3 class="card-team__name">Michael Turner</h3>

@@ -12,7 +12,7 @@
 ```html
 <section class="section about-intro" aria-labelledby="about-intro-title">
   <div class="container about-intro__grid">
-    <div class="about-intro__lead">
+    <div class="about-intro__lead" data-reveal>
       <p class="eyebrow">What We Do</p>
       <h2 class="section-title" id="about-intro-title">Unlocking Business Potential with Tailored Solutions</h2>
       <ul class="about-intro__list" role="list">
@@ -26,16 +26,16 @@
       </a>
     </div>
     <div class="about-intro__story">
-      <div class="photo-frame about-intro__photo">
+      <div class="photo-frame about-intro__photo" data-reveal="mask">
         <img src="assets/img/h3-about-img.webp" alt="A consultant smiling as she shakes hands with a client" width="1200" height="1200" loading="lazy">
       </div>
-      <div class="about-intro__text">
+      <div class="about-intro__text" data-reveal>
         <h3 class="about-intro__subtitle">Who we are</h3>
         <p>Our mission is to help businesses make smarter decisions &amp; achieve lasting success. By combining industry expertise, strategic insight</p>
         <p>With years of industry experience, we empower businesses to overcome challenges and unlock new opportunities. From business strategy and market analysis to operational improvement</p>
       </div>
       <hr class="divider">
-      <figure class="about-intro__quote">
+      <figure class="about-intro__quote" data-reveal>
         <blockquote>
           <p><strong>From Vision to Success</strong> — Providing Expert Business Consulting that Delivers Real Impact. By combining industry expertise, data-driven insights, &amp; a client-focused approach</p>
         </blockquote>

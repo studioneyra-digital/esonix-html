@@ -13,25 +13,25 @@ Solo mobile. Pastilla sobre filete a todo el ancho, título y tres Stat centrado
 <section class="section stats" id="stats" aria-labelledby="stats-title">
   <p class="stats__pill"><span>4,000+ Clients Trust Our Expertise</span></p>
   <div class="container">
-    <h2 class="stats__title" id="stats-title">Facts prove the outcome</h2>
+    <h2 class="stats__title" id="stats-title" data-reveal>Facts prove the outcome</h2>
     <ul class="stats__list" role="list">
-      <li class="stats__item">
+      <li class="stats__item" data-reveal>
         <div class="stat stat--center">
-          <p class="stat__value">98%</p>
+          <p class="stat__value" data-count>98%</p>
           <p>Excellence in Customer Satisfaction</p>
         </div>
         <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span></span><span></span></span>
       </li>
-      <li class="stats__item">
+      <li class="stats__item" data-reveal>
         <div class="stat stat--center">
-          <p class="stat__value">12K<span class="stat__suffix">+</span></p>
+          <p class="stat__value" data-count>12K<span class="stat__suffix">+</span></p>
           <p>Projects Successfully Finished</p>
         </div>
         <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span class="is-on"></span><span></span></span>
       </li>
-      <li class="stats__item">
+      <li class="stats__item" data-reveal>
         <div class="stat stat--center">
-          <p class="stat__value">30<span class="stat__suffix">+</span></p>
+          <p class="stat__value" data-count>30<span class="stat__suffix">+</span></p>
           <p>Years of Consulting Experience</p>
         </div>
         <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span class="is-on"></span><span class="is-on"></span></span>

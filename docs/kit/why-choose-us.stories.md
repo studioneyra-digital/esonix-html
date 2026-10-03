@@ -12,21 +12,21 @@ Texto + foto, con la Feature Strip (tres Card Feature en un contenedor blanco) m
 ```html
 <section class="section why-choose" id="why-choose-us" aria-labelledby="why-choose-title">
   <div class="container-wide why-choose__grid">
-    <div class="why-choose__intro">
+    <div class="why-choose__intro" data-reveal>
       <p class="eyebrow">Why Choose Us</p>
       <h2 class="section-title why-choose__title" id="why-choose-title">Why Businesses Trust Our Consulting</h2>
       <p class="why-choose__text">We believe every business is unique, which is why we offer tailored consulting services &amp; ongoing support. By working closely with your team, &amp; future objectives.</p>
     </div>
-    <img class="why-choose__media" src="assets/img/h1-why-choose-img.webp" alt="A consultant and a client reviewing a plan together at the office" width="1125" height="1095" loading="lazy">
+    <img class="why-choose__media" src="assets/img/h1-why-choose-img.webp" alt="A consultant and a client reviewing a plan together at the office" width="1125" height="1095" loading="lazy" data-reveal="mask">
     <div class="feature-strip why-choose__strip">
-      <article class="card-feature">
+      <article class="card-feature" data-reveal>
         <p class="card-feature__number" aria-hidden="true">01</p>
         <div class="card-feature__body">
           <h3 class="card-feature__title">Tailored business solutions</h3>
           <p>We provide tailored business solution designed to match your unique goals</p>
         </div>
       </article>
-      <article class="card-feature" data-surface="brand">
+      <article class="card-feature" data-surface="brand" data-reveal>
         <img class="card-feature__bg" src="assets/img/h1-feature-bg-image.webp" alt="" width="1320" height="960" loading="lazy">
         <p class="card-feature__number" aria-hidden="true">02</p>
         <div class="card-feature__body">
@@ -38,7 +38,7 @@ Texto + foto, con la Feature Strip (tres Card Feature en un contenedor blanco) m
           </a>
         </div>
       </article>
-      <article class="card-feature">
+      <article class="card-feature" data-reveal>
         <p class="card-feature__number" aria-hidden="true">03</p>
         <div class="card-feature__body">
           <h3 class="card-feature__title">Proven success methods</h3>

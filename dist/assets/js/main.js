@@ -540,6 +540,142 @@
   }
   initWordList();
 
+  /* ===== Motion: revelado al entrar en el viewport y contadores ===== */
+  /* docs/interaction-motion.md §2. Observa los [data-reveal] y [data-count] que están dentro de .has-reveal
+     (la clase la pone el <head> en <html>; en el kit, el contenedor de la demo). Al entrar, el elemento
+     recibe is-revealed (la animación es CSS) y el contador arranca. Los que entran en el mismo cuadro se
+     escalonan en orden del DOM con --reveal-order, hasta REVEAL_MAX_ORDER pasos. Los que ya quedaron arriba
+     del viewport (recarga a mitad de página, salto a un ancla) se muestran sin desfase. Con «reducir
+     movimiento» o sin IntersectionObserver el CSS no oculta nada y los contadores quedan con el valor del
+     markup. */
+  var REVEAL_SELECTOR = '.has-reveal [data-reveal], .has-reveal [data-count]';
+  var REVEAL_MAX_ORDER = 6;
+  var REVEAL_MARGIN = '0px 0px -10% 0px'; // se activa al pasar el 10 % inferior del viewport
+  function tokenMs(name) { return parseFloat(rootStyle.getPropertyValue(name)) || 0; }
+
+  // Cuenta de 0 a target con ease-out; render(valor) pinta cada paso
+  function animateCount(target, render, delay) {
+    var duration = tokenMs('--duration-count');
+    var start = null;
+    function step(time) {
+      if (start === null) { start = time; }
+      var t = duration > 0 ? Math.min((time - start) / duration, 1) : 1;
+      render(target * (1 - Math.pow(1 - t, 4)));
+      if (t < 1) { window.requestAnimationFrame(step); }
+    }
+    window.setTimeout(function () { window.requestAnimationFrame(step); }, delay);
+  }
+
+  /* Prepara un contador y devuelve la función que lo arranca (o null si el markup no tiene número).
+     - .progress: anima el <progress> y el texto del porcentaje. --progress no se toca: la fila del
+       porcentaje queda en su lugar final (si se encogiera con el relleno, la etiqueta se partiría en dos
+       líneas a mitad de la cuenta y movería el layout) y el relleno llega hasta ella.
+     - Cualquier otro (.stat__value): el número del primer nodo de texto («98%», «12K», «3M») pasa a un
+       span aria-hidden que cuenta; el lector de pantalla lee el valor final de un texto oculto. Al
+       arrancar se mide el ancho del valor final y se reserva, así el sufijo no se mueve. */
+  function setupCount(el) {
+    if (el.classList.contains('progress')) {
+      var bar = el.querySelector('progress');
+      var label = el.querySelector('.progress__head [aria-hidden="true"]');
+      if (!bar) { return null; }
+      var goal = Number(bar.value);
+      var unit = label ? label.textContent.replace(/^[\d.,\s]+/, '') : '';
+      var renderBar = function (value) {
+        var n = Math.round(value);
+        bar.value = n;
+        if (label) { label.textContent = n + unit; }
+      };
+      renderBar(0);
+      return function (delay) { animateCount(goal, renderBar, delay); };
+    }
+
+    var node = el.firstChild;
+    var match = node && node.nodeType === 3 ? /^\s*(\d[\d,]*(?:\.\d+)?)(.*?)\s*$/.exec(node.nodeValue) : null;
+    if (!match) { return null; }
+    var source = match[1];
+    var rest = match[2];
+    var decimals = (source.split('.')[1] || '').length;
+    var grouped = source.indexOf(',') !== -1;
+    var target = parseFloat(source.replace(/,/g, ''));
+    var format = function (value) {
+      return grouped
+        ? value.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
+        : value.toFixed(decimals);
+    };
+    var display = document.createElement('span');
+    display.className = 'count__display';
+    display.setAttribute('aria-hidden', 'true');
+    var spoken = document.createElement('span');
+    spoken.className = 'visually-hidden';
+    spoken.textContent = source + rest;
+    el.replaceChild(display, node);
+    el.insertBefore(spoken, display.nextSibling);
+    var render = function (value) { display.textContent = format(value) + rest; };
+    render(0);
+    return function (delay) {
+      // Medido recién al arrancar: la fuente ya cargó. Valor final, medida y vuelta a 0 en el mismo cuadro.
+      render(target);
+      display.style.minInlineSize = display.getBoundingClientRect().width + 'px';
+      render(0);
+      animateCount(target, render, delay);
+    };
+  }
+
+  function initReveal() {
+    var items = Array.prototype.slice.call(document.querySelectorAll(REVEAL_SELECTOR));
+    if (!items.length) { return; }
+    if (reducedMotion.matches || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-revealed'); });
+      return;
+    }
+    var stagger = tokenMs('--reveal-stagger');
+    var counters = new Map();
+    items.forEach(function (el) {
+      if (!el.hasAttribute('data-count')) { return; }
+      var start = setupCount(el);
+      if (start) { counters.set(el, start); }
+    });
+
+    function reveal(el, order) {
+      if (el.hasAttribute('data-reveal')) {
+        el.style.setProperty('--reveal-order', order);
+        el.classList.add('is-revealed');
+      }
+      var start = counters.get(el);
+      if (!start) { return; }
+      counters.delete(el);
+      // Un contador dentro de un bloque que entra arranca con el desfase de ese bloque
+      var host = el.closest('[data-reveal]');
+      var hostOrder = host ? Number(host.style.getPropertyValue('--reveal-order')) || 0 : 0;
+      start(hostOrder * stagger);
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      var order = 0;
+      entries.forEach(function (entry) {
+        var el = entry.target;
+        if (entry.isIntersecting) {
+          observer.unobserve(el);
+          reveal(el, Math.min(order, REVEAL_MAX_ORDER));
+          if (el.hasAttribute('data-reveal')) { order += 1; }
+        } else if (entry.boundingClientRect.bottom <= 0) {
+          observer.unobserve(el);
+          reveal(el, 0);
+        }
+      });
+    }, { rootMargin: REVEAL_MARGIN });
+    items.forEach(function (el) { observer.observe(el); });
+
+    // El foco por teclado nunca cae en algo invisible: si entra a un bloque oculto, se revela en el acto
+    document.addEventListener('focusin', function (event) {
+      var el = event.target.closest && event.target.closest('.has-reveal [data-reveal]:not(.is-revealed)');
+      if (!el) { return; }
+      observer.unobserve(el);
+      reveal(el, 0);
+    });
+  }
+  initReveal();
+
   /* ===== Pricing: switch mensual / anual ===== */
   /* El switch de [data-pricing] cambia el texto de cada [data-price-monthly][data-price-annual] de la
      misma sección. La región role="status" anuncia el cambio solo cuando el usuario mueve el switch (no

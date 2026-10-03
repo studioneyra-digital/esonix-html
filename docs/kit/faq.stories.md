@@ -14,12 +14,12 @@ Encabezado + Card CTA a la izquierda (columnas de 525 y 720px a 1920) y Accordio
   <div class="container faq__grid">
     <div class="faq__intro">
       <div class="section-head">
-        <div class="section-head__main">
+        <div class="section-head__main" data-reveal>
           <p class="eyebrow">Questions &amp; Answers</p>
           <h2 class="section-title section-head__title" id="faq-title">Frequently Asked Consulting Questions</h2>
         </div>
       </div>
-      <article class="card-photo card-cta faq__cta" data-surface="inverse">
+      <article class="card-photo card-cta faq__cta" data-surface="inverse" data-reveal="mask">
         <img class="card-photo__img" src="assets/img/h1-cta-img.webp" alt="" width="1040" height="700" loading="lazy">
         <div class="card-cta__body">
           <span class="card-cta__icon"><span class="icon icon--hexagon" aria-hidden="true"></span></span>
@@ -34,7 +34,7 @@ Encabezado + Card CTA a la izquierda (columnas de 525 y 720px a 1920) y Accordio
         </div>
       </article>
     </div>
-    <div class="accordion">
+    <div class="accordion" data-reveal>
       <details class="accordion-item" name="faq">
         <summary class="accordion-item__summary">
           <span class="accordion-item__mark" aria-hidden="true">?</span>

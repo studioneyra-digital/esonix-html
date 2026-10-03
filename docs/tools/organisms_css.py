@@ -181,12 +181,14 @@ CSS = r'''/* organisms:start */
    Bootstrap en cada breakpoint (con el gutter adentro, como --why-container en Why Choose Us; excepción
    de breakpoints escrita en design-tokens.md) y la barra lleva de relleno medio gutter: así el logo cae
    en la x del contenido en todos los anchos (x=300 a 1920). Con is-scrolled la barra toma el fondo
-   inverso, como la de la home; en mobile ocupa todo el ancho, sin radio. */
+   inverso, como la de la home; en mobile ocupa todo el ancho, sin radio. view-transition-name: entre
+   páginas interiores la barra queda quieta mientras el resto se funde (docs/interaction-motion.md §3). */
 .site-header__cta {
   display: none;
 }
 .site-header--inner {
   --site-header-max: 100%;
+  view-transition-name: site-header;
 }
 @media (min-width: 36rem) {
   .site-header--inner {

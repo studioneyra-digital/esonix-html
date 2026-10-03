@@ -28,6 +28,17 @@ página están en `docs/plan-etapa-5.md`; se actualiza al cerrar cada página y 
   (`main` en `bf5732a`, 2026-10-03).** `docs/plan-etapa-5-service-details.md`
   ya está borrado (`git rm`, entra en ese commit).
 
+## Motion (Capa 1 + Capa 3), 2026-10-03 — aprobado, commiteado y publicado en `esonix-html`
+
+Reglas, tokens y API en `docs/interaction-motion.md`; ahí también está la propuesta completa de 4 capas (§4),
+con la Capa 2 (parallax) y la Capa 4 (microinteracciones) documentadas para retomarlas. Revelado al hacer scroll (`data-reveal`,
+`data-reveal="mask"`, `data-count`) en las 4 páginas, transición entre páginas con `@view-transition`, ficha
+ampliada en el kit (Foundations › Motion). Tokens nuevos en `transitions.css`; CSS en foundations de `main.css`;
+JS en `main.js` (bloque «Motion»); la línea `has-reveal` del `<head>` va en `shared:assets` de `index.html`.
+`view-transition-name` del header `--inner` en `organisms_css.py`. Fuera de alcance (decisión del usuario):
+parallax/Capa 2, header que se esconde, split text. QA: LCP sigue en la foto, CLS ≈ 0, 1440/390, reducir
+movimiento, sin `main.js`, foco por teclado, axe sin violaciones nuevas.
+
 ## Decisiones tomadas el 2026-10-03
 
 - `CLAUDE.md` §11: se borró la excepción de `!important` del Select (nunca llegó a usarse). Sin excepciones.

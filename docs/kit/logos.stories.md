@@ -14,14 +14,14 @@ Solo mobile. Grilla 2 × 4 con filetes: 7 logos (4 imágenes repetidas) y «Join
   <div class="container">
     <h2 class="visually-hidden" id="logos-title">Our partners</h2>
     <ul class="logo-grid" role="list">
-      <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
-      <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
-      <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
-      <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-4.png" alt="Logoipsum" width="155" height="31" loading="lazy"></li>
-      <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
-      <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
-      <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
-      <li class="logo-grid__cell">
+      <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
+      <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
+      <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
+      <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-4.png" alt="Logoipsum" width="155" height="31" loading="lazy"></li>
+      <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
+      <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
+      <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
+      <li class="logo-grid__cell" data-reveal>
         <a href="contact.html" class="link-arrow">
           Join with Us
           <span class="icon icon--arrow-up-right" aria-hidden="true"></span>

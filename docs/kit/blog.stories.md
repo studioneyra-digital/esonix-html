@@ -13,7 +13,7 @@ Section Head `--center`, tres Card Post en `.container-wide` (3 columnas desde l
 <section class="section blog" id="blog" aria-labelledby="blog-title">
   <div class="container">
     <div class="section-head section-head--center">
-      <div class="section-head__main">
+      <div class="section-head__main" data-reveal>
         <p class="eyebrow eyebrow--center">Latest Blog Post</p>
         <h2 class="section-title section-head__title" id="blog-title">Latest Business Insights &amp;&nbsp;Expert Advice</h2>
       </div>
@@ -21,7 +21,7 @@ Section Head `--center`, tres Card Post en `.container-wide` (3 columnas desde l
   </div>
   <div class="container-wide">
     <div class="blog__grid">
-      <article class="card-post">
+      <article class="card-post" data-reveal>
         <div class="card-post__media">
           <img class="card-post__img" src="assets/img/h1-blog-img-1.webp" alt="" width="1308" height="600" loading="lazy">
           <span class="badge badge--marker card-post__date"><time datetime="2026-10-21">21 Oct, 2026</time></span>
@@ -35,7 +35,7 @@ Section Head `--center`, tres Card Post en `.container-wide` (3 columnas desde l
           </a>
         </div>
       </article>
-      <article class="card-post">
+      <article class="card-post" data-reveal>
         <div class="card-post__media">
           <img class="card-post__img" src="assets/img/h1-blog-img-2.webp" alt="" width="1308" height="600" loading="lazy">
           <span class="badge badge--marker card-post__date"><time datetime="2026-10-18">18 Oct, 2026</time></span>
@@ -49,7 +49,7 @@ Section Head `--center`, tres Card Post en `.container-wide` (3 columnas desde l
           </a>
         </div>
       </article>
-      <article class="card-post">
+      <article class="card-post" data-reveal>
         <div class="card-post__media">
           <img class="card-post__img" src="assets/img/h1-blog-img-3.webp" alt="" width="1308" height="600" loading="lazy">
           <span class="badge badge--marker card-post__date"><time datetime="2026-10-07">07 Oct, 2026</time></span>
@@ -64,7 +64,7 @@ Section Head `--center`, tres Card Post en `.container-wide` (3 columnas desde l
         </div>
       </article>
     </div>
-    <div class="blog__actions">
+    <div class="blog__actions" data-reveal>
       <a href="#" class="btn">
         View All Blog
         <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>

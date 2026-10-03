@@ -56,6 +56,8 @@
   <link rel="preload" href="assets/img/h1-hero-img-mobile.webp" as="image" fetchpriority="high" media="(max-width: 29.99rem)">
   <link rel="preload" href="assets/img/h1-hero-img.webp" as="image" fetchpriority="high" media="(min-width: 30rem)">
   <!-- shared:assets -->
+  <!-- Motion (docs/interaction-motion.md): has-reveal antes del primer pintado; si main.js no cargó, se quita y todo queda visible -->
+  <script>document.documentElement.classList.add('has-reveal');window.addEventListener('load',function(){if(!window.Esonix){document.documentElement.classList.remove('has-reveal');}});</script>
   <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="assets/css/tokens/color.css">
@@ -165,14 +167,14 @@
         </picture>
       </div>
       <div class="container-wide hero__top">
-        <div class="hero__intro">
+        <div class="hero__intro" data-reveal>
           <p>We work closely with businesses to identify opportunities, solve complex problems and develop strategies</p>
           <a href="#what-we-do" class="btn btn--light">
             Get Started
             <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
           </a>
         </div>
-        <div class="card-hero hero__card">
+        <div class="card-hero hero__card" data-reveal>
           <img class="card-hero__media" src="assets/img/h1-hero-thumb-img.webp" alt="" width="320" height="364">
           <div class="card-hero__body">
             <span class="card-hero__index">01</span>
@@ -182,7 +184,7 @@
       </div>
       <div class="hero__bottom">
         <div class="container-wide">
-          <h1 class="hero__title" id="hero-title">
+          <h1 class="hero__title" id="hero-title" data-reveal>
             <span class="hero__kicker">Expert Guidance for</span>
             <span class="hero__headline">Future<span class="visually-hidden"> </span>Growth</span>
           </h1>
@@ -194,30 +196,30 @@
     <!-- section:what-we-do -->
     <section class="section what-we-do" id="what-we-do" aria-labelledby="what-we-do-title">
       <div class="container">
-        <div class="what-we-do__head">
+        <div class="what-we-do__head" data-reveal>
           <p class="eyebrow">What We Do</p>
           <hr class="divider">
         </div>
         <div class="what-we-do__grid">
-          <h2 class="section-title what-we-do__title" id="what-we-do-title">Driving business growth through smart strategy and expert guidance</h2>
-          <p class="what-we-do__text">We believe every business has the potential to grow with the right strategy and support. By understanding your goals, challenges, and vision, we create customized consulting solutions</p>
-          <div class="what-we-do__bars">
+          <h2 class="section-title what-we-do__title" id="what-we-do-title" data-reveal>Driving business growth through smart strategy and expert guidance</h2>
+          <p class="what-we-do__text" data-reveal>We believe every business has the potential to grow with the right strategy and support. By understanding your goals, challenges, and vision, we create customized consulting solutions</p>
+          <div class="what-we-do__bars" data-reveal>
             <div class="what-we-do__progress">
-              <div class="progress" style="--progress: 90">
+              <div class="progress" style="--progress: 90" data-count>
                 <div class="progress__head">
                   <label for="progress-operational">Operational assessment</label>
                   <span aria-hidden="true">90%</span>
                 </div>
                 <progress class="progress__bar" id="progress-operational" value="90" max="100">90%</progress>
               </div>
-              <div class="progress" style="--progress: 76">
+              <div class="progress" style="--progress: 76" data-count>
                 <div class="progress__head">
                   <label for="progress-consultation">Consultation &amp; analysis</label>
                   <span aria-hidden="true">76%</span>
                 </div>
                 <progress class="progress__bar" id="progress-consultation" value="76" max="100">76%</progress>
               </div>
-              <div class="progress" style="--progress: 85">
+              <div class="progress" style="--progress: 85" data-count>
                 <div class="progress__head">
                   <label for="progress-strategic">Strategic interpretation</label>
                   <span aria-hidden="true">85%</span>
@@ -230,9 +232,9 @@
               <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
             </a>
           </div>
-          <div class="what-we-do__stat">
+          <div class="what-we-do__stat" data-reveal>
             <div class="stat">
-              <p class="stat__value">3M<span class="stat__suffix">+</span></p>
+              <p class="stat__value" data-count>3M<span class="stat__suffix">+</span></p>
               <p>People Using Our Platform</p>
             </div>
             <div class="avatar-stack">
@@ -242,10 +244,10 @@
               <span class="avatar-stack__more"><span class="icon icon--plus" aria-hidden="true"></span></span>
             </div>
           </div>
-          <div class="photo-frame what-we-do__img1">
+          <div class="photo-frame what-we-do__img1" data-reveal="mask">
             <img src="assets/img/h1-about-img-1.webp" alt="Three consultants smiling while they review a plan together" width="735" height="720" loading="lazy">
           </div>
-          <div class="photo-frame what-we-do__img2">
+          <div class="photo-frame what-we-do__img2" data-reveal="mask">
             <img src="assets/img/h1-about-img-2.webp" alt="Two colleagues reviewing results on a tablet" width="420" height="480" loading="lazy">
           </div>
         </div>
@@ -257,19 +259,19 @@
     <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
         <div class="section-head section-head--split">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow">Exclusive Services</p>
             <h2 class="section-title section-head__title" id="services-title">Innovative Solutions for Business Success</h2>
           </div>
-          <p class="section-head__text">We believe successful businesses are built through strong planning, efficient management, &amp; innovative decision-making.</p>
-          <div class="carousel__arrows section-head__actions">
+          <p class="section-head__text" data-reveal>We believe successful businesses are built through strong planning, efficient management, &amp; innovative decision-making.</p>
+          <div class="carousel__arrows section-head__actions" data-reveal>
             <button type="button" class="icon-btn" data-carousel-prev aria-controls="carousel-services" aria-label="Previous service"><span class="icon icon--arrow-left" aria-hidden="true"></span></button>
             <button type="button" class="icon-btn" data-carousel-next aria-controls="carousel-services" aria-label="Next service"><span class="icon icon--arrow-right" aria-hidden="true"></span></button>
           </div>
         </div>
       </div>
       <div class="container-wide">
-        <div class="carousel" id="carousel-services" data-carousel data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1" role="region" aria-roledescription="carousel" aria-label="Services">
+        <div class="carousel" id="carousel-services" data-carousel data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1" role="region" aria-roledescription="carousel" aria-label="Services" data-reveal>
           <div class="swiper carousel__viewport">
             <div class="swiper-wrapper">
               <div class="swiper-slide carousel__slide">
@@ -342,21 +344,21 @@
     <!-- section:why-choose-us -->
     <section class="section why-choose" id="why-choose-us" aria-labelledby="why-choose-title">
       <div class="container-wide why-choose__grid">
-        <div class="why-choose__intro">
+        <div class="why-choose__intro" data-reveal>
           <p class="eyebrow">Why Choose Us</p>
           <h2 class="section-title why-choose__title" id="why-choose-title">Why Businesses Trust Our Consulting</h2>
           <p class="why-choose__text">We believe every business is unique, which is why we offer tailored consulting services &amp; ongoing support. By working closely with your team, &amp; future objectives.</p>
         </div>
-        <img class="why-choose__media" src="assets/img/h1-why-choose-img.webp" alt="A consultant and a client reviewing a plan together at the office" width="1125" height="1095" loading="lazy">
+        <img class="why-choose__media" src="assets/img/h1-why-choose-img.webp" alt="A consultant and a client reviewing a plan together at the office" width="1125" height="1095" loading="lazy" data-reveal="mask">
         <div class="feature-strip why-choose__strip">
-          <article class="card-feature">
+          <article class="card-feature" data-reveal>
             <p class="card-feature__number" aria-hidden="true">01</p>
             <div class="card-feature__body">
               <h3 class="card-feature__title">Tailored business solutions</h3>
               <p>We provide tailored business solution designed to match your unique goals</p>
             </div>
           </article>
-          <article class="card-feature" data-surface="brand">
+          <article class="card-feature" data-surface="brand" data-reveal>
             <img class="card-feature__bg" src="assets/img/h1-feature-bg-image.webp" alt="" width="1320" height="960" loading="lazy">
             <p class="card-feature__number" aria-hidden="true">02</p>
             <div class="card-feature__body">
@@ -368,7 +370,7 @@
               </a>
             </div>
           </article>
-          <article class="card-feature">
+          <article class="card-feature" data-reveal>
             <p class="card-feature__number" aria-hidden="true">03</p>
             <div class="card-feature__body">
               <h3 class="card-feature__title">Proven success methods</h3>
@@ -434,19 +436,19 @@
     <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
       <div class="container">
         <div class="section-head section-head--center">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow eyebrow--center">Our Pricing Plan</p>
             <h2 class="section-title section-head__title" id="pricing-title">Plans Designed for Every Stage of Growth</h2>
           </div>
         </div>
-        <div class="pricing__billing" data-pricing>
+        <div class="pricing__billing" data-pricing data-reveal>
           <span class="pricing__billing-label" aria-hidden="true">Monthly</span>
           <input class="switch" type="checkbox" role="switch" id="pricing-annual">
           <label class="pricing__billing-label" for="pricing-annual">Annually Save 30%</label>
           <p class="visually-hidden" role="status" data-pricing-status></p>
         </div>
         <div class="pricing__grid">
-          <article class="card-pricing">
+          <article class="card-pricing" data-reveal>
             <header class="card-pricing__head">
               <span class="card-pricing__icon"><span class="icon icon--rocket" aria-hidden="true"></span></span>
               <div>
@@ -466,7 +468,7 @@
               <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Email support</li>
             </ul>
           </article>
-          <article class="card-pricing" data-surface="brand">
+          <article class="card-pricing" data-surface="brand" data-reveal>
             <header class="card-pricing__head">
               <span class="card-pricing__icon"><span class="icon icon--award" aria-hidden="true"></span></span>
               <div>
@@ -486,7 +488,7 @@
               <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Priority Support &amp; Advisory</li>
             </ul>
           </article>
-          <article class="card-pricing">
+          <article class="card-pricing" data-reveal>
             <header class="card-pricing__head">
               <span class="card-pricing__icon"><span class="icon icon--gem" aria-hidden="true"></span></span>
               <div>
@@ -515,25 +517,25 @@
     <section class="section stats" id="stats" aria-labelledby="stats-title">
       <p class="stats__pill"><span>4,000+ Clients Trust Our Expertise</span></p>
       <div class="container">
-        <h2 class="stats__title" id="stats-title">Facts prove the outcome</h2>
+        <h2 class="stats__title" id="stats-title" data-reveal>Facts prove the outcome</h2>
         <ul class="stats__list" role="list">
-          <li class="stats__item">
+          <li class="stats__item" data-reveal>
             <div class="stat stat--center">
-              <p class="stat__value">98%</p>
+              <p class="stat__value" data-count>98%</p>
               <p>Excellence in Customer Satisfaction</p>
             </div>
             <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span></span><span></span></span>
           </li>
-          <li class="stats__item">
+          <li class="stats__item" data-reveal>
             <div class="stat stat--center">
-              <p class="stat__value">12K<span class="stat__suffix">+</span></p>
+              <p class="stat__value" data-count>12K<span class="stat__suffix">+</span></p>
               <p>Projects Successfully Finished</p>
             </div>
             <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span class="is-on"></span><span></span></span>
           </li>
-          <li class="stats__item">
+          <li class="stats__item" data-reveal>
             <div class="stat stat--center">
-              <p class="stat__value">30<span class="stat__suffix">+</span></p>
+              <p class="stat__value" data-count>30<span class="stat__suffix">+</span></p>
               <p>Years of Consulting Experience</p>
             </div>
             <span class="stats__level" aria-hidden="true"><span class="is-on"></span><span class="is-on"></span><span class="is-on"></span></span>
@@ -550,14 +552,14 @@
       </div>
       <div class="container">
         <div class="section-head section-head--center">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow eyebrow--center eyebrow--inverse">Client Feedback</p>
             <h2 class="section-title section-head__title" id="testimonials-title">Client Stories That Speak for Themselves</h2>
           </div>
         </div>
       </div>
       <div class="container-wide">
-        <div class="carousel" id="carousel-testimonials" data-carousel data-carousel-start="2" role="region" aria-roledescription="carousel" aria-label="Client stories">
+        <div class="carousel" id="carousel-testimonials" data-carousel data-carousel-start="2" role="region" aria-roledescription="carousel" aria-label="Client stories" data-reveal>
           <div class="swiper carousel__viewport">
             <div class="swiper-wrapper">
               <div class="swiper-slide carousel__slide">
@@ -659,14 +661,14 @@
     <section class="section team" id="team" aria-labelledby="team-title">
       <div class="container">
         <div class="section-head section-head--split">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow">Consulting Experts</p>
             <h2 class="section-title section-head__title" id="team-title">Meet Our Expert Team</h2>
           </div>
-          <p class="section-head__text">We are passionate about supporting businesses with expert advice, smart strategies.</p>
+          <p class="section-head__text" data-reveal>We are passionate about supporting businesses with expert advice, smart strategies.</p>
         </div>
         <div class="team__grid">
-          <article class="card-photo card-team" data-surface="inverse">
+          <article class="card-photo card-team" data-surface="inverse" data-reveal>
             <img class="card-photo__img" src="assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
             <div class="card-team__body">
               <div class="card-team__top">
@@ -676,7 +678,7 @@
               <h3 class="card-team__name">Olivia Bennet</h3>
             </div>
           </article>
-          <article class="card-photo card-team card-team--elevated" data-surface="inverse">
+          <article class="card-photo card-team card-team--elevated" data-surface="inverse" data-reveal>
             <img class="card-photo__img" src="assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
             <div class="card-team__body">
               <div class="card-team__top">
@@ -686,7 +688,7 @@
               <h3 class="card-team__name">Emma Wilson</h3>
             </div>
           </article>
-          <article class="card-photo card-team" data-surface="inverse">
+          <article class="card-photo card-team" data-surface="inverse" data-reveal>
             <img class="card-photo__img" src="assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
             <div class="card-team__body">
               <div class="card-team__top">
@@ -706,14 +708,14 @@
       <div class="container">
         <h2 class="visually-hidden" id="logos-title">Our partners</h2>
         <ul class="logo-grid" role="list">
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-4.png" alt="Logoipsum" width="155" height="31" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
-          <li class="logo-grid__cell"><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
-          <li class="logo-grid__cell">
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-4.png" alt="Logoipsum" width="155" height="31" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-1.png" alt="Logoipsum" width="175" height="34" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-2.png" alt="Logoipsum" width="145" height="35" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal><img src="assets/img/h1-partner-img-3.png" alt="Logoipsum" width="155" height="28" loading="lazy"></li>
+          <li class="logo-grid__cell" data-reveal>
             <a href="contact.html" class="link-arrow">
               Join with Us
               <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
@@ -729,12 +731,12 @@
       <div class="container faq__grid">
         <div class="faq__intro">
           <div class="section-head">
-            <div class="section-head__main">
+            <div class="section-head__main" data-reveal>
               <p class="eyebrow">Questions &amp; Answers</p>
               <h2 class="section-title section-head__title" id="faq-title">Frequently Asked Consulting Questions</h2>
             </div>
           </div>
-          <article class="card-photo card-cta faq__cta" data-surface="inverse">
+          <article class="card-photo card-cta faq__cta" data-surface="inverse" data-reveal="mask">
             <img class="card-photo__img" src="assets/img/h1-cta-img.webp" alt="" width="1040" height="700" loading="lazy">
             <div class="card-cta__body">
               <span class="card-cta__icon"><span class="icon icon--hexagon" aria-hidden="true"></span></span>
@@ -749,7 +751,7 @@
             </div>
           </article>
         </div>
-        <div class="accordion">
+        <div class="accordion" data-reveal>
           <details class="accordion-item" name="faq">
             <summary class="accordion-item__summary">
               <span class="accordion-item__mark" aria-hidden="true">?</span>
@@ -799,7 +801,7 @@
     <section class="section blog" id="blog" aria-labelledby="blog-title">
       <div class="container">
         <div class="section-head section-head--center">
-          <div class="section-head__main">
+          <div class="section-head__main" data-reveal>
             <p class="eyebrow eyebrow--center">Latest Blog Post</p>
             <h2 class="section-title section-head__title" id="blog-title">Latest Business Insights &amp;&nbsp;Expert Advice</h2>
           </div>
@@ -807,7 +809,7 @@
       </div>
       <div class="container-wide">
         <div class="blog__grid">
-          <article class="card-post">
+          <article class="card-post" data-reveal>
             <div class="card-post__media">
               <img class="card-post__img" src="assets/img/h1-blog-img-1.webp" alt="" width="1308" height="600" loading="lazy">
               <span class="badge badge--marker card-post__date"><time datetime="2026-10-21">21 Oct, 2026</time></span>
@@ -821,7 +823,7 @@
               </a>
             </div>
           </article>
-          <article class="card-post">
+          <article class="card-post" data-reveal>
             <div class="card-post__media">
               <img class="card-post__img" src="assets/img/h1-blog-img-2.webp" alt="" width="1308" height="600" loading="lazy">
               <span class="badge badge--marker card-post__date"><time datetime="2026-10-18">18 Oct, 2026</time></span>
@@ -835,7 +837,7 @@
               </a>
             </div>
           </article>
-          <article class="card-post">
+          <article class="card-post" data-reveal>
             <div class="card-post__media">
               <img class="card-post__img" src="assets/img/h1-blog-img-3.webp" alt="" width="1308" height="600" loading="lazy">
               <span class="badge badge--marker card-post__date"><time datetime="2026-10-07">07 Oct, 2026</time></span>
@@ -850,7 +852,7 @@
             </div>
           </article>
         </div>
-        <div class="blog__actions">
+        <div class="blog__actions" data-reveal>
           <a href="#" class="btn">
             View All Blog
             <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>

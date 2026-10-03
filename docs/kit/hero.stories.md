@@ -18,14 +18,14 @@ Foto a sangre con velo; texto + «Get Started»; Card Hero escalonada a la derec
     </picture>
   </div>
   <div class="container-wide hero__top">
-    <div class="hero__intro">
+    <div class="hero__intro" data-reveal>
       <p>We work closely with businesses to identify opportunities, solve complex problems and develop strategies</p>
       <a href="#what-we-do" class="btn btn--light">
         Get Started
         <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
       </a>
     </div>
-    <div class="card-hero hero__card">
+    <div class="card-hero hero__card" data-reveal>
       <img class="card-hero__media" src="assets/img/h1-hero-thumb-img.webp" alt="" width="320" height="364">
       <div class="card-hero__body">
         <span class="card-hero__index">01</span>
@@ -35,7 +35,7 @@ Foto a sangre con velo; texto + «Get Started»; Card Hero escalonada a la derec
   </div>
   <div class="hero__bottom">
     <div class="container-wide">
-      <h1 class="hero__title" id="hero-title">
+      <h1 class="hero__title" id="hero-title" data-reveal>
         <span class="hero__kicker">Expert Guidance for</span>
         <span class="hero__headline">Future<span class="visually-hidden"> </span>Growth</span>
       </h1>

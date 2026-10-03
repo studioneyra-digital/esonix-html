@@ -13,19 +13,19 @@ Section Head `--center`, Switch mensual/anual y tres Card Pricing (3 columnas de
 <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
   <div class="container">
     <div class="section-head section-head--center">
-      <div class="section-head__main">
+      <div class="section-head__main" data-reveal>
         <p class="eyebrow eyebrow--center">Our Pricing Plan</p>
         <h2 class="section-title section-head__title" id="pricing-title">Plans Designed for Every Stage of Growth</h2>
       </div>
     </div>
-    <div class="pricing__billing" data-pricing>
+    <div class="pricing__billing" data-pricing data-reveal>
       <span class="pricing__billing-label" aria-hidden="true">Monthly</span>
       <input class="switch" type="checkbox" role="switch" id="pricing-annual">
       <label class="pricing__billing-label" for="pricing-annual">Annually Save 30%</label>
       <p class="visually-hidden" role="status" data-pricing-status></p>
     </div>
     <div class="pricing__grid">
-      <article class="card-pricing">
+      <article class="card-pricing" data-reveal>
         <header class="card-pricing__head">
           <span class="card-pricing__icon"><span class="icon icon--rocket" aria-hidden="true"></span></span>
           <div>
@@ -45,7 +45,7 @@ Section Head `--center`, Switch mensual/anual y tres Card Pricing (3 columnas de
           <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Email support</li>
         </ul>
       </article>
-      <article class="card-pricing" data-surface="brand">
+      <article class="card-pricing" data-surface="brand" data-reveal>
         <header class="card-pricing__head">
           <span class="card-pricing__icon"><span class="icon icon--award" aria-hidden="true"></span></span>
           <div>
@@ -65,7 +65,7 @@ Section Head `--center`, Switch mensual/anual y tres Card Pricing (3 columnas de
           <li class="card-pricing__item is-muted"><span class="icon icon--circle-check" aria-hidden="true"></span> Priority Support &amp; Advisory</li>
         </ul>
       </article>
-      <article class="card-pricing">
+      <article class="card-pricing" data-reveal>
         <header class="card-pricing__head">
           <span class="card-pricing__icon"><span class="icon icon--gem" aria-hidden="true"></span></span>
           <div>

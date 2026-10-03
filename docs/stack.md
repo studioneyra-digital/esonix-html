@@ -34,6 +34,7 @@ Importar/usar solo los plugins de GSAP que el componente necesite — nunca el b
 - Cargar como script normal en `assets/js/`, inicializar de forma diferida según la sección (ver "Equivalente a islands" arriba); importar solo los plugins de GSAP que el componente use, nunca el bundle completo.
 - Tokens: toda animación (incluida la ligada a scroll) usa los tokens de `assets/css/tokens/transitions.css` (`--ease-fast/base/slow`, `--duration-spin`); no valores mágicos por componente. `prefers-reduced-motion` ya está resuelto ahí a nivel token — cualquier efecto de scroll (parallax, reveal, pin) hereda la reducción automáticamente y no necesita lógica propia, salvo que además deba desactivar el `ScrollTrigger`/pin en sí (no solo la transición visual).
 - Performance: medir impacto en CLS e INP antes de validar cualquier animación en el viewport inicial (hero/above-the-fold).
+- **Revelado al hacer scroll y transición entre páginas:** no usan GSAP ni WOW.js (WOW sigue vendorizado pero sin uso). Son `data-reveal` / `data-count` con `IntersectionObserver` en `main.js` + animaciones CSS, y `@view-transition` en CSS. Reglas y API en [interaction-motion.md](interaction-motion.md).
 - Referencia de catálogo de patrones (parallax, reveal, pinning, cursor, etc.) y su mapeo a niveles atómicos: `docs/interactions-catalog.md`.
 
 ## Decisiones de la etapa Cimientos

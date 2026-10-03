@@ -180,6 +180,76 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* Foundations: revelado al entrar en el viewport (docs/interaction-motion.md §2). La clase has-reveal la
+   pone una línea del <head> antes del primer pintado y main.js agrega is-revealed al entrar cada elemento.
+   El estado oculto solo existe en pantalla y sin «reducir movimiento»: sin JS, al imprimir o con la
+   preferencia activa, todo se ve. Son animation con fill backwards (no transition ni transform): no pisan
+   los hovers de los componentes y, al terminar, el elemento vuelve a sus estilos propios. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .has-reveal [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+  }
+  .has-reveal [data-reveal='mask']:not(.is-revealed) {
+    opacity: 1;
+    clip-path: inset(100% 0 0 0);
+  }
+  .has-reveal [data-reveal].is-revealed {
+    animation: reveal-rise var(--ease-reveal) backwards;
+    animation-delay: calc(var(--reveal-order, 0) * var(--reveal-stagger));
+  }
+  .has-reveal [data-reveal='mask'].is-revealed {
+    animation: reveal-mask var(--ease-reveal-mask) backwards;
+    animation-delay: calc(var(--reveal-order, 0) * var(--reveal-stagger));
+  }
+}
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--reveal-distance);
+  }
+}
+@keyframes reveal-mask {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+/* Contador (data-count): el número que cambia va aria-hidden y con cifras tabulares; main.js le reserva
+   el ancho del valor final para que no empuje al sufijo. */
+.count__display {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+/* Foundations: transición entre páginas (docs/interaction-motion.md §3). CSS puro: el navegador que no la
+   soporta navega como siempre. El header --inner lleva nombre propio y queda quieto entre interiores. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+::view-transition-old(root) {
+  animation: page-out var(--ease-page-out) both;
+}
+::view-transition-new(root) {
+  animation: page-in var(--ease-page-in) both;
+}
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+/* Solo fundido: mover la captura entera dejaría una franja vacía arriba; el movimiento de llegada lo dan
+   los data-reveal del Page Hero */
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
 /* atoms:start */
 /* ===== Átomos ===== */
 
@@ -1841,12 +1911,14 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
    Bootstrap en cada breakpoint (con el gutter adentro, como --why-container en Why Choose Us; excepción
    de breakpoints escrita en design-tokens.md) y la barra lleva de relleno medio gutter: así el logo cae
    en la x del contenido en todos los anchos (x=300 a 1920). Con is-scrolled la barra toma el fondo
-   inverso, como la de la home; en mobile ocupa todo el ancho, sin radio. */
+   inverso, como la de la home; en mobile ocupa todo el ancho, sin radio. view-transition-name: entre
+   páginas interiores la barra queda quieta mientras el resto se funde (docs/interaction-motion.md §3). */
 .site-header__cta {
   display: none;
 }
 .site-header--inner {
   --site-header-max: 100%;
+  view-transition-name: site-header;
 }
 @media (min-width: 36rem) {
   .site-header--inner {
