@@ -56,4 +56,5 @@ Desde cualquier carpeta (la raíz del proyecto sale de la ubicación del script)
 
 - `dist/index.html` es la fuente del header, el footer (con off-canvas, Scroll Top y scripts) y las hojas de estilo, entre `<!-- shared:x -->` y `<!-- /shared:x -->`. Cada página nueva trae los tres pares de marcadores (pueden ir vacíos).
 - `python docs/tools/sync_shared.py` los copia a las demás páginas y marca con `aria-current="page"` el enlace del menú que apunta a cada una. `--check` solo verifica (sale con 1 si hay páginas desfasadas). Pruebas: `python docs/tools/test_sync_shared.py`.
+- **Variantes por página:** el marcador de apertura puede llevar modificadores BEM, p. ej. `<!-- shared:header site-header--inner -->` (las páginas interiores). El script agrega cada modificador a la clase de su componente (`site-header`) dentro del bloque copiado; el marcador conserva el modificador y la fuente no lleva ninguno.
 - Nunca editar esas piezas en otra página que no sea `index.html`: se pierden en la siguiente sincronización.

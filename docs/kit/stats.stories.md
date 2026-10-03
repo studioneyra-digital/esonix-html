@@ -50,6 +50,7 @@ Solo mobile. Pastilla sobre filete a todo el ancho, título y tres Stat centrado
 | `h2.stats__title` | Título de la sección, 22px centrado (corta en 12rem, como el diseño) |
 | `ul.stats__list / .stats__item` | Lista de cifras entre filetes |
 | `.stats__level + aria-hidden / .is-on` | Indicador decorativo de tres cuadritos |
+| `.stats--strip + .stats__grid` | About Us: sin pastilla y visible en todos los breakpoints; desde lg, título a la izquierda y las cifras en 3 columnas con filetes verticales |
 
 ## Tokens que consume
 

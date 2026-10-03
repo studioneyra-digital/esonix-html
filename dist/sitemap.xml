@@ -6,4 +6,8 @@
     <loc>https://esonix.example/</loc>
     <lastmod>2026-10-02</lastmod>
   </url>
+  <url>
+    <loc>https://esonix.example/about-us.html</loc>
+    <lastmod>2026-10-02</lastmod>
+  </url>
 </urlset>

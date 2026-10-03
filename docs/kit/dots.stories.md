@@ -1,6 +1,6 @@
 # Pagination Dots
 
-**Nivel:** Átomo · 12  
+**Nivel:** Átomo · 13  
 **Dónde:** `dist/assets/css/main.css` (bloque `/* Pagination Dots */`) · showcase en `dist/kit/index.html#dots`
 
 ## Descripción

@@ -39,6 +39,7 @@ Solo mobile. Grilla 2 × 4 con filetes: 7 logos (4 imágenes repetidas) y «Join
 | `section.section.logos` | Sin padding superior (el diseño la pega a Team); display: none desde lg |
 | `ul.logo-grid` | Grilla de 2 columnas; los filetes son su fondo, que asoma por un gap de 1px |
 | `.logo-grid__cell` | Celda de 100px de alto mínimo con el logo centrado |
+| `.logos--desktop` | About Us: la grilla también desde lg, en 4 columnas |
 
 ## Tokens que consume
 

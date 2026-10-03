@@ -63,6 +63,22 @@ def team(img, role, name, elevated=False):
         </div>
       </article>''' % (' card-team--elevated' if elevated else '', IMG, img, role, name, ic('plus'), name))
 
+SOCIALS = [('facebook', 'Facebook'), ('x-twitter', 'X'), ('instagram', 'Instagram'), ('linkedin', 'LinkedIn')]
+
+def profile(img, role, name, reverse=False):
+    socials = '\n'.join('            <li><a href="#card-team" class="card-team__social" aria-label="%s on %s">%s</a></li>' % (name, net, ic(icon)) for icon, net in SOCIALS)
+    return d('''
+      <article class="card-team card-team--profile%s">
+        <img class="card-team__photo" src="%s%s" alt="" width="848" height="920" loading="lazy">
+        <div class="card-team__info">
+          <h3 class="card-team__name">%s</h3>
+          <p class="card-team__role">%s</p>
+          <ul class="card-team__socials" role="list">
+%s
+          </ul>
+        </div>
+      </article>''') % (' card-team--reverse' if reverse else '', IMG, img, name, role, socials)
+
 def post(img, date_iso, date_txt, title, text, hidden):
     return d('''
       <article class="card-post">
@@ -219,18 +235,25 @@ M.append(dict(id='card-testimonial', title='Card Testimonial',
              'En el diseño el avatar del autor de texto es un retrato cuadrado de 75px; aquí usa el átomo `avatar--portrait` (80px).']))
 
 M.append(dict(id='card-team', title='Card Team',
-  desc='Foto de un miembro del equipo con su rol arriba a la izquierda, una acción arriba a la derecha y el nombre abajo. <code>--elevated</code> sube la card 20px por encima y por debajo de sus vecinas desde <code>lg</code> (la card central del diseño, siempre destacada).',
+  desc='Foto de un miembro del equipo con su rol arriba a la izquierda, una acción arriba a la derecha y el nombre abajo. <code>--elevated</code> sube la card 20px por encima y por debajo de sus vecinas desde <code>lg</code> (la card central del diseño, siempre destacada). <code>--profile</code> es la variante clara de About Us: card blanca con la foto arriba y, debajo, nombre, cargo y redes (<code>--reverse</code> invierte el orden desde <code>lg</code>).',
   desc_md='Foto con rol (badge), acción («+») y nombre. `--elevated` sube la card 20px desde lg.',
   blocks=[dict(label='Tres cards, la central elevada', mods='cards', html=
         team('h1-team-member-img-1.webp', 'Financial Advisor', 'Olivia Bennet')
         + '\n' + team('h1-team-member-img-2.webp', 'Business Analyst', 'Emma Wilson', True)
-        + '\n' + team('h1-team-member-img-3.webp', 'Corporate Trainer', 'Michael Turner'))],
+        + '\n' + team('h1-team-member-img-3.webp', 'Corporate Trainer', 'Michael Turner')),
+          dict(label='--profile (About Us), la central con --reverse', mods='cards', html=
+        profile('h1-team-member-img-1.webp', 'Financial Advisor', 'Olivia Bennet')
+        + '\n' + profile('h1-team-member-img-2.webp', 'Business Analyst', 'Emma Wilson', True)
+        + '\n' + profile('h1-team-member-img-3.webp', 'Corporate Trainer', 'Michael Turner'))],
   rows=[('.card-photo', 'Patrón base: foto + velo + contenido en la misma celda (con data-surface="inverse")'),
+        ('.card-team--profile', 'Variante clara: card blanca con marco de 12px, foto arriba, nombre, cargo y redes'),
+        ('.card-team--reverse', 'Con --profile: texto arriba y foto abajo desde lg'),
+        ('a.card-team__social + aria-label', 'Red social con área de 32px; el nombre dice persona y red («Olivia Bennet on LinkedIn»)'),
         ('.card-team__top', 'Fila superior: badge de rol y botón «+»'),
         ('.card-team__name', 'Nombre (h3) centrado abajo'),
         ('.card-team--elevated', 'Margen negativo de 20px desde lg y botón «+» amarillo')],
   tokens=['--radius-lg', '--scrim (degradé inferior)', '--color-background-inverse', '--spacing-3 / -5', '--text-h4', '--weight-medium'],
-  a11y='El «+» es un enlace al perfil con <code>aria-label</code> que nombra a la persona («View profile of Olivia Bennet»). La foto es decorativa porque el nombre ya está en el <code>&lt;h3&gt;</code>. El anillo de foco es amarillo gracias a <code>data-surface="inverse"</code>.',
+  a11y='El «+» es un enlace al perfil con <code>aria-label</code> que nombra a la persona («View profile of Olivia Bennet»). La foto es decorativa porque el nombre ya está en el <code>&lt;h3&gt;</code>. El anillo de foco es amarillo gracias a <code>data-surface="inverse"</code>. En <code>--profile</code> cada red es un enlace nombrado con la persona y la red («Olivia Bennet on LinkedIn») y mide 32px, por encima del mínimo de 24px de WCAG 2.5.8.',
   a11y_md='«+» como enlace con `aria-label` que nombra a la persona; foto decorativa; foco amarillo.',
   decisions=['El diseño no dice qué hace el «+»: se implementa como enlace al perfil (el menú Pages incluye «Team Members»). Pendiente de confirmar.',
              'La elevación es margen negativo, no `transform`, para que la card crezca y no se solape con las vecinas; la Section reserva el espacio.']))
@@ -278,7 +301,7 @@ M.append(dict(id='card-project', title='Card Project',
              'Solo hay una foto de proyecto fiel al diseño (la de las notas adhesivas); las demás son placeholders del set de portfolio.']))
 
 M.append(dict(id='card-cta', title='Card CTA',
-  desc='Card con foto de fondo y una invitación a contactar: ícono arriba y, abajo, título, texto y enlace amarillo. Se usa en la FAQ («Still have questions?»).',
+  desc='Card con foto de fondo y una invitación a contactar: ícono arriba y, abajo, título, texto y enlace amarillo. Se usa en la FAQ («Still have questions?»). <code>--stacked</code> es la variante clara de About Us: card blanca con la foto arriba y el enlace en el color normal.',
   desc_md='Card con foto: ícono arriba; título, texto y enlace amarillo abajo (FAQ).',
   blocks=[dict(label='Sobre foto', mods='narrow', html=d('''
       <article class="card-photo card-cta" data-surface="inverse">
@@ -294,8 +317,21 @@ M.append(dict(id='card-cta', title='Card CTA',
             </a>
           </div>
         </div>
-      </article>''' % (IMG, ic('hexagon'), ic('arrow-up-right'))))],
+      </article>''' % (IMG, ic('hexagon'), ic('arrow-up-right')))),
+          dict(label='--stacked (FAQ de About Us)', mods='narrow', html=d('''
+      <article class="card-cta card-cta--stacked">
+        <img class="card-cta__photo" src="%sh2-cta-img.webp" alt="" width="848" height="740" loading="lazy">
+        <div class="card-cta__text">
+          <h3 class="card-cta__title">Still have questions?</h3>
+          <p>Our results-focused strategies are designed to deliver measurable business growth</p>
+          <a href="#card-cta" class="link-arrow">
+            Contact Us
+            %s
+          </a>
+        </div>
+      </article>''' % (IMG, ic('arrow-up-right'))))],
   rows=[('.card-photo', 'Patrón base con foto, velo y contenido (con data-surface="inverse")'),
+        ('.card-cta--stacked + img.card-cta__photo', 'Variante clara: foto arriba en el flujo, sin ícono; enlace en el color normal'),
         ('.card-cta__icon', 'Círculo translúcido con ícono'),
         ('.card-cta__text', 'Título (h3), texto y enlace amarillo')],
   tokens=['--radius-lg', '--scrim (velo del 45% al 90%)', '--color-overlay-light', '--color-text-highlight (enlace)', '--text-h4', '--spacing-3 / -6 / -8 / -9'],
@@ -391,6 +427,73 @@ M.append(dict(id='newsletter', title='Newsletter',
   a11y_md='La frase es el `<label for>`; botón con `aria-label`; el aviso de resultado va con `role="status"`.',
   decisions=['`align-content: start`: en la fila del footer (más alta que el formulario) el campo quedaba separado del título (Etapa 4, Grupo C).',
              'El sitio es estático y sin backend: el `action` queda en `#` y el envío se conecta por proyecto (servicio de formularios o email).']))
+
+def quote_form(fid, action, live=False, state=''):
+    # state: '' | 'error' | 'sending' | 'sent' | 'failed' — solo para mostrar estados estáticos en el kit
+    def field(name, label, kind, auto, value='', error=''):
+        inv = ' aria-invalid="true"' if error else ''
+        attrs = 'id="%s-%s" name="%s" placeholder=" " required aria-describedby="%s-%s-error"%s' % (fid, name, name, fid, name, inv)
+        if kind == 'textarea':
+            control = '<textarea class="input field__control" %s>%s</textarea>' % (attrs, value)
+        else:
+            val = ' value="%s"' % value if value else ''
+            extra = ' pattern="[\\d\\s+\\(\\)\\-]{6,}"' if kind == 'tel' else ''
+            control = '<input class="input field__control" type="%s" %s autocomplete="%s"%s%s>' % (kind, attrs, auto, extra, val)
+        return '\n'.join(['  <div class="field">',
+                          '    <label class="field__label" for="%s-%s">%s<span aria-hidden="true">*</span></label>' % (fid, name, label),
+                          '    ' + control,
+                          '    <p class="field__error" id="%s-%s-error">%s</p>' % (fid, name, error),
+                          '  </div>'])
+    err = state == 'error'
+    filled = state in ('sending', 'failed')
+    busy = ' aria-disabled="true"' if state == 'sending' else ''
+    label = 'Sending…' if state == 'sending' else 'Get Started'
+    # Cada formulario con nombre es un landmark: en el kit, los demos de estado llevan un nombre propio
+    # para no repetir el del demo en vivo (axe: landmark-unique). En la página va aria-labelledby al título.
+    examples = {'error': 'validation error', 'sending': 'sending', 'sent': 'sent', 'failed': 'send error'}
+    name = ' aria-label="Get a free Quote, %s example"' % examples[state] if state else ' aria-labelledby="%s-title"' % fid
+    return '\n'.join([
+        '<form class="quote-form" id="%s-form"%s action="%s" method="post" novalidate%s>' % (fid, ' data-quote-form' if live else '', action, name),
+        '  <h3 class="quote-form__title" id="%s-title">Get a free Quote</h3>' % fid,
+        '  <input type="hidden" name="_subject" value="New quote request from esonix.example">',
+        '  <div hidden><label for="%s-honey">Leave this field empty</label><input type="text" id="%s-honey" name="_honey" tabindex="-1" autocomplete="off"></div>' % (fid, fid),
+        field('name', 'Your name', 'text', 'name', 'Emma Wilson' if filled else '', 'This field is required.' if err else ''),
+        field('email', 'Your email', 'email', 'email', 'emma@company.com' if filled else ('emma@' if err else ''), 'Enter a valid email address.' if err else ''),
+        field('phone', 'Phone number', 'tel', 'tel', '+1 (555) 123 4567' if filled else ''),
+        field('message', 'Message', 'textarea', '', 'We need help with our pricing strategy.' if filled else ''),
+        '  <button type="submit" class="btn quote-form__submit"%s>' % busy,
+        '    <span data-submit-label>%s</span>' % label,
+        '    <span class="btn__icon">%s</span>' % ic('arrow-up-right'),
+        '  </button>',
+        '  <div class="quote-form__messages">',
+        '    <p class="quote-form__status" role="status" data-form-status>%s</p>' % ('Thanks! Your message was sent. We will get back to you soon.' if state == 'sent' else ''),
+        '    <p class="quote-form__alert" role="alert" data-form-alert>%s</p>' % ('Your message could not be sent. Please check your connection and try again.' if state == 'failed' else ''),
+        '  </div>',
+        '</form>'])
+
+M.append(dict(id='quote-form', title='Quote Form',
+  desc='Formulario «Get a free Quote» de About Us: card blanca con cuatro <a href="#field">Field</a> y el botón. Funciona sin JS (envío normal a FormSubmit); con JS, <code>main.js</code> valida, envía por <code>fetch</code> sin salir de la página y muestra los estados. El destino es el <code>action</code> del HTML.',
+  desc_md='Card con 4 Field y botón. Sin JS envía normal a FormSubmit; con JS valida, envía por fetch y muestra estados. Destino = `action`.',
+  blocks=[
+    dict(label='En vivo: la validación es real; sin destino, el envío termina en el estado de error', mods='narrow', html=quote_form('quote-demo', '#kit-demo', live=True)),
+    dict(label='Error de validación', mods='narrow', html=quote_form('quote-error', '#', state='error')),
+    dict(label='Enviando', mods='narrow', html=quote_form('quote-sending', '#', state='sending')),
+    dict(label='Enviado', mods='narrow', html=quote_form('quote-sent', '#', state='sent')),
+    dict(label='Error de envío', mods='narrow', html=quote_form('quote-failed', '#', state='failed')),
+  ],
+  rows=[('form.quote-form[data-quote-form]', 'Activa el envío por fetch y la validación de main.js'),
+        ('action="https://formsubmit.co/&lt;destino&gt;" method="post" novalidate', 'Destino (sin JS, envío normal); novalidate deja la validación a main.js'),
+        ('input[name="_subject"] / div[hidden] &gt; input[name="_honey"]', 'Asunto del correo y trampa antibots de FormSubmit'),
+        ('button[aria-disabled="true"] &gt; [data-submit-label]', 'Enviando: el botón no responde y su texto pasa a «Sending…»'),
+        ('p[role="status"][data-form-status]', 'Mensaje de enviado'),
+        ('p[role="alert"][data-form-alert]', 'Mensaje de error de envío; los datos se conservan')],
+  tokens=['--color-surface-default', '--radius-lg / -sm', '--shadow-md', '--color-feedback-success-* / -error-*', '--spacing-3 / -4 / -5 / -6 / -8', 'Field, Input, Button (átomos)'],
+  a11y='Los errores se escriben en el mensaje de cada campo (enlazado con <code>aria-describedby</code>) y el foco va al primer campo inválido. Enviado y error de envío se anuncian en regiones vivas que existen desde el inicio (vacías): <code>role="status"</code> (cortés) y <code>role="alert"</code> (inmediato). Mientras envía, el botón usa <code>aria-disabled</code> en lugar de <code>disabled</code> para no perder el foco.',
+  a11y_md='Error por campo con `aria-describedby`, foco al primero inválido; `role="status"` / `role="alert"` presentes desde el inicio; `aria-disabled` mientras envía.',
+  decisions=['FormSubmit (decisión del usuario): sin cuenta ni clave. El primer envío real manda a studioneyra@gmail.com un correo de activación que hay que confirmar una vez.',
+             'El correo de destino queda visible en el HTML; FormSubmit permite reemplazarlo por un alias aleatorio después de activar.',
+             'Solo el demo «En vivo» lleva `data-quote-form`; su `action` es la propia página del kit (`#kit-demo`), así nunca envía correos: el servidor estático rechaza el POST y se ve el estado de error. Los demás muestran estados estáticos con `action="#"`.',
+             'El teléfono acepta dígitos, espacios, `+`, paréntesis y guiones (mínimo 6).']))
 
 # ------------------------------------------------------------------ render
 def indent(txt, n):

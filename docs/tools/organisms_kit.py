@@ -23,8 +23,8 @@ MENU = [
 ]
 SOCIALS = [('FB', 'Facebook', 'facebook'), ('TW', 'Twitter', 'x-twitter'), ('LI', 'LinkedIn', 'linkedin'), ('IG', 'Instagram', 'instagram')]
 
-def header(sfx=''):
-    # sfx: sufijo de ids para repetir el header en otra demo del kit sin ids duplicados
+def header(sfx='', mod=''):
+    # sfx: sufijo de ids para repetir el header en otra demo del kit sin ids duplicados; mod: variante
     items = []
     for label, key, subs in MENU:
         links = '\n'.join('    <li><a class="site-nav__sublink" href="#site-header">%s</a></li>' % s for s in subs)
@@ -56,11 +56,15 @@ def header(sfx=''):
         '  <span class="site-header__phone-number">+880 (123) 456 789</span>',
         '  <span class="site-header__phone-icon">%s</span>' % ic('message-square'),
         '</a>',
+        '<a class="btn btn--accent site-header__cta" href="#site-header">',
+        '  Schedule a call',
+        '  <span class="btn__icon">%s</span>' % ic('arrow-up-right'),
+        '</a>',
         '<button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">',
         '  Menu',
         '  %s' % ic('layout-grid'),
         '</button>'])
-    return '<header class="site-header">\n  <div class="site-header__bar">\n%s\n  </div>\n</header>' % textwrap.indent(body, '    ')
+    return '<header class="site-header%s">\n  <div class="site-header__bar">\n%s\n  </div>\n</header>' % (' ' + mod if mod else '', textwrap.indent(body, '    '))
 
 def offcanvas():
     groups = []
@@ -122,12 +126,15 @@ O.append(dict(id='site-header', title='Site Header',
   desc_md='Barra del sitio sobre la foto del hero: logo, menú en píldora blanca con submenús (disclosure), redes en texto y teléfono. Responde al ancho de su contenedor (container query `site-header`): < 48rem logo + «Menu» (abre el Off-canvas); ≥ 48rem menú y círculo del chat; ≥ 64rem número de teléfono; ≥ 80rem redes.',
   blocks=[dict(label='Barra completa (80rem de ancho), a escala', mods='hero hero-full', html=header()),
           dict(label='Al ancho de esta columna: achica la ventana para ver cómo se adapta', mods='hero', snippet=False, html=header('-col')),
-          dict(label='Mobile (barra de menos de 48rem): logo y Menu', mods='hero hero-mobile', snippet=False, html=header('-sm'))],
+          dict(label='Mobile (barra de menos de 48rem): logo y Menu', mods='hero hero-mobile', snippet=False, html=header('-sm')),
+          dict(label='--inner (páginas interiores), barra completa a escala', mods='hero hero-full', html=header('-inner', 'site-header--inner'))],
   rows=[('.site-header', 'Contenedor de consulta (container: site-header); texto blanco y foco amarillo'),
         ('.site-header__bar', 'Barra en píldora con velo blanco al 10% y borde blanco al 30%; reparte los grupos con space-between'),
         ('.site-header__brand', 'Enlace del logo (primary-logo.png, sobre oscuro)'),
         ('.site-header--fixed', 'Variante fija arriba (position: fixed, z-sticky), centrada hasta --site-header-max; el margen alrededor de la barra no captura clics'),
         ('.site-header--fixed.is-scrolled', 'Lo agrega main.js al pasar el 10% del alto de la ventana: la barra pasa a fondo inverso para leerse sobre las secciones claras'),
+        ('.site-header--inner', 'Páginas interiores: sin barra visible, logo alineado al .container, píldora del menú oscura y el botón «Schedule a call» en lugar de redes y teléfono. En las páginas lo pone sync_shared.py desde el marcador (&lt;!-- shared:header site-header--inner --&gt;)'),
+        ('a.btn.btn--accent.site-header__cta', 'Botón «Schedule a call ↗»: oculto salvo en --inner desde 64rem de barra; círculo blanco'),
         ('.site-header__nav', 'Contenedor &lt;nav&gt; del menú; visible desde 48rem de barra'),
         ('.site-nav__list / __item / __link', 'Píldora blanca, ítem posicionado y enlace o botón del menú'),
         ('.site-nav__trigger + aria-expanded / aria-controls', 'Botón que abre su submenú; el chevron gira con aria-expanded="true"'),
@@ -296,11 +303,27 @@ def video_modal():
         '  <div class="video-modal__frame"></div>',
         '</dialog>'])
 
+QUOTES = [('David Thompson,', 'Sales Director', '“Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy, every recommendation was practical, well-researched, &amp; tailored to our goals.”'),
+          ('James Anderson,', 'Entrepreneur, Brand Strategist', '“We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.”'),
+          ('Isabella Harris,', 'CEO &amp; Founder', '“Working with this consulting team completely transformed our business operations.”')]
+
+def quote_slide(name, role, text):
+    return d('''
+      <figure class="feedback__quote">
+        <blockquote class="feedback__text"><p>%s</p></blockquote>
+        <figcaption class="feedback__author"><strong>%s</strong> %s</figcaption>
+      </figure>''') % (text, name, role)
+
+def quotes_carousel():
+    out = carousel('carousel-quotes', 'Client quotes', [quote_slide(*q) for q in QUOTES], dots='Show quote', attrs=' data-carousel-fade')
+    return out.replace('class="carousel"', 'class="carousel carousel--fade"').replace('aria-label="Choose a story"', 'aria-label="Choose a quote"')
+
 O.append(dict(id='carousel', title='Carousel',
-  desc='Base de Swiper para los carruseles de la home: loop con el slide activo <strong>centrado</strong>, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y destaca el slide activo (<code>data-carousel-highlight</code>); Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.',
+  desc='Base de Swiper para los carruseles de la home: loop con el slide activo <strong>centrado</strong>, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y destaca el slide activo (<code>data-carousel-highlight</code>); Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>. <code>--fade</code> (About Us) muestra una cita por vez con fundido, con dots.',
   desc_md='Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides según el ancho del carrusel (48 y 64rem, container). Los vecinos sangran fuera; la Section recorta con `overflow-x: clip`. Flechas vinculadas por `aria-controls` (en cualquier lugar) o dots generados por `main.js`. `data-carousel-highlight` destaca el slide activo; `data-carousel-start` / `-start-wide` eligen el inicial.',
   blocks=[dict(label='Services: flechas y slide activo destacado', mods='bleed bleed-arrows', html=arrows('carousel-services', 'service') + '\n' + carousel('carousel-services', 'Services', [service_card(*s) for s in SERVICES], attrs=' data-carousel-highlight data-carousel-start="0" data-carousel-start-wide="1"')),
-          dict(label='Testimonials: dots, sobre fondo oscuro', mods='bleed', surface='inverse', html=carousel('carousel-testimonials', 'Client stories', [testimonial_card(*t) for t in TESTIMONIALS], dots='Show story', attrs=' data-carousel-start="2"'))],
+          dict(label='Testimonials: dots, sobre fondo oscuro', mods='bleed', surface='inverse', html=carousel('carousel-testimonials', 'Client stories', [testimonial_card(*t) for t in TESTIMONIALS], dots='Show story', attrs=' data-carousel-start="2"')),
+          dict(label='--fade: citas con fundido (Client Feedback de About Us)', surface='inverse', html=quotes_carousel())],
   rows=[('.carousel + data-carousel + id', 'Contenedor (container: carousel); main.js lo inicia al acercarse al viewport'),
         ('role="region" aria-roledescription="carousel" aria-label', 'Región con nombre propio («Services», «Client stories»)'),
         ('.swiper.carousel__viewport / .swiper-wrapper', 'Estructura de Swiper; el viewport deja ver los slides vecinos'),
@@ -310,7 +333,8 @@ O.append(dict(id='carousel', title='Carousel',
         ('.dots + data-carousel-dots="Show story"', 'Contenedor de los dots: main.js crea un botón por slide original con ese prefijo de nombre'),
         ('data-carousel-start="2"', 'Slide inicial (índice desde 0; por defecto 0)'),
         ('data-carousel-start-wide="1"', 'Slide inicial cuando el carrusel mide 64rem o más (3 por vista); si falta, vale data-carousel-start'),
-        ('data-carousel-highlight', 'La card del slide activo recibe data-surface="brand" y las demás lo pierden; el markup trae destacada la inicial (estado sin JS)')],
+        ('data-carousel-highlight', 'La card del slide activo recibe data-surface="brand" y las demás lo pierden; el markup trae destacada la inicial (estado sin JS)'),
+        ('.carousel--fade + data-carousel-fade', 'Un slide por vista con fundido (effect: fade); sin copias ni vecinos a la vista. Las clases feedback__* de las citas son de la Section Feedback')],
   tokens=['--spacing-5 / -6 (separación)', '--spacing-9', '--ease-slow (velocidad)', 'Icon Button y Pagination Dots (átomos)', 'Card Service y Card Testimonial (moléculas)'],
   a11y='La región tiene <code>aria-roledescription="carousel"</code> y nombre; cada slide es un <code>role="group"</code> «slide» con nombre «3 of 6» (rol del módulo a11y de Swiper; el nombre lo pone <code>main.js</code> sin contar las copias del loop, que van con <code>aria-hidden</code> e <code>inert</code>; Swiper además anuncia el cambio con una región <code>aria-live="polite"</code>). Flechas y dots son <code>&lt;button&gt;</code> con nombre; el dot actual lleva <code>aria-current="true"</code>. Teclado: solo los controles de los slides enteros en pantalla entran en el orden de Tab; los de los demás llevan <code>tabindex="-1"</code> (no <code>inert</code>: el lector de pantalla sigue leyendo todos los slides) y se llega a ellos con flechas, dots o las flechas del teclado. No hay autoplay. La velocidad sale de <code>--ease-slow</code>, que vale 0 con «reducir movimiento». Sin JS, los slides quedan en fila con scroll horizontal nativo.',
   a11y_md='Región con `aria-roledescription="carousel"` y nombre; slides `role="group"` «N of M» (a11y de Swiper, `aria-live="polite"`). Flechas y dots son `<button>`; dot actual con `aria-current`. Tab solo entra en los slides enteros en pantalla (los demás, `tabindex="-1"`). Sin autoplay; velocidad `--ease-slow` (0 con reduced motion). Sin JS: fila con scroll nativo.',
@@ -325,8 +349,10 @@ O.append(dict(id='carousel', title='Carousel',
 O.append(dict(id='accordion', title='Accordion',
   desc='Grupo de <a href="#accordion-item">Accordion Items</a> para el FAQ. Que quede un solo ítem abierto lo da el mismo <code>name</code> en todos los <code>&lt;details&gt;</code>, sin JS; el grupo suma la animación de altura con <code>::details-content</code>.',
   desc_md='Grupo de Accordion Items (FAQ): un solo ítem abierto por el `name` compartido (sin JS) y animación de altura con `::details-content`.',
-  blocks=[dict(label='FAQ con un ítem abierto', mods='narrow-wide', html=accordion())],
+  blocks=[dict(label='FAQ con un ítem abierto', mods='narrow-wide', html=accordion()),
+          dict(label='--boxed (FAQ de About Us)', mods='narrow-wide', html=accordion().replace('class="accordion"', 'class="accordion accordion--boxed"').replace('name="faq"', 'name="faq-boxed"'))],
   rows=[('.accordion', 'Grupo; activa interpolate-size para animar hasta height: auto'),
+        ('.accordion--boxed', 'Ítems en caja con borde y 32px de separación; el abierto en blanco'),
         ('.accordion-item + name="faq"', 'Cada pregunta (molécula); el mismo name deja una sola abierta'),
         ('open', 'Ítem abierto al cargar (el diseño abre el segundo)')],
   tokens=['--ease-base', 'Accordion Item (molécula)'],

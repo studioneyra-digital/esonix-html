@@ -15,7 +15,7 @@ INDEX = '''<!doctype html>
 </head>
 <body>
   <!-- shared:header -->
-  <header>
+  <header class="site-header site-header--fixed">
     <a class="site-nav__sublink" href="./" aria-current="page">Home Version 01</a>
     <a class="site-nav__sublink" href="about-us.html">About Us</a>
   </header>
@@ -80,6 +80,25 @@ class SyncSharedTest(unittest.TestCase):
         self.assertEqual(run(self.dist, '--check').returncode, 1)
         run(self.dist)
         self.assertEqual(run(self.dist, '--check').returncode, 0)
+
+    def test_marker_modifier_is_added_to_the_component_and_kept(self):
+        page = PAGE.replace('<!-- shared:header -->', '<!-- shared:header site-header--inner -->')
+        (self.dist / 'about-us.html').write_text(page, encoding='utf-8')
+        self.assertEqual(run(self.dist).returncode, 0)
+        about = (self.dist / 'about-us.html').read_text(encoding='utf-8')
+        self.assertIn('<header class="site-header site-header--inner site-header--fixed">', about)
+        # el marcador conserva el modificador: la siguiente sincronización no cambia nada
+        self.assertIn('<!-- shared:header site-header--inner -->', about)
+        self.assertEqual(run(self.dist, '--check').returncode, 0)
+        # la fuente no se toca
+        self.assertIn('<header class="site-header site-header--fixed">', (self.dist / 'index.html').read_text(encoding='utf-8'))
+
+    def test_unknown_modifier_fails(self):
+        page = PAGE.replace('<!-- shared:header -->', '<!-- shared:header nav--inner -->')
+        (self.dist / 'about-us.html').write_text(page, encoding='utf-8')
+        result = run(self.dist)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('nav--inner', result.stderr)
 
     def test_missing_marker_fails(self):
         (self.dist / 'broken.html').write_text('<html><body></body></html>', encoding='utf-8')

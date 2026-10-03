@@ -77,5 +77,31 @@ Contenido: copy del PNG. El mobile repite «12K+»: es un error de captura, se u
 4. `about-us.html` con sus Sections, modificadores de `stats` / `logos` / `faq`, `<head>`, sitemap y enlace del menú.
 5. Kit, `.stories.md`, QA y reporte de desvíos. Commit de la página.
 
+Plan de implementación detallado: `docs/plan-etapa-5-about-us.md`.
+
+### Estado: hecha, en revisión
+Infraestructura commiteada (`1b517dd`); la página, construida y verificada, espera aprobación para su commit.
+
+**Cambios respecto de esta spec** (decididos al planificar o al construir):
+- El slider de citas es la variante `carousel--fade` del Carousel (no un organismo nuevo).
+- Variantes que el PNG mostraba y la spec no listaba: `card-cta--stacked`, `accordion--boxed`, `progress--accent` e ícono `circle-check-outline` (el `circle-check` del theme es relleno).
+- **Header de páginas interiores** (decisión del usuario al construir): `site-header--inner`, con el logo alineado al `.container`, la píldora del menú oscura y el botón «Schedule a call ↗». `sync_shared.py` lo aplica desde el marcador (`<!-- shared:header site-header--inner -->`); el botón lleva al footer (contacto) hasta que exista la página Contact.
+- `.section-bg`: el fondo desenfocado de Testimonials pasa a un patrón compartido con Feedback (sin cambio visual en la Home).
+- El título del formulario es `<h2>` en la página (va antes que el h2 de su sección).
+
+**Desvíos frente al diseño:**
+- `h1` del Page Hero con `--text-h1` (48/36px) contra ≈ 62/41px (decisión del usuario).
+- Stats `--strip`: centros de las cifras en 751 / 1099 / 1447 px contra 767 / 1147 / 1527 del diseño (el diseño excede el contenedor de 1320 por la derecha).
+- Quote Form de 571px contra 585, con los campos a 83px (diseño: 75): el label flotante reserva su lugar arriba.
+- Feedback: 797px de alto contra ≈ 822.
+- Párrafos de «Who we are» con ~85 caracteres por línea (anti-patrones #13, excepción declarada: así lo muestra el diseño).
+
+**Verificado:** 1920, 1440, 1280, 1024, 768, 480 y 390px sin desborde; axe sin violaciones en la página (1440 y 390); consola limpia; teclado (orden lógico, foco visible, el honeypot fuera del Tab); los cuatro estados del formulario con la red interceptada (nunca se envió a FormSubmit); `prefers-reduced-motion`; `sync_shared.py --check` y sus 6 pruebas; Home sin regresiones (Testimonials con `.section-bg` idéntico).
+
+**Pendiente del usuario / observaciones:**
+- El primer envío real del formulario dispara el correo de activación de FormSubmit a studioneyra@gmail.com.
+- El Hero de la Home no lleva `data-surface="inverse"`: su anillo de foco por defecto es oscuro sobre la foto (el Page Hero ya lo corrige). Fuera del alcance de esta página.
+- axe marca en el kit las citas ocultas (opacidad 0) del carrusel con fundido: falso positivo, en la página no aparece. En la Home quedan los avisos ya conocidos de textos decorativos («01/03» de Card Feature y la marca de agua «Works»).
+
 ## Páginas siguientes
 Services, Service Details, Portfolios, Case Study, Testimonials y Contact: se describen y planifican cuando lleguen sus PNG (ya están Service Details y Contact Us en `docs/design/`).

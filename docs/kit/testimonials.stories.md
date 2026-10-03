@@ -11,7 +11,7 @@ Bloque oscuro (foto desenfocada + velo), encabezado centrado y Carousel con dots
 
 ```html
 <section class="section testimonials" id="testimonials" aria-labelledby="testimonials-title" data-surface="inverse">
-  <div class="testimonials__media">
+  <div class="section-bg">
     <img src="assets/img/h1-testimonial-bg-img.webp" alt="" width="1920" height="1000" loading="lazy">
   </div>
   <div class="container">
@@ -126,7 +126,7 @@ Bloque oscuro (foto desenfocada + velo), encabezado centrado y Carousel con dots
 | Clase o atributo | Efecto |
 |---|---|
 | `section.section.testimonials + data-surface="inverse"` | Fondo oscuro; recorta los slides que sangran y la foto al radio |
-| `.testimonials__media` | Capa de la foto (filter: blur(--blur-photo)) con el velo en ::after |
+| `.section-bg` | Capa de la foto (filter: blur(--blur-photo)) con el velo en ::after; patrón compartido con Feedback (About Us) |
 | `.section-head--center + .eyebrow--inverse` | Encabezado centrado, eyebrow amarillo |
 | `data-carousel-start="2"` | Arranca en el tercer testimonio, como el diseño |
 

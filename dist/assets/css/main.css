@@ -210,6 +210,7 @@ html.lenis body {
 .icon--play { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='6 3 20 12 6 21 6 3' fill='%23000'/%3E%3C/svg%3E"); }
 .icon--check { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
 .icon--circle-check { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cmask id='m'%3E%3Crect width='24' height='24' fill='%23fff' stroke='none'/%3E%3Cpath d='m8 12.5 2.8 2.8L16 9.5' stroke='%23000'/%3E%3C/mask%3E%3Ccircle cx='12' cy='12' r='10' fill='%23000' stroke='none' mask='url(%23m)'/%3E%3C/svg%3E"); }
+.icon--circle-check-outline { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E"); }
 .icon--chevron-down { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
 .icon--x { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E"); }
 .icon--send { --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z'/%3E%3Cpath d='m21.854 2.147-10.94 10.939'/%3E%3C/svg%3E"); }
@@ -532,6 +533,16 @@ html.lenis body {
   border-radius: var(--radius-full);
   background-color: var(--color-action-primary);
 }
+/* --accent: relleno ámbar (barra «Consulting» de About Us). */
+.progress--accent .progress__bar {
+  color: var(--color-action-secondary);
+}
+.progress--accent .progress__bar::-webkit-progress-value {
+  background-color: var(--color-action-secondary);
+}
+.progress--accent .progress__bar::-moz-progress-bar {
+  background-color: var(--color-action-secondary);
+}
 
 /* Switch — checkbox nativo con role="switch": la posición de la perilla es el estado (apagado a la izquierda). */
 .switch {
@@ -598,10 +609,58 @@ html.lenis body {
 .input[aria-invalid='true'] {
   --input-border: var(--color-border-error);
 }
+.input[aria-invalid='true']:hover {
+  border-block-end-color: var(--input-border); /* el hover no tapa el color de error */
+}
 :where([data-surface='inverse'], [data-surface='brand']) .input {
   --input-fg: var(--color-text-inverse);
   --input-border: var(--color-text-inverse-secondary);
   --input-placeholder: var(--color-text-inverse-secondary);
+}
+
+/* Textarea — el mismo .input sobre <textarea>: varias líneas, alto mínimo de 96px y solo redimensionable en
+   vertical (el diseño muestra el tirador). */
+textarea.input {
+  display: block;
+  min-block-size: var(--spacing-12);
+  resize: vertical;
+}
+
+/* Field — campo con label flotante (Quote Form). En reposo el <label> ocupa el lugar del placeholder, como el
+   diseño; con foco o con texto sube y se achica sobre el filete, así el nombre del campo nunca desaparece
+   (accessibility.md: label asociado, no solo placeholder). El campo lleva placeholder=" " para que
+   :placeholder-shown distinga vacío de lleno. Debajo, el mensaje de error: vacío (y sin caja) si no hay.
+   --field-rise es el lugar que se reserva arriba para el label subido (22px de alto + el anillo de foco). */
+.field {
+  --field-rise: var(--spacing-7);
+  position: relative;
+  display: grid;
+  gap: var(--spacing-1);
+  padding-block-start: var(--field-rise);
+}
+.field__label {
+  position: absolute;
+  inset-block-start: calc(var(--field-rise) + var(--spacing-3));
+  inset-inline-start: 0;
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform var(--ease-fast);
+}
+.field:focus-within .field__label,
+.field:has(.field__control:not(:placeholder-shown)) .field__label {
+  transform: translateY(calc(-1 * (var(--field-rise) + var(--spacing-3)))) scale(0.875);
+}
+.field__control::placeholder {
+  color: transparent;
+}
+.field__error {
+  color: var(--color-feedback-error-text);
+  font-size: var(--text-sm);
+}
+.field__error:empty {
+  display: none;
 }
 
 /* Divider — <hr> de un filete. --inverse sobre fondos oscuros. */
@@ -1023,6 +1082,66 @@ html.lenis body {
   }
 }
 
+/* --profile — variante clara (About Us): card blanca con la foto arriba (en el flujo, sin card-photo) y,
+   debajo, nombre, cargo y redes. --reverse pone el texto arriba y la foto abajo desde lg (la card central
+   del diseño). Medidas a 1920: marco de 12px, nombre 24px, cargo 16px, íconos de 18px. */
+.card-team--profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}
+.card-team__photo {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.card-team__info {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-1);
+  padding: 0 var(--spacing-5) var(--spacing-5);
+}
+.card-team--profile .card-team__name {
+  text-align: start;
+}
+.card-team__role {
+  color: var(--color-text-secondary);
+}
+.card-team__socials {
+  display: flex;
+  gap: var(--spacing-1);
+  margin: var(--spacing-4) 0 0 calc(-1 * var(--spacing-2));
+  padding: 0;
+  list-style: none;
+}
+/* 32px de área táctil (WCAG 2.5.8) alrededor de un ícono de 18px */
+.card-team__social {
+  display: grid;
+  place-items: center;
+  inline-size: var(--spacing-7);
+  block-size: var(--spacing-7);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  font-size: var(--text-h6);
+}
+.card-team__social:hover {
+  color: var(--color-action-primary-hover);
+}
+@media (min-width: 64rem) {
+  .card-team--reverse {
+    flex-direction: column-reverse;
+  }
+  .card-team--reverse .card-team__info {
+    padding: var(--spacing-6) var(--spacing-5) 0;
+  }
+}
+
 /* Card Post — foto con fecha, título, extracto y «Read More». El texto va con sangría respecto a la foto. */
 .card-post {
   display: grid;
@@ -1123,6 +1242,28 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .card-cta__title {
   font-size: var(--text-h4);
   font-weight: var(--weight-medium);
+}
+
+/* --stacked — variante clara (FAQ de About Us): card blanca con la foto arriba (en el flujo, sin card-photo
+   ni ícono) y, debajo, título, texto y «Contact Us ↗» en el color de enlace normal. */
+.card-cta--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}
+.card-cta__photo {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.card-cta--stacked .card-cta__text {
+  padding: 0 var(--spacing-5) var(--spacing-5);
 }
 
 /* Card Hero — tarjeta translúcida (velo oscuro del theme) sobre la foto del hero; es estática (no enlaza). */
@@ -1283,6 +1424,60 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 }
 .newsletter__submit:hover {
   color: var(--color-text-highlight);
+}
+
+/* Quote Form — card blanca con el título, cuatro Field y el botón (About Us, «Get a free Quote»). Debajo,
+   las regiones de estado: enviado (role="status") y error de envío (role="alert"), vacías hasta que
+   main.js las llena; vacías no ocupan lugar pero siguen en el árbol de accesibilidad (así se anuncian).
+   Sin gap: cada Field ya reserva arriba el lugar de su label, y con gap los campos quedaban a 99px uno
+   del otro (el diseño: 75px). */
+.quote-form {
+  display: grid;
+  padding: var(--spacing-6) var(--spacing-5);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-md);
+}
+/* El nivel del título depende de la página (h2 en About Us, donde el formulario va antes que el h2 de su
+   sección; h3 en el kit): el tamaño es siempre el de un h3 */
+.quote-form__title {
+  margin-block-end: var(--spacing-2);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+.quote-form__submit {
+  justify-self: start;
+  margin-block-start: var(--spacing-6);
+}
+.quote-form__submit[aria-disabled='true'] {
+  cursor: progress;
+}
+.quote-form__messages {
+  display: grid;
+}
+.quote-form__status:not(:empty),
+.quote-form__alert:not(:empty) {
+  margin-block-start: var(--spacing-5);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: var(--border-width-sm) solid;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+.quote-form__status:not(:empty) {
+  border-color: var(--color-feedback-success-border);
+  background-color: var(--color-feedback-success-bg);
+  color: var(--color-feedback-success-text);
+}
+.quote-form__alert:not(:empty) {
+  border-color: var(--color-feedback-error-border);
+  background-color: var(--color-feedback-error-bg);
+  color: var(--color-feedback-error-text);
+}
+@media (min-width: 48rem) {
+  .quote-form {
+    padding: var(--spacing-8);
+  }
 }
 /* molecules:end */
 
@@ -1452,6 +1647,97 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 @container site-header (min-width: 80rem) {
   .site-header__socials {
     display: flex;
+  }
+}
+
+/* --inner — variante de las páginas interiores (About Us…), medida en su diseño: sin barra visible (ni
+   velo ni borde), el logo alineado con el contenido del .container y, en lugar de redes y teléfono, la
+   píldora del menú oscura y translúcida con el botón «Schedule a call ↗» montado sobre su extremo derecho
+   (desde 64rem de barra; antes, solo el menú). Alineación: el ancho máximo replica el del .container de
+   Bootstrap en cada breakpoint (con el gutter adentro, como --why-container en Why Choose Us; excepción
+   de breakpoints escrita en design-tokens.md) y la barra lleva de relleno medio gutter: así el logo cae
+   en la x del contenido en todos los anchos (x=300 a 1920). Con is-scrolled la barra toma el fondo
+   inverso, como la de la home; en mobile ocupa todo el ancho, sin radio. */
+.site-header__cta {
+  display: none;
+}
+.site-header--inner {
+  --site-header-max: 100%;
+}
+@media (min-width: 36rem) {
+  .site-header--inner {
+    --site-header-max: 33.75rem;
+  }
+}
+@media (min-width: 48rem) {
+  .site-header--inner {
+    --site-header-max: 45rem;
+  }
+}
+@media (min-width: 62rem) {
+  .site-header--inner {
+    --site-header-max: 60rem;
+  }
+}
+@media (min-width: 75rem) {
+  .site-header--inner {
+    --site-header-max: 71.25rem;
+  }
+}
+@media (min-width: 87.5rem) {
+  .site-header--inner {
+    --site-header-max: calc(var(--container-width) + var(--spacing-7));
+  }
+}
+.site-header--inner.site-header--fixed {
+  padding-inline: 0;
+}
+.site-header--inner .site-header__bar {
+  padding: 0 var(--spacing-4); /* medio gutter del .container (--spacing-7) */
+  border-color: transparent;
+  background-color: transparent;
+}
+.site-header--inner .site-header__socials,
+.site-header--inner .site-header__phone {
+  display: none;
+}
+.site-header--inner .site-nav__list {
+  --color-border-focus: var(--color-border-focus-inverse);
+  border: var(--border-width-sm) solid color-mix(in srgb, var(--color-text-inverse) 15%, transparent);
+  background-color: color-mix(in srgb, var(--color-background-inverse) 55%, transparent);
+}
+.site-header--inner .site-nav__link {
+  color: var(--color-text-inverse);
+}
+.site-header--inner .site-nav__link:hover,
+.site-header--inner .site-nav__link[aria-expanded='true'] {
+  color: var(--color-text-highlight);
+}
+/* El círculo del botón ámbar va en blanco (en el botón --accent sería ámbar sobre ámbar) */
+.site-header--inner .site-header__cta {
+  --btn-icon-bg: var(--color-surface-default);
+  --btn-icon-fg: var(--color-text-primary);
+  position: relative;
+  align-self: stretch;
+  margin-inline-start: calc(-1 * var(--spacing-7)); /* se monta ~14px sobre la píldora, como el diseño */
+  padding-inline-end: var(--spacing-3);
+}
+@container site-header (width < 64rem) {
+  .site-header--inner .site-header__bar {
+    border-radius: 0;
+  }
+}
+@container site-header (min-width: 64rem) {
+  .site-header--inner .site-header__nav {
+    margin-inline-start: auto;
+  }
+  /* Píldora de 633px a 1920: 56px de relleno y 32px entre ítems, medidos en el diseño */
+  .site-header--inner .site-nav__list {
+    gap: var(--spacing-7);
+    padding-inline: calc(var(--spacing-9) + var(--spacing-2));
+  }
+  .site-header--inner .site-header__cta {
+    display: inline-flex;
   }
 }
 
@@ -1781,6 +2067,12 @@ html.has-offcanvas {
 .carousel .dots {
   justify-self: center;
 }
+/* --fade — un slide por vista que cambia con fundido (las citas de Client Feedback en About Us). main.js lo
+   inicia con effect: 'fade' (data-carousel-fade), sin copias ni vecinos a la vista: el viewport recorta. */
+.carousel--fade .carousel__viewport {
+  --carousel-per-view: 1;
+  overflow: clip;
+}
 
 /* Accordion — grupo de Accordion Items (FAQ). Que haya un solo ítem abierto lo da el mismo name en
    todos los <details>, sin JS. El grupo anima la altura con ::details-content e interpolate-size:
@@ -1796,6 +2088,24 @@ html.has-offcanvas {
 }
 .accordion .accordion-item[open]::details-content {
   block-size: auto;
+}
+/* --boxed — cada ítem en una caja con borde y 32px de separación; el abierto, en blanco (FAQ de About Us). */
+.accordion--boxed {
+  display: grid;
+  gap: var(--spacing-7);
+}
+.accordion--boxed .accordion-item {
+  padding-inline: var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--ease-base);
+}
+.accordion--boxed .accordion-item[open] {
+  background-color: var(--color-surface-default);
+}
+/* Sobre el fondo --color-background-subtle de la sección, el «?» cerrado necesita un tono más */
+.accordion--boxed .accordion-item__mark {
+  background-color: var(--color-background-muted);
 }
 
 /* Video Modal — <dialog> nativo: showModal() deja inert el resto de la página, Escape lo cierra y el
@@ -2307,6 +2617,83 @@ html {
   }
 }
 
+/* Page Hero — cabecera de las páginas interiores: foto a sangre con velo, breadcrumb en píldora translúcida
+   y el único <h1> abajo a la izquierda, en el .container. Reserva el alto del header fijo, como el Hero de
+   la home. Medido en About Us: 750px de alto a 1920 y 420px a 480; el h1 termina ~80px sobre el borde.
+   El h1 usa --text-h1 (48/36px; el diseño mide ≈ 62/41px — decisión del usuario, desvío reportado). */
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  min-block-size: 26.25rem; /* 420px del diseño mobile */
+  overflow: clip;
+  padding-block: calc(var(--header-offset) + var(--spacing-7)) var(--spacing-10);
+  color: var(--color-text-inverse);
+}
+.page-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.page-hero__media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 55% 30%;
+}
+.page-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--color-overlay), transparent 70%),
+    linear-gradient(to top, var(--color-overlay), transparent 60%);
+}
+.page-hero__content {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-6);
+}
+.page-hero__title {
+  max-inline-size: 45rem; /* corta en dos líneas, como el diseño desktop */
+  color: var(--color-text-inverse);
+}
+@media (min-width: 64rem) {
+  .page-hero {
+    min-block-size: 46.875rem; /* 750px del diseño desktop */
+    padding-block-end: var(--spacing-11);
+  }
+}
+
+/* Breadcrumb — píldora translúcida con «Home - Página». El separador es contenido generado sin texto
+   alternativo; la página actual es un <span aria-current="page">. */
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+  margin: 0;
+  padding: var(--spacing-2) var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-overlay-light);
+  border-radius: var(--radius-full);
+  background-color: var(--color-overlay-light);
+  color: var(--color-text-inverse);
+  font-weight: var(--weight-medium);
+  list-style: none;
+}
+.breadcrumb__list li + li::before {
+  content: '-' / '';
+  margin-inline-end: var(--spacing-1);
+}
+.breadcrumb__list a {
+  color: inherit;
+  text-decoration: none;
+}
+.breadcrumb__list a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* What We Do — eyebrow con filete y debajo una grilla de áreas: así el orden cambia entre desktop y mobile
    sin duplicar contenido. Desktop (500 | 400 | 290 px en el diseño = 5fr 4fr 3fr con 64px de separación):
      stat  title title
@@ -2750,6 +3137,64 @@ html {
   }
 }
 
+/* Stats --strip — la misma sección en franja (About Us): sin pastilla y visible en todos los breakpoints.
+   Mobile: como Stats. Desde lg: el título a la izquierda (277px medidos a 1920) y las tres cifras en
+   columnas separadas por filetes verticales, que terminan antes del filete a todo el ancho que cierra la
+   sección (48px arriba y abajo, como el diseño). Cifra → etiqueta 80px y etiqueta → puntos 48px. */
+@media (min-width: 64rem) {
+  .stats--strip {
+    display: block;
+    padding-block: var(--spacing-9);
+    border-block-end: var(--border-width-sm) solid var(--color-border-default);
+  }
+  .stats--strip .stats__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 17.3rem) minmax(0, 1fr);
+    align-items: center;
+  }
+  .stats--strip .stats__title {
+    margin: 0;
+    font-size: var(--text-h4);
+    text-align: start;
+  }
+  .stats--strip .stats__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block-end: 0;
+  }
+  .stats--strip .stats__item {
+    gap: var(--spacing-9);
+    padding-block: 0;
+    border-block-start: 0;
+    border-inline-start: var(--border-width-sm) solid var(--color-border-default);
+  }
+  .stats--strip .stats__item .stat {
+    gap: var(--spacing-11);
+  }
+}
+
+/* Section Bg — foto de fondo desenfocada bajo un velo inverso denso, para bloques oscuros (Testimonials,
+   Feedback). La sección pone position: relative, isolation: isolate y overflow: clip. */
+.section-bg {
+  position: absolute;
+  inset: calc(-2 * var(--blur-photo)); /* el borde difuminado del desenfoque queda fuera del recorte */
+  z-index: -1;
+}
+.section-bg img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+  object-fit: cover;
+  filter: blur(var(--blur-photo));
+}
+.section-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-background-inverse) 85%, transparent);
+}
+
 /* Testimonials — bloque oscuro (data-surface="inverse") con la foto de fondo desenfocada bajo un velo
    denso, encabezado centrado y el Carousel con dots en el contenedor ancho; los slides vecinos sangran y
    la sección los recorta (overflow: clip en ambos ejes, para que la foto respete el radio). Radio en las
@@ -2761,25 +3206,6 @@ html {
   overflow: clip;
   padding-block: var(--spacing-12) var(--spacing-11);
   border-radius: var(--radius-xl);
-}
-.testimonials__media {
-  position: absolute;
-  inset: calc(-2 * var(--blur-photo)); /* el borde difuminado del desenfoque queda fuera del recorte */
-  z-index: -1;
-}
-.testimonials__media img {
-  display: block;
-  inline-size: 100%;
-  block-size: 100%;
-  max-inline-size: none;
-  object-fit: cover;
-  filter: blur(var(--blur-photo));
-}
-.testimonials__media::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: color-mix(in srgb, var(--color-background-inverse) 85%, transparent);
 }
 .testimonials .carousel {
   gap: var(--spacing-9);
@@ -2838,6 +3264,15 @@ html {
     display: none;
   }
 }
+/* --desktop (About Us): la grilla también desde lg, en 4 columnas (330px a 1920). */
+@media (min-width: 64rem) {
+  .logos--desktop {
+    display: block;
+  }
+  .logos--desktop .logo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
 
 /* FAQ — a la izquierda el encabezado y la Card CTA (abajo, a ras del final del acordeón); a la derecha el
    Accordion. Columnas medidas a 1920: 525 y 720px. En mobile: encabezado, CTA y acordeón apilados. */
@@ -2861,6 +3296,17 @@ html {
   .faq__intro {
     align-content: space-between;
     gap: var(--spacing-10);
+  }
+}
+
+/* FAQ --centered (About Us): encabezado centrado arriba y, debajo, el Accordion --boxed (800px a 1920) y la
+   Card CTA --stacked (448px) estirada al alto del acordeón, sobre el crema más oscuro del diseño. */
+.faq--centered {
+  background-color: var(--color-background-subtle);
+}
+@media (min-width: 64rem) {
+  .faq--centered .faq__grid {
+    grid-template-columns: minmax(0, 50rem) minmax(0, 28rem);
   }
 }
 
@@ -2926,6 +3372,199 @@ html {
   }
   .page-footer > .container {
     padding-block-start: var(--spacing-10);
+  }
+}
+/* ===== Sections de las páginas interiores (Etapa 5). Page Hero y Stats --strip van junto a Hero y
+   Stats; Logos --desktop y FAQ --centered, junto a sus secciones. ===== */
+
+/* About Intro — «What We Do» de About Us. Desde lg, dos columnas medidas a 1920: a la izquierda (480px,
+   arriba) eyebrow, h2, la lista con checks y el botón; a la derecha (680px) la historia: foto con marco
+   5:4, «Who we are» con dos párrafos, filete y la cita con firma. Mobile: apilado en el mismo orden. */
+.about-intro__grid {
+  display: grid;
+  gap: var(--spacing-10);
+}
+.about-intro__lead {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: var(--spacing-5);
+}
+.about-intro__list {
+  display: grid;
+  gap: var(--spacing-4);
+  margin: var(--spacing-3) 0 var(--spacing-5);
+  padding: 0;
+  list-style: none;
+}
+.about-intro__list li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+.about-intro__list .icon {
+  color: var(--color-text-primary);
+  font-size: var(--text-h5);
+}
+.about-intro__story {
+  display: grid;
+  gap: var(--spacing-7);
+}
+.about-intro__photo img {
+  aspect-ratio: 5 / 4;
+}
+.about-intro__text {
+  display: grid;
+  gap: var(--spacing-4);
+  padding-inline: var(--spacing-5);
+}
+.about-intro__subtitle {
+  margin-block-end: var(--spacing-3);
+  font-size: var(--text-h4);
+  font-weight: var(--weight-medium);
+}
+.about-intro__quote {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--spacing-5) var(--spacing-7);
+  margin: 0;
+}
+/* Comillas grandes decorativas, a la izquierda de la cita y la firma */
+.about-intro__quote::before {
+  content: '“' / '';
+  grid-row: span 2;
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+.about-intro__quote blockquote {
+  margin: 0;
+}
+.about-intro__quote strong {
+  color: var(--color-text-primary);
+  font-weight: var(--weight-regular);
+}
+.about-intro__quote img {
+  display: block;
+}
+@media (min-width: 64rem) {
+  .about-intro__grid {
+    grid-template-columns: minmax(0, 30rem) minmax(0, 42.5rem);
+    justify-content: space-between;
+  }
+}
+
+/* Team Profiles — el equipo en About Us: Section Head centrado y tres Card Team --profile, apiladas en
+   mobile y en 3 columnas (424px a 1920) desde lg, la central con --reverse. */
+.team-profiles__grid {
+  display: grid;
+  gap: var(--spacing-6);
+}
+@media (min-width: 64rem) {
+  .team-profiles__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Feedback — Client Feedback de About Us: bloque oscuro con Section Bg, encabezado centrado y el
+   Carousel --fade de citas. Radio arriba en mobile y abajo desde lg, como cada PNG. El padding inferior
+   reserva lo que la card del Quote Form (Why Trust) sube sobre el bloque (--quote-form-overlap). */
+:root {
+  --quote-form-overlap: var(--spacing-11); /* ≈ 78px medidos en el diseño mobile */
+}
+.feedback {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding-block-end: calc(var(--spacing-10) + var(--quote-form-overlap));
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+.feedback .carousel {
+  gap: var(--spacing-7);
+}
+.feedback__quote {
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-6);
+  max-inline-size: 58rem; /* la cita corta en 3 líneas a 1920, como el diseño */
+  margin: 0 auto;
+  text-align: center;
+}
+/* Comillas ámbar decorativas sobre la cita */
+.feedback__quote::before {
+  content: '“' / '';
+  block-size: 0.6em; /* el glifo solo ocupa la mitad superior de su línea */
+  color: var(--color-text-highlight);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+}
+.feedback__text {
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-size: var(--text-h6);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
+}
+.feedback__author {
+  color: var(--color-text-inverse-secondary);
+}
+.feedback__author strong {
+  color: var(--color-text-inverse);
+  font-weight: var(--weight-semibold);
+}
+@media (min-width: 64rem) {
+  :root {
+    --quote-form-overlap: var(--spacing-12); /* ≈ 98px a 1920 */
+  }
+  .feedback {
+    padding-block-start: var(--spacing-13);
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  }
+  .feedback__text {
+    font-size: var(--text-h4);
+  }
+}
+
+/* Why Trust — Why Choose Us de About Us. El Quote Form va primero en el DOM (en mobile se ve primero, como
+   el diseño) y sube sobre el bloque Feedback con un margen negativo (--quote-form-overlap). Desde lg: el
+   texto a la izquierda (600px a 1920), alineado abajo con la card; el formulario a la derecha (560px). */
+.why-trust {
+  padding-block-start: 0;
+}
+.why-trust__grid {
+  display: grid;
+  gap: var(--spacing-10);
+}
+.why-trust__form {
+  position: relative; /* por encima del bloque Feedback, que va antes en el DOM */
+  margin-block-start: calc(-1 * var(--quote-form-overlap));
+}
+.why-trust__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-5);
+}
+.why-trust__bars {
+  display: grid;
+  gap: var(--spacing-6);
+  inline-size: 100%;
+  margin-block: var(--spacing-5);
+}
+@media (min-width: 64rem) {
+  .why-trust__grid {
+    grid-template-columns: minmax(0, 37.5rem) minmax(0, 35rem);
+    justify-content: space-between;
+    align-items: end;
+  }
+  .why-trust__form {
+    grid-area: 1 / 2;
+  }
+  .why-trust__intro {
+    grid-area: 1 / 1;
   }
 }
 /* sections:end */

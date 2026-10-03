@@ -82,6 +82,95 @@ Barra del sitio sobre la foto del hero: logo, menú en píldora blanca con subme
       <span class="site-header__phone-number">+880 (123) 456 789</span>
       <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
     </a>
+    <a class="btn btn--accent site-header__cta" href="#site-header">
+      Schedule a call
+      <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+    </a>
+    <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
+      Menu
+      <span class="icon icon--layout-grid" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+```
+
+**--inner (páginas interiores), barra completa a escala**
+
+```html
+<header class="site-header site-header--inner">
+  <div class="site-header__bar">
+    <a class="site-header__brand" href="#site-header">
+      <img class="brand-logo" src="../assets/img/primary-logo.png" alt="Esonix" width="140" height="40">
+    </a>
+    <nav class="site-header__nav" aria-label="Main">
+      <ul class="site-nav__list">
+        <li class="site-nav__item">
+          <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-home-inner">
+            Home
+            <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+          </button>
+          <ul class="site-nav__submenu" id="submenu-home-inner" data-surface="brand">
+            <li><a class="site-nav__sublink" href="#site-header">Home Version 01</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Home Version 02</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Home Version 03</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item">
+          <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-services-inner">
+            Services
+            <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+          </button>
+          <ul class="site-nav__submenu" id="submenu-services-inner" data-surface="brand">
+            <li><a class="site-nav__sublink" href="#site-header">Marketing Guidance</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Process Optimization</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Sales Improvement</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Service Details</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item">
+          <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-pages-inner">
+            Pages
+            <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+          </button>
+          <ul class="site-nav__submenu" id="submenu-pages-inner" data-surface="brand">
+            <li><a class="site-nav__sublink" href="#site-header">About Us</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Portfolios</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Portfolio Details</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Team Members</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Pricing Page</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">FAQ Page</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Error 404</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Coming Soon</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item">
+          <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-blog-inner">
+            Blog
+            <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+          </button>
+          <ul class="site-nav__submenu" id="submenu-blog-inner" data-surface="brand">
+            <li><a class="site-nav__sublink" href="#site-header">Blog Grid</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Blog Standard</a></li>
+            <li><a class="site-nav__sublink" href="#site-header">Blog Details</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item"><a class="site-nav__link" href="#site-header">Contact</a></li>
+      </ul>
+    </nav>
+    <ul class="site-header__socials" aria-label="Social media">
+      <li><a class="site-header__social" href="#site-header">FB<span class="visually-hidden"> Facebook</span></a></li>
+      <li><a class="site-header__social" href="#site-header">TW<span class="visually-hidden"> Twitter</span></a></li>
+      <li><a class="site-header__social" href="#site-header">LI<span class="visually-hidden"> LinkedIn</span></a></li>
+      <li><a class="site-header__social" href="#site-header">IG<span class="visually-hidden"> Instagram</span></a></li>
+    </ul>
+    <a class="site-header__phone" href="tel:+880123456789">
+      <span class="site-header__phone-number">+880 (123) 456 789</span>
+      <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
+    </a>
+    <a class="btn btn--accent site-header__cta" href="#site-header">
+      Schedule a call
+      <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+    </a>
     <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
       Menu
       <span class="icon icon--layout-grid" aria-hidden="true"></span>
@@ -99,6 +188,8 @@ Barra del sitio sobre la foto del hero: logo, menú en píldora blanca con subme
 | `.site-header__brand` | Enlace del logo (primary-logo.png, sobre oscuro) |
 | `.site-header--fixed` | Variante fija arriba (position: fixed, z-sticky), centrada hasta --site-header-max; el margen alrededor de la barra no captura clics |
 | `.site-header--fixed.is-scrolled` | Lo agrega main.js al pasar el 10% del alto de la ventana: la barra pasa a fondo inverso para leerse sobre las secciones claras |
+| `.site-header--inner` | Páginas interiores: sin barra visible, logo alineado al .container, píldora del menú oscura y el botón «Schedule a call» en lugar de redes y teléfono. En las páginas lo pone sync_shared.py desde el marcador (<!-- shared:header site-header--inner -->) |
+| `a.btn.btn--accent.site-header__cta` | Botón «Schedule a call ↗»: oculto salvo en --inner desde 64rem de barra; círculo blanco |
 | `.site-header__nav` | Contenedor <nav> del menú; visible desde 48rem de barra |
 | `.site-nav__list / __item / __link` | Píldora blanca, ítem posicionado y enlace o botón del menú |
 | `.site-nav__trigger + aria-expanded / aria-controls` | Botón que abre su submenú; el chevron gira con aria-expanded="true" |

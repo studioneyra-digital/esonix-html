@@ -174,6 +174,97 @@ CSS = r'''/* organisms:start */
   }
 }
 
+/* --inner — variante de las páginas interiores (About Us…), medida en su diseño: sin barra visible (ni
+   velo ni borde), el logo alineado con el contenido del .container y, en lugar de redes y teléfono, la
+   píldora del menú oscura y translúcida con el botón «Schedule a call ↗» montado sobre su extremo derecho
+   (desde 64rem de barra; antes, solo el menú). Alineación: el ancho máximo replica el del .container de
+   Bootstrap en cada breakpoint (con el gutter adentro, como --why-container en Why Choose Us; excepción
+   de breakpoints escrita en design-tokens.md) y la barra lleva de relleno medio gutter: así el logo cae
+   en la x del contenido en todos los anchos (x=300 a 1920). Con is-scrolled la barra toma el fondo
+   inverso, como la de la home; en mobile ocupa todo el ancho, sin radio. */
+.site-header__cta {
+  display: none;
+}
+.site-header--inner {
+  --site-header-max: 100%;
+}
+@media (min-width: 36rem) {
+  .site-header--inner {
+    --site-header-max: 33.75rem;
+  }
+}
+@media (min-width: 48rem) {
+  .site-header--inner {
+    --site-header-max: 45rem;
+  }
+}
+@media (min-width: 62rem) {
+  .site-header--inner {
+    --site-header-max: 60rem;
+  }
+}
+@media (min-width: 75rem) {
+  .site-header--inner {
+    --site-header-max: 71.25rem;
+  }
+}
+@media (min-width: 87.5rem) {
+  .site-header--inner {
+    --site-header-max: calc(var(--container-width) + var(--spacing-7));
+  }
+}
+.site-header--inner.site-header--fixed {
+  padding-inline: 0;
+}
+.site-header--inner .site-header__bar {
+  padding: 0 var(--spacing-4); /* medio gutter del .container (--spacing-7) */
+  border-color: transparent;
+  background-color: transparent;
+}
+.site-header--inner .site-header__socials,
+.site-header--inner .site-header__phone {
+  display: none;
+}
+.site-header--inner .site-nav__list {
+  --color-border-focus: var(--color-border-focus-inverse);
+  border: var(--border-width-sm) solid color-mix(in srgb, var(--color-text-inverse) 15%, transparent);
+  background-color: color-mix(in srgb, var(--color-background-inverse) 55%, transparent);
+}
+.site-header--inner .site-nav__link {
+  color: var(--color-text-inverse);
+}
+.site-header--inner .site-nav__link:hover,
+.site-header--inner .site-nav__link[aria-expanded='true'] {
+  color: var(--color-text-highlight);
+}
+/* El círculo del botón ámbar va en blanco (en el botón --accent sería ámbar sobre ámbar) */
+.site-header--inner .site-header__cta {
+  --btn-icon-bg: var(--color-surface-default);
+  --btn-icon-fg: var(--color-text-primary);
+  position: relative;
+  align-self: stretch;
+  margin-inline-start: calc(-1 * var(--spacing-7)); /* se monta ~14px sobre la píldora, como el diseño */
+  padding-inline-end: var(--spacing-3);
+}
+@container site-header (width < 64rem) {
+  .site-header--inner .site-header__bar {
+    border-radius: 0;
+  }
+}
+@container site-header (min-width: 64rem) {
+  .site-header--inner .site-header__nav {
+    margin-inline-start: auto;
+  }
+  /* Píldora de 633px a 1920: 56px de relleno y 32px entre ítems, medidos en el diseño */
+  .site-header--inner .site-nav__list {
+    gap: var(--spacing-7);
+    padding-inline: calc(var(--spacing-9) + var(--spacing-2));
+  }
+  .site-header--inner .site-header__cta {
+    display: inline-flex;
+  }
+}
+
 /* Site Nav — la píldora blanca del header. Home, Services, Pages y Blog son botones de divulgación
    (aria-expanded) y no enlaces: no tienen página propia. main.js abre el submenú con click, con hover de
    mouse y lo cierra con Escape, al salir el foco o con un click afuera. El submenú es petróleo
@@ -500,6 +591,12 @@ html.has-offcanvas {
 .carousel .dots {
   justify-self: center;
 }
+/* --fade — un slide por vista que cambia con fundido (las citas de Client Feedback en About Us). main.js lo
+   inicia con effect: 'fade' (data-carousel-fade), sin copias ni vecinos a la vista: el viewport recorta. */
+.carousel--fade .carousel__viewport {
+  --carousel-per-view: 1;
+  overflow: clip;
+}
 
 /* Accordion — grupo de Accordion Items (FAQ). Que haya un solo ítem abierto lo da el mismo name en
    todos los <details>, sin JS. El grupo anima la altura con ::details-content e interpolate-size:
@@ -515,6 +612,24 @@ html.has-offcanvas {
 }
 .accordion .accordion-item[open]::details-content {
   block-size: auto;
+}
+/* --boxed — cada ítem en una caja con borde y 32px de separación; el abierto, en blanco (FAQ de About Us). */
+.accordion--boxed {
+  display: grid;
+  gap: var(--spacing-7);
+}
+.accordion--boxed .accordion-item {
+  padding-inline: var(--spacing-5);
+  border: var(--border-width-sm) solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--ease-base);
+}
+.accordion--boxed .accordion-item[open] {
+  background-color: var(--color-surface-default);
+}
+/* Sobre el fondo --color-background-subtle de la sección, el «?» cerrado necesita un tono más */
+.accordion--boxed .accordion-item__mark {
+  background-color: var(--color-background-muted);
 }
 
 /* Video Modal — <dialog> nativo: showModal() deja inert el resto de la página, Escape lo cierra y el

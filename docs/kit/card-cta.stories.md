@@ -28,11 +28,28 @@ Card con foto: ícono arriba; título, texto y enlace amarillo abajo (FAQ).
 </article>
 ```
 
+**--stacked (FAQ de About Us)**
+
+```html
+<article class="card-cta card-cta--stacked">
+  <img class="card-cta__photo" src="../assets/img/h2-cta-img.webp" alt="" width="848" height="740" loading="lazy">
+  <div class="card-cta__text">
+    <h3 class="card-cta__title">Still have questions?</h3>
+    <p>Our results-focused strategies are designed to deliver measurable business growth</p>
+    <a href="#card-cta" class="link-arrow">
+      Contact Us
+      <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+    </a>
+  </div>
+</article>
+```
+
 ## Clases y atributos
 
 | Clase o atributo | Efecto |
 |---|---|
 | `.card-photo` | Patrón base con foto, velo y contenido (con data-surface="inverse") |
+| `.card-cta--stacked + img.card-cta__photo` | Variante clara: foto arriba en el flujo, sin ícono; enlace en el color normal |
 | `.card-cta__icon` | Círculo translúcido con ícono |
 | `.card-cta__text` | Título (h3), texto y enlace amarillo |
 

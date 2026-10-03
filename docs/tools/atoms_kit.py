@@ -11,7 +11,7 @@ def d(s): return textwrap.dedent(s).strip('\n')
 def ic(name): return '<span class="icon icon--%s" aria-hidden="true"></span>' % name
 IMG = '../assets/img/'
 
-ICON_NAMES = ['arrow-up-right', 'arrow-right', 'arrow-left', 'arrow-up', 'plus', 'minus', 'play', 'check', 'circle-check',
+ICON_NAMES = ['arrow-up-right', 'arrow-right', 'arrow-left', 'arrow-up', 'plus', 'minus', 'play', 'check', 'circle-check', 'circle-check-outline',
               'chevron-down', 'x', 'send', 'message-square', 'layout-grid', 'target', 'trending-up', 'chart-pie', 'users', 'lightbulb', 'rocket', 'gem', 'award', 'hexagon', 'facebook', 'linkedin', 'instagram', 'x-twitter']
 
 # ---------------------------------------------------------------- datos
@@ -221,13 +221,22 @@ A.append(dict(id='progress', title='Progress',
           <span aria-hidden="true">85%</span>
         </div>
         <progress class="progress__bar" id="progress-strategic" value="85" max="100">85%</progress>
+      </div>''')),
+    dict(label='--accent: relleno ámbar', mods='medium', html=d('''
+      <div class="progress progress--accent" style="--progress: 88">
+        <div class="progress__head">
+          <label for="progress-demo-accent">Consulting</label>
+          <span aria-hidden="true">88%</span>
+        </div>
+        <progress class="progress__bar" id="progress-demo-accent" value="88" max="100">88%</progress>
       </div>'''))],
   rows=[('.progress', 'Contenedor: cabecera + barra'),
         ('.progress__head', 'Fila con la etiqueta (&lt;label for&gt;) y el porcentaje (aria-hidden)'),
         ('.progress__bar', 'El &lt;progress&gt; nativo: 3px de alto, relleno petróleo sobre pista clara'),
+        ('.progress--accent', 'Relleno ámbar (--color-action-secondary); caso de uso: «Consulting» en About Us'),
         ('value / max', 'El avance real (0–100); el relleno lo dibuja el navegador'),
         ('style="--progress: 90"', 'Mismo valor que value: lleva el porcentaje al final del relleno (sin ella, al final de la pista)')],
-  tokens=['--color-action-primary', '--color-background-muted', '--color-text-primary', '--border-width-sm / -md', '--radius-full', '--ease-slow'],
+  tokens=['--color-action-primary / -secondary', '--color-background-muted', '--color-text-primary', '--border-width-sm / -md', '--radius-full', '--ease-slow'],
   a11y='La etiqueta está asociada con <code>&lt;label for&gt;</code> y el navegador anuncia «90%». El porcentaje visible es <code>aria-hidden</code> para no leerlo dos veces. El texto interno de <code>&lt;progress&gt;</code> es el respaldo de navegadores sin soporte.',
   a11y_md='`<label for>` + valor nativo; el % visible es `aria-hidden`.',
   decisions=['El diseño no muestra animación de llenado: el relleno aparece en su valor final. Una animación al entrar al viewport se decide en la Section.',
@@ -329,18 +338,63 @@ A.append(dict(id='input', title='Input',
     dict(label='Sobre fondo oscuro (hereda de <code>data-surface</code>)', surface='inverse', mods='narrow', html=d('''
       <label for="input-demo-dark" class="visually-hidden">Email address</label>
       <input class="input" type="email" id="input-demo-dark" name="email" placeholder="Enter your email" autocomplete="email">''')),
+    dict(label='Textarea (misma clase)', mods='narrow', html=d('''
+      <label for="input-demo-textarea" class="visually-hidden">Message</label>
+      <textarea class="input" id="input-demo-textarea" name="message" placeholder="Write your message"></textarea>''')),
   ],
   rows=[('.input', 'Campo sin caja: solo el filete inferior; ocupa el ancho de su contenedor'),
+        ('textarea.input', 'Varias líneas: alto mínimo de 96px y redimensionable solo en vertical'),
         ('aria-invalid="true"', 'Estado de error: el filete pasa a color de error (acompañar con un mensaje de texto)'),
         ('&lt;label for&gt;', 'Obligatorio, aunque esté visualmente oculto (<code>visually-hidden</code>): el placeholder no es un nombre accesible'),
         ('type / autocomplete', 'El tipo correcto (email, tel…) abre el teclado adecuado en móvil; autocomplete evita volver a pedir un dato')],
   tokens=['--color-text-primary / -inverse', '--color-border-strong / --color-text-inverse-secondary (filete)', '--color-text-tertiary (placeholder)', '--color-border-error', '--spacing-3', '--text-body', '--ease-fast'],
   a11y='Lleva <code>&lt;label&gt;</code> asociado y el placeholder solo ilustra el formato. El foco usa el anillo global (amarillo sobre superficies oscuras). El filete da ≥3:1 sobre claro y oscuro, como exige WCAG 1.4.11 para el borde de un control.',
   a11y_md='`<label>` asociado (puede ser `visually-hidden`); foco con anillo global; filete ≥3:1.',
-  decisions=['Solo existe el estilo de filete porque es el único campo del diseño; un campo con caja se agrega cuando haya un formulario de contacto que lo pida.',
+  decisions=['Solo existe el estilo de filete: es el de los dos formularios del diseño (newsletter y Quote Form de About Us).',
              'El filete del diseño es translúcido y tenue; aquí es blanco al 78% para cumplir 3:1 como borde de control.']))
 
 _i = [a['id'] for a in A].index('switch')
+A.insert(_i + 1, A.pop())
+
+A.append(dict(id='field', title='Field',
+  desc='Campo con <strong>label flotante</strong>: en reposo el <code>&lt;label&gt;</code> ocupa el lugar del placeholder (como el diseño) y, con foco o con texto, sube y se achica sobre el filete. Envuelve un <a href="#input">Input</a> o un textarea y suma el mensaje de error debajo.',
+  desc_md='Label flotante sobre un Input/textarea: en reposo hace de placeholder; con foco o texto sube. Suma el mensaje de error.',
+  blocks=[
+    dict(label='Vacío, con texto y con error', mods='narrow stack', html=d('''
+      <div class="field">
+        <label class="field__label" for="field-demo-name">Your name<span aria-hidden="true">*</span></label>
+        <input class="input field__control" type="text" id="field-demo-name" name="name" placeholder=" " autocomplete="name" required aria-describedby="field-demo-name-error">
+        <p class="field__error" id="field-demo-name-error"></p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="field-demo-email">Your email<span aria-hidden="true">*</span></label>
+        <input class="input field__control" type="email" id="field-demo-email" name="email" placeholder=" " autocomplete="email" required value="emma@company.com" aria-describedby="field-demo-email-error">
+        <p class="field__error" id="field-demo-email-error"></p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="field-demo-phone">Phone number<span aria-hidden="true">*</span></label>
+        <input class="input field__control" type="tel" id="field-demo-phone" name="phone" placeholder=" " autocomplete="tel" required aria-invalid="true" aria-describedby="field-demo-phone-error">
+        <p class="field__error" id="field-demo-phone-error">This field is required.</p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="field-demo-message">Message<span aria-hidden="true">*</span></label>
+        <textarea class="input field__control" id="field-demo-message" name="message" placeholder=" " required aria-describedby="field-demo-message-error"></textarea>
+        <p class="field__error" id="field-demo-message-error"></p>
+      </div>''')),
+  ],
+  rows=[('.field', 'Envoltura: reserva arriba el lugar del label subido'),
+        ('label.field__label + for', 'Nombre visible del campo; flota sobre el filete con foco o con texto'),
+        ('.input.field__control + placeholder=" "', 'El campo; el placeholder de un espacio habilita :placeholder-shown (es invisible)'),
+        ('&lt;span aria-hidden="true"&gt;*&lt;/span&gt; + required', 'Asterisco visual; lo obligatorio lo anuncia required'),
+        ('p.field__error#&lt;id&gt;-error + aria-describedby', 'Mensaje de error enlazado; vacío no ocupa lugar'),
+        ('aria-invalid="true"', 'Filete en color de error (lo pone main.js al validar)')],
+  tokens=['--color-text-secondary (label)', '--color-feedback-error-text', '--text-sm', '--spacing-1 / -3 / -5', '--ease-fast', 'Input (átomo)'],
+  a11y='El nombre del campo es un <code>&lt;label&gt;</code> real y visible en los dos estados (cumple «label asociado, no solo placeholder» de <code>accessibility.md</code>). El error se enlaza con <code>aria-describedby</code> y el campo lleva <code>aria-invalid</code>: el lector lee nombre, estado y mensaje. El asterisco es <code>aria-hidden</code> porque <code>required</code> ya anuncia que es obligatorio. Con «reducir movimiento» el label cambia de lugar sin animar.',
+  a11y_md='`<label>` real y visible en reposo y con texto; error con `aria-describedby` + `aria-invalid`; asterisco `aria-hidden` (lo anuncia `required`).',
+  decisions=['Label flotante (decisión del usuario) en vez del placeholder del diseño: se ve igual en reposo y no desaparece al escribir.',
+             'Usa `:has()` para saber si el campo tiene texto; el label puede ir antes del campo en el DOM.',
+             'Solo sobre fondo claro: es el único caso del diseño (la card blanca del Quote Form).']))
+_i = [a['id'] for a in A].index('input')
 A.insert(_i + 1, A.pop())
 
 # ---------------------------------------------------------------- render HTML

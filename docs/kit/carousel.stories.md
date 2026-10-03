@@ -183,6 +183,36 @@ Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides
 </div>
 ```
 
+**--fade: citas con fundido (Client Feedback de About Us)**
+
+```html
+<div class="carousel carousel--fade" id="carousel-quotes" data-carousel data-carousel-fade role="region" aria-roledescription="carousel" aria-label="Client quotes">
+  <div class="swiper carousel__viewport">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide carousel__slide">
+        <figure class="feedback__quote">
+          <blockquote class="feedback__text"><p>“Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy, every recommendation was practical, well-researched, & tailored to our goals.”</p></blockquote>
+          <figcaption class="feedback__author"><strong>David Thompson,</strong> Sales Director</figcaption>
+        </figure>
+      </div>
+      <div class="swiper-slide carousel__slide">
+        <figure class="feedback__quote">
+          <blockquote class="feedback__text"><p>“We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.”</p></blockquote>
+          <figcaption class="feedback__author"><strong>James Anderson,</strong> Entrepreneur, Brand Strategist</figcaption>
+        </figure>
+      </div>
+      <div class="swiper-slide carousel__slide">
+        <figure class="feedback__quote">
+          <blockquote class="feedback__text"><p>“Working with this consulting team completely transformed our business operations.”</p></blockquote>
+          <figcaption class="feedback__author"><strong>Isabella Harris,</strong> CEO & Founder</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="dots dots--inverse" role="group" aria-label="Choose a quote" data-carousel-dots="Show quote"></div>
+</div>
+```
+
 ## Clases y atributos
 
 | Clase o atributo | Efecto |
@@ -197,6 +227,7 @@ Base de Swiper (loop con el activo centrado, arrastre, teclado) con 1/2/3 slides
 | `data-carousel-start="2"` | Slide inicial (índice desde 0; por defecto 0) |
 | `data-carousel-start-wide="1"` | Slide inicial cuando el carrusel mide 64rem o más (3 por vista); si falta, vale data-carousel-start |
 | `data-carousel-highlight` | La card del slide activo recibe data-surface="brand" y las demás lo pierden; el markup trae destacada la inicial (estado sin JS) |
+| `.carousel--fade + data-carousel-fade` | Un slide por vista con fundido (effect: fade); sin copias ni vecinos a la vista. Las clases feedback__* de las citas son de la Section Feedback |
 
 ## Tokens que consume
 

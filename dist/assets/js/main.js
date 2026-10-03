@@ -291,7 +291,9 @@
      van con aria-hidden e inert, y el nombre «N of M», los dots y el destacado cuentan solo los originales.
      Teclado: solo los slides enteros en pantalla entran en el orden de Tab. Con loop, que el foco deslice
      el carrusel (scrollOnFocus de Swiper) reordena los slides en el DOM y el Tab no sale nunca (trampa de
-     foco); los controles de los demás van con tabindex="-1" y se llega a ellos con flechas, dots o teclado. */
+     foco); los controles de los demás van con tabindex="-1" y se llega a ellos con flechas, dots o teclado.
+     data-carousel-fade: un slide por vista con fundido (effect: 'fade'); sin copias, porque el fundido no
+     muestra vecinos. */
   var MIN_SLIDES = 6;
   var SLIDE_FOCUSABLE = 'a[href], button, input, select, textarea';
   var rootStyle = getComputedStyle(document.documentElement);
@@ -299,6 +301,7 @@
 
   function initCarousel(carousel) {
     var viewport = carousel.querySelector('.carousel__viewport');
+    var fade = carousel.hasAttribute('data-carousel-fade');
     var rem = parseFloat(rootStyle.fontSize);
     // Mismos pasos que el container query de .carousel en main.css (slides por vista y separación)
     var gapSm = tokenRem('--spacing-5') * rem;
@@ -314,7 +317,7 @@
     originals.forEach(function (slide, index) {
       slide.setAttribute('aria-label', (index + 1) + ' of ' + count);
     });
-    if (count > 1 && count < MIN_SLIDES) {
+    if (!fade && count > 1 && count < MIN_SLIDES) {
       originals.forEach(function (slide) {
         var copy = slide.cloneNode(true);
         copy.removeAttribute('aria-label');
@@ -331,16 +334,16 @@
       start = Number(carousel.getAttribute('data-carousel-start-wide')) || 0;
     }
 
-    var swiper = new window.Swiper(viewport, {
+    var options = {
       loop: true,
-      centeredSlides: true,
+      centeredSlides: !fade,
       initialSlide: start,
       speed: parseFloat(rootStyle.getPropertyValue('--ease-slow')) || 0, // 420 ms; 0 con reducir movimiento
       grabCursor: true,
       slidesPerView: 1,
-      spaceBetween: gapSm,
+      spaceBetween: fade ? 0 : gapSm,
       breakpointsBase: 'container',
-      breakpoints: breakpoints,
+      breakpoints: fade ? {} : breakpoints,
       watchSlidesProgress: true, // marca .swiper-slide-fully-visible (orden de Tab)
       keyboard: { enabled: true, onlyInViewport: true },
       a11y: {
@@ -350,7 +353,12 @@
         itemRoleDescriptionMessage: 'slide',
         slideLabelMessage: '' // el nombre «N of M» lo pone main.js sin contar las copias
       }
-    });
+    };
+    if (fade) {
+      options.effect = 'fade';
+      options.fadeEffect = { crossFade: true };
+    }
+    var swiper = new window.Swiper(viewport, options);
     var total = swiper.slides.length; // originales + copias
 
     // Orden de Tab: tabindex="-1" (no inert) para que el lector de pantalla siga leyendo todos los slides.
@@ -550,4 +558,98 @@
     });
   }
   initPricingSwitch();
+
+  /* ===== Quote Form: envío por FormSubmit sin salir de la página ===== */
+  /* Sin JS el <form> se envía normal a su action (FormSubmit muestra su página de agradecimiento). Con JS:
+     validación propia (mensaje bajo cada campo, aria-invalid y foco al primer error), envío por fetch a la
+     variante /ajax/ del mismo action y estados enviando / enviado / error, anunciados en las regiones
+     role="status" y role="alert" del formulario. Para cambiar el destino se edita el action del HTML.
+     Mientras envía, el botón queda con aria-disabled (no disabled: así no pierde el foco). */
+  var FORM_MESSAGES = {
+    valueMissing: 'This field is required.',
+    typeMismatch: 'Enter a valid email address.',
+    patternMismatch: 'Enter a valid phone number.',
+    sending: 'Sending…',
+    sent: 'Thanks! Your message was sent. We will get back to you soon.',
+    failed: 'Your message could not be sent. Please check your connection and try again.'
+  };
+
+  function fieldError(control) {
+    if (control.validity.valueMissing) { return FORM_MESSAGES.valueMissing; }
+    if (control.validity.typeMismatch) { return FORM_MESSAGES.typeMismatch; }
+    if (control.validity.patternMismatch) { return FORM_MESSAGES.patternMismatch; }
+    return '';
+  }
+
+  // https://formsubmit.co/<destino> → https://formsubmit.co/ajax/<destino>
+  function ajaxEndpoint(action) {
+    var url = new URL(action, window.location.href);
+    if (url.hostname === 'formsubmit.co' && url.pathname.indexOf('/ajax/') !== 0) {
+      url.pathname = '/ajax' + url.pathname;
+    }
+    return url.href;
+  }
+
+  function initQuoteForms() {
+    document.querySelectorAll('[data-quote-form]').forEach(function (form) {
+      var controls = Array.prototype.slice.call(form.querySelectorAll('.field__control'));
+      var status = form.querySelector('[data-form-status]');
+      var alertRegion = form.querySelector('[data-form-alert]');
+      var submit = form.querySelector('[type="submit"]');
+      var submitLabel = submit.querySelector('[data-submit-label]');
+      var idleLabel = submitLabel.textContent;
+      var sending = false;
+
+      // Escribe (o borra) el error de un campo; devuelve true si es válido
+      function validate(control) {
+        var message = fieldError(control);
+        var error = document.getElementById(control.id + '-error');
+        if (message) { control.setAttribute('aria-invalid', 'true'); } else { control.removeAttribute('aria-invalid'); }
+        if (error) { error.textContent = message; }
+        return !message;
+      }
+
+      // El error se revisa mientras se corrige, no antes del primer envío
+      controls.forEach(function (control) {
+        control.addEventListener('input', function () {
+          if (control.getAttribute('aria-invalid') === 'true') { validate(control); }
+        });
+      });
+
+      function setSending(value) {
+        sending = value;
+        if (value) { submit.setAttribute('aria-disabled', 'true'); } else { submit.removeAttribute('aria-disabled'); }
+        submitLabel.textContent = value ? FORM_MESSAGES.sending : idleLabel;
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (sending) { return; }
+        status.textContent = '';
+        alertRegion.textContent = '';
+        var invalid = controls.filter(function (control) { return !validate(control); });
+        if (invalid.length) { invalid[0].focus(); return; }
+
+        setSending(true);
+        fetch(ajaxEndpoint(form.action), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form)))
+        }).then(function (response) {
+          return response.json().catch(function () { return {}; }).then(function (data) {
+            // FormSubmit responde success "true" / "false" como texto
+            if (!response.ok || String(data.success) !== 'true') { throw new Error(data.message || String(response.status)); }
+          });
+        }).then(function () {
+          form.reset();
+          status.textContent = FORM_MESSAGES.sent;
+        }).catch(function () {
+          alertRegion.textContent = FORM_MESSAGES.failed;
+        }).then(function () {
+          setSending(false);
+        });
+      });
+    });
+  }
+  initQuoteForms();
 })();

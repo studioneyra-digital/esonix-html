@@ -44,11 +44,58 @@ Foto con rol (badge), acción («+») y nombre. `--elevated` sube la card 20px d
 </article>
 ```
 
+**--profile (About Us), la central con --reverse**
+
+```html
+      <article class="card-team card-team--profile">
+        <img class="card-team__photo" src="../assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
+        <div class="card-team__info">
+          <h3 class="card-team__name">Olivia Bennet</h3>
+          <p class="card-team__role">Financial Advisor</p>
+          <ul class="card-team__socials" role="list">
+            <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </article>
+      <article class="card-team card-team--profile card-team--reverse">
+        <img class="card-team__photo" src="../assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
+        <div class="card-team__info">
+          <h3 class="card-team__name">Emma Wilson</h3>
+          <p class="card-team__role">Business Analyst</p>
+          <ul class="card-team__socials" role="list">
+            <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </article>
+      <article class="card-team card-team--profile">
+        <img class="card-team__photo" src="../assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
+        <div class="card-team__info">
+          <h3 class="card-team__name">Michael Turner</h3>
+          <p class="card-team__role">Corporate Trainer</p>
+          <ul class="card-team__socials" role="list">
+            <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+            <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+          </ul>
+        </div>
+      </article>
+```
+
 ## Clases y atributos
 
 | Clase o atributo | Efecto |
 |---|---|
 | `.card-photo` | Patrón base: foto + velo + contenido en la misma celda (con data-surface="inverse") |
+| `.card-team--profile` | Variante clara: card blanca con marco de 12px, foto arriba, nombre, cargo y redes |
+| `.card-team--reverse` | Con --profile: texto arriba y foto abajo desde lg |
+| `a.card-team__social + aria-label` | Red social con área de 32px; el nombre dice persona y red («Olivia Bennet on LinkedIn») |
 | `.card-team__top` | Fila superior: badge de rol y botón «+» |
 | `.card-team__name` | Nombre (h3) centrado abajo |
 | `.card-team--elevated` | Margen negativo de 20px desde lg y botón «+» amarillo |

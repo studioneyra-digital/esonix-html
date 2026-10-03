@@ -17,6 +17,7 @@ ICONS = {
     'play': "<polygon points='6 3 20 12 6 21 6 3' fill='%23000'/>",
     'check': "<path d='M20 6 9 17l-5-5'/>",
     'circle-check': "<mask id='m'><rect width='24' height='24' fill='%23fff' stroke='none'/><path d='m8 12.5 2.8 2.8L16 9.5' stroke='%23000'/></mask><circle cx='12' cy='12' r='10' fill='%23000' stroke='none' mask='url(%23m)'/>",
+    'circle-check-outline': "<circle cx='12' cy='12' r='10'/><path d='m9 12 2 2 4-4'/>",  # About Us (lista de What We Do)
     'chevron-down': "<path d='m6 9 6 6 6-6'/>",
     'x': "<path d='M18 6 6 18'/><path d='m6 6 12 12'/>",
     'send': "<path d='M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z'/><path d='m21.854 2.147-10.94 10.939'/>",
@@ -370,6 +371,16 @@ __ICON_RULES__
   border-radius: var(--radius-full);
   background-color: var(--color-action-primary);
 }
+/* --accent: relleno ámbar (barra «Consulting» de About Us). */
+.progress--accent .progress__bar {
+  color: var(--color-action-secondary);
+}
+.progress--accent .progress__bar::-webkit-progress-value {
+  background-color: var(--color-action-secondary);
+}
+.progress--accent .progress__bar::-moz-progress-bar {
+  background-color: var(--color-action-secondary);
+}
 
 /* Switch — checkbox nativo con role="switch": la posición de la perilla es el estado (apagado a la izquierda). */
 .switch {
@@ -436,10 +447,58 @@ __ICON_RULES__
 .input[aria-invalid='true'] {
   --input-border: var(--color-border-error);
 }
+.input[aria-invalid='true']:hover {
+  border-block-end-color: var(--input-border); /* el hover no tapa el color de error */
+}
 :where([data-surface='inverse'], [data-surface='brand']) .input {
   --input-fg: var(--color-text-inverse);
   --input-border: var(--color-text-inverse-secondary);
   --input-placeholder: var(--color-text-inverse-secondary);
+}
+
+/* Textarea — el mismo .input sobre <textarea>: varias líneas, alto mínimo de 96px y solo redimensionable en
+   vertical (el diseño muestra el tirador). */
+textarea.input {
+  display: block;
+  min-block-size: var(--spacing-12);
+  resize: vertical;
+}
+
+/* Field — campo con label flotante (Quote Form). En reposo el <label> ocupa el lugar del placeholder, como el
+   diseño; con foco o con texto sube y se achica sobre el filete, así el nombre del campo nunca desaparece
+   (accessibility.md: label asociado, no solo placeholder). El campo lleva placeholder=" " para que
+   :placeholder-shown distinga vacío de lleno. Debajo, el mensaje de error: vacío (y sin caja) si no hay.
+   --field-rise es el lugar que se reserva arriba para el label subido (22px de alto + el anillo de foco). */
+.field {
+  --field-rise: var(--spacing-7);
+  position: relative;
+  display: grid;
+  gap: var(--spacing-1);
+  padding-block-start: var(--field-rise);
+}
+.field__label {
+  position: absolute;
+  inset-block-start: calc(var(--field-rise) + var(--spacing-3));
+  inset-inline-start: 0;
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform var(--ease-fast);
+}
+.field:focus-within .field__label,
+.field:has(.field__control:not(:placeholder-shown)) .field__label {
+  transform: translateY(calc(-1 * (var(--field-rise) + var(--spacing-3)))) scale(0.875);
+}
+.field__control::placeholder {
+  color: transparent;
+}
+.field__error {
+  color: var(--color-feedback-error-text);
+  font-size: var(--text-sm);
+}
+.field__error:empty {
+  display: none;
 }
 
 /* Divider — <hr> de un filete. --inverse sobre fondos oscuros. */

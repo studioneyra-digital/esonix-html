@@ -68,9 +68,10 @@
             <li><a class="kit-nav__link" href="#progress"><span class="kit-nav__num">08</span> Progress</a></li>
             <li><a class="kit-nav__link" href="#switch"><span class="kit-nav__num">09</span> Switch</a></li>
             <li><a class="kit-nav__link" href="#input"><span class="kit-nav__num">10</span> Input</a></li>
-            <li><a class="kit-nav__link" href="#divider"><span class="kit-nav__num">11</span> Divider</a></li>
-            <li><a class="kit-nav__link" href="#dots"><span class="kit-nav__num">12</span> Pagination Dots</a></li>
-            <li><a class="kit-nav__link" href="#scroll-top"><span class="kit-nav__num">13</span> Scroll Top</a></li>
+            <li><a class="kit-nav__link" href="#field"><span class="kit-nav__num">11</span> Field</a></li>
+            <li><a class="kit-nav__link" href="#divider"><span class="kit-nav__num">12</span> Divider</a></li>
+            <li><a class="kit-nav__link" href="#dots"><span class="kit-nav__num">13</span> Pagination Dots</a></li>
+            <li><a class="kit-nav__link" href="#scroll-top"><span class="kit-nav__num">14</span> Scroll Top</a></li>
           </ul>
         </div>
         <div class="kit-nav__group">
@@ -88,6 +89,7 @@
             <li><a class="kit-nav__link" href="#stat"><span class="kit-nav__num">10</span> Stat</a></li>
             <li><a class="kit-nav__link" href="#accordion-item"><span class="kit-nav__num">11</span> Accordion Item</a></li>
             <li><a class="kit-nav__link" href="#newsletter"><span class="kit-nav__num">12</span> Newsletter</a></li>
+            <li><a class="kit-nav__link" href="#quote-form"><span class="kit-nav__num">13</span> Quote Form</a></li>
           </ul>
         </div>
         <div class="kit-nav__group">
@@ -118,7 +120,12 @@
             <li><a class="kit-nav__link" href="#logos"><span class="kit-nav__num">10</span> Logos</a></li>
             <li><a class="kit-nav__link" href="#faq"><span class="kit-nav__num">11</span> FAQ</a></li>
             <li><a class="kit-nav__link" href="#blog"><span class="kit-nav__num">12</span> Blog</a></li>
-            <li><a class="kit-nav__link" href="#footer"><span class="kit-nav__num">13</span> Footer</a></li>
+            <li><a class="kit-nav__link" href="#page-hero"><span class="kit-nav__num">13</span> Page Hero</a></li>
+            <li><a class="kit-nav__link" href="#about-intro"><span class="kit-nav__num">14</span> About Intro</a></li>
+            <li><a class="kit-nav__link" href="#team-profiles"><span class="kit-nav__num">15</span> Team Profiles</a></li>
+            <li><a class="kit-nav__link" href="#feedback"><span class="kit-nav__num">16</span> Feedback</a></li>
+            <li><a class="kit-nav__link" href="#why-trust"><span class="kit-nav__num">17</span> Why Trust</a></li>
+            <li><a class="kit-nav__link" href="#footer"><span class="kit-nav__num">18</span> Footer</a></li>
           </ul>
         </div>
       </nav>
@@ -750,7 +757,7 @@
             <p class="kit-card__desc">Lucide como máscara CSS: la clase <code>.icon</code> hereda el color y el tamaño del contexto (<code>currentColor</code> y <code>1em</code>), así el snippet es una sola línea y no depende de rutas ni de un sprite. Las redes sociales no están en Lucide: son SVG propios del mismo estilo de trazo.</p>
           </header>
           <div class="kit-block">
-            <span class="kit-block__label">Set completo (27)</span>
+            <span class="kit-block__label">Set completo (28)</span>
             <ul class="kit-icons">
               <li class="kit-icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span><code>icon--arrow-up-right</code></li>
               <li class="kit-icon"><span class="icon icon--arrow-right" aria-hidden="true"></span><code>icon--arrow-right</code></li>
@@ -761,6 +768,7 @@
               <li class="kit-icon"><span class="icon icon--play" aria-hidden="true"></span><code>icon--play</code></li>
               <li class="kit-icon"><span class="icon icon--check" aria-hidden="true"></span><code>icon--check</code></li>
               <li class="kit-icon"><span class="icon icon--circle-check" aria-hidden="true"></span><code>icon--circle-check</code></li>
+              <li class="kit-icon"><span class="icon icon--circle-check-outline" aria-hidden="true"></span><code>icon--circle-check-outline</code></li>
               <li class="kit-icon"><span class="icon icon--chevron-down" aria-hidden="true"></span><code>icon--chevron-down</code></li>
               <li class="kit-icon"><span class="icon icon--x" aria-hidden="true"></span><code>icon--x</code></li>
               <li class="kit-icon"><span class="icon icon--send" aria-hidden="true"></span><code>icon--send</code></li>
@@ -1306,6 +1314,25 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--accent: relleno ámbar</span>
+            <div class="kit-demo kit-demo--medium" lang="en">
+              <div class="progress progress--accent" style="--progress: 88">
+                <div class="progress__head">
+                  <label for="progress-demo-accent">Consulting</label>
+                  <span aria-hidden="true">88%</span>
+                </div>
+                <progress class="progress__bar" id="progress-demo-accent" value="88" max="100">88%</progress>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-progress-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-progress-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Progress">
               <table class="kit-table">
@@ -1314,6 +1341,7 @@
                   <tr><th scope="row"><code>.progress</code></th><td>Contenedor: cabecera + barra</td></tr>
                   <tr><th scope="row"><code>.progress__head</code></th><td>Fila con la etiqueta (&lt;label for&gt;) y el porcentaje (aria-hidden)</td></tr>
                   <tr><th scope="row"><code>.progress__bar</code></th><td>El &lt;progress&gt; nativo: 3px de alto, relleno petróleo sobre pista clara</td></tr>
+                  <tr><th scope="row"><code>.progress--accent</code></th><td>Relleno ámbar (--color-action-secondary); caso de uso: «Consulting» en About Us</td></tr>
                   <tr><th scope="row"><code>value / max</code></th><td>El avance real (0–100); el relleno lo dibuja el navegador</td></tr>
                   <tr><th scope="row"><code>style="--progress: 90"</code></th><td>Mismo valor que value: lleva el porcentaje al final del relleno (sin ella, al final de la pista)</td></tr>
                 </tbody>
@@ -1323,7 +1351,7 @@
           <div class="kit-block">
             <span class="kit-block__label">Tokens que consume</span>
             <ul class="kit-spec">
-              <li><code>--color-action-primary</code></li>
+              <li><code>--color-action-primary / -secondary</code></li>
               <li><code>--color-background-muted</code></li>
               <li><code>--color-text-primary</code></li>
               <li><code>--border-width-sm / -md</code></li>
@@ -1420,12 +1448,27 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">Textarea (misma clase)</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <label for="input-demo-textarea" class="visually-hidden">Message</label>
+              <textarea class="input" id="input-demo-textarea" name="message" placeholder="Write your message"></textarea>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-input-3">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-input-3" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Input">
               <table class="kit-table">
                 <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
                 <tbody>
                   <tr><th scope="row"><code>.input</code></th><td>Campo sin caja: solo el filete inferior; ocupa el ancho de su contenedor</td></tr>
+                  <tr><th scope="row"><code>textarea.input</code></th><td>Varias líneas: alto mínimo de 96px y redimensionable solo en vertical</td></tr>
                   <tr><th scope="row"><code>aria-invalid="true"</code></th><td>Estado de error: el filete pasa a color de error (acompañar con un mensaje de texto)</td></tr>
                   <tr><th scope="row"><code>&lt;label for&gt;</code></th><td>Obligatorio, aunque esté visualmente oculto (<code>visually-hidden</code>): el placeholder no es un nombre accesible</td></tr>
                   <tr><th scope="row"><code>type / autocomplete</code></th><td>El tipo correcto (email, tel…) abre el teclado adecuado en móvil; autocomplete evita volver a pedir un dato</td></tr>
@@ -1448,9 +1491,77 @@
           <p class="kit-note"><strong>Accesibilidad:</strong> Lleva <code>&lt;label&gt;</code> asociado y el placeholder solo ilustra el formato. El foco usa el anillo global (amarillo sobre superficies oscuras). El filete da ≥3:1 sobre claro y oscuro, como exige WCAG 1.4.11 para el borde de un control.</p>
         </section>
 
-        <section class="kit-card" id="divider" aria-labelledby="divider-title">
+        <section class="kit-card" id="field" aria-labelledby="field-title">
           <header class="kit-card__header">
             <p class="kit-card__tag">Átomo · 11</p>
+            <h3 id="field-title">Field</h3>
+            <p class="kit-card__desc">Campo con <strong>label flotante</strong>: en reposo el <code>&lt;label&gt;</code> ocupa el lugar del placeholder (como el diseño) y, con foco o con texto, sube y se achica sobre el filete. Envuelve un <a href="#input">Input</a> o un textarea y suma el mensaje de error debajo.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Vacío, con texto y con error</span>
+            <div class="kit-demo kit-demo--narrow kit-demo--stack" lang="en">
+              <div class="field">
+                <label class="field__label" for="field-demo-name">Your name<span aria-hidden="true">*</span></label>
+                <input class="input field__control" type="text" id="field-demo-name" name="name" placeholder=" " autocomplete="name" required aria-describedby="field-demo-name-error">
+                <p class="field__error" id="field-demo-name-error"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="field-demo-email">Your email<span aria-hidden="true">*</span></label>
+                <input class="input field__control" type="email" id="field-demo-email" name="email" placeholder=" " autocomplete="email" required value="emma@company.com" aria-describedby="field-demo-email-error">
+                <p class="field__error" id="field-demo-email-error"></p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="field-demo-phone">Phone number<span aria-hidden="true">*</span></label>
+                <input class="input field__control" type="tel" id="field-demo-phone" name="phone" placeholder=" " autocomplete="tel" required aria-invalid="true" aria-describedby="field-demo-phone-error">
+                <p class="field__error" id="field-demo-phone-error">This field is required.</p>
+              </div>
+              <div class="field">
+                <label class="field__label" for="field-demo-message">Message<span aria-hidden="true">*</span></label>
+                <textarea class="input field__control" id="field-demo-message" name="message" placeholder=" " required aria-describedby="field-demo-message-error"></textarea>
+                <p class="field__error" id="field-demo-message-error"></p>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-field-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-field-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Field">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.field</code></th><td>Envoltura: reserva arriba el lugar del label subido</td></tr>
+                  <tr><th scope="row"><code>label.field__label + for</code></th><td>Nombre visible del campo; flota sobre el filete con foco o con texto</td></tr>
+                  <tr><th scope="row"><code>.input.field__control + placeholder=" "</code></th><td>El campo; el placeholder de un espacio habilita :placeholder-shown (es invisible)</td></tr>
+                  <tr><th scope="row"><code>&lt;span aria-hidden="true"&gt;*&lt;/span&gt; + required</code></th><td>Asterisco visual; lo obligatorio lo anuncia required</td></tr>
+                  <tr><th scope="row"><code>p.field__error#&lt;id&gt;-error + aria-describedby</code></th><td>Mensaje de error enlazado; vacío no ocupa lugar</td></tr>
+                  <tr><th scope="row"><code>aria-invalid="true"</code></th><td>Filete en color de error (lo pone main.js al validar)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-text-secondary (label)</code></li>
+              <li><code>--color-feedback-error-text</code></li>
+              <li><code>--text-sm</code></li>
+              <li><code>--spacing-1 / -3 / -5</code></li>
+              <li><code>--ease-fast</code></li>
+              <li><code>Input (átomo)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El nombre del campo es un <code>&lt;label&gt;</code> real y visible en los dos estados (cumple «label asociado, no solo placeholder» de <code>accessibility.md</code>). El error se enlaza con <code>aria-describedby</code> y el campo lleva <code>aria-invalid</code>: el lector lee nombre, estado y mensaje. El asterisco es <code>aria-hidden</code> porque <code>required</code> ya anuncia que es obligatorio. Con «reducir movimiento» el label cambia de lugar sin animar.</p>
+        </section>
+
+        <section class="kit-card" id="divider" aria-labelledby="divider-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Átomo · 12</p>
             <h3 id="divider-title">Divider</h3>
             <p class="kit-card__desc">Filete horizontal de 1px sobre un <code>&lt;hr&gt;</code>. <code>--inverse</code> lo adapta a fondos oscuros (divisor de las cards de testimonio y del footer).</p>
           </header>
@@ -1505,7 +1616,7 @@
 
         <section class="kit-card" id="dots" aria-labelledby="dots-title">
           <header class="kit-card__header">
-            <p class="kit-card__tag">Átomo · 12</p>
+            <p class="kit-card__tag">Átomo · 13</p>
             <h3 id="dots-title">Pagination Dots</h3>
             <p class="kit-card__desc">Puntos de paginación para carruseles (testimonios, stats en mobile). Cada punto es un botón de 24×24px con el punto dibujado en <code>::before</code>. El inactivo usa <code>border-strong</code> y el activo lleva un halo.</p>
           </header>
@@ -1578,7 +1689,7 @@
 
         <section class="kit-card" id="scroll-top" aria-labelledby="scroll-top-title">
           <header class="kit-card__header">
-            <p class="kit-card__tag">Átomo · 13</p>
+            <p class="kit-card__tag">Átomo · 14</p>
             <h3 id="scroll-top-title">Scroll Top</h3>
             <p class="kit-card__desc">Botón fijo abajo a la derecha que vuelve al inicio. Aparece al pasar media pantalla y el anillo dibuja el avance del scroll. <strong>Está activo en este mismo kit: baja por la página y míralo.</strong></p>
           </header>
@@ -1979,7 +2090,7 @@
           <header class="kit-card__header">
             <p class="kit-card__tag">Molécula · 05</p>
             <h3 id="card-team-title">Card Team</h3>
-            <p class="kit-card__desc">Foto de un miembro del equipo con su rol arriba a la izquierda, una acción arriba a la derecha y el nombre abajo. <code>--elevated</code> sube la card 20px por encima y por debajo de sus vecinas desde <code>lg</code> (la card central del diseño, siempre destacada).</p>
+            <p class="kit-card__desc">Foto de un miembro del equipo con su rol arriba a la izquierda, una acción arriba a la derecha y el nombre abajo. <code>--elevated</code> sube la card 20px por encima y por debajo de sus vecinas desde <code>lg</code> (la card central del diseño, siempre destacada). <code>--profile</code> es la variante clara de About Us: card blanca con la foto arriba y, debajo, nombre, cargo y redes (<code>--reverse</code> invierte el orden desde <code>lg</code>).</p>
           </header>
           <div class="kit-block">
             <span class="kit-block__label">Tres cards, la central elevada</span>
@@ -2024,12 +2135,66 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--profile (About Us), la central con --reverse</span>
+            <div class="kit-demo kit-demo--cards" lang="en">
+                    <article class="card-team card-team--profile">
+                      <img class="card-team__photo" src="../assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
+                      <div class="card-team__info">
+                        <h3 class="card-team__name">Olivia Bennet</h3>
+                        <p class="card-team__role">Financial Advisor</p>
+                        <ul class="card-team__socials" role="list">
+                          <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Olivia Bennet on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+                        </ul>
+                      </div>
+                    </article>
+                    <article class="card-team card-team--profile card-team--reverse">
+                      <img class="card-team__photo" src="../assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
+                      <div class="card-team__info">
+                        <h3 class="card-team__name">Emma Wilson</h3>
+                        <p class="card-team__role">Business Analyst</p>
+                        <ul class="card-team__socials" role="list">
+                          <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Emma Wilson on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+                        </ul>
+                      </div>
+                    </article>
+                    <article class="card-team card-team--profile">
+                      <img class="card-team__photo" src="../assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
+                      <div class="card-team__info">
+                        <h3 class="card-team__name">Michael Turner</h3>
+                        <p class="card-team__role">Corporate Trainer</p>
+                        <ul class="card-team__socials" role="list">
+                          <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+                          <li><a href="#card-team" class="card-team__social" aria-label="Michael Turner on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+                        </ul>
+                      </div>
+                    </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-team-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-team-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card Team">
               <table class="kit-table">
                 <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
                 <tbody>
                   <tr><th scope="row"><code>.card-photo</code></th><td>Patrón base: foto + velo + contenido en la misma celda (con data-surface="inverse")</td></tr>
+                  <tr><th scope="row"><code>.card-team--profile</code></th><td>Variante clara: card blanca con marco de 12px, foto arriba, nombre, cargo y redes</td></tr>
+                  <tr><th scope="row"><code>.card-team--reverse</code></th><td>Con --profile: texto arriba y foto abajo desde lg</td></tr>
+                  <tr><th scope="row"><code>a.card-team__social + aria-label</code></th><td>Red social con área de 32px; el nombre dice persona y red («Olivia Bennet on LinkedIn»)</td></tr>
                   <tr><th scope="row"><code>.card-team__top</code></th><td>Fila superior: badge de rol y botón «+»</td></tr>
                   <tr><th scope="row"><code>.card-team__name</code></th><td>Nombre (h3) centrado abajo</td></tr>
                   <tr><th scope="row"><code>.card-team--elevated</code></th><td>Margen negativo de 20px desde lg y botón «+» amarillo</td></tr>
@@ -2048,7 +2213,7 @@
               <li><code>--weight-medium</code></li>
             </ul>
           </div>
-          <p class="kit-note"><strong>Accesibilidad:</strong> El «+» es un enlace al perfil con <code>aria-label</code> que nombra a la persona («View profile of Olivia Bennet»). La foto es decorativa porque el nombre ya está en el <code>&lt;h3&gt;</code>. El anillo de foco es amarillo gracias a <code>data-surface="inverse"</code>.</p>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El «+» es un enlace al perfil con <code>aria-label</code> que nombra a la persona («View profile of Olivia Bennet»). La foto es decorativa porque el nombre ya está en el <code>&lt;h3&gt;</code>. El anillo de foco es amarillo gracias a <code>data-surface="inverse"</code>. En <code>--profile</code> cada red es un enlace nombrado con la persona y la red («Olivia Bennet on LinkedIn») y mide 32px, por encima del mínimo de 24px de WCAG 2.5.8.</p>
         </section>
 
         <section class="kit-card" id="card-post" aria-labelledby="card-post-title">
@@ -2186,7 +2351,7 @@
           <header class="kit-card__header">
             <p class="kit-card__tag">Molécula · 08</p>
             <h3 id="card-cta-title">Card CTA</h3>
-            <p class="kit-card__desc">Card con foto de fondo y una invitación a contactar: ícono arriba y, abajo, título, texto y enlace amarillo. Se usa en la FAQ («Still have questions?»).</p>
+            <p class="kit-card__desc">Card con foto de fondo y una invitación a contactar: ícono arriba y, abajo, título, texto y enlace amarillo. Se usa en la FAQ («Still have questions?»). <code>--stacked</code> es la variante clara de About Us: card blanca con la foto arriba y el enlace en el color normal.</p>
           </header>
           <div class="kit-block">
             <span class="kit-block__label">Sobre foto</span>
@@ -2215,12 +2380,36 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--stacked (FAQ de About Us)</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <article class="card-cta card-cta--stacked">
+                <img class="card-cta__photo" src="../assets/img/h2-cta-img.webp" alt="" width="848" height="740" loading="lazy">
+                <div class="card-cta__text">
+                  <h3 class="card-cta__title">Still have questions?</h3>
+                  <p>Our results-focused strategies are designed to deliver measurable business growth</p>
+                  <a href="#card-cta" class="link-arrow">
+                    Contact Us
+                    <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-card-cta-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-card-cta-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Card CTA">
               <table class="kit-table">
                 <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
                 <tbody>
                   <tr><th scope="row"><code>.card-photo</code></th><td>Patrón base con foto, velo y contenido (con data-surface="inverse")</td></tr>
+                  <tr><th scope="row"><code>.card-cta--stacked + img.card-cta__photo</code></th><td>Variante clara: foto arriba en el flujo, sin ícono; enlace en el color normal</td></tr>
                   <tr><th scope="row"><code>.card-cta__icon</code></th><td>Círculo translúcido con ícono</td></tr>
                   <tr><th scope="row"><code>.card-cta__text</code></th><td>Título (h3), texto y enlace amarillo</td></tr>
                 </tbody>
@@ -2491,6 +2680,267 @@
           </div>
           <p class="kit-note"><strong>Accesibilidad:</strong> La frase es el <code>&lt;label for&gt;</code> del campo, así el nombre accesible es visible. El botón tiene <code>aria-label</code> y 40px de lado. Falta definir el aviso de éxito o error: cuando exista backend, se anuncia con <code>role="status"</code> sin robar el foco.</p>
         </section>
+
+        <section class="kit-card" id="quote-form" aria-labelledby="quote-form-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Molécula · 13</p>
+            <h3 id="quote-form-title">Quote Form</h3>
+            <p class="kit-card__desc">Formulario «Get a free Quote» de About Us: card blanca con cuatro <a href="#field">Field</a> y el botón. Funciona sin JS (envío normal a FormSubmit); con JS, <code>main.js</code> valida, envía por <code>fetch</code> sin salir de la página y muestra los estados. El destino es el <code>action</code> del HTML.</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">En vivo: la validación es real; sin destino, el envío termina en el estado de error</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <form class="quote-form" id="quote-demo-form" data-quote-form action="#kit-demo" method="post" novalidate aria-labelledby="quote-demo-title">
+                <h3 class="quote-form__title" id="quote-demo-title">Get a free Quote</h3>
+                <input type="hidden" name="_subject" value="New quote request from esonix.example">
+                <div hidden><label for="quote-demo-honey">Leave this field empty</label><input type="text" id="quote-demo-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+                <div class="field">
+                  <label class="field__label" for="quote-demo-name">Your name<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="text" id="quote-demo-name" name="name" placeholder=" " required aria-describedby="quote-demo-name-error" autocomplete="name">
+                  <p class="field__error" id="quote-demo-name-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-demo-email">Your email<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="email" id="quote-demo-email" name="email" placeholder=" " required aria-describedby="quote-demo-email-error" autocomplete="email">
+                  <p class="field__error" id="quote-demo-email-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-demo-phone">Phone number<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="tel" id="quote-demo-phone" name="phone" placeholder=" " required aria-describedby="quote-demo-phone-error" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}">
+                  <p class="field__error" id="quote-demo-phone-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-demo-message">Message<span aria-hidden="true">*</span></label>
+                  <textarea class="input field__control" id="quote-demo-message" name="message" placeholder=" " required aria-describedby="quote-demo-message-error"></textarea>
+                  <p class="field__error" id="quote-demo-message-error"></p>
+                </div>
+                <button type="submit" class="btn quote-form__submit">
+                  <span data-submit-label>Get Started</span>
+                  <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                </button>
+                <div class="quote-form__messages">
+                  <p class="quote-form__status" role="status" data-form-status></p>
+                  <p class="quote-form__alert" role="alert" data-form-alert></p>
+                </div>
+              </form>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-quote-form-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-quote-form-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Error de validación</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <form class="quote-form" id="quote-error-form" action="#" method="post" novalidate aria-label="Get a free Quote, validation error example">
+                <h3 class="quote-form__title" id="quote-error-title">Get a free Quote</h3>
+                <input type="hidden" name="_subject" value="New quote request from esonix.example">
+                <div hidden><label for="quote-error-honey">Leave this field empty</label><input type="text" id="quote-error-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+                <div class="field">
+                  <label class="field__label" for="quote-error-name">Your name<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="text" id="quote-error-name" name="name" placeholder=" " required aria-describedby="quote-error-name-error" aria-invalid="true" autocomplete="name">
+                  <p class="field__error" id="quote-error-name-error">This field is required.</p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-error-email">Your email<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="email" id="quote-error-email" name="email" placeholder=" " required aria-describedby="quote-error-email-error" aria-invalid="true" autocomplete="email" value="emma@">
+                  <p class="field__error" id="quote-error-email-error">Enter a valid email address.</p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-error-phone">Phone number<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="tel" id="quote-error-phone" name="phone" placeholder=" " required aria-describedby="quote-error-phone-error" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}">
+                  <p class="field__error" id="quote-error-phone-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-error-message">Message<span aria-hidden="true">*</span></label>
+                  <textarea class="input field__control" id="quote-error-message" name="message" placeholder=" " required aria-describedby="quote-error-message-error"></textarea>
+                  <p class="field__error" id="quote-error-message-error"></p>
+                </div>
+                <button type="submit" class="btn quote-form__submit">
+                  <span data-submit-label>Get Started</span>
+                  <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                </button>
+                <div class="quote-form__messages">
+                  <p class="quote-form__status" role="status" data-form-status></p>
+                  <p class="quote-form__alert" role="alert" data-form-alert></p>
+                </div>
+              </form>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-quote-form-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-quote-form-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Enviando</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <form class="quote-form" id="quote-sending-form" action="#" method="post" novalidate aria-label="Get a free Quote, sending example">
+                <h3 class="quote-form__title" id="quote-sending-title">Get a free Quote</h3>
+                <input type="hidden" name="_subject" value="New quote request from esonix.example">
+                <div hidden><label for="quote-sending-honey">Leave this field empty</label><input type="text" id="quote-sending-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+                <div class="field">
+                  <label class="field__label" for="quote-sending-name">Your name<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="text" id="quote-sending-name" name="name" placeholder=" " required aria-describedby="quote-sending-name-error" autocomplete="name" value="Emma Wilson">
+                  <p class="field__error" id="quote-sending-name-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-sending-email">Your email<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="email" id="quote-sending-email" name="email" placeholder=" " required aria-describedby="quote-sending-email-error" autocomplete="email" value="emma@company.com">
+                  <p class="field__error" id="quote-sending-email-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-sending-phone">Phone number<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="tel" id="quote-sending-phone" name="phone" placeholder=" " required aria-describedby="quote-sending-phone-error" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}" value="+1 (555) 123 4567">
+                  <p class="field__error" id="quote-sending-phone-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-sending-message">Message<span aria-hidden="true">*</span></label>
+                  <textarea class="input field__control" id="quote-sending-message" name="message" placeholder=" " required aria-describedby="quote-sending-message-error">We need help with our pricing strategy.</textarea>
+                  <p class="field__error" id="quote-sending-message-error"></p>
+                </div>
+                <button type="submit" class="btn quote-form__submit" aria-disabled="true">
+                  <span data-submit-label>Sending…</span>
+                  <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                </button>
+                <div class="quote-form__messages">
+                  <p class="quote-form__status" role="status" data-form-status></p>
+                  <p class="quote-form__alert" role="alert" data-form-alert></p>
+                </div>
+              </form>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-quote-form-3">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-quote-form-3" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Enviado</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <form class="quote-form" id="quote-sent-form" action="#" method="post" novalidate aria-label="Get a free Quote, sent example">
+                <h3 class="quote-form__title" id="quote-sent-title">Get a free Quote</h3>
+                <input type="hidden" name="_subject" value="New quote request from esonix.example">
+                <div hidden><label for="quote-sent-honey">Leave this field empty</label><input type="text" id="quote-sent-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+                <div class="field">
+                  <label class="field__label" for="quote-sent-name">Your name<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="text" id="quote-sent-name" name="name" placeholder=" " required aria-describedby="quote-sent-name-error" autocomplete="name">
+                  <p class="field__error" id="quote-sent-name-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-sent-email">Your email<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="email" id="quote-sent-email" name="email" placeholder=" " required aria-describedby="quote-sent-email-error" autocomplete="email">
+                  <p class="field__error" id="quote-sent-email-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-sent-phone">Phone number<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="tel" id="quote-sent-phone" name="phone" placeholder=" " required aria-describedby="quote-sent-phone-error" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}">
+                  <p class="field__error" id="quote-sent-phone-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-sent-message">Message<span aria-hidden="true">*</span></label>
+                  <textarea class="input field__control" id="quote-sent-message" name="message" placeholder=" " required aria-describedby="quote-sent-message-error"></textarea>
+                  <p class="field__error" id="quote-sent-message-error"></p>
+                </div>
+                <button type="submit" class="btn quote-form__submit">
+                  <span data-submit-label>Get Started</span>
+                  <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                </button>
+                <div class="quote-form__messages">
+                  <p class="quote-form__status" role="status" data-form-status>Thanks! Your message was sent. We will get back to you soon.</p>
+                  <p class="quote-form__alert" role="alert" data-form-alert></p>
+                </div>
+              </form>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-quote-form-4">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-quote-form-4" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Error de envío</span>
+            <div class="kit-demo kit-demo--narrow" lang="en">
+              <form class="quote-form" id="quote-failed-form" action="#" method="post" novalidate aria-label="Get a free Quote, send error example">
+                <h3 class="quote-form__title" id="quote-failed-title">Get a free Quote</h3>
+                <input type="hidden" name="_subject" value="New quote request from esonix.example">
+                <div hidden><label for="quote-failed-honey">Leave this field empty</label><input type="text" id="quote-failed-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
+                <div class="field">
+                  <label class="field__label" for="quote-failed-name">Your name<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="text" id="quote-failed-name" name="name" placeholder=" " required aria-describedby="quote-failed-name-error" autocomplete="name" value="Emma Wilson">
+                  <p class="field__error" id="quote-failed-name-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-failed-email">Your email<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="email" id="quote-failed-email" name="email" placeholder=" " required aria-describedby="quote-failed-email-error" autocomplete="email" value="emma@company.com">
+                  <p class="field__error" id="quote-failed-email-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-failed-phone">Phone number<span aria-hidden="true">*</span></label>
+                  <input class="input field__control" type="tel" id="quote-failed-phone" name="phone" placeholder=" " required aria-describedby="quote-failed-phone-error" autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}" value="+1 (555) 123 4567">
+                  <p class="field__error" id="quote-failed-phone-error"></p>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="quote-failed-message">Message<span aria-hidden="true">*</span></label>
+                  <textarea class="input field__control" id="quote-failed-message" name="message" placeholder=" " required aria-describedby="quote-failed-message-error">We need help with our pricing strategy.</textarea>
+                  <p class="field__error" id="quote-failed-message-error"></p>
+                </div>
+                <button type="submit" class="btn quote-form__submit">
+                  <span data-submit-label>Get Started</span>
+                  <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                </button>
+                <div class="quote-form__messages">
+                  <p class="quote-form__status" role="status" data-form-status></p>
+                  <p class="quote-form__alert" role="alert" data-form-alert>Your message could not be sent. Please check your connection and try again.</p>
+                </div>
+              </form>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-quote-form-5">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-quote-form-5" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Quote Form">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>form.quote-form[data-quote-form]</code></th><td>Activa el envío por fetch y la validación de main.js</td></tr>
+                  <tr><th scope="row"><code>action="https://formsubmit.co/&lt;destino&gt;" method="post" novalidate</code></th><td>Destino (sin JS, envío normal); novalidate deja la validación a main.js</td></tr>
+                  <tr><th scope="row"><code>input[name="_subject"] / div[hidden] &gt; input[name="_honey"]</code></th><td>Asunto del correo y trampa antibots de FormSubmit</td></tr>
+                  <tr><th scope="row"><code>button[aria-disabled="true"] &gt; [data-submit-label]</code></th><td>Enviando: el botón no responde y su texto pasa a «Sending…»</td></tr>
+                  <tr><th scope="row"><code>p[role="status"][data-form-status]</code></th><td>Mensaje de enviado</td></tr>
+                  <tr><th scope="row"><code>p[role="alert"][data-form-alert]</code></th><td>Mensaje de error de envío; los datos se conservan</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--color-surface-default</code></li>
+              <li><code>--radius-lg / -sm</code></li>
+              <li><code>--shadow-md</code></li>
+              <li><code>--color-feedback-success-* / -error-*</code></li>
+              <li><code>--spacing-3 / -4 / -5 / -6 / -8</code></li>
+              <li><code>Field, Input, Button (átomos)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Los errores se escriben en el mensaje de cada campo (enlazado con <code>aria-describedby</code>) y el foco va al primer campo inválido. Enviado y error de envío se anuncian en regiones vivas que existen desde el inicio (vacías): <code>role="status"</code> (cortés) y <code>role="alert"</code> (inmediato). Mientras envía, el botón usa <code>aria-disabled</code> en lugar de <code>disabled</code> para no perder el foco.</p>
+        </section>
         <!-- kit:molecules-end -->
       </section>
 
@@ -2575,6 +3025,10 @@
                   <a class="site-header__phone" href="tel:+880123456789">
                     <span class="site-header__phone-number">+880 (123) 456 789</span>
                     <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
+                  </a>
+                  <a class="btn btn--accent site-header__cta" href="#site-header">
+                    Schedule a call
+                    <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
                   </a>
                   <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
                     Menu
@@ -2664,6 +3118,10 @@
                     <span class="site-header__phone-number">+880 (123) 456 789</span>
                     <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
                   </a>
+                  <a class="btn btn--accent site-header__cta" href="#site-header">
+                    Schedule a call
+                    <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                  </a>
                   <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
                     Menu
                     <span class="icon icon--layout-grid" aria-hidden="true"></span>
@@ -2745,12 +3203,108 @@
                     <span class="site-header__phone-number">+880 (123) 456 789</span>
                     <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
                   </a>
+                  <a class="btn btn--accent site-header__cta" href="#site-header">
+                    Schedule a call
+                    <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                  </a>
                   <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
                     Menu
                     <span class="icon icon--layout-grid" aria-hidden="true"></span>
                   </button>
                 </div>
               </header>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">--inner (páginas interiores), barra completa a escala</span>
+            <div class="kit-demo kit-demo--hero kit-demo--hero-full" lang="en">
+              <header class="site-header site-header--inner">
+                <div class="site-header__bar">
+                  <a class="site-header__brand" href="#site-header">
+                    <img class="brand-logo" src="../assets/img/primary-logo.png" alt="Esonix" width="140" height="40">
+                  </a>
+                  <nav class="site-header__nav" aria-label="Main">
+                    <ul class="site-nav__list">
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-home-inner">
+                          Home
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-home-inner" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 01</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 02</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Home Version 03</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-services-inner">
+                          Services
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-services-inner" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Marketing Guidance</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Process Optimization</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Sales Improvement</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Service Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-pages-inner">
+                          Pages
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-pages-inner" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">About Us</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolios</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Portfolio Details</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Team Members</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Pricing Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">FAQ Page</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Error 404</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Coming Soon</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item">
+                        <button type="button" class="site-nav__link site-nav__trigger" aria-expanded="false" aria-controls="submenu-blog-inner">
+                          Blog
+                          <span class="icon icon--chevron-down site-nav__chevron" aria-hidden="true"></span>
+                        </button>
+                        <ul class="site-nav__submenu" id="submenu-blog-inner" data-surface="brand">
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Grid</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Standard</a></li>
+                          <li><a class="site-nav__sublink" href="#site-header">Blog Details</a></li>
+                        </ul>
+                      </li>
+                      <li class="site-nav__item"><a class="site-nav__link" href="#site-header">Contact</a></li>
+                    </ul>
+                  </nav>
+                  <ul class="site-header__socials" aria-label="Social media">
+                    <li><a class="site-header__social" href="#site-header">FB<span class="visually-hidden"> Facebook</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">TW<span class="visually-hidden"> Twitter</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">LI<span class="visually-hidden"> LinkedIn</span></a></li>
+                    <li><a class="site-header__social" href="#site-header">IG<span class="visually-hidden"> Instagram</span></a></li>
+                  </ul>
+                  <a class="site-header__phone" href="tel:+880123456789">
+                    <span class="site-header__phone-number">+880 (123) 456 789</span>
+                    <span class="site-header__phone-icon"><span class="icon icon--message-square" aria-hidden="true"></span></span>
+                  </a>
+                  <a class="btn btn--accent site-header__cta" href="#site-header">
+                    Schedule a call
+                    <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                  </a>
+                  <button type="button" class="site-header__toggle" data-offcanvas-open aria-controls="offcanvas-menu" aria-expanded="false">
+                    Menu
+                    <span class="icon icon--layout-grid" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </header>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-site-header-4">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-site-header-4" tabindex="0"><code data-source="demo"></code></pre>
             </div>
           </div>
           <div class="kit-block">
@@ -2764,6 +3318,8 @@
                   <tr><th scope="row"><code>.site-header__brand</code></th><td>Enlace del logo (primary-logo.png, sobre oscuro)</td></tr>
                   <tr><th scope="row"><code>.site-header--fixed</code></th><td>Variante fija arriba (position: fixed, z-sticky), centrada hasta --site-header-max; el margen alrededor de la barra no captura clics</td></tr>
                   <tr><th scope="row"><code>.site-header--fixed.is-scrolled</code></th><td>Lo agrega main.js al pasar el 10% del alto de la ventana: la barra pasa a fondo inverso para leerse sobre las secciones claras</td></tr>
+                  <tr><th scope="row"><code>.site-header--inner</code></th><td>Páginas interiores: sin barra visible, logo alineado al .container, píldora del menú oscura y el botón «Schedule a call» en lugar de redes y teléfono. En las páginas lo pone sync_shared.py desde el marcador (&lt;!-- shared:header site-header--inner --&gt;)</td></tr>
+                  <tr><th scope="row"><code>a.btn.btn--accent.site-header__cta</code></th><td>Botón «Schedule a call ↗»: oculto salvo en --inner desde 64rem de barra; círculo blanco</td></tr>
                   <tr><th scope="row"><code>.site-header__nav</code></th><td>Contenedor &lt;nav&gt; del menú; visible desde 48rem de barra</td></tr>
                   <tr><th scope="row"><code>.site-nav__list / __item / __link</code></th><td>Píldora blanca, ítem posicionado y enlace o botón del menú</td></tr>
                   <tr><th scope="row"><code>.site-nav__trigger + aria-expanded / aria-controls</code></th><td>Botón que abre su submenú; el chevron gira con aria-expanded="true"</td></tr>
@@ -2953,7 +3509,7 @@
           <header class="kit-card__header">
             <p class="kit-card__tag">Organismo · 03</p>
             <h3 id="carousel-title">Carousel</h3>
-            <p class="kit-card__desc">Base de Swiper para los carruseles de la home: loop con el slide activo <strong>centrado</strong>, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y destaca el slide activo (<code>data-carousel-highlight</code>); Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>.</p>
+            <p class="kit-card__desc">Base de Swiper para los carruseles de la home: loop con el slide activo <strong>centrado</strong>, arrastre con mouse y táctil, teclado (flechas del teclado con el carrusel a la vista) y 1, 2 o 3 slides según el ancho del carrusel (48 y 64rem). Los slides vecinos sangran fuera del carrusel hasta el borde, como el diseño; en la página los recorta la Section. Services usa flechas (pueden ir en el encabezado: se vinculan por <code>aria-controls</code>) y destaca el slide activo (<code>data-carousel-highlight</code>); Testimonials usa dots, que genera <code>main.js</code>. Los testimonios en video abren el <a href="#video-modal">Video Modal</a>. <code>--fade</code> (About Us) muestra una cita por vez con fundido, con dots.</p>
           </header>
           <div class="kit-block">
             <span class="kit-block__label">Services: flechas y slide activo destacado</span>
@@ -3144,6 +3700,43 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--fade: citas con fundido (Client Feedback de About Us)</span>
+            <div class="kit-demo" data-surface="inverse" lang="en">
+              <div class="carousel carousel--fade" id="carousel-quotes" data-carousel data-carousel-fade role="region" aria-roledescription="carousel" aria-label="Client quotes">
+                <div class="swiper carousel__viewport">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="feedback__quote">
+                        <blockquote class="feedback__text"><p>“Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy, every recommendation was practical, well-researched, &amp; tailored to our goals.”</p></blockquote>
+                        <figcaption class="feedback__author"><strong>David Thompson,</strong> Sales Director</figcaption>
+                      </figure>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="feedback__quote">
+                        <blockquote class="feedback__text"><p>“We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.”</p></blockquote>
+                        <figcaption class="feedback__author"><strong>James Anderson,</strong> Entrepreneur, Brand Strategist</figcaption>
+                      </figure>
+                    </div>
+                    <div class="swiper-slide carousel__slide">
+                      <figure class="feedback__quote">
+                        <blockquote class="feedback__text"><p>“Working with this consulting team completely transformed our business operations.”</p></blockquote>
+                        <figcaption class="feedback__author"><strong>Isabella Harris,</strong> CEO &amp; Founder</figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                </div>
+                <div class="dots dots--inverse" role="group" aria-label="Choose a quote" data-carousel-dots="Show quote"></div>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-carousel-3">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-carousel-3" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Carousel">
               <table class="kit-table">
@@ -3159,6 +3752,7 @@
                   <tr><th scope="row"><code>data-carousel-start="2"</code></th><td>Slide inicial (índice desde 0; por defecto 0)</td></tr>
                   <tr><th scope="row"><code>data-carousel-start-wide="1"</code></th><td>Slide inicial cuando el carrusel mide 64rem o más (3 por vista); si falta, vale data-carousel-start</td></tr>
                   <tr><th scope="row"><code>data-carousel-highlight</code></th><td>La card del slide activo recibe data-surface="brand" y las demás lo pierden; el markup trae destacada la inicial (estado sin JS)</td></tr>
+                  <tr><th scope="row"><code>.carousel--fade + data-carousel-fade</code></th><td>Un slide por vista con fundido (effect: fade); sin copias ni vecinos a la vista. Las clases feedback__* de las citas son de la Section Feedback</td></tr>
                 </tbody>
               </table>
             </div>
@@ -3237,12 +3831,67 @@
             </div>
           </div>
           <div class="kit-block">
+            <span class="kit-block__label">--boxed (FAQ de About Us)</span>
+            <div class="kit-demo kit-demo--narrow-wide" lang="en">
+              <div class="accordion accordion--boxed">
+                <details class="accordion-item" name="faq-boxed">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">How can consulting help my business grow?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Consulting brings an outside view, proven methods and focused support, so you can find opportunities and act on them faster.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq-boxed" open>
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">What industries do you specialize in?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Our consulting expertise spans multiple industries including finance, technology, healthcare, retail, and professional services. We have successfully partnered with organizations of all sizes from startups.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq-boxed">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">What services do business consultants provide?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>We offer strategy, process optimization, sales improvement and financial advisory.</p>
+                  </div>
+                </details>
+                <details class="accordion-item" name="faq-boxed">
+                  <summary class="accordion-item__summary">
+                    <span class="accordion-item__mark" aria-hidden="true">?</span>
+                    <span class="accordion-item__question">Can you help improve team productivity?</span>
+                    <span class="accordion-item__toggle" aria-hidden="true"><span class="icon icon--plus" aria-hidden="true"></span><span class="icon icon--minus" aria-hidden="true"></span></span>
+                  </summary>
+                  <div class="accordion-item__panel">
+                    <p>Yes. We review how work moves between people and tools, then set up routines and metrics that remove bottlenecks.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-accordion-2">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-accordion-2" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
             <span class="kit-block__label">Clases y atributos</span>
             <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Accordion">
               <table class="kit-table">
                 <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
                 <tbody>
                   <tr><th scope="row"><code>.accordion</code></th><td>Grupo; activa interpolate-size para animar hasta height: auto</td></tr>
+                  <tr><th scope="row"><code>.accordion--boxed</code></th><td>Ítems en caja con borde y 32px de separación; el abierto en blanco</td></tr>
                   <tr><th scope="row"><code>.accordion-item + name="faq"</code></th><td>Cada pregunta (molécula); el mismo name deja una sola abierta</td></tr>
                   <tr><th scope="row"><code>open</code></th><td>Ítem abierto al cargar (el diseño abre el segundo)</td></tr>
                 </tbody>
@@ -4298,6 +4947,7 @@
                   <tr><th scope="row"><code>h2.stats__title</code></th><td>Título de la sección, 22px centrado (corta en 12rem, como el diseño)</td></tr>
                   <tr><th scope="row"><code>ul.stats__list / .stats__item</code></th><td>Lista de cifras entre filetes</td></tr>
                   <tr><th scope="row"><code>.stats__level + aria-hidden / .is-on</code></th><td>Indicador decorativo de tres cuadritos</td></tr>
+                  <tr><th scope="row"><code>.stats--strip + .stats__grid</code></th><td>About Us: sin pastilla y visible en todos los breakpoints; desde lg, título a la izquierda y las cifras en 3 columnas con filetes verticales</td></tr>
                 </tbody>
               </table>
             </div>
@@ -4327,7 +4977,7 @@
             <span class="kit-block__label">Tal como está en la página</span>
             <div class="kit-demo kit-demo--section" lang="en">
               <section class="section testimonials" id="testimonials-section" aria-labelledby="testimonials-title-section" data-surface="inverse">
-                <div class="testimonials__media">
+                <div class="section-bg">
                   <img src="../assets/img/h1-testimonial-bg-img.webp" alt="" width="1920" height="1000" loading="lazy">
                 </div>
                 <div class="container">
@@ -4451,7 +5101,7 @@
                 <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
                 <tbody>
                   <tr><th scope="row"><code>section.section.testimonials + data-surface="inverse"</code></th><td>Fondo oscuro; recorta los slides que sangran y la foto al radio</td></tr>
-                  <tr><th scope="row"><code>.testimonials__media</code></th><td>Capa de la foto (filter: blur(--blur-photo)) con el velo en ::after</td></tr>
+                  <tr><th scope="row"><code>.section-bg</code></th><td>Capa de la foto (filter: blur(--blur-photo)) con el velo en ::after; patrón compartido con Feedback (About Us)</td></tr>
                   <tr><th scope="row"><code>.section-head--center + .eyebrow--inverse</code></th><td>Encabezado centrado, eyebrow amarillo</td></tr>
                   <tr><th scope="row"><code>data-carousel-start="2"</code></th><td>Arranca en el tercer testimonio, como el diseño</td></tr>
                 </tbody>
@@ -4605,6 +5255,7 @@
                   <tr><th scope="row"><code>section.section.logos</code></th><td>Sin padding superior (el diseño la pega a Team); display: none desde lg</td></tr>
                   <tr><th scope="row"><code>ul.logo-grid</code></th><td>Grilla de 2 columnas; los filetes son su fondo, que asoma por un gap de 1px</td></tr>
                   <tr><th scope="row"><code>.logo-grid__cell</code></th><td>Celda de 100px de alto mínimo con el logo centrado</td></tr>
+                  <tr><th scope="row"><code>.logos--desktop</code></th><td>About Us: la grilla también desde lg, en 4 columnas</td></tr>
                 </tbody>
               </table>
             </div>
@@ -4718,6 +5369,7 @@
                   <tr><th scope="row"><code>.faq__grid</code></th><td>Una columna en mobile; desde lg, 33rem | 45rem repartidas a los extremos</td></tr>
                   <tr><th scope="row"><code>.faq__intro</code></th><td>Encabezado y Card CTA; desde lg, el CTA baja al final de la columna</td></tr>
                   <tr><th scope="row"><code>.accordion + details[name="faq"]</code></th><td>Acordeón: un solo ítem abierto (el segundo, como el diseño)</td></tr>
+                  <tr><th scope="row"><code>.faq--centered</code></th><td>About Us: encabezado centrado arriba; Accordion --boxed (800px) y Card CTA --stacked (448px) en columnas, sobre --color-background-subtle</td></tr>
                 </tbody>
               </table>
             </div>
@@ -4838,9 +5490,437 @@
           <p class="kit-note"><strong>Accesibilidad:</strong> Cada «Read More» lleva el título del post en texto oculto; las fechas son <code>&lt;time datetime&gt;</code>. Las fotos son decorativas.</p>
         </section>
 
-        <section class="kit-card" id="footer" aria-labelledby="footer-title">
+        <section class="kit-card" id="page-hero" aria-labelledby="page-hero-title">
           <header class="kit-card__header">
             <p class="kit-card__tag">Section · 13</p>
+            <h3 id="page-hero-title">Page Hero</h3>
+            <p class="kit-card__desc">Cabecera de las páginas interiores: foto a sangre con velo, el <strong>breadcrumb</strong> en píldora translúcida y el único <code>&lt;h1&gt;</code> de la página abajo a la izquierda, alineado con el <code>.container</code>. Reserva el alto del <a href="#site-header">header fijo</a> (variante <code>--inner</code> en estas páginas). 750px de alto en desktop y 420px en mobile, como el diseño. Fuente: <code>dist/about-us.html</code> (<a href="../about-us.html#page-hero">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="page-hero" aria-labelledby="page-title-section" data-surface="inverse">
+                <div class="page-hero__media">
+                  <img src="../assets/img/about-page-header-bg.webp" alt="" width="1920" height="750" fetchpriority="high">
+                </div>
+                <div class="container page-hero__content">
+                  <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <ol class="breadcrumb__list">
+                      <li><a href="./">Home</a></li>
+                      <li><span aria-current="page">About Us</span></li>
+                    </ol>
+                  </nav>
+                  <h1 class="page-hero__title" id="page-title-section">Consulting That Delivers Measurable Results</h1>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-page-hero-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-page-hero-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Page Hero">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>section.page-hero + data-surface="inverse"</code></th><td>Foto de fondo y texto blanco; la superficie inversa da el foco claro sobre la foto</td></tr>
+                  <tr><th scope="row"><code>.page-hero__media</code></th><td>Capa de la foto (object-fit: cover) con el velo en ::after (izquierda y abajo)</td></tr>
+                  <tr><th scope="row"><code>.container.page-hero__content</code></th><td>Breadcrumb y h1 apilados, alineados con el contenido de las secciones</td></tr>
+                  <tr><th scope="row"><code>nav.breadcrumb[aria-label="Breadcrumb"] &gt; ol.breadcrumb__list</code></th><td>Píldora translúcida; el guion entre ítems es contenido generado sin texto alternativo</td></tr>
+                  <tr><th scope="row"><code>span[aria-current="page"]</code></th><td>La página actual, sin enlace</td></tr>
+                  <tr><th scope="row"><code>h1.page-hero__title</code></th><td>Título de la página con --text-h1; corta en 45rem</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h1</code></li>
+              <li><code>--color-overlay / -overlay-light</code></li>
+              <li><code>--color-text-inverse</code></li>
+              <li><code>--header-offset</code></li>
+              <li><code>--radius-full</code></li>
+              <li><code>--spacing-1 / -2 / -5 / -6 / -7 / -10 / -11</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Único <code>&lt;h1&gt;</code> de la página. El breadcrumb es un <code>&lt;nav&gt;</code> nombrado «Breadcrumb» con una lista ordenada; la página actual lleva <code>aria-current="page"</code> y el separador no se lee. La foto es decorativa (<code>alt=""</code>) y se precarga con prioridad alta (LCP). <code>data-surface="inverse"</code> pasa el anillo de foco a su versión clara sobre la foto.</p>
+        </section>
+
+        <section class="kit-card" id="about-intro" aria-labelledby="about-intro-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 14</p>
+            <h3 id="about-intro-title">About Intro</h3>
+            <p class="kit-card__desc">«What We Do» de About Us. Desde lg, dos columnas medidas en el diseño: a la izquierda eyebrow, h2, una lista con checks y «More about us»; a la derecha la historia: foto con marco (<code>photo-frame</code>, 5:4), «Who we are» con dos párrafos, un filete y la cita con comillas y firma. En mobile, apilado en el mismo orden. Fuente: <code>dist/about-us.html</code> (<a href="../about-us.html#about-intro">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section about-intro" aria-labelledby="about-intro-title-section">
+                <div class="container about-intro__grid">
+                  <div class="about-intro__lead">
+                    <p class="eyebrow">What We Do</p>
+                    <h2 class="section-title" id="about-intro-title-section">Unlocking Business Potential with Tailored Solutions</h2>
+                    <ul class="about-intro__list" role="list">
+                      <li><span class="icon icon--circle-check-outline" aria-hidden="true"></span>Client-Focused Consulting</li>
+                      <li><span class="icon icon--circle-check-outline" aria-hidden="true"></span>Business Performance Improvement</li>
+                      <li><span class="icon icon--circle-check-outline" aria-hidden="true"></span>Innovative Business Solutions</li>
+                    </ul>
+                    <a href="#team-profiles" class="btn">
+                      More about us
+                      <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                    </a>
+                  </div>
+                  <div class="about-intro__story">
+                    <div class="photo-frame about-intro__photo">
+                      <img src="../assets/img/h3-about-img.webp" alt="A consultant smiling as she shakes hands with a client" width="1200" height="1200" loading="lazy">
+                    </div>
+                    <div class="about-intro__text">
+                      <h3 class="about-intro__subtitle">Who we are</h3>
+                      <p>Our mission is to help businesses make smarter decisions &amp; achieve lasting success. By combining industry expertise, strategic insight</p>
+                      <p>With years of industry experience, we empower businesses to overcome challenges and unlock new opportunities. From business strategy and market analysis to operational improvement</p>
+                    </div>
+                    <hr class="divider">
+                    <figure class="about-intro__quote">
+                      <blockquote>
+                        <p><strong>From Vision to Success</strong> — Providing Expert Business Consulting that Delivers Real Impact. By combining industry expertise, data-driven insights, &amp; a client-focused approach</p>
+                      </blockquote>
+                      <figcaption><img src="../assets/img/signature-2.png" alt="Signature of Michel Jhon" width="108" height="46" loading="lazy"></figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-about-intro-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-about-intro-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de About Intro">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.about-intro__grid</code></th><td>Una columna en mobile; desde lg 30rem | 42.5rem (480 y 680px a 1920) a los extremos</td></tr>
+                  <tr><th scope="row"><code>.about-intro__lead / __list</code></th><td>Eyebrow, h2, lista con icon--circle-check-outline y botón</td></tr>
+                  <tr><th scope="row"><code>.about-intro__story</code></th><td>Foto con marco, texto, filete y cita</td></tr>
+                  <tr><th scope="row"><code>.photo-frame.about-intro__photo</code></th><td>Foto 5:4 con marco blanco de 8px</td></tr>
+                  <tr><th scope="row"><code>h3.about-intro__subtitle</code></th><td>«Who we are», 24px</td></tr>
+                  <tr><th scope="row"><code>figure.about-intro__quote</code></th><td>Comillas decorativas (::before) a la izquierda de la cita y la firma</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--text-h1 (section-title) / -h4 / -h5 / -display</code></li>
+              <li><code>--color-text-primary</code></li>
+              <li><code>--weight-regular / -medium / -semibold</code></li>
+              <li><code>--spacing-3 / -4 / -5 / -7 / -10</code></li>
+              <li><code>Eyebrow, Button, Divider, Icon (átomos)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> La cita es un <code>&lt;figure&gt;</code> con <code>&lt;blockquote&gt;</code> y la firma en el <code>&lt;figcaption&gt;</code> como imagen con <code>alt</code> («Signature of Michel Jhon»). Las comillas grandes son contenido generado sin texto alternativo. La foto lleva <code>alt</code> descriptivo; los checks son <code>aria-hidden</code>.</p>
+        </section>
+
+        <section class="kit-card" id="team-profiles" aria-labelledby="team-profiles-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 15</p>
+            <h3 id="team-profiles-title">Team Profiles</h3>
+            <p class="kit-card__desc">El equipo en About Us: Section Head centrado y tres <a href="#card-team">Card Team</a> <code>--profile</code> (card blanca con foto, nombre, cargo y redes), apiladas en mobile y en 3 columnas desde lg, la central con <code>--reverse</code> (texto arriba). Fuente: <code>dist/about-us.html</code> (<a href="../about-us.html#team-profiles">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section team-profiles" id="team-profiles-section" aria-labelledby="team-profiles-title-section">
+                <div class="container">
+                  <div class="section-head section-head--center">
+                    <div class="section-head__main">
+                      <p class="eyebrow eyebrow--center">Consulting Experts</p>
+                      <h2 class="section-title section-head__title" id="team-profiles-title-section">Meet Our Expert Team</h2>
+                    </div>
+                  </div>
+                  <div class="team-profiles__grid">
+                    <article class="card-team card-team--profile">
+                      <img class="card-team__photo" src="../assets/img/h1-team-member-img-1.webp" alt="" width="848" height="920" loading="lazy">
+                      <div class="card-team__info">
+                        <h3 class="card-team__name">Olivia Bennet</h3>
+                        <p class="card-team__role">Financial Advisor</p>
+                        <ul class="card-team__socials" role="list">
+                          <li><a href="#" class="card-team__social" aria-label="Olivia Bennet on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Olivia Bennet on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Olivia Bennet on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Olivia Bennet on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+                        </ul>
+                      </div>
+                    </article>
+                    <article class="card-team card-team--profile card-team--reverse">
+                      <img class="card-team__photo" src="../assets/img/h1-team-member-img-2.webp" alt="" width="848" height="920" loading="lazy">
+                      <div class="card-team__info">
+                        <h3 class="card-team__name">Emma Wilson</h3>
+                        <p class="card-team__role">Business Analyst</p>
+                        <ul class="card-team__socials" role="list">
+                          <li><a href="#" class="card-team__social" aria-label="Emma Wilson on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Emma Wilson on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Emma Wilson on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Emma Wilson on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+                        </ul>
+                      </div>
+                    </article>
+                    <article class="card-team card-team--profile">
+                      <img class="card-team__photo" src="../assets/img/h1-team-member-img-3.webp" alt="" width="848" height="920" loading="lazy">
+                      <div class="card-team__info">
+                        <h3 class="card-team__name">Michael Turner</h3>
+                        <p class="card-team__role">Corporate Trainer</p>
+                        <ul class="card-team__socials" role="list">
+                          <li><a href="#" class="card-team__social" aria-label="Michael Turner on Facebook"><span class="icon icon--facebook" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Michael Turner on X"><span class="icon icon--x-twitter" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Michael Turner on Instagram"><span class="icon icon--instagram" aria-hidden="true"></span></a></li>
+                          <li><a href="#" class="card-team__social" aria-label="Michael Turner on LinkedIn"><span class="icon icon--linkedin" aria-hidden="true"></span></a></li>
+                        </ul>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-team-profiles-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-team-profiles-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Team Profiles">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.section-head--center</code></th><td>Eyebrow y h2 centrados</td></tr>
+                  <tr><th scope="row"><code>.team-profiles__grid</code></th><td>Una columna en mobile; 3 columnas (424px a 1920) desde lg</td></tr>
+                  <tr><th scope="row"><code>.card-team--profile.card-team--reverse</code></th><td>La card central: texto arriba y foto abajo desde lg</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--spacing-6</code></li>
+              <li><code>Eyebrow (átomo)</code></li>
+              <li><code>Card Team --profile (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Cada card es un <code>&lt;article&gt;</code> con el nombre en <code>&lt;h3&gt;</code>; cada red se nombra con la persona («Olivia Bennet on LinkedIn»). Las fotos son decorativas: nombre y cargo están en texto. El orden del DOM no cambia con <code>--reverse</code> (foto primero), así el lector de pantalla oye siempre lo mismo.</p>
+        </section>
+
+        <section class="kit-card" id="feedback" aria-labelledby="feedback-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 16</p>
+            <h3 id="feedback-title">Feedback</h3>
+            <p class="kit-card__desc">Client Feedback de About Us: bloque oscuro con la foto desenfocada (<code>.section-bg</code>, el mismo patrón que Testimonials), encabezado centrado y el <a href="#carousel">Carousel</a> <code>--fade</code> con tres citas y dots. Radio abajo en desktop y arriba en mobile, como cada PNG. Su padding inferior reserva lo que sube el formulario de Why Trust. Fuente: <code>dist/about-us.html</code> (<a href="../about-us.html#feedback">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section feedback" aria-labelledby="feedback-title-section" data-surface="inverse">
+                <div class="section-bg">
+                  <img src="../assets/img/about-video-bg.webp" alt="" width="1920" height="1334" loading="lazy">
+                </div>
+                <div class="container">
+                  <div class="section-head section-head--center">
+                    <div class="section-head__main">
+                      <p class="eyebrow eyebrow--center eyebrow--inverse">Client Feedback</p>
+                      <h2 class="section-title section-head__title" id="feedback-title-section">Client Stories That Speak for Themselves</h2>
+                    </div>
+                  </div>
+                  <div class="carousel carousel--fade" id="carousel-quotes-section" data-carousel data-carousel-fade role="region" aria-roledescription="carousel" aria-label="Client quotes">
+                    <div class="swiper carousel__viewport">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide carousel__slide">
+                          <figure class="feedback__quote">
+                            <blockquote class="feedback__text"><p>“Their professional guidance gave us a clear direction for expanding our business. From financial planning to market strategy, every recommendation was practical, well-researched, &amp; tailored to our goals.”</p></blockquote>
+                            <figcaption class="feedback__author"><strong>David Thompson,</strong> Sales Director</figcaption>
+                          </figure>
+                        </div>
+                        <div class="swiper-slide carousel__slide">
+                          <figure class="feedback__quote">
+                            <blockquote class="feedback__text"><p>“We were struggling with operational challenges before partnering with this consulting firm. Their expertise and hands-on support.”</p></blockquote>
+                            <figcaption class="feedback__author"><strong>James Anderson,</strong> Entrepreneur, Brand Strategist</figcaption>
+                          </figure>
+                        </div>
+                        <div class="swiper-slide carousel__slide">
+                          <figure class="feedback__quote">
+                            <blockquote class="feedback__text"><p>“Working with this consulting team completely transformed our business operations.”</p></blockquote>
+                            <figcaption class="feedback__author"><strong>Isabella Harris,</strong> CEO &amp; Founder</figcaption>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dots dots--inverse" role="group" aria-label="Choose a quote" data-carousel-dots="Show quote"></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-feedback-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-feedback-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Feedback">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>section.section.feedback + data-surface="inverse"</code></th><td>Fondo oscuro; recorta la foto al radio</td></tr>
+                  <tr><th scope="row"><code>.section-bg</code></th><td>Capa de la foto desenfocada con el velo inverso al 85%</td></tr>
+                  <tr><th scope="row"><code>.carousel.carousel--fade + data-carousel-fade</code></th><td>Una cita por vez con fundido; dots generados por main.js</td></tr>
+                  <tr><th scope="row"><code>figure.feedback__quote / .feedback__text / .feedback__author</code></th><td>Comillas ámbar (::before), cita de 18/24px y autor</td></tr>
+                  <tr><th scope="row"><code>--quote-form-overlap</code></th><td>Lo que el Quote Form sube sobre el bloque: 80px en mobile, 96px desde lg</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--blur-photo</code></li>
+              <li><code>--color-background-inverse</code></li>
+              <li><code>--color-text-highlight</code></li>
+              <li><code>--text-h4 / -h6 / -display</code></li>
+              <li><code>--radius-xl</code></li>
+              <li><code>--spacing-6 / -7 / -10 / -11 / -12 / -13</code></li>
+              <li><code>Eyebrow --inverse, Pagination Dots (átomos)</code></li>
+              <li><code>Carousel (organismo)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> Región «Client quotes» con dots nombrados («Show quote 2», el actual con <code>aria-current</code>). Cada cita es un <code>&lt;figure&gt;</code> con <code>&lt;blockquote&gt;</code> y autor en <code>&lt;figcaption&gt;</code>. Sin autoplay (no hace falta botón de pausa, WCAG 2.2.2); con «reducir movimiento» el cambio es instantáneo. La foto de fondo es decorativa.</p>
+        </section>
+
+        <section class="kit-card" id="why-trust" aria-labelledby="why-trust-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 17</p>
+            <h3 id="why-trust-title">Why Trust</h3>
+            <p class="kit-card__desc">Why Choose Us de About Us: el <a href="#quote-form">Quote Form</a> sube sobre el bloque Feedback (margen negativo, <code>--quote-form-overlap</code>) y, a su lado, eyebrow, h2, dos barras de <a href="#progress">Progress</a> (Consulting en ámbar) y «Contact With Us ↗». En mobile, el formulario primero y el texto debajo. Fuente: <code>dist/about-us.html</code> (<a href="../about-us.html#why-trust">ver en la página</a>).</p>
+          </header>
+          <div class="kit-block">
+            <span class="kit-block__label">Tal como está en la página</span>
+            <div class="kit-demo kit-demo--section" lang="en">
+              <section class="section why-trust" aria-labelledby="why-trust-title-section">
+                <div class="container why-trust__grid">
+                  <form class="quote-form why-trust__form" id="quote-form-section" action="#" method="post" novalidate aria-labelledby="quote-form-title-section">
+                    <h2 class="quote-form__title" id="quote-form-title-section">Get a free Quote</h2>
+                    <input type="hidden" name="_subject" value="New quote request from esonix.example">
+                    <div hidden><label for="quote-honey-section">Leave this field empty</label><input type="text" id="quote-honey-section" name="_honey" tabindex="-1" autocomplete="off"></div>
+                    <div class="field">
+                      <label class="field__label" for="quote-name-section">Your name<span aria-hidden="true">*</span></label>
+                      <input class="input field__control" type="text" id="quote-name-section" name="name" placeholder=" " autocomplete="name" required aria-describedby="quote-name-error-section">
+                      <p class="field__error" id="quote-name-error-section"></p>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="quote-email-section">Your email<span aria-hidden="true">*</span></label>
+                      <input class="input field__control" type="email" id="quote-email-section" name="email" placeholder=" " autocomplete="email" required aria-describedby="quote-email-error-section">
+                      <p class="field__error" id="quote-email-error-section"></p>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="quote-phone-section">Phone number<span aria-hidden="true">*</span></label>
+                      <input class="input field__control" type="tel" id="quote-phone-section" name="phone" placeholder=" " autocomplete="tel" pattern="[\d\s+\(\)\-]{6,}" required aria-describedby="quote-phone-error-section">
+                      <p class="field__error" id="quote-phone-error-section"></p>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="quote-message-section">Message<span aria-hidden="true">*</span></label>
+                      <textarea class="input field__control" id="quote-message-section" name="message" placeholder=" " required aria-describedby="quote-message-error-section"></textarea>
+                      <p class="field__error" id="quote-message-error-section"></p>
+                    </div>
+                    <button type="submit" class="btn quote-form__submit">
+                      <span data-submit-label>Get Started</span>
+                      <span class="btn__icon"><span class="icon icon--arrow-up-right" aria-hidden="true"></span></span>
+                    </button>
+                    <div class="quote-form__messages">
+                      <p class="quote-form__status" role="status" data-form-status></p>
+                      <p class="quote-form__alert" role="alert" data-form-alert></p>
+                    </div>
+                  </form>
+                  <div class="why-trust__intro">
+                    <p class="eyebrow">Why Choose Us</p>
+                    <h2 class="section-title" id="why-trust-title-section">Why Businesses Trust Our Consulting</h2>
+                    <div class="why-trust__bars">
+                      <div class="progress progress--accent" style="--progress: 88">
+                        <div class="progress__head">
+                          <label for="progress-consulting-section">Consulting</label>
+                          <span aria-hidden="true">88%</span>
+                        </div>
+                        <progress class="progress__bar" id="progress-consulting-section" value="88" max="100">88%</progress>
+                      </div>
+                      <div class="progress" style="--progress: 75">
+                        <div class="progress__head">
+                          <label for="progress-marketing-section">Marketing</label>
+                          <span aria-hidden="true">75%</span>
+                        </div>
+                        <progress class="progress__bar" id="progress-marketing-section" value="75" max="100">75%</progress>
+                      </div>
+                    </div>
+                    <a href="#quote-form-section" class="link-arrow">
+                      Contact With Us
+                      <span class="icon icon--arrow-up-right" aria-hidden="true"></span>
+                    </a>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="kit-snippet is-collapsed">
+              <div class="kit-snippet__bar">
+                <button type="button" class="kit-btn" data-kit-toggle aria-expanded="false" aria-controls="snippet-why-trust-1">Ver código</button>
+                <button type="button" class="kit-btn" data-kit-copy>Copiar</button>
+              </div>
+              <pre id="snippet-why-trust-1" tabindex="0"><code data-source="demo"></code></pre>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Clases y atributos</span>
+            <div class="kit-table-wrap" tabindex="0" role="region" aria-label="Clases y atributos de Why Trust">
+              <table class="kit-table">
+                <thead><tr><th scope="col">Clase o atributo</th><th scope="col">Efecto</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><code>.why-trust__grid</code></th><td>Una columna en mobile; desde lg 37.5rem | 35rem (600 y 560px a 1920), alineadas abajo</td></tr>
+                  <tr><th scope="row"><code>form.quote-form.why-trust__form</code></th><td>Primero en el DOM; sube --quote-form-overlap sobre Feedback; desde lg en la columna derecha</td></tr>
+                  <tr><th scope="row"><code>.why-trust__intro / __bars</code></th><td>Eyebrow, h2, barras y enlace</td></tr>
+                  <tr><th scope="row"><code>.progress--accent</code></th><td>La barra «Consulting» en ámbar</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="kit-block">
+            <span class="kit-block__label">Tokens que consume</span>
+            <ul class="kit-spec">
+              <li><code>--quote-form-overlap</code></li>
+              <li><code>--spacing-5 / -6 / -10</code></li>
+              <li><code>Eyebrow, Progress, Link Arrow, Field (átomos)</code></li>
+              <li><code>Quote Form (molécula)</code></li>
+            </ul>
+          </div>
+          <p class="kit-note"><strong>Accesibilidad:</strong> El formulario va antes en el DOM: en mobile es lo que se ve primero y en desktop queda a la derecha, así el orden de Tab es formulario → texto. Cada barra es un <code>&lt;progress&gt;</code> con <code>&lt;label for&gt;</code>. En el kit, el formulario se muestra sin <code>data-quote-form</code> y con <code>action="#"</code>: no envía nada.</p>
+        </section>
+
+        <section class="kit-card" id="footer" aria-labelledby="footer-title">
+          <header class="kit-card__header">
+            <p class="kit-card__tag">Section · 18</p>
             <h3 id="footer-title">Footer</h3>
             <p class="kit-card__desc">El <a href="#site-footer">Site Footer</a> con el <a href="#marquee">Marquee</a> arriba y la foto <code>h1-footer-bg</code> muy desenfocada bajo un velo denso detrás de los dos. Está fuera de <code>&lt;main&gt;</code>. Fuente: <code>dist/index.html</code> (<a href="../index.html#footer">ver en la página</a>).</p>
           </header>

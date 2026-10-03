@@ -87,6 +87,7 @@ Encabezado + Card CTA a la izquierda (columnas de 525 y 720px a 1920) y Accordio
 | `.faq__grid` | Una columna en mobile; desde lg, 33rem | 45rem repartidas a los extremos |
 | `.faq__intro` | Encabezado y Card CTA; desde lg, el CTA baja al final de la columna |
 | `.accordion + details[name="faq"]` | Acordeón: un solo ítem abierto (el segundo, como el diseño) |
+| `.faq--centered` | About Us: encabezado centrado arriba; Accordion --boxed (800px) y Card CTA --stacked (448px) en columnas, sobre --color-background-subtle |
 
 ## Tokens que consume
 

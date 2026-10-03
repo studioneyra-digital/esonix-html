@@ -321,6 +321,66 @@ CSS = r'''/* molecules:start */
   }
 }
 
+/* --profile — variante clara (About Us): card blanca con la foto arriba (en el flujo, sin card-photo) y,
+   debajo, nombre, cargo y redes. --reverse pone el texto arriba y la foto abajo desde lg (la card central
+   del diseño). Medidas a 1920: marco de 12px, nombre 24px, cargo 16px, íconos de 18px. */
+.card-team--profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}
+.card-team__photo {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.card-team__info {
+  display: grid;
+  justify-items: start;
+  gap: var(--spacing-1);
+  padding: 0 var(--spacing-5) var(--spacing-5);
+}
+.card-team--profile .card-team__name {
+  text-align: start;
+}
+.card-team__role {
+  color: var(--color-text-secondary);
+}
+.card-team__socials {
+  display: flex;
+  gap: var(--spacing-1);
+  margin: var(--spacing-4) 0 0 calc(-1 * var(--spacing-2));
+  padding: 0;
+  list-style: none;
+}
+/* 32px de área táctil (WCAG 2.5.8) alrededor de un ícono de 18px */
+.card-team__social {
+  display: grid;
+  place-items: center;
+  inline-size: var(--spacing-7);
+  block-size: var(--spacing-7);
+  border-radius: var(--radius-full);
+  color: var(--color-text-primary);
+  font-size: var(--text-h6);
+}
+.card-team__social:hover {
+  color: var(--color-action-primary-hover);
+}
+@media (min-width: 64rem) {
+  .card-team--reverse {
+    flex-direction: column-reverse;
+  }
+  .card-team--reverse .card-team__info {
+    padding: var(--spacing-6) var(--spacing-5) 0;
+  }
+}
+
 /* Card Post — foto con fecha, título, extracto y «Read More». El texto va con sangría respecto a la foto. */
 .card-post {
   display: grid;
@@ -421,6 +481,28 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 .card-cta__title {
   font-size: var(--text-h4);
   font-weight: var(--weight-medium);
+}
+
+/* --stacked — variante clara (FAQ de About Us): card blanca con la foto arriba (en el flujo, sin card-photo
+   ni ícono) y, debajo, título, texto y «Contact Us ↗» en el color de enlace normal. */
+.card-cta--stacked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-sm);
+}
+.card-cta__photo {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.card-cta--stacked .card-cta__text {
+  padding: 0 var(--spacing-5) var(--spacing-5);
 }
 
 /* Card Hero — tarjeta translúcida (velo oscuro del theme) sobre la foto del hero; es estática (no enlaza). */
@@ -581,6 +663,60 @@ html .card-project :is(h1, h2, h3, h4, h5, h6) {
 }
 .newsletter__submit:hover {
   color: var(--color-text-highlight);
+}
+
+/* Quote Form — card blanca con el título, cuatro Field y el botón (About Us, «Get a free Quote»). Debajo,
+   las regiones de estado: enviado (role="status") y error de envío (role="alert"), vacías hasta que
+   main.js las llena; vacías no ocupan lugar pero siguen en el árbol de accesibilidad (así se anuncian).
+   Sin gap: cada Field ya reserva arriba el lugar de su label, y con gap los campos quedaban a 99px uno
+   del otro (el diseño: 75px). */
+.quote-form {
+  display: grid;
+  padding: var(--spacing-6) var(--spacing-5);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  box-shadow: var(--shadow-md);
+}
+/* El nivel del título depende de la página (h2 en About Us, donde el formulario va antes que el h2 de su
+   sección; h3 en el kit): el tamaño es siempre el de un h3 */
+.quote-form__title {
+  margin-block-end: var(--spacing-2);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+.quote-form__submit {
+  justify-self: start;
+  margin-block-start: var(--spacing-6);
+}
+.quote-form__submit[aria-disabled='true'] {
+  cursor: progress;
+}
+.quote-form__messages {
+  display: grid;
+}
+.quote-form__status:not(:empty),
+.quote-form__alert:not(:empty) {
+  margin-block-start: var(--spacing-5);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: var(--border-width-sm) solid;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+.quote-form__status:not(:empty) {
+  border-color: var(--color-feedback-success-border);
+  background-color: var(--color-feedback-success-bg);
+  color: var(--color-feedback-success-text);
+}
+.quote-form__alert:not(:empty) {
+  border-color: var(--color-feedback-error-border);
+  background-color: var(--color-feedback-error-bg);
+  color: var(--color-feedback-error-text);
+}
+@media (min-width: 48rem) {
+  .quote-form {
+    padding: var(--spacing-8);
+  }
 }
 /* molecules:end */
 '''

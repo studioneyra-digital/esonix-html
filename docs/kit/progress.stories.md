@@ -35,6 +35,18 @@ Barra con etiqueta y porcentaje alineado al final del relleno (`--progress`). Us
 </div>
 ```
 
+**--accent: relleno ámbar**
+
+```html
+<div class="progress progress--accent" style="--progress: 88">
+  <div class="progress__head">
+    <label for="progress-demo-accent">Consulting</label>
+    <span aria-hidden="true">88%</span>
+  </div>
+  <progress class="progress__bar" id="progress-demo-accent" value="88" max="100">88%</progress>
+</div>
+```
+
 ## Clases y atributos
 
 | Clase o atributo | Efecto |
@@ -42,12 +54,13 @@ Barra con etiqueta y porcentaje alineado al final del relleno (`--progress`). Us
 | `.progress` | Contenedor: cabecera + barra |
 | `.progress__head` | Fila con la etiqueta (<label for>) y el porcentaje (aria-hidden) |
 | `.progress__bar` | El <progress> nativo: 3px de alto, relleno petróleo sobre pista clara |
+| `.progress--accent` | Relleno ámbar (--color-action-secondary); caso de uso: «Consulting» en About Us |
 | `value / max` | El avance real (0–100); el relleno lo dibuja el navegador |
 | `style="--progress: 90"` | Mismo valor que value: lleva el porcentaje al final del relleno (sin ella, al final de la pista) |
 
 ## Tokens que consume
 
-- `--color-action-primary`
+- `--color-action-primary / -secondary`
 - `--color-background-muted`
 - `--color-text-primary`
 - `--border-width-sm / -md`
