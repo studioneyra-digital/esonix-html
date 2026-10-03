@@ -1,19 +1,29 @@
-# Traspaso — Etapa 5: Service Details cerrada, sigue Contact
+# Traspaso — Etapa 5: Service Details publicada, sigue Contact
 
 Estado al 2026-10-03. Este archivo alcanza para arrancar la sesión siguiente. La spec y el estado de cada
 página están en `docs/plan-etapa-5.md`; se actualiza al cerrar cada página y se borra al cerrar la Etapa 5.
 
 ## 1. Dónde estamos
 
-- Rama `feat/design-to-web-esonix`. El repo publicado (`esonix-html`) no tiene la Etapa 5: para publicarla,
-  `git subtree split` (receta en `CLAUDE.md` §10).
-- About Us ✅ aprobada y commiteada (`52ab257`).
-- Service Details ✅ construida y verificada; estado y desvíos en `docs/plan-etapa-5.md` §«Service Details».
-  `docs/plan-etapa-5-service-details.md` (el plan en ejecución) ya se puede borrar.
-- Orden de páginas: About Us ✅ → Service Details ✅ → **Contact (sigue)**. Portfolios, Case Study,
-  Testimonials y Services no tienen PNG; Contact sí: `Contact-Us-Desktop.png` (1920×1692) y
-  `Contact-Us-Mobile.png` (480×1788). El primer paso de Contact es escribir su spec en `plan-etapa-5.md`
-  y su plan de implementación, como se hizo con las dos anteriores.
+- Rama `feat/design-to-web-esonix`, subida a `origin` (studioneyra-sandbox) con upstream configurado. Sin PR abierto.
+- About Us ✅ (`52ab257`). Service Details ✅ aprobada y commiteada (`91edb15`); estado y desvíos en
+  `docs/plan-etapa-5.md` §«Service Details».
+- **Theme publicado en `esonix-html`** (`main` en `c303ac2`, 2026-10-03), con About Us y Service Details. Cada
+  página nueva que se apruebe se publica de nuevo con la receta de `CLAUDE.md` §10 (`git subtree split`, tomar solo
+  el último renglón como hash, push sin force; correr desde la raíz de `studioneyra-sandbox`).
+- `docs/plan-etapa-5-service-details.md` (plan ya ejecutado) se puede borrar.
+- Orden de páginas: About Us ✅ → Service Details ✅ → **Contact (sigue)**. Portfolios, Case Study, Testimonials y
+  Services no tienen PNG; Contact sí: `Contact-Us-Desktop.png` (1920×1692) y `Contact-Us-Mobile.png` (480×1788).
+- **Primer paso de Contact:** recortar los PNG por tramos, escribir su spec en `plan-etapa-5.md` y su plan de
+  implementación (`docs/plan-etapa-5-contact.md`), como con las dos páginas anteriores, y esperar visto bueno antes
+  de construir. Usar el skill `frontend-design` y auditar contra `docs/anti-patrones.md`.
+- Al construir Contact, enlazar «Schedule a call» y los «Contact» del menú (hoy van a `#site-footer`) y revisar
+  ids duplicados en el kit.
+
+## Decisiones pendientes del usuario
+
+- ¿Borrar de `CLAUDE.md` §11 la excepción de `!important` del Select? (nunca llegó a existir).
+- Padding superior de las Sections: 96 px contra ~120 del diseño; se dejó el valor del componente compartido.
 
 ## 2. Qué quedó construido en Service Details
 
